@@ -1,0 +1,53 @@
+body {
+	background-image: url("../images/imagenFondo.jpg");
+	background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+div.container{
+	position: absolute;
+	min-height: 100%;
+	padding: 0px;	
+}
+
+.formulario{
+	padding: 4% 5% 3%;
+	margin: 8% auto 2%;
+	background: #FFFFFF;
+}
+
+.form-crear-cuenta{
+	margin-top: 3%;
+}
+
+div.card-deck{
+	margin: 5% 0% 5%;
+}
+
+.jumbotron{
+	margin: 5%;
+	opacity: 0.93;
+}
+
+.alert{
+	margin: 2% auto;
+}
+
+.btn-orange{
+	background: #FF8F00;
+	color: white;
+}
+
+.btn-orange:hover{
+	background: #EF6C00;
+	cursor: pointer;
+}
+
+div.enlace-inicio{
+	margin: 20px 0px 0px 0px;
+}
+
+.error{
+	color: red;
+}

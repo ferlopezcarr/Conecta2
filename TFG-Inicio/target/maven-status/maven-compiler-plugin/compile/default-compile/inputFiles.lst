@@ -1,0 +1,17 @@
+/Users/Ashet/Desktop/TFG-Inicio/src/main/java/tfg/servicioAplicacion/SAClaseImp.java
+/Users/Ashet/Desktop/TFG-Inicio/src/main/java/tfg/DTO/DTOUsuario.java
+/Users/Ashet/Desktop/TFG-Inicio/src/main/java/tfg/repositorio/RepositorioUsuario.java
+/Users/Ashet/Desktop/TFG-Inicio/src/main/java/tfg/configuration/WebMvcConfig.java
+/Users/Ashet/Desktop/TFG-Inicio/src/main/java/tfg/modelo/Clase.java
+/Users/Ashet/Desktop/TFG-Inicio/src/main/java/tfg/repositorio/RepositorioClase.java
+/Users/Ashet/Desktop/TFG-Inicio/src/main/java/tfg/modelo/Rol.java
+/Users/Ashet/Desktop/TFG-Inicio/src/main/java/tfg/servicioAplicacion/SAUsuario.java
+/Users/Ashet/Desktop/TFG-Inicio/src/main/java/tfg/configuration/SecurityConfiguration.java
+/Users/Ashet/Desktop/TFG-Inicio/src/main/java/tfg/Application.java
+/Users/Ashet/Desktop/TFG-Inicio/src/main/java/tfg/modelo/Usuario.java
+/Users/Ashet/Desktop/TFG-Inicio/src/main/java/tfg/servicioAplicacion/SAClase.java
+/Users/Ashet/Desktop/TFG-Inicio/src/main/java/tfg/servicioAplicacion/SARol.java
+/Users/Ashet/Desktop/TFG-Inicio/src/main/java/tfg/controlador/ControladorPrincipal.java
+/Users/Ashet/Desktop/TFG-Inicio/src/main/java/tfg/servicioAplicacion/SARolImp.java
+/Users/Ashet/Desktop/TFG-Inicio/src/main/java/tfg/repositorio/RepositorioRol.java
+/Users/Ashet/Desktop/TFG-Inicio/src/main/java/tfg/servicioAplicacion/SAUsuarioImp.java

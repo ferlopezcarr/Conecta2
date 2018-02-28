@@ -1,0 +1,17 @@
+tfg/servicioAplicacion/SARol.class
+tfg/configuration/SecurityConfiguration.class
+tfg/servicioAplicacion/SAClase.class
+tfg/servicioAplicacion/SAUsuarioImp.class
+tfg/modelo/Clase.class
+tfg/Application.class
+tfg/servicioAplicacion/SAClaseImp.class
+tfg/servicioAplicacion/SAUsuario.class
+tfg/controlador/ControladorPrincipal.class
+tfg/repositorio/RepositorioClase.class
+tfg/repositorio/RepositorioUsuario.class
+tfg/configuration/WebMvcConfig.class
+tfg/modelo/Usuario.class
+tfg/servicioAplicacion/SARolImp.class
+tfg/DTO/DTOUsuario.class
+tfg/modelo/Rol.class
+tfg/repositorio/RepositorioRol.class
