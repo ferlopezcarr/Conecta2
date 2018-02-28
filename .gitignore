@@ -5,6 +5,5 @@ bin/
 target/
 
 .settings/
-.classpath
-.project
-.springBeans
+/.classpath
+/.project
