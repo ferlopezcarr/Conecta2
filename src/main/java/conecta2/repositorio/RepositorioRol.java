@@ -1,11 +1,11 @@
-package tfg.repositorio;
+package conecta2.repositorio;
 
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import tfg.modelo.Rol;
+import conecta2.modelo.Rol;
 
 @Repository("repositorioRol")
 public interface RepositorioRol extends JpaRepository<Rol, Integer>{

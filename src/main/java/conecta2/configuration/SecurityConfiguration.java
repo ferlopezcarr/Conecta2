@@ -1,4 +1,4 @@
-package tfg.configuration;
+package conecta2.configuration;
 
 import javax.sql.DataSource;
 

@@ -1,4 +1,4 @@
-package tfg.DTO;
+package conecta2.DTO;
 
 import java.util.Set;
 
@@ -6,7 +6,7 @@ import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
-import tfg.modelo.Rol;
+import conecta2.modelo.Rol;
 
 
 public class DTOUsuario {

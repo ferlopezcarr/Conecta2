@@ -1,4 +1,4 @@
-package tfg.modelo;
+package conecta2.modelo;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

@@ -1,4 +1,4 @@
-package tfg.controlador;
+package conecta2.controlador;
 
 import javax.validation.Valid;
 
@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import tfg.DTO.DTOUsuario;
-import tfg.modelo.Usuario;
-import tfg.servicioAplicacion.SARol;
-import tfg.servicioAplicacion.SAUsuario;
+import conecta2.DTO.DTOUsuario;
+import conecta2.modelo.Usuario;
+import conecta2.servicioAplicacion.SARol;
+import conecta2.servicioAplicacion.SAUsuario;
 
 @Controller
 public class ControladorPrincipal {

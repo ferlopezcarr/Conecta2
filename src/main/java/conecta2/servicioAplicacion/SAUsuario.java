@@ -1,7 +1,7 @@
-package tfg.servicioAplicacion;
+package conecta2.servicioAplicacion;
 
-import tfg.DTO.DTOUsuario;
-import tfg.modelo.Usuario;
+import conecta2.DTO.DTOUsuario;
+import conecta2.modelo.Usuario;
 
 public interface SAUsuario {
 	public Usuario findUserByEmail(String email);

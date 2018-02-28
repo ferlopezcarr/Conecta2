@@ -1,4 +1,4 @@
-package tfg.servicioAplicacion;
+package conecta2.servicioAplicacion;
 
 import org.springframework.stereotype.Service;
 
