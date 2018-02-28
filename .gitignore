@@ -1,5 +1,5 @@
 # Ignore folder 'bin'
-bin/
+/bin/
 
 # Ignore folder 'target'
-target/
+/target/
