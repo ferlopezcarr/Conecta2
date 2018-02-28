@@ -3,3 +3,8 @@ bin/
 
 # Ignore folder 'target'
 target/
+
+.settings/
+.classpath
+.project
+.springBeans
