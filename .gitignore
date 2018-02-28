@@ -1,0 +1,5 @@
+# Ignore folder 'bin'
+bin/
+
+# Ignore folder 'target'
+target/
