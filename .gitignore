@@ -26,6 +26,7 @@ bin/**
 
 # Ignore target folder
 target/**
+target/classes/**
 
 # eclipse
 .classpath
