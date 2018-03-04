@@ -41,7 +41,14 @@ div.card-deck{
 }
 
 .btn-grey{
+	margin: 0px 25px;
+	font-size: 20px;
 	background: #89898C;
+	color: white;
+}
+
+.btn-grey:hover{
+	background: #0FC0CC;
 	color: white;
 }
 
