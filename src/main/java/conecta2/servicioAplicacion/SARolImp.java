@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import conecta2.modelo.Rol;
 import conecta2.repositorio.RepositorioRol;
 
+//Anotación de Servicio de Aplicación
 @Service("SARol")
 public class SARolImp implements SARol {
 	@Autowired

@@ -10,6 +10,7 @@ import conecta2.modelo.Rol;
 
 
 public class DTOUsuario {
+	//Anotaciones para cuando los campos del formulario son incorrectos
 	@NotEmpty(message = "* Por favor, introduzca su nombre")
 	private String nombre;
 	
