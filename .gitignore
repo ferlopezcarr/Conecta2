@@ -22,11 +22,11 @@
 hs_err_pid*
 
 # Ignore bin folder
-bin/**
+bin/
 
 # Ignore target folder
-target/**
-target/classes/**
+target/
+target/classes/
 
 # eclipse
 .classpath
