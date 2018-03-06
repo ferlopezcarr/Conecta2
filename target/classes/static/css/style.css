@@ -18,7 +18,11 @@ div.container{
 }
 
 .form-crear-cuenta{
-	margin-top: 3%;
+	margin: 3% auto;
+}
+
+.text-right button{
+	margin-right: 0px;
 }
 
 img{

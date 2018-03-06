@@ -24,8 +24,8 @@
 	  </button>
 	</div>
   	
-	<form class="formulario form-crear-cuenta col-11 col-sm-8 col-md-4" action="#" th:action="@{/registro}" th:object="${dtoUsuario}" method="POST">
-	  <h1>Crear cuenta</h1>
+	<form class="formulario form-crear-cuenta col-11 col-sm-8 col-md-5" action="#" th:action="@{/registro}" th:object="${dtoUsuario}" method="POST">
+	  <h1><img src="images/logo.png" width="40%" height="auto">Crear cuenta</h1>
 	  <div class="form-group">
 	  	<label for="nombre">Nombre</label>
 		<input type="text" th:field="*{nombre}" class="form-control" id="nombre"/>
