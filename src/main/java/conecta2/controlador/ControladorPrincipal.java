@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import conecta2.DTO.DTOUsuario;
 import conecta2.modelo.Usuario;
 import conecta2.servicioAplicacion.SARol;
 import conecta2.servicioAplicacion.SAUsuario;
+import conecta2.transfer.TransferUsuario;
 
 //Controlador de la aplicación, en él se mapean las diferentes peticiones (GET, POST...),
 //se redirige entre vistas y se hace uso de los Servicios de Aplicación
@@ -43,7 +43,7 @@ public class ControladorPrincipal {
 	@RequestMapping(value="/registro", method = RequestMethod.GET)
 	public ModelAndView registration(){ //En este caso estamos generando el formulario de registro
 		ModelAndView modelAndView = new ModelAndView();
-		DTOUsuario dtoUsuario = new DTOUsuario(); //Transfer de Usuario (Data Transfer Object)
+		TransferUsuario dtoUsuario = new TransferUsuario(); //Transfer de Usuario (Data Transfer Object)
 		modelAndView.addObject("dtoUsuario", dtoUsuario); //Añadimos al modelAndView el objeto dtoUsuario, que se recogerá en el <form> como th:object="${dtoUsuario}"	
 		modelAndView.addObject("roles", servicioRol.findAll()); //Añadimos los roles
 		modelAndView.addObject("usuarioRegistrado", false); //Añadimos la variable encargada de mostrar el mensaje de éxito a falso
@@ -53,7 +53,7 @@ public class ControladorPrincipal {
 	
 	@RequestMapping(value = "/registro", method = RequestMethod.POST)
 	//Recogemos el @ModelAttribute que se nos ha mandado por post y su binding
-	public ModelAndView createNewUser(@Valid @ModelAttribute("dtoUsuario") DTOUsuario dtoUsuario, BindingResult bindingResult) {
+	public ModelAndView createNewUser(@Valid @ModelAttribute("dtoUsuario") TransferUsuario dtoUsuario, BindingResult bindingResult) {
 		ModelAndView modelAndView = null;
 		Usuario userExists = saUsuario.findUserByEmail(dtoUsuario.getEmail());
 		
@@ -71,7 +71,7 @@ public class ControladorPrincipal {
 		else {
 			saUsuario.guardarUsuario(dtoUsuario);
 			modelAndView = new ModelAndView("registro");
-			modelAndView.addObject("dtoUsuario", new DTOUsuario());
+			modelAndView.addObject("dtoUsuario", new TransferUsuario());
 			modelAndView.addObject("usuarioRegistrado", true);
 		}
 		

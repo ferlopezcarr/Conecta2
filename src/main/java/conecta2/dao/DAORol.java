@@ -1,4 +1,4 @@
-package conecta2.repositorio;
+package conecta2.dao;
 
 import java.util.List;
 
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import conecta2.modelo.Rol;
 
 @Repository("repositorioRol")
-public interface RepositorioRol extends JpaRepository<Rol, Integer>{
+public interface DAORol extends JpaRepository<Rol, Integer>{
 	Rol findByNombre(String nombre);
 	List<Rol> findAll();
 }

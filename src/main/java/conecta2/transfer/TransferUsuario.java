@@ -1,4 +1,4 @@
-package conecta2.DTO;
+package conecta2.transfer;
 
 import java.util.Set;
 
@@ -9,7 +9,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 import conecta2.modelo.Rol;
 
 
-public class DTOUsuario {
+public class TransferUsuario {
 	//Anotaciones para cuando los campos del formulario son incorrectos
 	@NotEmpty(message = "* Por favor, introduzca su nombre")
 	private String nombre;

@@ -1,9 +1,9 @@
 package conecta2.servicioAplicacion;
 
-import conecta2.DTO.DTOUsuario;
 import conecta2.modelo.Usuario;
+import conecta2.transfer.TransferUsuario;
 
 public interface SAUsuario {
 	public Usuario findUserByEmail(String email);
-	public void guardarUsuario(DTOUsuario dtoUsuario);
+	public void guardarUsuario(TransferUsuario dtoUsuario);
 }
