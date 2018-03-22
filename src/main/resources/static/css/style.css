@@ -8,8 +8,11 @@ body {
 
 div.container{
 	position: absolute;
-	min-height: 100%;
 	padding: 0px;	
+}
+
+.inicio-sesion{
+	margin-top: 10%;
 }
 
 .formulario{
@@ -43,11 +46,6 @@ div.card-deck{
 .btn-grey{
 	background: #89898C;
 	color: white;
-}
-
-.btn-orange:hover{
-	background: #EF6C00;
-	cursor: pointer;
 }
 
 div.enlace-inicio{
