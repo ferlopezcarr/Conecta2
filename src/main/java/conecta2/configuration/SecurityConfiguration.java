@@ -25,13 +25,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	
 	@Value("${spring.queries.users-query}")
 	private String usersQuery;
-	
+
 	@Value("${spring.queries.roles-query}")
 	private String rolesQuery;
 
 	@Override
-	protected void configure(AuthenticationManagerBuilder auth)
-			throws Exception {
+	protected void configure(AuthenticationManagerBuilder auth)	throws Exception {
 		auth.
 			jdbcAuthentication()
 				.usersByUsernameQuery(usersQuery)
@@ -44,7 +43,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 			.authorizeRequests()
-				.antMatchers("/", "/login", "/registro", "/informacion").permitAll()
+				.antMatchers("/", "/login", "/crear-cuenta", "/crear-particular", "/crear-empresa", "/informacion").permitAll()
 				.antMatchers("/admin/**").hasAuthority("ADMINISTRADOR").anyRequest()
 				.authenticated().and().csrf().disable()
 			.formLogin()

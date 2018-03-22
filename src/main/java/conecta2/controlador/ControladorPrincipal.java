@@ -13,19 +13,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import conecta2.modelo.Usuario;
-import conecta2.servicioAplicacion.SARol;
-import conecta2.servicioAplicacion.SAUsuario;
-import conecta2.transfer.TransferUsuario;
+import conecta2.modelo.Empresa;
+import conecta2.modelo.Particular;
+import conecta2.modelo.Rol;
+import conecta2.servicioAplicacion.SAEmpresa;
+import conecta2.servicioAplicacion.SAParticular;
+import conecta2.transfer.TransferParticular;
+import conecta2.transfer.TransferEmpresa;
 
 //Controlador de la aplicación, en él se mapean las diferentes peticiones (GET, POST...),
 //se redirige entre vistas y se hace uso de los Servicios de Aplicación
 @Controller
 public class ControladorPrincipal {	
 	@Autowired	
-	private SAUsuario saUsuario;
+	private SAParticular saParticular;
 	@Autowired
-	private SARol servicioRol;
+	private SAEmpresa saEmpresa;
 	
 	//La forma de mapear es con la anotación @RequestMapping, seguido de la url y la petición
 	//asociada. El @RequestMapping afecta únicamente a la función que tiene inmediatamente debajo,
@@ -40,42 +43,63 @@ public class ControladorPrincipal {
 	}
 	
 	//Una misma url puede mapearse para varios tipos de peticiones, en este caso '/registro' es GET, y en el siguiente es POST
-	@RequestMapping(value="/registro", method = RequestMethod.GET)
+	@RequestMapping(value="/crear-cuenta", method = RequestMethod.GET)
 	public ModelAndView registration(){ //En este caso estamos generando el formulario de registro
 		ModelAndView modelAndView = new ModelAndView();
-		TransferUsuario dtoUsuario = new TransferUsuario(); //Transfer de Usuario (Data Transfer Object)
-		modelAndView.addObject("dtoUsuario", dtoUsuario); //Añadimos al modelAndView el objeto dtoUsuario, que se recogerá en el <form> como th:object="${dtoUsuario}"	
-		modelAndView.addObject("roles", servicioRol.findAll()); //Añadimos los roles
-		modelAndView.addObject("usuarioRegistrado", false); //Añadimos la variable encargada de mostrar el mensaje de éxito a falso
-		modelAndView.setViewName("registro"); //Agregamos como vista el registro.html
+		modelAndView.addObject("transferParticular", new TransferParticular()); //Añadimos al modelAndView el objeto dtoUsuario, que se recogerá en el <form> como th:object="${dtoUsuario}"
+		modelAndView.addObject("transferEmpresa", new TransferEmpresa());
+		modelAndView.setViewName("crearCuenta"); //Agregamos como vista el registro.html
 		return modelAndView;
 	}
 	
-	@RequestMapping(value = "/registro", method = RequestMethod.POST)
+	@RequestMapping(value = "/crear-particular", method = RequestMethod.POST)
 	//Recogemos el @ModelAttribute que se nos ha mandado por post y su binding
-	public ModelAndView createNewUser(@Valid @ModelAttribute("dtoUsuario") TransferUsuario dtoUsuario, BindingResult bindingResult) {
+	public ModelAndView crearParticular(@Valid @ModelAttribute("transferParticular") TransferParticular transferParticular, BindingResult bindingResult) {
 		ModelAndView modelAndView = null;
-		Usuario userExists = saUsuario.findUserByEmail(dtoUsuario.getEmail());
+		Particular particular = saParticular.buscarPorEmail(transferParticular.getEmail());
 		
 		//Si hay errores los binds muestran los fallos
-		if (!dtoUsuario.getPassword().equals(dtoUsuario.getConfirmarPassword())) {
-			bindingResult.rejectValue("password", "error.dtoUsuario", "* Las contraseñas no coinciden");
+		if (!transferParticular.getPassword().equals(transferParticular.getPasswordConfirmacion())) {
+			bindingResult.rejectValue("password", "error.transferParticular", "* Las contraseñas no coinciden");
 		}
-		if (userExists != null)
-			bindingResult.rejectValue("email", "error.dtoUsuario", "* Ya existe un usuario con este e-mail");		
+		if (particular != null)
+			bindingResult.rejectValue("email", "error.dtoUsuario", "* Ya existe un particular con este e-mail");		
 		
 		if (bindingResult.hasErrors()) {
-			modelAndView = new ModelAndView("registro", bindingResult.getModel());
-			modelAndView.addObject("dtoUsuario", dtoUsuario);
+			modelAndView = new ModelAndView("crearCuenta", bindingResult.getModel());
+			modelAndView.addObject("transferParticular", transferParticular);
 		}			
 		else {
-			saUsuario.guardarUsuario(dtoUsuario);
-			modelAndView = new ModelAndView("registro");
-			modelAndView.addObject("dtoUsuario", new TransferUsuario());
-			modelAndView.addObject("usuarioRegistrado", true);
+			saParticular.crearParticular(transferParticular);
+			modelAndView = new ModelAndView("redirect:/");
 		}
 		
-		modelAndView.addObject("roles", servicioRol.findAll());
+		modelAndView.addObject("roles", Rol.values());
+		
+		return modelAndView;
+	}
+	
+	@RequestMapping(value = "/crear-empresa", method = RequestMethod.POST)
+	//Recogemos el @ModelAttribute que se nos ha mandado por post y su binding
+	public ModelAndView crearEmpresa(@Valid @ModelAttribute("transferEmpresa") TransferEmpresa transferEmpresa, BindingResult bindingResult) {
+		ModelAndView modelAndView = null;
+		Empresa empresa = saEmpresa.buscarPorEmail(transferEmpresa.getEmail());
+		
+		//Si hay errores los binds muestran los fallos
+		if (!transferEmpresa.getPassword().equals(transferEmpresa.getPasswordConfirmacion())) {
+			bindingResult.rejectValue("password", "error.transferEmpresa", "* Las contraseñas no coinciden");
+		}
+		if (empresa != null)
+			bindingResult.rejectValue("email", "error.transferEmpresa", "* Ya existe una empresa con este e-mail");		
+		
+		if (bindingResult.hasErrors()) {
+			modelAndView = new ModelAndView("crearCuenta", bindingResult.getModel());
+			modelAndView.addObject("transferEmpresa", transferEmpresa);
+		}			
+		else {
+			saEmpresa.crearEmpresa(transferEmpresa);
+			modelAndView = new ModelAndView("redirect:/");
+		}
 		
 		return modelAndView;
 	}
@@ -96,8 +120,8 @@ public class ControladorPrincipal {
 	@ModelAttribute
 	public void addAttributes(Model model) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		Usuario usuario = saUsuario.findUserByEmail(auth.getName());
-		model.addAttribute("usuario", usuario); //En este caso el objeto usuario estará permanentemente en todas las vistas por el @ModelAttribute 
+		Particular particular = saParticular.buscarPorEmail(auth.getName());
+		model.addAttribute("particular", particular); //En este caso el objeto usuario estará permanentemente en todas las vistas por el @ModelAttribute 
 	}
 	
 	/* --- IMPORTANTE --- THYMELEAF

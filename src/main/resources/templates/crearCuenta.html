@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+  <head th:fragment="head">
+    <title>Conecta2</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous" />
+    
+    <!-- Style CSS -->
+    <link href="css/style.css" rel="stylesheet" />
+  </head>
+  <body>
+  <div class="container col-12">
+  	<nav th:replace="fragments/navbar :: navbar"></nav>
+	
+	<div class="row justify-content-center">
+	<div class="col col-sm-12 col-md-6">
+		<ul class="nav nav-pills nav-fill" id="pills-tab" role="tablist">
+		  <li class="nav-item">
+		    <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Particulares</a>
+		  </li>
+		  <li class="nav-item">
+		    <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Empresas</a>
+		  </li>
+		</ul>
+		<div class="tab-content" id="pills-tabContent">
+		  <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+			  <form class="formulario" th:action="@{/crear-particular}" th:object="${transferParticular}" method="POST">
+				  <h1>Crear cuenta</h1>
+				  <div class="form-group">
+				  	<label for="nombre">DNI</label>
+					<input type="text" th:field="*{dni}" class="form-control" id="dni"/>
+					<label th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}" class="validation-message error"></label>
+				  </div>
+				  <div class="form-group">
+				  	<label for="nombre">Nombre</label>
+					<input type="text" th:field="*{nombre}" class="form-control" id="nombre"/>
+					<label th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}" class="validation-message error"></label>
+				  </div>
+				  <div class="form-group">
+				  	<label for="apellidos">Apellidos</label>
+					<input type="text" th:field="*{apellidos}" class="form-control" id="apellidos" />
+					<label th:if="${#fields.hasErrors('apellidos')}" th:errors="*{apellidos}" class="validation-message error"></label>
+				  </div>
+				  <div class="form-group">
+				  	<label for="email">Correo electrónico</label>
+				  	<input type="email" th:field="*{email}" class="form-control" id="email"/>
+				  	<label th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="validation-message error"></label>
+				  </div>
+				  <div class="form-group">
+				  	<label for="password">Contraseña</label>
+				  	<input type="password" th:field="*{password}" class="form-control" id="password"/>
+				  	<label th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="validation-message error"></label>
+				  </div>
+				  <div class="form-group">
+				  	<label for="passwordConfirmacion">Confirmar contraseña</label>
+				  	<input type="password" th:field="*{passwordConfirmacion}" class="form-control" id="passwordConfirmacion"/>
+				  </div>
+			
+			      <div class="text-right">
+				  	<button type="submit" class="btn btn-info">Registrarse</button>
+				  </div>
+				  
+				  <div class="enlace-inicio">
+				  	<a href="/">Iniciar Sesión</a>
+				  </div>  
+				</form>	  
+		  </div>
+		  <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">Formulario Empresas</div>
+		</div>
+	</div>
+  	</div>
+	
+	
+	<!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="//code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>    
+  </div>
+  </body>
+</html>
