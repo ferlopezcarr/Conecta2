@@ -32,11 +32,6 @@
 			  <form class="formulario" th:action="@{/crear-particular}" th:object="${transferParticular}" method="POST">
 				  <h1>Crear cuenta</h1>
 				  <div class="form-group">
-				  	<label for="nombre">DNI</label>
-					<input type="text" th:field="*{dni}" class="form-control" id="dni"/>
-					<label th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}" class="validation-message error"></label>
-				  </div>
-				  <div class="form-group">
 				  	<label for="nombre">Nombre</label>
 					<input type="text" th:field="*{nombre}" class="form-control" id="nombre"/>
 					<label th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}" class="validation-message error"></label>
@@ -47,8 +42,13 @@
 					<label th:if="${#fields.hasErrors('apellidos')}" th:errors="*{apellidos}" class="validation-message error"></label>
 				  </div>
 				  <div class="form-group">
+				  	<label for="nombre">DNI</label>
+					<input type="text" th:field="*{dni}" class="form-control" id="dni"/>
+					<label th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}" class="validation-message error"></label>
+				  </div>
+				  <div class="form-group">
 				  	<label for="email">Correo electrónico</label>
-				  	<input type="email" th:field="*{email}" class="form-control" id="email"/>
+				  	<input type="text" th:field="*{email}" class="form-control" id="email"/>
 				  	<label th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="validation-message error"></label>
 				  </div>
 				  <div class="form-group">

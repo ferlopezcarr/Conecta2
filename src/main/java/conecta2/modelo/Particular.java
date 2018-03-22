@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
@@ -20,21 +21,24 @@ public class Particular {
 	private int id;
 	
 	@NotEmpty
-	@Column(unique=true)
-	private String dni;
-	
-	@NotEmpty
 	private String nombre;
 	
 	@NotEmpty
-	private String apellidos;	
+	private String apellidos;
+	
+	@NotEmpty
+	@Pattern(regexp="^[0-9]{8}[A-Z]{1}$")
+	@Column(unique=true)
+	private String dni;
 	
 	@Email
+	@Pattern(regexp="^[^@]+@[^@]+\\.[a-zA-Z]{2,}$")
 	@NotEmpty
 	@Column(unique=true)
 	private String email;
 	
-	@Length(min = 6)
+	@Length(min = 5)
+	@Pattern(regexp="^(?=\\w*\\d)(?=\\w*[A-Z])(?=\\w*[a-z])\\S")
 	@NotEmpty
 	@Transient
 	private String password;
@@ -51,14 +55,6 @@ public class Particular {
 		this.id = id;
 	}
 
-	public String getDni() {
-		return dni;
-	}
-
-	public void setDni(String dni) {
-		this.dni = dni;
-	}
-
 	public String getNombre() {
 		return nombre;
 	}
@@ -73,6 +69,14 @@ public class Particular {
 
 	public void setApellidos(String apellidos) {
 		this.apellidos = apellidos;
+	}
+	
+	public String getDni() {
+		return dni;
+	}
+
+	public void setDni(String dni) {
+		this.dni = dni;
 	}
 
 	public String getEmail() {
