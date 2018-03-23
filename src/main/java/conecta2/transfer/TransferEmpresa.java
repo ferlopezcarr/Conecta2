@@ -12,7 +12,7 @@ public class TransferEmpresa {
 		private String nombre;
 				
 		@NotEmpty(message = "* Por favor, introduzca su cif")
-		@Pattern(regexp="^[0-9]{8}[A-Z]{1}$", message="* Por favor, introduzca un CIF válido (8 dígitos y una letra en mayúscula")
+		@Pattern(regexp="^[ABCDEFGHJKLMNPQRSUVW]{1}[0-9]{7}([0-9]|[ABCDEFGHJKLMNPQRSUVW]){1}$", message="* Por favor, introduzca un CIF válido (1 letra en mayúscula, 7 dígitos y 1 número o letra en mayúscula")
 		private String cif;
 		
 		@NotEmpty(message = "* Por favor, introduzca un correo electrónico")

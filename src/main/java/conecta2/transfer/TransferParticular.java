@@ -15,7 +15,7 @@ public class TransferParticular {
 	private String apellidos;
 	
 	@NotEmpty(message = "* Por favor, introduzca su dni")
-	@Pattern(regexp="^[0-9]{8}[A-Z]{1}$", message="* Por favor, introduzca un DNI válido (8 dígitos y una letra en mayúscula")
+	@Pattern(regexp="^[0-9]{8}[A-Z]{1}$", message="* Por favor, introduzca un DNI válido (8 dígitos y una letra en mayúscula)")
 	private String dni;
 	
 	@NotEmpty(message = "* Por favor, introduzca un correo electrónico")
