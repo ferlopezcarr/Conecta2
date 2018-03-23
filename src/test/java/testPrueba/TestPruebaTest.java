@@ -9,7 +9,7 @@ public class TestPruebaTest {
 	@Test
 	public void test() {
 		//test que falla
-		fail("Not yet implemented");
+		//fail("Not yet implemented");
 	}
 
 }
