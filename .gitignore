@@ -25,7 +25,7 @@ hs_err_pid*
 /bin
 
 # Ignore target folder
-/target
+target/
 
 # eclipse
 .classpath
