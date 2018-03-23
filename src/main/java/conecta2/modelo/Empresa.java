@@ -25,7 +25,7 @@ public class Empresa {
 	private String nombre;
 	
 	@NotEmpty
-	@Pattern(regexp="^[0-9]{8}[A-Z]{1}$")
+	@Pattern(regexp="^[ABCDEFGHJKLMNPQRSUVW]{1}[0-9]{7}([0-9]|[ABCDEFGHJKLMNPQRSUVW]){1}$")
 	@Column(unique=true)
 	private String cif;
 	
