@@ -6,15 +6,9 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-
 import org.apache.commons.lang.RandomStringUtils;
-
 import javax.mail.PasswordAuthentication;
-
-
-import java.net.URLEncoder;
 import java.util.Properties;
-import java.util.Random;
 
 
 public class SAEmailImp implements SAEmail {
