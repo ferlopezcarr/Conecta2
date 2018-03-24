@@ -65,7 +65,7 @@
 		
 			
 			  <div class="tab-content" id="pills-tabContent">
-			      <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+			      <div class="tab-pane fade show active" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
 				       <form class="formulario" th:action="@{/crear-empresa}" th:object="${transferEmpresa}" method="POST">
 		  		
 		  
@@ -105,7 +105,7 @@
 			  
 			 				</div>  
 
-			 				<hr class="mb-4" style="background-color:#89898C">
+			 				<hr class="mb-4 separador-gris">
 			  
 			 			    <div class="text-center">
 			 			    	<p>Si ya tienes una cuenta con nosotros <a href="/">inicia sesión</a></p>
@@ -117,7 +117,7 @@
 		     
 		   
 		   
-		          <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+		          <div class="tab-pane fade" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
 					  <form class="formulario" th:action="@{/crear-particular}" th:object="${transferParticular}" method="POST">
 						  
 						  <div class="form-group">
@@ -158,7 +158,7 @@
 			  
 			 				</div>  
 
-			 				<hr class="mb-4" style="background-color:#89898C">
+			 				<hr class="mb-4 separador-gris" >
 			  
 			 			    <div class="text-center">
 			 			    	<p>Si ya tienes una cuenta con nosotros <a href="/">inicia sesión</a></p>
@@ -176,67 +176,7 @@
 	
 		
 		
-  <!-- <div class="container col-12">
-  	<nav th:replace="fragments/navbar :: navbar"></nav>
-	
-	<div class="row justify-content-center">
-	<div class="col col-sm-12 col-md-6">
-		<ul class="nav nav-pills nav-fill" id="pills-tab" role="tablist">
-		  <li class="nav-item">
-		    <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Particulares</a>
-		  </li>
-		  <li class="nav-item">
-		    <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Empresas</a>
-		  </li>
-		</ul>
-		<div class="tab-content" id="pills-tabContent">
-		  <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-			  <form class="formulario" th:action="@{/crear-particular}" th:object="${transferParticular}" method="POST">
-				  <h1>Crear cuenta</h1>
-				  <div class="form-group">
-				  	<label for="nombre">Nombre</label>
-					<input type="text" th:field="*{nombre}" class="form-control" id="nombre"/>
-					<label th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}" class="validation-message error"></label>
-				  </div>
-				  <div class="form-group">
-				  	<label for="apellidos">Apellidos</label>
-					<input type="text" th:field="*{apellidos}" class="form-control" id="apellidos" />
-					<label th:if="${#fields.hasErrors('apellidos')}" th:errors="*{apellidos}" class="validation-message error"></label>
-				  </div>
-				  <div class="form-group">
-				  	<label for="nombre">DNI</label>
-					<input type="text" th:field="*{dni}" class="form-control" id="dni"/>
-					<label th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}" class="validation-message error"></label>
-				  </div>
-				  <div class="form-group">
-				  	<label for="email">Correo electrónico</label>
-				  	<input type="text" th:field="*{email}" class="form-control" id="email"/>
-				  	<label th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="validation-message error"></label>
-				  </div>
-				  <div class="form-group">
-				  	<label for="password">Contraseña</label>
-				  	<input type="password" th:field="*{password}" class="form-control" id="password"/>
-				  	<label th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="validation-message error"></label>
-				  </div>
-				  <div class="form-group">
-				  	<label for="passwordConfirmacion">Confirmar contraseña</label>
-				  	<input type="password" th:field="*{passwordConfirmacion}" class="form-control" id="passwordConfirmacion"/>
-				  </div>
-			
-			      <div class="text-right">
-				  	<button type="submit" class="btn btn-info">Registrarse</button>
-				  </div>
-				  
-				  <div class="enlace-inicio">
-				  	<a href="/">Iniciar Sesión</a>
-				  </div>  
-				</form>	  
-		  </div>
-		  <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">Formulario Empresas</div>
-		</div>
-	</div>
-  	</div>
-	-->
+
 	
 	<!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

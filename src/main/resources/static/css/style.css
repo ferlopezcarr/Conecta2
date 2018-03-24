@@ -69,3 +69,6 @@ div.enlace-inicio{
 	left: 50%;
 	transform: translatex(-50%);
 }
+.separador-gris{
+	background-color:#89898C;
+}
