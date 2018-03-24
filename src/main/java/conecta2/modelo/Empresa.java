@@ -36,7 +36,7 @@ public class Empresa {
 	private String email;
 	
 	@Length(min = 5)
-	@Pattern(regexp="^(?=\\w*\\d)(?=\\w*[A-Z])(?=\\w*[a-z])\\S")
+	@Pattern(regexp="^(?=\\w*\\d)(?=\\w*[A-Z])\\S{5,}$")
 	@NotEmpty
 	@Transient
 	private String password;

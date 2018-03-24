@@ -25,7 +25,7 @@ public class TransferParticular {
 
 	@NotEmpty(message = "* Por favor, introduzca una contraseña")
 	@Length(min = 5, message = "* La contraseña deberá tener al menos 5 caracteres")
-	@Pattern(regexp="^(?=\\w*\\d)(?=\\w*[A-Z])(?=\\w*[a-z])\\S", message="* La contraseña debe tener al menos un numero y una mayúscula")
+	@Pattern(regexp="^(?=\\w*\\d)(?=\\w*[A-Z])\\S{5,}$", message="* La contraseña debe tener al menos un numero y una mayúscula")
 	private String password;
 	
 	@NotEmpty(message = "* Por favor, introduzca una contraseña")
