@@ -11,6 +11,8 @@ import javax.mail.PasswordAuthentication;
 import java.util.Properties;
 
 
+
+
 public class SAEmailImp implements SAEmail {
 
 	@Override
