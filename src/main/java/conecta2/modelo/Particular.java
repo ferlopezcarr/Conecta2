@@ -38,12 +38,13 @@ public class Particular {
 	private String email;
 	
 	@Length(min = 5)
-	@Pattern(regexp="^(?=\\w*\\d)(?=\\w*[A-Z])(?=\\w*[a-z])\\S")
+	//@Pattern(regexp="^(?=\\w*\\d)(?=\\w*[A-Z])\\S{5,}$")
+	
 	@NotEmpty
 	@Transient
 	private String password;
 
-	private int activo;
+	private boolean activo;
 	
 	private int puntuacion;
 
@@ -95,11 +96,11 @@ public class Particular {
 		this.password = password;
 	}
 
-	public int getActivo() {
+	public boolean getActivo() {
 		return activo;
 	}
 
-	public void setActivo(int activo) {
+	public void setActivo(boolean activo) {
 		this.activo = activo;
 	}
 
