@@ -39,6 +39,7 @@ public class Particular {
 	
 	@Length(min = 5)
 	//@Pattern(regexp="^(?=\\w*\\d)(?=\\w*[A-Z])\\S{5,}$")
+	
 	@NotEmpty
 	@Transient
 	private String password;
