@@ -1,48 +1,32 @@
 <!doctype html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
-  <head th:fragment="head">
-    <title>Conecta2</title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	 <link rel="stylesheet" type="text/css" href="css/bootstrap.css"> <!--AÑADIDO NUEVO -->
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous" />
-    
-    <!-- Style CSS -->
-    <link href="css/style.css" rel="stylesheet" />
-  </head>
-  <body>
-  
-  
-  
-  
+<head th:fragment="head">
+	<title>Conecta2</title>
+	
+	<!-- Required meta tags -->
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="css/bootstrap.min.css"/>
+	
+	<!-- Style CSS -->
+	<link href="css/style.css" rel="stylesheet" />
+</head>
+
+<body>
+
   <div class="container col-12">
   	  
-
   		<div class="row flex-nowrap justify-content-between align-items-center fondoGris rounded">
   			<div class="col-3"></div>
   			<div class="text-center">
-  				<img src="images/logo.png" width="130" height="80" alt="" > 
+  				<a href="/"><img src="images/logo.png" width="auto" height="60px" alt="" ></a>
   			</div>
   			<div class="col-3"></div>
 
   		</div>
-
-
-  		<div class="row flex-nowrap justify-content-between align-items-center">
-  			
-  			<div class="col-12"></div>
-  			
-  		</div>
-
-  	      
-
-
-
-
-
 
        <div class="row">
        	  <div class="col-md-3 "></div>
@@ -101,7 +85,7 @@
 			 				
 			 				
 			 				<div class="text-center">
-			  					<button type="submit" class="btn btn-grey">Registrarse</button>
+			  					<button type="submit" class="btn hvr-fade">Registrarse</button>
 			  
 			 				</div>  
 
@@ -154,8 +138,7 @@
 						
 						
 					      <div class="text-center">
-			  					<button type="submit" class="btn btn-grey">Registrarse</button>
-			  
+			  					<button type="submit" class="btn hvr-fade">Registrarse</button>
 			 				</div>  
 
 			 				<hr class="mb-4 separador-gris" >
@@ -178,11 +161,12 @@
 		
 
 	
-	<!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="//code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>    
+		<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="js/jquery-3.2.1.slim.min.js"></script>
+	<script src="js/bundle.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>    
+	<script src="js/app.js"></script>
   </div>
   </body>
 </html>
