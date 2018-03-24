@@ -1,55 +1,50 @@
 <!doctype html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
-<head th:fragment="head">
-	<title>Conecta2</title>
-	
-	<!-- Required meta tags -->
-	<meta charset="utf-8"/>
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <head th:fragment="head">
+    <title>Conecta2</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
-	<!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous" />
-	
-	<!-- Style CSS -->
-	<link href="css/style.css" rel="stylesheet" />
-</head>
-	
-<body>
-
-<div class="container col-12">
-	<div class="row align-items-center justify-content-md-center inicio-sesion">
-		<div class="col-4" >
-		<img src="images/logo.png" width="100%" height="auto">
-	</div>
-	
-	<div class=" col-5">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous" />
+    
+    <!-- Style CSS -->
+    <link href="css/style.css" rel="stylesheet" />
+  </head>
+  <body>
+  <div class="container col-12">
+  	<div class="row align-items-center justify-content-md-center inicio-sesion">
+  		<div class="col-4" >
+			<img src="images/logo.png" width="100%" height="auto">
+		</div>
+		
+		<div class=" col-5">
 		<form class="formulario" th:action="@{/login}" method="POST">
-			<h1>Iniciar Sesión</h1>
-			<div class="form-group">
-				<label for="email">Correo electrónico</label>
-				<input type="email" class="form-control" name="email" id="email" required="true"/>
+		  <h1>Iniciar Sesión</h1>
+		    <label for="email">Correo electrónico</label>
+		    <input type="email" class="form-control" name="email" id="email" required="true"/>
+		  <div class="form-group">
+		    <label for="password">Contraseña</label>
+		    <input type="password" class="form-control" name="password" id="password" required="true"/>
+		  </div>
+		  <div th:if="${param.error}">
+			<p class="error">Usuario o contraseña incorrectos</p>
+		  </div>
+		  <div  class=" text-center" >
+		  	<button type="submit" class="btn btn-grey">Iniciar Sesión</button>
+		  	<a href="/crear-cuenta" class="btn btn-grey">Crear cuenta</a>
 			</div>
-			<div class="form-group">
-				<label for="password">Contraseña</label>
-				<input type="password" class="form-control" name="password" id="password" required="true"/>
-			</div>
-			<div th:if="${param.error}">
-				<p class="error">Usuario o contraseña incorrectos</p>
-			</div>
-			<div  class=" text-center">
-				<button type="submit" class="btn btn-grey">Iniciar Sesión</button>
-				<a href="/crear-cuenta" class="btn btn-grey">Crear cuenta</a>
 			</div>
 		</form>
-	</div>
-	
-	<!-- Optional JavaScript -->
-		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-		<script src="//code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-		<script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-		<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>    
-</div>
-	
-</body>
+		</div>
+		
+		<!-- Optional JavaScript -->
+	    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	    <script src="//code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	    <script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+	    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>    
+	  </div>
+  </body>
 </html>

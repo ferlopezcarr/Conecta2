@@ -29,7 +29,7 @@ public class SAParticularImp implements SAParticular{
         particular.setApellidos(transferParticular.getApellidos());
         particular.setEmail(transferParticular.getEmail());
         particular.setPassword(bCryptPasswordEncoder.encode(transferParticular.getPassword()));
-        particular.setActivo(true);
+        particular.setActivo(1);
         daoParticular.save(particular); //Hace el save al repositorio (función interna de JPARepository)
         //Después de esto el usuario ya estaría guardado en la Base de Datos
     }
