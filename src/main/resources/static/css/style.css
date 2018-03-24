@@ -55,3 +55,17 @@ div.enlace-inicio{
 .error{
 	color: red;
 }
+.fondoGris{
+	background: #89898C;
+	color:white;
+	height: 60px;
+}
+
+
+
+
+.centrarImagenCabecera{
+	float:none;	
+	left: 50%;
+	transform: translatex(-50%);
+}

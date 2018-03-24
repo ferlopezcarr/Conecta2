@@ -6,7 +6,7 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-
+	 <link rel="stylesheet" type="text/css" href="css/bootstrap.css"> <!--AÑADIDO NUEVO -->
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous" />
     
@@ -14,7 +14,169 @@
     <link href="css/style.css" rel="stylesheet" />
   </head>
   <body>
+  
+  
+  
+  
   <div class="container col-12">
+  	  
+
+  		<div class="row flex-nowrap justify-content-between align-items-center fondoGris rounded">
+  			<div class="col-3"></div>
+  			<div class="text-center">
+  				<img src="images/logo.png" width="130" height="80" alt="" > 
+  			</div>
+  			<div class="col-3"></div>
+
+  		</div>
+
+
+  		<div class="row flex-nowrap justify-content-between align-items-center">
+  			
+  			<div class="col-12"></div>
+  			
+  		</div>
+
+  	      
+
+
+
+
+
+
+       <div class="row">
+       	  <div class="col-md-3 "></div>
+       	  <div class="col-md-6 flex-nowrap justify-content-between align-items-center ">
+       	  	
+				<h5 class="text-center" style="margin-top: 5%">¿No estás registrado <strong>aún?</strong></h5>
+       	  	
+       	  	
+       	  		<p class="text-center"><u> Registrate gratis </u> en pocos segundos.</p>
+       	  		
+       	  	    <ul class="nav nav-pills nav-fill" id="pills-tab" role="tablist">
+		           <li class="nav-item">
+		               <a class="nav-link border" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="false">Particulares</a>
+		          </li>
+		 
+		           <li class="nav-item">
+		               <a class="nav-link active border"  id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="true">Empresas</a>
+		          </li>
+		      </ul>
+		
+			
+			  <div class="tab-content" id="pills-tabContent">
+			      <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+				       <form class="formulario" th:action="@{/crear-empresa}" th:object="${transferEmpresa}" method="POST">
+		  		
+		  
+			  				<div class="form-group">
+			  					<label for="nombre" class="sr-only">Nombre de la Empresa</label>
+									<input type="text" class="form-control" th:field="*{nombre}" id="nombre" required="true" placeholder="Nombre Empresa" required autofocus/>
+			  				</div>
+			  				
+			  				
+			  				<div class="form-group">
+			  					<label for="cif" class="sr-only">CIF</label>
+									<input type="text"  class="form-control" th:field="*{cif}" id="cif" required="true" placeholder="CIF" required autofocus/>
+			  				</div>
+			  				
+			  				
+			  				<div class="form-group">
+			  					<label for="email" class="sr-only">Correo electrónico</label>
+			  						<input type="email" class="form-control" th:field="*{email}" id="email" required="true" placeholder="Email" required autofocus/>
+			  
+			  				</div>
+			  				
+			  				<div class="form-group">
+			  					<label for="password" class="sr-only">Contraseña</label>
+			  						<input type="password" class="form-control" th:field="*{password}" id="password" required="true" placeholder="Contraseña" required autofocus/>
+			  					
+			 				</div>
+			 				
+			 				<div class="form-group">
+			  					<label for="passwordConfirmacion" class="sr-only">Confirmar contraseña</label>
+			  						<input type="password" class="form-control" th:field="*{passwordConfirmacion}" id="passwordConfirmacion" required="true" placeholder="Confirmar Contraseña" required autofocus/>
+			  
+			 				</div>
+			 				
+			 				
+			 				<div class="text-center">
+			  					<button type="submit" class="btn btn-grey">Registrarse</button>
+			  
+			 				</div>  
+
+			 				<hr class="mb-4" style="background-color:#89898C">
+			  
+			 			    <div class="text-center">
+			 			    	<p>Si ya tienes una cuenta con nosotros <a href="/">inicia sesión</a></p>
+			  				
+			 			    </div>  
+			         </form>
+			     </div>
+		
+		     
+		   
+		   
+		          <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+					  <form class="formulario" th:action="@{/crear-particular}" th:object="${transferParticular}" method="POST">
+						  
+						  <div class="form-group">
+						  	<label for="nombre" class="sr-only">Nombre</label>
+							<input type="text" th:field="*{nombre}" class="form-control" id="nombre" required="true" placeholder="Nombre" required autofocus/>
+							<label th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}" class="validation-message error"></label>
+						  </div>
+						  
+						  <div class="form-group">
+						  	<label for="apellidos" class="sr-only">Apellidos</label>
+							<input type="text" th:field="*{apellidos}" class="form-control" id="apellidos" required="true" placeholder="Apellidos" required autofocus />
+							<label th:if="${#fields.hasErrors('apellidos')}" th:errors="*{apellidos}" class="validation-message error"></label>
+						  </div>
+						  <div class="form-group">
+						  	<label for="nombre" class="sr-only">DNI</label>
+							<input type="text" th:field="*{dni}" class="form-control" id="dni" required="true" placeholder="DNI" required autofocus />
+							<label th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}" class="validation-message error"></label>
+						  </div>
+						  <div class="form-group">
+						  	<label for="email" class="sr-only">Correo electrónico</label>
+						  	<input type="text" th:field="*{email}" class="form-control" id="email" required="true" placeholder="Email" required autofocus/>
+						  	<label th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="validation-message error"></label>
+						  </div>
+						  <div class="form-group">
+						  	<label for="password" class="sr-only">Contraseña</label>
+						  	<input type="password" th:field="*{password}" class="form-control" id="password" required="true" placeholder="Contraseña" required autofocus/>
+						  	<label th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="validation-message error"></label>
+						  </div>
+						  <div class="form-group">
+						  	<label for="passwordConfirmacion" class="sr-only">Confirmar contraseña</label>
+						  	<input type="password" th:field="*{passwordConfirmacion}" class="form-control" id="passwordConfirmacion" required="true" placeholder="Confirmar contraseña" required autofocus/>
+						  </div>
+						
+						
+						
+					      <div class="text-center">
+			  					<button type="submit" class="btn btn-grey">Registrarse</button>
+			  
+			 				</div>  
+
+			 				<hr class="mb-4" style="background-color:#89898C">
+			  
+			 			    <div class="text-center">
+			 			    	<p>Si ya tienes una cuenta con nosotros <a href="/">inicia sesión</a></p>
+			  				
+			 			    </div>  
+						
+					 </form>	  
+		          </div>	   
+		   
+	          </div>		
+		
+		 </div> <!-- final col-md-6  -->
+	
+     </div><!-- final row -->
+	
+		
+		
+  <!-- <div class="container col-12">
   	<nav th:replace="fragments/navbar :: navbar"></nav>
 	
 	<div class="row justify-content-center">
@@ -74,7 +236,7 @@
 		</div>
 	</div>
   	</div>
-	
+	-->
 	
 	<!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
