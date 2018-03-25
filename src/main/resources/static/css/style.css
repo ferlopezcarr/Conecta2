@@ -5,6 +5,7 @@ body {
     background-position: center;
 }
 
+
 div.container{
 	position: absolute;
 	padding: 0px;	
@@ -15,13 +16,19 @@ div.container{
 }
 
 .formulario{
-	padding: 0 5% 1%;
-	background: none;
+	padding: 4% 5% 3%;
+	background: #EFF0F5;
 }
 
 .form-crear-cuenta{
 	margin-top: 3%;
 }
+
+img{
+	
+	padding: 4% 5% 3%;
+}
+
 
 div.card-deck{
 	margin: 5% 0% 5%;
@@ -36,28 +43,9 @@ div.card-deck{
 	margin: 2% auto;
 }
 
-.btn {
-	margin: 1%;
-	background: #008f9b;
+.btn-grey{
+	background: #89898C;
 	color: white;
-}
-
-/* Fade */
-.hvr-fade {
-  display: inline-block;
-  vertical-align: middle;
-  -webkit-transform: perspective(1px) translateZ(0);
-  transform: perspective(1px) translateZ(0);
-  box-shadow: 0 0 1px transparent;
-  overflow: hidden;
-  -webkit-transition-duration: 0.3s;
-  transition-duration: 0.3s;
-  -webkit-transition-property: color, background-color;
-  transition-property: color, background-color;
-}
-.hvr-fade:hover, .hvr-fade:focus, .hvr-fade:active {
-  background-color: #36C7D4;
-  color: white;
 }
 
 div.enlace-inicio{
@@ -67,101 +55,20 @@ div.enlace-inicio{
 .error{
 	color: red;
 }
-
-/*Irene*/
 .fondoGris{
 	background: #89898C;
 	color:white;
 	height: 60px;
 }
 
+
+
+
 .centrarImagenCabecera{
 	float:none;	
 	left: 50%;
 	transform: translatex(-50%);
 }
-
-/*Fer Fondo*/
-
-/*Incluidos*/
-.title {
-	text-align: center;
-	font-size: 3.5rem;
-}
-
-.titleImg {
-	max-width: 250px;
-	max-height: auto;
-	min-width: 150px;
-	min-heigth: auto;
-}
-/**/
-
-.bg {
-  animation:slide 3s ease-in-out infinite alternate;
-  background-image: linear-gradient(-60deg, #1BBFCE 50%, #09f 50%);
-  bottom:0;
-  left:-50%;
-  opacity:.5;
-  position:fixed;
-  right:-50%;
-  top:0;
-  z-index:-1;
-}
-
-.bg2 {
-  animation-direction:alternate-reverse;
-  animation-duration:4s;
-}
-
-.bg3 {
-  animation-duration:5s;
-}
-
-.content {
-  background-color:rgba(255,255,255,.8);
-  border-radius:.25em;
-  box-shadow:0 0 .25em rgba(0,0,0,.25);
-  box-sizing:border-box;
-  left:50%;
-  padding:2% 2% 1%;
-  position:fixed;
-  top:50%;
-  transform:translate(-50%, -50%);
-}
-
-@keyframes slide {
-  0% {
-    transform:translateX(-25%);
-  }
-  100% {
-    transform:translateX(25%);
-  }
-}
-
-/*Fer Trabajos*/
-.hidden {
-  opacity:0;
-}
-.console-container {
- 
-  font-family:Khula;
-  font-size:4em;
-  text-align:center;
-  height:200px;
-  width:600px;
-  display:block;
-  position:absolute;
-  color:white;
-  top:0;
-  bottom:0;
-  left:0;
-  right:0;
-  margin:auto;
-}
-.console-underscore {
-   display:inline-block;
-  position:relative;
-  top:-0.14em;
-  left:10px;
+.separador-gris{
+	background-color:#89898C;
 }
