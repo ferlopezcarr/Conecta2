@@ -28,6 +28,16 @@ public class TransferEmpresa {
 		@NotEmpty(message = "* Por favor, introduzca de nuevo su contraseña")
 		private String passwordConfirmacion;
 
+		public TransferEmpresa() {}
+		
+		public TransferEmpresa(String nombre, String cif, String email, String password, String passwordConfirmation) {
+			this.nombre = nombre;
+			this.cif = cif;
+			this.email = email;
+			this.password = password;
+			this.passwordConfirmacion = passwordConfirmation; 
+		}
+		
 		public String getNombre() {
 			return nombre;
 		}

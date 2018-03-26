@@ -38,8 +38,8 @@ public class SAEmpresaImp implements SAEmpresa {
 	}
 
 	@Override
-	public Empresa buscarPorCif(String email) {
-		return daoEmpresa.findBycif(email);
+	public Empresa buscarPorCif(String cif) {
+		return daoEmpresa.findBycif(cif);
 	}
 
 }
