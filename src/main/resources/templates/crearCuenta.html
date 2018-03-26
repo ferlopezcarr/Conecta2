@@ -72,30 +72,35 @@
 			  				<div class="form-group">
 			  					<label for="nombre" class="sr-only">Nombre de la Empresa</label>
 									<input type="text" class="form-control" th:field="*{nombre}" id="nombre" required="true" placeholder="Nombre Empresa" required autofocus/>
+									<label th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}" class="validation-message error"></label>
 			  				</div>
 			  				
 			  				
 			  				<div class="form-group">
 			  					<label for="cif" class="sr-only">CIF</label>
 									<input type="text"  class="form-control" th:field="*{cif}" id="cif" required="true" placeholder="CIF" required autofocus/>
+									<label th:if="${#fields.hasErrors('cif')}" th:errors="*{cif}" class="validation-message error"></label>
 			  				</div>
 			  				
 			  				
 			  				<div class="form-group">
 			  					<label for="email" class="sr-only">Correo electrónico</label>
 			  						<input type="email" class="form-control" th:field="*{email}" id="email" required="true" placeholder="Email" required autofocus/>
+			  						<label th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="validation-message error"></label>
 			  
 			  				</div>
 			  				
 			  				<div class="form-group">
 			  					<label for="password" class="sr-only">Contraseña</label>
 			  						<input type="password" class="form-control" th:field="*{password}" id="password" required="true" placeholder="Contraseña" required autofocus/>
+			  						<label th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="validation-message error"></label>
 			  					
 			 				</div>
 			 				
 			 				<div class="form-group">
 			  					<label for="passwordConfirmacion" class="sr-only">Confirmar contraseña</label>
 			  						<input type="password" class="form-control" th:field="*{passwordConfirmacion}" id="passwordConfirmacion" required="true" placeholder="Confirmar Contraseña" required autofocus/>
+			  						<label th:if="${#fields.hasErrors('passwordConfirmacion')}" th:errors="*{passwordConfirmacion}" class="validation-message error"></label>
 			  
 			 				</div>
 			 				

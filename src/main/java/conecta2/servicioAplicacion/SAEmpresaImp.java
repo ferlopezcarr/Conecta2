@@ -37,4 +37,9 @@ public class SAEmpresaImp implements SAEmpresa {
 		return daoEmpresa.findByEmail(email);
 	}
 
+	@Override
+	public Empresa buscarPorCif(String email) {
+		return daoEmpresa.findBycif(email);
+	}
+
 }

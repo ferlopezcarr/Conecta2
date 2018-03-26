@@ -54,9 +54,12 @@ public class ControladorPrincipal {
 	
 	@RequestMapping(value = "/crear-particular", method = RequestMethod.POST)
 	//Recogemos el @ModelAttribute que se nos ha mandado por post y su binding
-	public ModelAndView crearParticular(@Valid @ModelAttribute("transferParticular") TransferParticular transferParticular, BindingResult bindingResult) {
+	public ModelAndView crearParticular(@ModelAttribute("transferParticular") @Valid TransferParticular transferParticular, BindingResult bindingResult) {
 		ModelAndView modelAndView = null;
 		Particular particular = saParticular.buscarPorEmail(transferParticular.getEmail());
+		
+		//lo creamos para pasarselo vacio a la pagina html porque sino no compila
+		TransferEmpresa transferEmpresa = new TransferEmpresa();
 		
 		//Si hay errores los binds muestran los fallos
 		if (!transferParticular.getPassword().equals(transferParticular.getPasswordConfirmacion())) {
@@ -68,6 +71,7 @@ public class ControladorPrincipal {
 		if (bindingResult.hasErrors()) {
 			modelAndView = new ModelAndView("crearCuenta", bindingResult.getModel());
 			modelAndView.addObject("transferParticular", transferParticular);
+			modelAndView.addObject("transferEmpresa", transferEmpresa);
 		}			
 		else {
 			saParticular.crearParticular(transferParticular);
@@ -81,24 +85,33 @@ public class ControladorPrincipal {
 	
 	@RequestMapping(value = "/crear-empresa", method = RequestMethod.POST)
 	//Recogemos el @ModelAttribute que se nos ha mandado por post y su binding
-	public ModelAndView crearEmpresa(@Valid @ModelAttribute("transferEmpresa") TransferEmpresa transferEmpresa, BindingResult bindingResult) {
+	public ModelAndView crearEmpresa (@ModelAttribute ("transferEmpresa") @Valid TransferEmpresa transferEmpresa, BindingResult bindingResult) {
 		ModelAndView modelAndView = null;
 		Empresa empresa = saEmpresa.buscarPorEmail(transferEmpresa.getEmail());
+		Empresa cif = saEmpresa.buscarPorCif(transferEmpresa.getCif());
+		
+		//lo creamos para pasarselo vacio a la pagina html porque sino no compila
+		TransferParticular transferParticular = new TransferParticular();
 		
 		//Si hay errores los binds muestran los fallos
 		if (!transferEmpresa.getPassword().equals(transferEmpresa.getPasswordConfirmacion())) {
 			bindingResult.rejectValue("password", "error.transferEmpresa", "* Las contraseñas no coinciden");
 		}
 		if (empresa != null)
-			bindingResult.rejectValue("email", "error.transferEmpresa", "* Ya existe una empresa con este e-mail");		
+			bindingResult.rejectValue("email", "error.transferEmpresa", "* Ya existe una empresa con este e-mail");	
+		
+		if (cif != null)
+			bindingResult.rejectValue("cif", "error.transferEmpresa", "* Ya existe una empresa con este CIF");
 		
 		if (bindingResult.hasErrors()) {
 			modelAndView = new ModelAndView("crearCuenta", bindingResult.getModel());
 			modelAndView.addObject("transferEmpresa", transferEmpresa);
-		}			
+			modelAndView.addObject("transferParticular", transferParticular);
+			
+		}		
 		else {
 			saEmpresa.crearEmpresa(transferEmpresa);
-			modelAndView = new ModelAndView("redirect:/");
+			modelAndView = new ModelAndView("redirect:/menu");
 		}
 		
 		return modelAndView;
