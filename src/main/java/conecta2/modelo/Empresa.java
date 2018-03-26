@@ -25,18 +25,18 @@ public class Empresa {
 	private String nombre;
 	
 	@NotEmpty
-	//@Pattern(regexp="^[ABCDEFGHJKLMNPQRSUVW]{1}[0-9]{7}([0-9]|[ABCDEFGHJKLMNPQRSUVW]){1}$")
+	@Pattern(regexp="^[ABCDEFGHJKLMNPQRSUVW]{1}[0-9]{7}([0-9]|[ABCDEFGHJKLMNPQRSUVW]){1}$")
 	@Column(unique=true)
 	private String cif;
 	
 	@Email
-	//@Pattern(regexp="^[^@]+@[^@]+\\.[a-zA-Z]{2,}$")
+	@Pattern(regexp="^[^@]+@[^@]+\\.[a-zA-Z]{2,}$")
 	@NotEmpty
 	@Column(unique=true)
 	private String email;
 	
 	@Length(min = 5)
-	@Pattern(regexp="^(?=\\w*\\d)(?=\\w*[A-Z])\\S{5,}$")
+	//@Pattern(regexp="^(?=\\w*\\d)(?=\\w*[A-Z])\\S{5,}$")
 	@NotEmpty
 	@Transient
 	private String password;
