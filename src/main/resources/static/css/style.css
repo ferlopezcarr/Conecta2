@@ -17,6 +17,11 @@ div.container{
 
 .formulario {
 	padding: 0 5% 1%;
+	background: #EFF0F5;
+ }
+
+.formularioInicio {
+	padding: 0 5% 1%;
 	background: none;
 }
 
