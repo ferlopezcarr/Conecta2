@@ -71,35 +71,35 @@
 		  
 			  				<div class="form-group">
 			  					<label for="nombre" class="sr-only">Nombre de la Empresa</label>
-									<input type="text" class="form-control" th:field="*{nombre}" id="nombre" required="true" placeholder="Nombre Empresa" required autofocus/>
+									<input type="text" class="form-control" th:field="*{nombre}" id="nombre" placeholder="Nombre Empresa" autofocus/>
 									<label th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}" class="validation-message error"></label>
 			  				</div>
 			  				
 			  				
 			  				<div class="form-group">
 			  					<label for="cif" class="sr-only">CIF</label>
-									<input type="text"  class="form-control" th:field="*{cif}" id="cif" required="true" placeholder="CIF" required autofocus/>
+									<input type="text"  class="form-control" th:field="*{cif}" id="cif" placeholder="CIF" autofocus/>
 									<label th:if="${#fields.hasErrors('cif')}" th:errors="*{cif}" class="validation-message error"></label>
 			  				</div>
 			  				
 			  				
 			  				<div class="form-group">
 			  					<label for="email" class="sr-only">Correo electrónico</label>
-			  						<input type="email" class="form-control" th:field="*{email}" id="email" required="true" placeholder="Email" required autofocus/>
+			  						<input type="text" class="form-control" th:field="*{email}" id="email" placeholder="Email" autofocus/>
 			  						<label th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="validation-message error"></label>
 			  
 			  				</div>
 			  				
 			  				<div class="form-group">
 			  					<label for="password" class="sr-only">Contraseña</label>
-			  						<input type="password" class="form-control" th:field="*{password}" id="password" required="true" placeholder="Contraseña" required autofocus/>
+			  						<input type="password" class="form-control" th:field="*{password}" id="password" placeholder="Contraseña" autofocus/>
 			  						<label th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="validation-message error"></label>
 			  					
 			 				</div>
 			 				
 			 				<div class="form-group">
 			  					<label for="passwordConfirmacion" class="sr-only">Confirmar contraseña</label>
-			  						<input type="password" class="form-control" th:field="*{passwordConfirmacion}" id="passwordConfirmacion" required="true" placeholder="Confirmar Contraseña" required autofocus/>
+			  						<input type="password" class="form-control" th:field="*{passwordConfirmacion}" id="passwordConfirmacion" placeholder="Confirmar Contraseña" autofocus/>
 			  						<label th:if="${#fields.hasErrors('passwordConfirmacion')}" th:errors="*{passwordConfirmacion}" class="validation-message error"></label>
 			  
 			 				</div>
@@ -127,33 +127,34 @@
 						  
 						  <div class="form-group">
 						  	<label for="nombre" class="sr-only">Nombre</label>
-							<input type="text" th:field="*{nombre}" class="form-control" id="nombre" required="true" placeholder="Nombre" required autofocus/>
+							<input type="text" th:field="*{nombre}" class="form-control" id="nombre" placeholder="Nombre" autofocus/>
 							<label th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}" class="validation-message error"></label>
 						  </div>
 						  
 						  <div class="form-group">
 						  	<label for="apellidos" class="sr-only">Apellidos</label>
-							<input type="text" th:field="*{apellidos}" class="form-control" id="apellidos" required="true" placeholder="Apellidos" required autofocus />
+							<input type="text" th:field="*{apellidos}" class="form-control" id="apellidos" placeholder="Apellidos" autofocus />
 							<label th:if="${#fields.hasErrors('apellidos')}" th:errors="*{apellidos}" class="validation-message error"></label>
 						  </div>
 						  <div class="form-group">
 						  	<label for="nombre" class="sr-only">DNI</label>
-							<input type="text" th:field="*{dni}" class="form-control" id="dni" required="true" placeholder="DNI" required autofocus />
+							<input type="text" th:field="*{dni}" class="form-control" id="dni" placeholder="DNI" autofocus />
 							<label th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}" class="validation-message error"></label>
 						  </div>
 						  <div class="form-group">
 						  	<label for="email" class="sr-only">Correo electrónico</label>
-						  	<input type="text" th:field="*{email}" class="form-control" id="email" required="true" placeholder="Email" required autofocus/>
+						  	<input type="text" th:field="*{email}" class="form-control" id="email" placeholder="Email" autofocus/>
 						  	<label th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="validation-message error"></label>
 						  </div>
 						  <div class="form-group">
 						  	<label for="password" class="sr-only">Contraseña</label>
-						  	<input type="password" th:field="*{password}" class="form-control" id="password" required="true" placeholder="Contraseña" required autofocus/>
+						  	<input type="password" th:field="*{password}" class="form-control" id="password" placeholder="Contraseña" autofocus/>
 						  	<label th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="validation-message error"></label>
 						  </div>
 						  <div class="form-group">
 						  	<label for="passwordConfirmacion" class="sr-only">Confirmar contraseña</label>
-						  	<input type="password" th:field="*{passwordConfirmacion}" class="form-control" id="passwordConfirmacion" required="true" placeholder="Confirmar contraseña" required autofocus/>
+						  	<input type="password" th:field="*{passwordConfirmacion}" class="form-control" id="passwordConfirmacion" placeholder="Confirmar contraseña" autofocus/>
+						  	<label th:if="${#fields.hasErrors('passwordConfirmacion')}" th:errors="*{passwordConfirmacion}" class="validation-message error"></label>
 						  </div>
 						
 						

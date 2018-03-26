@@ -14,21 +14,21 @@ public class TransferParticular {
 	@NotEmpty(message = "* Por favor, introduzca su apellido")
 	private String apellidos;
 	
-	@NotEmpty(message = "* Por favor, introduzca su dni")
+	@NotEmpty
 	@Pattern(regexp="^[0-9]{8}[A-Z]{1}$", message="* Por favor, introduzca un DNI válido (8 dígitos y una letra en mayúscula)")
 	private String dni;
 	
-	@NotEmpty(message = "* Por favor, introduzca un correo electrónico")
-	@Email(message = "* Por favor, introduzca un correo electrónico válido")
+	@NotEmpty
+	@Email
 	@Pattern(regexp="^[^@]+@[^@]+\\.[a-zA-Z]{2,}$", message="* Por favor, introduzca un correo electrónico válido")
 	private String email;
 
 	@NotEmpty(message = "* Por favor, introduzca una contraseña")
-	@Length(min = 5, message = "* La contraseña deberá tener al menos 5 caracteres")
-	@Pattern(regexp="^(?=\\w*\\d)(?=\\w*[A-Z])\\S{5,}$", message="* La contraseña debe tener al menos un numero y una mayúscula")
+	@Length(min = 5)
+	@Pattern(regexp="^(?=\\w*\\d)(?=\\w*[A-Z])\\S{5,}$", message="* La contraseña debe tener al menos un numero y una mayúscula y al menos 5 caracteres")
 	private String password;
 	
-	@NotEmpty(message = "* Por favor, introduzca una contraseña")
+	@NotEmpty(message = "* Por favor, introduzca de nuevo su contraseña")
 	private String passwordConfirmacion;
 
 	public String getNombre() {

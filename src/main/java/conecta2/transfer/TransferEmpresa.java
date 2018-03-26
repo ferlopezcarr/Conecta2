@@ -11,21 +11,21 @@ public class TransferEmpresa {
 		@NotEmpty(message = "* Por favor, introduzca su nombre")
 		private String nombre;
 				
-		@NotEmpty(message = "* Por favor, introduzca su cif")
+		@NotEmpty
 		@Pattern(regexp="^[ABCDEFGHJKLMNPQRSUVW]{1}[0-9]{7}([0-9]|[ABCDEFGHJKLMNPQRSUVW]){1}$", message="* Por favor, introduzca un CIF válido (1 letra en mayúscula, 7 dígitos y 1 número o letra en mayúscula)")
 		private String cif;
 		
-		@NotEmpty(message = "* Por favor, introduzca un correo electrónico")
-		@Email(message = "* Por favor, introduzca un correo electrónico válido")
+		@NotEmpty
+		@Email
 		@Pattern(regexp="^[^@]+@[^@]+\\.[a-zA-Z]{2,}$", message="* Por favor, introduzca un correo electrónico válido")
 		private String email;
 
-		@NotEmpty(message = "* Por favor, introduzca una contraseña")
-		@Length(min = 5, message = "* La contraseña deberá tener al menos 5 caracteres")
-		@Pattern(regexp="^(?=\\w*\\d)(?=\\w*[A-Z])\\S{5,}$", message="* La contraseña debe tener al menos un numero y una mayúscula")
+		@NotEmpty
+		@Length(min = 5, message="Por favor introduzca su contraseña")
+		@Pattern(regexp="^(?=\\w*\\d)(?=\\w*[A-Z])\\S{5,}$", message="* La contraseña debe tener al menos un numero y una mayúscula y al menos 5 caracteres")
 		private String password;
 		
-		@NotEmpty(message = "* Por favor, introduzca una contraseña")
+		@NotEmpty(message = "* Por favor, introduzca de nuevo su contraseña")
 		private String passwordConfirmacion;
 
 		public String getNombre() {
