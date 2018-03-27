@@ -6,4 +6,5 @@ import conecta2.transfer.TransferParticular;
 public interface SAParticular {
 	public void crearParticular(TransferParticular dtoUsuario);
 	public Particular buscarPorEmail(String email);
+	public Particular buscarPorDni(String dni);
 }

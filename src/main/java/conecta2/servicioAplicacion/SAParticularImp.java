@@ -39,4 +39,9 @@ public class SAParticularImp implements SAParticular{
 	public Particular buscarPorEmail(String email) {
 		return daoParticular.findByEmail(email);
 	}
+	
+	@Override
+	public Particular buscarPorDni(String dni) {
+		return daoParticular.findByDni(dni);
+	}
 }

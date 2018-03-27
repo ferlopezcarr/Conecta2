@@ -22,11 +22,11 @@ public class Particular {
 	private int id;
 	
 	@NotEmpty
-	@Pattern(regexp="^[a-zA-Z ]$")
+	//@Pattern(regexp="^[a-zA-Z ]$")
 	private String nombre;
 	
 	@NotEmpty
-	@Pattern(regexp="^[a-zA-Z ]$")
+	//@Pattern(regexp="^[a-zA-Z ]$")
 	private String apellidos;
 	
 	@NotEmpty
@@ -49,6 +49,18 @@ public class Particular {
 	
 	private int puntuacion;
 
+	public Particular() {}
+	
+	public Particular(String nombre, String apellidos, String dni, String email, String password, boolean activo, int puntuacion ) {
+		this.nombre = nombre;
+		this.apellidos = apellidos;
+		this.dni = dni;
+		this.email = email;
+		this.password = password;
+		this.activo = activo;
+		this.puntuacion = puntuacion;
+	}
+	
 	public int getId() {
 		return id;
 	}

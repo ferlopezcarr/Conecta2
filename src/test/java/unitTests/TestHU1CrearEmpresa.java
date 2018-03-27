@@ -1,4 +1,4 @@
-package conecta2;
+package unitTests;
 
 import static org.junit.Assert.*;
 
@@ -9,13 +9,14 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import conecta2.Application;
 import conecta2.dao.DAOEmpresa;
 import conecta2.modelo.Empresa;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = Application.class)
 @DataJpaTest
-public class PruebasUnidadCrearEmpresa {
+public class TestHU1CrearEmpresa {
 
 	@Autowired
     private DAOEmpresa daoEmpresa;
@@ -45,7 +46,7 @@ public class PruebasUnidadCrearEmpresa {
 		
 		daoEmpresa.save(empresa);
 		
-		Empresa empresaBD = daoEmpresa.findBycif(empresa.getCif());
+		Empresa empresaBD = daoEmpresa.findByCif(empresa.getCif());
 		
 		boolean email = empresaBD.getEmail() == empresa.getEmail();
 		boolean nombre = empresaBD.getNombre() == empresa.getNombre();

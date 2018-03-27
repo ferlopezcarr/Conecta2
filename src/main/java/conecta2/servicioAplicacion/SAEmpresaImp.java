@@ -54,7 +54,7 @@ public class SAEmpresaImp implements SAEmpresa {
      */
 	@Override
 	public Empresa buscarPorCif(String cif) {
-		return daoEmpresa.findBycif(cif);
+		return daoEmpresa.findByCif(cif);
 	}
 
 }

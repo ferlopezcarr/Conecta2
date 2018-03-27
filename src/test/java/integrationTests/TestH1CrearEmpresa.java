@@ -1,4 +1,4 @@
-package conecta2;
+package integrationTests;
 
 import java.util.concurrent.TimeUnit;
 import org.junit.*;
@@ -6,7 +6,7 @@ import static org.junit.Assert.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 
-public class PruebasRegistroEmpresa {
+public class TestH1CrearEmpresa {
 	  private WebDriver driver;
 	  private String baseUrl;
 	  private boolean acceptNextAlert = true;

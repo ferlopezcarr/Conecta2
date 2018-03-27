@@ -9,4 +9,5 @@ import conecta2.modelo.Particular;
 @Repository("daoParticular")
 public interface DAOParticular extends JpaRepository<Particular, Integer> {
 	 Particular findByEmail(String email); //Sólo con hacer un findBy'nombreDelAtributo'(Tipo nombre); te busca los usuarios con ese campo
+	 Particular findByDni(String dni);
 }
