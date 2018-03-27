@@ -10,6 +10,11 @@ import conecta2.dao.DAOEmpresa;
 import conecta2.modelo.Empresa;
 import conecta2.transfer.TransferEmpresa;
 
+/**
+ * Clase que implementa las funciones de la interfaz SAEmpresa
+ * @author ferlo
+ * Clase que se desarrolla la funcionalidad de la entidad Empresa
+ */
 @Service ("SAEmpresa")
 public class SAEmpresaImp implements SAEmpresa {
 	
@@ -26,7 +31,7 @@ public class SAEmpresaImp implements SAEmpresa {
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     /**
-     * Método de Negoio que recibe un TranferEmpresa y lo inserta en la base de datos
+     * Método que recibe un TranferEmpresa y lo inserta en la base de datos
      */
     @Transactional
     @Override

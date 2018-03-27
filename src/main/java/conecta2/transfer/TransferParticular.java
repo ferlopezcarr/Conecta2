@@ -34,6 +34,16 @@ public class TransferParticular {
 	@NotEmpty(message = "* Por favor, introduzca de nuevo su contraseña")
 	private String passwordConfirmacion;
 
+	public TransferParticular() {}
+	
+	public TransferParticular(String nombre, String apellidos, String dni, String email, String password, boolean activo, int puntuacion ) {
+		this.nombre = nombre;
+		this.apellidos = apellidos;
+		this.dni = dni;
+		this.email = email;
+		this.password = password;
+	}
+	
 	public String getNombre() {
 		return nombre;
 	}

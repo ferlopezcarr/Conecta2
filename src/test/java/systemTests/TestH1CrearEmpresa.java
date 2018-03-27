@@ -1,4 +1,4 @@
-package integrationTests;
+package systemTests;
 
 import java.util.concurrent.TimeUnit;
 import org.junit.*;
