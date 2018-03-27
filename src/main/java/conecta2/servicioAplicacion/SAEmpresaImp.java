@@ -13,8 +13,15 @@ import conecta2.transfer.TransferEmpresa;
 @Service ("SAEmpresa")
 public class SAEmpresaImp implements SAEmpresa {
 	
+	/**
+	 * DAO que proporciona el acceso a la base de datos
+	 */
 	@Autowired
 	private DAOEmpresa daoEmpresa;
+	
+	/**
+	 * Atributo que se utiliza para encriptar las contraseñas una vez el usuario se registra
+	 */
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
@@ -34,11 +41,17 @@ public class SAEmpresaImp implements SAEmpresa {
          //Después de esto el usuario ya estaría guardado en la Base de Datos
 	}
 
+    /**
+     * Método que recibe un email y busca a una empresa con el mismo en la base de datos
+     */
 	@Override
 	public Empresa buscarPorEmail(String email) {
 		return daoEmpresa.findByEmail(email);
 	}
 
+    /**
+     * Método que recibe un cif y busca a una empresa con el mismo en la base de datos
+     */
 	@Override
 	public Empresa buscarPorCif(String cif) {
 		return daoEmpresa.findBycif(cif);
