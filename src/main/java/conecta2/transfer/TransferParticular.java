@@ -11,35 +11,25 @@ public class TransferParticular {
 	
 	@NotEmpty(message = "* Por favor, introduzca su nombre")
 	@Pattern(regexp="^[a-zA-Z ]*$", message="* El nombre debe contener solo letras")
-	private String nombre;
-	
-	
+	private String nombre;	
 	
 	@NotEmpty(message = "* Por favor, introduzca su apellido")
 	@Pattern(regexp="^[a-zA-Z ]*$", message="* El apellido debe contener solo letras")
-	private String apellidos;
-	
-	
+	private String apellidos;	
 	
 	@NotEmpty(message ="* Por favor, introduzca el DNI")
-	@Pattern(regexp="^[0-9]*{8}[A-Z]*{1}$", message= "* El DNI debe contener 8 dígitos y una letra mayúscula")
+	@Pattern(regexp="^([0-9]{8}[A-Z]{1})*$", message= "* El DNI debe contener 8 dígitos y una letra mayúscula")
 	private String dni;
 	
-	
-	
 	@NotEmpty(message="* Por favor, introduzca un email")
-	@Email
-	@Pattern(regexp="^[[^@]+@[^@]+\\.[a-zA-Z]{2,}]*$", message="* Por favor, introduzca un correo electrónico válido")
+	//@Email
+	@Pattern(regexp="^([^@]+@[^@]+\\.[a-zA-Z]{2,})*$", message="* Por favor, introduzca un correo electrónico válido")
 	private String email;
-
-	
 	
 	@NotEmpty(message = "* Por favor, introduzca una contraseña")	
-	@Pattern(regexp="^[(?=\\w*\\d)(?=\\w*[A-Z])\\S{5,}]*$", message="* La contraseña debe tener al menos un número y una mayúscula, y al menos 5 caracteres")
-	@Length(min = 5, message="")
-	private String password;
-	
-	
+	@Pattern(regexp="^((?=\\w*\\d)(?=\\w*[A-Z])\\S{5,})*$", message="* La contraseña debe tener al menos un número y una mayúscula, y al menos 5 caracteres")
+	//@Length(min = 5, message="")
+	private String password;		
 	
 	@NotEmpty(message = "* Por favor, introduzca de nuevo su contraseña")
 	private String passwordConfirmacion;

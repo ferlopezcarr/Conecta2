@@ -31,7 +31,6 @@ public class Empresa {
 	
 	
 	@NotEmpty
-	@Pattern(regexp="^[a-zA-Z ]*$")
 	private String nombre;
 	
 	/**
