@@ -21,21 +21,21 @@ public class TransferParticular {
 	
 	
 	
-	@NotEmpty(message ="* Este campo no puede estar vacío")
-	@Pattern(regexp="^[0-9]{8}[A-Z]{1}$", message= "* El DNI debe contener 8 dígitos y una letra mayúscula")
+	@NotEmpty(message ="* Por favor, introduzca el DNI")
+	@Pattern(regexp="^[0-9]*{8}[A-Z]*{1}$", message= "* El DNI debe contener 8 dígitos y una letra mayúscula")
 	private String dni;
 	
 	
 	
-	@NotEmpty(message="* Este campo no puede estar vacio")
+	@NotEmpty(message="* Por favor, introduzca un email")
 	@Email
-	@Pattern(regexp="^[^@]+@[^@]+\\.[a-zA-Z]{2,}$", message="* Por favor, introduzca un correo electrónico válido")
+	@Pattern(regexp="^[[^@]+@[^@]+\\.[a-zA-Z]{2,}]*$", message="* Por favor, introduzca un correo electrónico válido")
 	private String email;
 
 	
 	
 	@NotEmpty(message = "* Por favor, introduzca una contraseña")	
-	@Pattern(regexp="^(?=\\w*\\d)(?=\\w*[A-Z])\\S{5,}$", message="* La contraseña debe tener al menos un número y una mayúscula, y al menos 5 caracteres")
+	@Pattern(regexp="^[(?=\\w*\\d)(?=\\w*[A-Z])\\S{5,}]*$", message="* La contraseña debe tener al menos un número y una mayúscula, y al menos 5 caracteres")
 	@Length(min = 5, message="")
 	private String password;
 	

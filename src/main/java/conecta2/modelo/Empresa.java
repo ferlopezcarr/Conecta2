@@ -29,7 +29,9 @@ public class Empresa {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
+	
 	@NotEmpty
+	@Pattern(regexp="^[a-zA-Z ]*$")
 	private String nombre;
 	
 	/**

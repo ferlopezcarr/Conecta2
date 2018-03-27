@@ -49,6 +49,7 @@ public class ControladorPrincipal {
 		modelAndView.addObject("transferParticular", new TransferParticular()); //Añadimos al modelAndView el objeto dtoUsuario, que se recogerá en el <form> como th:object="${dtoUsuario}"
 		modelAndView.addObject("transferEmpresa", new TransferEmpresa());
 		modelAndView.setViewName("crearCuenta"); //Agregamos como vista el registro.html
+	
 		return modelAndView;
 	}
 	
