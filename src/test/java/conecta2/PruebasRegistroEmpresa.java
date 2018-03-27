@@ -12,14 +12,14 @@ public class PruebasRegistroEmpresa {
 	  private boolean acceptNextAlert = true;
 	  private StringBuffer verificationErrors = new StringBuffer();
 
-	  @org.junit.Test
+	  @Test
 	  public void setUp() throws Exception {
 	    driver = new HtmlUnitDriver();
 	    baseUrl = "https://www.katalon.com/";
 	    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 	  }
 
-	  @org.junit.Test
+	  @Test
 	  public void testRegistrarEmpresaSinMeterCampos() throws Exception {
 	    driver.get("http://localhost:8080/");
 	    driver.findElement(By.linkText("Crear cuenta")).click();
@@ -27,7 +27,7 @@ public class PruebasRegistroEmpresa {
 	    driver.findElement(By.xpath("//button[@type='submit']")).click();
 	  }
 	  
-	  @org.junit.Test
+	  @Test
 	  public void testRegistrarEmpresaMalFormatoDeCampos() throws Exception {
 	    driver.get("http://localhost:8080/");
 	    driver.findElement(By.linkText("Crear cuenta")).click();
@@ -50,7 +50,7 @@ public class PruebasRegistroEmpresa {
 	    driver.findElement(By.xpath("//button[@type='submit']")).click();
 	  }
 	  
-	  @org.junit.Test
+	  @Test
 	  public void testRegistrarEmpresaContrasenasNoCoincidentes() throws Exception {
 	    driver.get("http://localhost:8080/");
 	    driver.findElement(By.linkText("Crear cuenta")).click();
@@ -73,7 +73,7 @@ public class PruebasRegistroEmpresa {
 	    driver.findElement(By.xpath("//button[@type='submit']")).click();
 	  }
 	  
-	  @org.junit.Test
+	  @Test
 	  public void testRegistrarEmpresaContraseAsNoCoincidentes() throws Exception {
 	    driver.get("http://localhost:8080/");
 	    driver.findElement(By.linkText("Crear cuenta")).click();
@@ -96,7 +96,7 @@ public class PruebasRegistroEmpresa {
 	    driver.findElement(By.xpath("//button[@type='submit']")).click();
 	  }
 	  
-	  @org.junit.Test
+	  @Test
 	  public void testRegistroEmpresaEmailYCIFRepetidos() throws Exception {
 	    driver.get("http://localhost:8080/");
 	    driver.findElement(By.linkText("Crear cuenta")).click();
