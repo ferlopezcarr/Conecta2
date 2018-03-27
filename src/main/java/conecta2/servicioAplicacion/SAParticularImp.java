@@ -30,6 +30,10 @@ public class SAParticularImp implements SAParticular{
 	 */
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
+    
+    public SAParticularImp(DAOParticular daoParticular) {
+    	this.daoParticular = daoParticular;
+    }
 	
     /**
      * Método que recibe un TransferParticular y lo inserta en la base de datos
@@ -64,5 +68,9 @@ public class SAParticularImp implements SAParticular{
 	@Override
 	public Particular buscarPorDni(String dni) {
 		return daoParticular.findByDni(dni);
+	}
+	
+	public void guardarParticular(Particular particular) {
+		daoParticular.save(particular);
 	}
 }
