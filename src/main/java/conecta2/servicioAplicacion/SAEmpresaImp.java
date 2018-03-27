@@ -29,6 +29,11 @@ public class SAEmpresaImp implements SAEmpresa {
 	 */
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
+    
+    
+    public SAEmpresaImp(DAOEmpresa daoEmpresa) {
+    	this.daoEmpresa = daoEmpresa;
+    }
 
     /**
      * Método que recibe un TranferEmpresa y lo inserta en la base de datos
@@ -61,5 +66,11 @@ public class SAEmpresaImp implements SAEmpresa {
 	public Empresa buscarPorCif(String cif) {
 		return daoEmpresa.findByCif(cif);
 	}
+	
+	public void guardarEmpresa(Empresa empresa) {
+		
+		daoEmpresa.save(empresa);
+	}
+	
 
 }
