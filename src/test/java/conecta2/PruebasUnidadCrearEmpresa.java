@@ -9,15 +9,13 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import conecta2.Application;
 import conecta2.dao.DAOEmpresa;
 import conecta2.modelo.Empresa;
-
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = Application.class)
 @DataJpaTest
-public class HU1CrearEmpresa {
+public class PruebasUnidadCrearEmpresa {
 
 	@Autowired
     private DAOEmpresa daoEmpresa;
@@ -58,5 +56,5 @@ public class HU1CrearEmpresa {
 		
 		assertEquals(true, (email && nombre && cif && password && activo && puntuacion));
 	}
-	
+
 }
