@@ -62,25 +62,4 @@ public class HU1CrearEmpresa {
 		assertEquals(true, (email && nombre && cif && password && activo && puntuacion));
 	}
 	
-	@Test
-	public void testInsertNotFoundedByEmail() {
-		
-		Empresa empresa = new Empresa("empresaPruebaNombre", "A28599033", "empresaPruebaEmail@empresaPruebaEmail.com", "Abc1111", true, 0);
-
-		daoEmpresa.save(empresa);
-		
-		final Empresa empresaBD = daoEmpresa.findByEmail(empresa.getEmail());
-		
-		empresa.setEmail("empresaPruebaEmailFallo@empresaPreubaEmail.com");
-		daoEmpresa.save(empresa);
-		
-		boolean email = empresaBD.getEmail() == empresa.getEmail();
-		boolean nombre = empresaBD.getNombre() == empresa.getNombre();
-		boolean cif = empresaBD.getCif() == empresa.getCif();
-		boolean password = empresaBD.getPassword() == empresa.getPassword();
-		boolean activo = empresaBD.getActivo() == empresa.getActivo();
-		boolean puntuacion = empresaBD.getPuntuacion() == empresa.getPuntuacion();
-		
-		assertEquals(false, (email && nombre && cif && password && activo && puntuacion));
-	}
 }
