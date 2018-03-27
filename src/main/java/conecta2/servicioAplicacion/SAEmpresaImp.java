@@ -18,6 +18,9 @@ public class SAEmpresaImp implements SAEmpresa {
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
+    /**
+     * Método de Negoio que recibe un TranferEmpresa y lo inserta en la base de datos
+     */
     @Transactional
     @Override
 	public void crearEmpresa(TransferEmpresa transferEmpresa) {
@@ -29,7 +32,6 @@ public class SAEmpresaImp implements SAEmpresa {
          empresa.setActivo(true);
          daoEmpresa.save(empresa); //Hace el save al repositorio (función interna de JPARepository)
          //Después de esto el usuario ya estaría guardado en la Base de Datos
-		
 	}
 
 	@Override
