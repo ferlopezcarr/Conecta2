@@ -97,7 +97,6 @@
 	</dependencies>
 	
 	<!-- Testing -->
- 
     <dependency>
         <groupId>org.springframework</groupId>
         <artifactId>spring-test</artifactId>
