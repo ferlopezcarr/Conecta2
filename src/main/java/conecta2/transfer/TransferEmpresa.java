@@ -9,21 +9,30 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class TransferEmpresa {
 	//Anotaciones para cuando los campos del formulario son incorrectos	
 		@NotEmpty(message = "* Por favor, introduzca su nombre")
+		@Pattern(regexp="^[a-zA-Z ]*$", message="* El nombre debe contener solo letras")
 		private String nombre;
-				
-		@NotEmpty
-		@Pattern(regexp="^[ABCDEFGHJKLMNPQRSUVW]{1}[0-9]{7}([0-9]|[ABCDEFGHJKLMNPQRSUVW]){1}$", message="* Por favor, introduzca un CIF válido (1 letra en mayúscula, 7 dígitos y 1 número o letra en mayúscula)")
+		
+		
+		
+		@NotEmpty (message ="* Por favor, introduzca el CIF")
+		@Pattern(regexp="^[[ABCDEFGHJKLMNPQRSUVW]{1}[0-9]{7}([0-9]|[ABCDEFGHJKLMNPQRSUVW]){1}]*$", message="* Por favor, introduzca un CIF válido (1 letra en mayúscula, 7 dígitos y 1 número o letra en mayúscula)")
 		private String cif;
 		
-		@NotEmpty
+		
+		
+		@NotEmpty(message ="* Por favor, introduzca un email")
 		@Email
-		@Pattern(regexp="^[^@]+@[^@]+\\.[a-zA-Z]{2,}$", message="* Por favor, introduzca un correo electrónico válido")
+		@Pattern(regexp="^[[^@]+@[^@]+\\.[a-zA-Z]{2,}]*$", message="* Por favor, introduzca un correo electrónico válido")
 		private String email;
 
-		@NotEmpty
-		@Length(min = 5, message="Por favor introduzca su contraseña")
-		@Pattern(regexp="^(?=\\w*\\d)(?=\\w*[A-Z])\\S{5,}$", message="* La contraseña debe tener al menos un numero y una mayúscula y al menos 5 caracteres")
+		
+		
+		@NotEmpty(message = "* Por favor, introduzca una contraseña")	
+		@Length(min = 5, message="")
+		@Pattern(regexp="^[(?=\\w*\\d)(?=\\w*[A-Z])\\S{5,}]*$", message="* La contraseña debe tener al menos un numero y una mayúscula y al menos 5 caracteres")
 		private String password;
+		
+		
 		
 		@NotEmpty(message = "* Por favor, introduzca de nuevo su contraseña")
 		private String passwordConfirmacion;
