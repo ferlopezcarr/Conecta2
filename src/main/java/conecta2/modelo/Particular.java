@@ -16,14 +16,17 @@ import org.springframework.data.annotation.Transient;
 @Entity
 @Table(name = "particulares")
 public class Particular {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
 	@NotEmpty
+	@Pattern(regexp="^[a-zA-Z ]*$")
 	private String nombre;
 	
 	@NotEmpty
+	@Pattern(regexp="^[a-zA-Z ]*$")
 	private String apellidos;
 	
 	@NotEmpty
