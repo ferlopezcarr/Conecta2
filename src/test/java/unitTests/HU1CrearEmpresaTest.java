@@ -16,7 +16,7 @@ import conecta2.modelo.Empresa;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = Application.class)
 @DataJpaTest
-public class TestHU1CrearEmpresa {
+public class HU1CrearEmpresaTest {
 
 	@Autowired
     private DAOEmpresa daoEmpresa;

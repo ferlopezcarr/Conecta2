@@ -18,7 +18,7 @@ import conecta2.servicioAplicacion.SAParticularImp;
 @SpringBootTest(classes = Application.class)
 @DataJpaTest
 
-public class TestH2CrearParticular {
+public class H2CrearParticularTest {
 	@Autowired
     private DAOParticular daoParticular;
 	
