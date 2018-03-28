@@ -35,7 +35,7 @@ public class TestH1CrearEmpresa {
 		Empresa empresaBD = SA.buscarPorEmail(empresa.getEmail());
 		
 		boolean email = empresaBD.getEmail() == empresa.getEmail();
-		boolean nombre = empresaBD.getNombre() == empresa.getNombre();
+		boolean nombre = empresaBD.getNombreEmpresa() == empresa.getNombreEmpresa();
 		boolean cif = empresaBD.getCif() == empresa.getCif();
 		boolean password = empresaBD.getPassword() == empresa.getPassword();
 		boolean activo = empresaBD.getActivo() == empresa.getActivo();
@@ -56,7 +56,7 @@ public class TestH1CrearEmpresa {
 		Empresa empresaBD = SA.buscarPorCif(empresa.getCif());
 		
 		boolean email = empresaBD.getEmail() == empresa.getEmail();
-		boolean nombre = empresaBD.getNombre() == empresa.getNombre();
+		boolean nombre = empresaBD.getNombreEmpresa() == empresa.getNombreEmpresa();
 		boolean cif = empresaBD.getCif() == empresa.getCif();
 		boolean password = empresaBD.getPassword() == empresa.getPassword();
 		boolean activo = empresaBD.getActivo() == empresa.getActivo();

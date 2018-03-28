@@ -31,7 +31,7 @@ public class TestHU1CrearEmpresa {
 		Empresa empresaBD = daoEmpresa.findByEmail(empresa.getEmail());
 		
 		boolean email = empresaBD.getEmail() == empresa.getEmail();
-		boolean nombre = empresaBD.getNombre() == empresa.getNombre();
+		boolean nombre = empresaBD.getNombreEmpresa() == empresa.getNombreEmpresa();
 		boolean cif = empresaBD.getCif() == empresa.getCif();
 		boolean password = empresaBD.getPassword() == empresa.getPassword();
 		boolean activo = empresaBD.getActivo() == empresa.getActivo();
@@ -49,7 +49,7 @@ public class TestHU1CrearEmpresa {
 		Empresa empresaBD = daoEmpresa.findByCif(empresa.getCif());
 		
 		boolean email = empresaBD.getEmail() == empresa.getEmail();
-		boolean nombre = empresaBD.getNombre() == empresa.getNombre();
+		boolean nombre = empresaBD.getNombreEmpresa() == empresa.getNombreEmpresa();
 		boolean cif = empresaBD.getCif() == empresa.getCif();
 		boolean password = empresaBD.getPassword() == empresa.getPassword();
 		boolean activo = empresaBD.getActivo() == empresa.getActivo();

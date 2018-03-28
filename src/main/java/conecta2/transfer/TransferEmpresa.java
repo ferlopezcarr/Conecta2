@@ -10,7 +10,7 @@ public class TransferEmpresa {
 	//Anotaciones para cuando los campos del formulario son incorrectos
 	
 	@NotEmpty(message = "* Por favor, introduzca el nombre de la empresa")
-	private String nombre;
+	private String nombreEmpresa;
 				
 	@NotEmpty (message ="* Por favor, introduzca el CIF")
 	@Pattern(regexp="^([ABCDEFGHJKLMNPQRSUVW]{1}[0-9]{7}([0-9]|[ABCDEFGHJKLMNPQRSUVW]){1})*$", message="* Por favor, introduzca un CIF válido (1 letra en mayúscula, 7 dígitos y 1 número o letra en mayúscula)")
@@ -31,20 +31,20 @@ public class TransferEmpresa {
 
 	public TransferEmpresa() {}
 		
-	public TransferEmpresa(String nombre, String cif, String email, String password, String passwordConfirmation) {
-		this.nombre = nombre;
+	public TransferEmpresa(String nombreEmpresa, String cif, String email, String password, String passwordConfirmation) {
+		this.nombreEmpresa = nombreEmpresa;
 		this.cif = cif;
 		this.email = email;
 		this.password = password;
 		this.passwordConfirmacion = passwordConfirmation; 
 	}
 		
-	public String getNombre() {
-		return nombre;
+	public String getNombreEmpresa() {
+		return nombreEmpresa;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setNombreEmpresa(String nombreEmpresa) {
+		this.nombreEmpresa = nombreEmpresa;
 	}
 	
 	public String getCif() {

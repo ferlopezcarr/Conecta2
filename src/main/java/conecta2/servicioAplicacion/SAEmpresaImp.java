@@ -48,7 +48,7 @@ public class SAEmpresaImp implements SAEmpresa {
 	public void crearEmpresa(TransferEmpresa transferEmpresa) {
     	 Empresa empresa = new Empresa();
          empresa.setCif(transferEmpresa.getCif());
-         empresa.setNombre(transferEmpresa.getNombre());
+         empresa.setNombreEmpresa(transferEmpresa.getNombreEmpresa());
          empresa.setEmail(transferEmpresa.getEmail());
          empresa.setPassword(bCryptPasswordEncoder.encode(transferEmpresa.getPassword()));
          empresa.setActivo(false);
