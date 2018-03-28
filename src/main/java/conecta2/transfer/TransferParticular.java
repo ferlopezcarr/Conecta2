@@ -10,11 +10,11 @@ public class TransferParticular {
 	//Anotaciones para cuando los campos del formulario son incorrectos	
 	
 	@NotEmpty(message = "* Por favor, introduzca su nombre")
-	@Pattern(regexp="^[a-zA-Z ]*$", message="* El nombre debe contener solo letras")
+	@Pattern(regexp="^([a-zA-Z ])*$", message="* El nombre debe contener solo letras")
 	private String nombre;	
 	
 	@NotEmpty(message = "* Por favor, introduzca su apellido")
-	@Pattern(regexp="^[a-zA-Z ]*$", message="* El apellido debe contener solo letras")
+	@Pattern(regexp="^([a-zA-Z ])*$", message="* El apellido debe contener solo letras")
 	private String apellidos;	
 	
 	@NotEmpty(message ="* Por favor, introduzca el DNI")
@@ -34,6 +34,16 @@ public class TransferParticular {
 	@NotEmpty(message = "* Por favor, introduzca de nuevo su contraseña")
 	private String passwordConfirmacion;
 
+	public TransferParticular() {}
+	
+	public TransferParticular(String nombre, String apellidos, String dni, String email, String password, boolean activo, int puntuacion ) {
+		this.nombre = nombre;
+		this.apellidos = apellidos;
+		this.dni = dni;
+		this.email = email;
+		this.password = password;
+	}
+	
 	public String getNombre() {
 		return nombre;
 	}

@@ -20,9 +20,11 @@ import conecta2.servicioAplicacion.SAEmpresa;
 import conecta2.servicioAplicacion.SAParticular;
 import conecta2.transfer.TransferParticular;
 import conecta2.transfer.TransferEmpresa;
-
-//Controlador de la aplicación, en él se mapean las diferentes peticiones (GET, POST...),
-//se redirige entre vistas y se hace uso de los Servicios de Aplicación
+/**
+ * Controlador de la aplicación, en él se mapean las diferentes peticiones (GET, POST...),
+ * @author ferlo
+ * Se redirige entre vistas y hace uso de los Servicios de Aplicación
+ */
 @Controller
 public class ControladorPrincipal {	
 	@Autowired	
@@ -30,60 +32,38 @@ public class ControladorPrincipal {
 	@Autowired
 	private SAEmpresa saEmpresa;
 	
-	//La forma de mapear es con la anotación @RequestMapping, seguido de la url y la petición
-	//asociada. El @RequestMapping afecta únicamente a la función que tiene inmediatamente debajo,
-	//la cual se invoca automáticamente tras la petición a dicha url.
+
+	/**
+	 * Método que captura las peticiones GET de /login
+	 * @return devuelve la vista de Inicio de sesion
+	 */
 	@RequestMapping(value={"/", "/login"}, method = RequestMethod.GET)
-	//Todas las vistas se devuelve mediante el objeto ModelAndView, que de forma resumida es un
-	//"contenedor" de todo lo que va a llevar la vista (objetos, variables, el html...)
 	public ModelAndView login(){
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("index"); //Aquí indicamos que insertaremos como vista el index.html al modelAndView (sin el '.html')
+		modelAndView.setViewName("index");
 		return modelAndView;
 	}
 	
-	//Una misma url puede mapearse para varios tipos de peticiones, en este caso '/registro' es GET, y en el siguiente es POST
+	/**
+	 * Método que captura las peticiones GET de /crear-cuenta
+	 * @return devuelve la vista para Crear una cuenta, mostrando por defecto el registro de empresa
+	 */
 	@RequestMapping(value="/crear-cuenta", method = RequestMethod.GET)
-	public ModelAndView registration(){ //En este caso estamos generando el formulario de registro
+	public ModelAndView registration(){
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.addObject("transferParticular", new TransferParticular()); //Añadimos al modelAndView el objeto dtoUsuario, que se recogerá en el <form> como th:object="${dtoUsuario}"
+		modelAndView.addObject("transferParticular", new TransferParticular());
 		modelAndView.addObject("transferEmpresa", new TransferEmpresa());
-		modelAndView.setViewName("crearCuenta"); //Agregamos como vista el registro.html
+		modelAndView.setViewName("crearCuenta");
 	
 		return modelAndView;
 	}
 	
-	@RequestMapping(value = "/crear-particular", method = RequestMethod.POST)
-	//Recogemos el @ModelAttribute que se nos ha mandado por post y su binding
-	public ModelAndView crearParticular(@ModelAttribute("transferParticular") @Valid TransferParticular transferParticular, BindingResult bindingResult) {
-		ModelAndView modelAndView = null;
-		Particular particular = saParticular.buscarPorEmail(transferParticular.getEmail());
-		
-		//lo creamos para pasarselo vacio a la pagina html porque sino no compila
-		TransferEmpresa transferEmpresa = new TransferEmpresa();
-		
-		//Si hay errores los binds muestran los fallos
-		if (!transferParticular.getPassword().equals(transferParticular.getPasswordConfirmacion())) {
-			bindingResult.rejectValue("password", "error.transferParticular", "* Las contraseñas no coinciden");
-		}
-		if (particular != null)
-			bindingResult.rejectValue("email", "error.dtoUsuario", "* Ya existe un particular con este e-mail");		
-		
-		if (bindingResult.hasErrors()) {
-			modelAndView = new ModelAndView("crearCuenta", bindingResult.getModel());
-			modelAndView.addObject("transferParticular", transferParticular);
-			modelAndView.addObject("transferEmpresa", transferEmpresa);
-		}			
-		else {
-			saParticular.crearParticular(transferParticular);
-			modelAndView = new ModelAndView("redirect:/");
-		}
-		
-		modelAndView.addObject("roles", Rol.values());
-		
-		return modelAndView;
-	}
-	
+	/**
+	 * Método que captura las peticiones POST de /crear-empresa
+	 * @param transferEmpresa que recibe para insertar la empresa con los datos
+	 * @param bindingResult clase para controlar los errores producidos al introducir los datos
+	 * @return redirige a inicio si no ha habido fallos, en caso contrario notifica sin cambiar de pagina
+	 */
 	@RequestMapping(value = "/crear-empresa", method = RequestMethod.POST)
 	//Recogemos el @ModelAttribute que se nos ha mandado por post y su binding
 	public ModelAndView crearEmpresa (@ModelAttribute ("transferEmpresa") @Valid TransferEmpresa transferEmpresa, BindingResult bindingResult) {
@@ -114,6 +94,43 @@ public class ControladorPrincipal {
 			saEmpresa.crearEmpresa(transferEmpresa);
 			modelAndView = new ModelAndView("redirect:/menu");
 		}
+		
+		return modelAndView;
+	}
+	
+	/**
+	 * Método que captura las peticiones POST de /crear-particular
+	 * @param transferParticular que recibe para insertar el particular con los datos
+	 * @param bindingResult clase para controlar los errores producidos al introducir los datos
+	 * @return redirige a inicio si no ha habido fallos, en caso contrario notifica sin cambiar de pagina
+	 */
+	@RequestMapping(value = "/crear-particular", method = RequestMethod.POST)
+	//Recogemos el @ModelAttribute que se nos ha mandado por post y su binding
+	public ModelAndView crearParticular(@ModelAttribute("transferParticular") @Valid TransferParticular transferParticular, BindingResult bindingResult) {
+		ModelAndView modelAndView = null;
+		Particular particular = saParticular.buscarPorEmail(transferParticular.getEmail());
+		
+		//lo creamos para pasarselo vacio a la pagina html porque sino no compila
+		TransferEmpresa transferEmpresa = new TransferEmpresa();
+		
+		//Si hay errores los binds muestran los fallos
+		if (!transferParticular.getPassword().equals(transferParticular.getPasswordConfirmacion())) {
+			bindingResult.rejectValue("password", "error.transferParticular", "* Las contraseñas no coinciden");
+		}
+		if (particular != null)
+			bindingResult.rejectValue("email", "error.dtoUsuario", "* Ya existe un particular con este e-mail");		
+		
+		if (bindingResult.hasErrors()) {
+			modelAndView = new ModelAndView("crearCuenta", bindingResult.getModel());
+			modelAndView.addObject("transferParticular", transferParticular);
+			modelAndView.addObject("transferEmpresa", transferEmpresa);
+		}			
+		else {
+			saParticular.crearParticular(transferParticular);
+			modelAndView = new ModelAndView("redirect:/");
+		}
+		
+		modelAndView.addObject("roles", Rol.values());
 		
 		return modelAndView;
 	}

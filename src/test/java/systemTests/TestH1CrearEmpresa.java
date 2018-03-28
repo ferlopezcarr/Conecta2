@@ -1,4 +1,4 @@
-package systemTest;
+package systemTests;
 
 import java.util.concurrent.TimeUnit;
 import org.junit.*;
@@ -6,7 +6,7 @@ import static org.junit.Assert.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 
-public class PruebasRegistroEmpresa {
+public class TestH1CrearEmpresa {
 	  private WebDriver driver;
 	  private String baseUrl;
 	  private boolean acceptNextAlert = true;
@@ -74,25 +74,25 @@ public class PruebasRegistroEmpresa {
 	  }
 	  
 	  @Test
-	  public void testRegistrarEmpresaContraseAsNoCoincidentes() throws Exception {
+	  public void testRegistroEmpresaCorrecto() throws Exception {
 	    driver.get("http://localhost:8080/");
 	    driver.findElement(By.linkText("Crear cuenta")).click();
 	    driver.findElement(By.id("pills-profile-tab")).click();
 	    driver.findElement(By.id("nombre")).click();
 	    driver.findElement(By.id("nombre")).clear();
-	    driver.findElement(By.id("nombre")).sendKeys("a");
+	    driver.findElement(By.id("nombre")).sendKeys("Prueba");
 	    driver.findElement(By.id("cif")).click();
 	    driver.findElement(By.id("cif")).clear();
-	    driver.findElement(By.id("cif")).sendKeys("A12345678");
+	    driver.findElement(By.id("cif")).sendKeys("P12345678");
 	    driver.findElement(By.id("email")).click();
 	    driver.findElement(By.id("email")).clear();
 	    driver.findElement(By.id("email")).sendKeys("pruebaSEmpresa@gmail.com");
 	    driver.findElement(By.id("password")).click();
 	    driver.findElement(By.id("password")).clear();
-	    driver.findElement(By.id("password")).sendKeys("a");
+	    driver.findElement(By.id("password")).sendKeys("A12345");
 	    driver.findElement(By.id("passwordConfirmacion")).click();
 	    driver.findElement(By.id("passwordConfirmacion")).clear();
-	    driver.findElement(By.id("passwordConfirmacion")).sendKeys("1");
+	    driver.findElement(By.id("passwordConfirmacion")).sendKeys("A12345");
 	    driver.findElement(By.xpath("//button[@type='submit']")).click();
 	  }
 	  
@@ -118,6 +118,9 @@ public class PruebasRegistroEmpresa {
 	    driver.findElement(By.id("passwordConfirmacion")).sendKeys("A12345");
 	    driver.findElement(By.xpath("//button[@type='submit']")).click();
 	  }
+
+
+
 
 	  @After
 	  public void tearDown() throws Exception {

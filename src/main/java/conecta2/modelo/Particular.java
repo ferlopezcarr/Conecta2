@@ -15,25 +15,39 @@ import org.springframework.data.annotation.Transient;
 
 @Entity
 @Table(name = "particulares")
+/**
+ * Entidad / Objeto de Negocio de Particular
+ * @author ferlo
+ * Se utiliza para persistir la información del particular
+ */
 public class Particular {
 	
+	/**
+	 * Id que genera la base de datos automáticamente, no se debe asignar manualmente
+	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
 	@NotEmpty
-	@Pattern(regexp="^[a-zA-Z ]$")
+	@Pattern(regexp="^([a-zA-Z ])*$")
 	private String nombre;
 	
 	@NotEmpty
-	@Pattern(regexp="^[a-zA-Z ]$")
+	@Pattern(regexp="^([a-zA-Z ])*$")
 	private String apellidos;
 	
+	/**
+	 * Filtro para evitar que se introduzcan dnis erróneos
+	 */
 	@NotEmpty
 	@Pattern(regexp="^[0-9]{8}[A-Z]{1}$")
 	@Column(unique=true)
 	private String dni;
 	
+	/**
+	 * Filtro para evitar que se introduzcan emails erróneos
+	 */
 	@Email
 	@Pattern(regexp="^[^@]+@[^@]+\\.[a-zA-Z]{2,}$")
 	@NotEmpty
@@ -49,6 +63,31 @@ public class Particular {
 	
 	private int puntuacion;
 
+	/**
+	 * Constructora sin argumentos necesaria para JPA
+	 */
+	public Particular() {}
+	
+	/**
+	 * Constructora por defecto que se utiliza para crear particulates en los tests
+	 * @param nombre
+	 * @param apellidos
+	 * @param dni
+	 * @param email
+	 * @param password
+	 * @param activo
+	 * @param puntuacion
+	 */
+	public Particular(String nombre, String apellidos, String dni, String email, String password, boolean activo, int puntuacion ) {
+		this.nombre = nombre;
+		this.apellidos = apellidos;
+		this.dni = dni;
+		this.email = email;
+		this.password = password;
+		this.activo = activo;
+		this.puntuacion = puntuacion;
+	}
+	
 	public int getId() {
 		return id;
 	}

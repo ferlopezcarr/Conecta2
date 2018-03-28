@@ -10,6 +10,11 @@ import conecta2.dao.DAOEmpresa;
 import conecta2.modelo.Empresa;
 import conecta2.transfer.TransferEmpresa;
 
+/**
+ * Clase que implementa las funciones de la interfaz SAEmpresa
+ * @author ferlo
+ * Clase que se desarrolla la funcionalidad de la entidad Empresa
+ */
 @Service ("SAEmpresa")
 public class SAEmpresaImp implements SAEmpresa {
 	
@@ -24,9 +29,14 @@ public class SAEmpresaImp implements SAEmpresa {
 	 */
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
+    
+    
+    public SAEmpresaImp(DAOEmpresa daoEmpresa) {
+    	this.daoEmpresa = daoEmpresa;
+    }
 
     /**
-     * Método de Negoio que recibe un TranferEmpresa y lo inserta en la base de datos
+     * Método que recibe un TranferEmpresa y lo inserta en la base de datos
      */
     
     @Autowired
@@ -62,7 +72,13 @@ public class SAEmpresaImp implements SAEmpresa {
      */
 	@Override
 	public Empresa buscarPorCif(String cif) {
-		return daoEmpresa.findBycif(cif);
+		return daoEmpresa.findByCif(cif);
 	}
+	
+	public void guardarEmpresa(Empresa empresa) {
+		
+		daoEmpresa.save(empresa);
+	}
+	
 
 }
