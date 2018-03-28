@@ -18,7 +18,8 @@ public class SAParticularImp implements SAParticular{
 	private DAOParticular daoParticular;
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
-	
+    @Autowired
+	private SAEmail saEmail;
     @Transactional
     @Override
     //Convierte el dtoUsuario a Usuario
@@ -32,6 +33,9 @@ public class SAParticularImp implements SAParticular{
         particular.setActivo(true);
         daoParticular.save(particular); //Hace el save al repositorio (función interna de JPARepository)
         //Después de esto el usuario ya estaría guardado en la Base de Datos
+        saEmail.enviarCorreo("Acceda al siguiente enlace para terminar el registro en Conecta2, ya casi está solo un paso más, ", "Alta cuenta en Conecta2", particular.getEmail());;
+
+        
     }
 
     //Llama al repositorio para hacer el findByEmail

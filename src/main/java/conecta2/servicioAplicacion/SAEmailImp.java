@@ -6,17 +6,35 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.transaction.Transactional;
+
 import org.apache.commons.lang.RandomStringUtils;
+
+import conecta2.dao.DAOActivacion;
+import conecta2.modelo.Activacion;
+
 import javax.mail.PasswordAuthentication;
 import java.util.Properties;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 
-public class SAEmailImp implements SAEmail {
+@Service ("saEmail")
+public class SAEmailImp  implements SAEmail {
 
+
+
+	/**
+	 * DAO que proporciona el acceso a la base de datos
+	 */
+	@Autowired
+	private DAOActivacion miDao;
+	
+    @Transactional
 	@Override
-	public boolean enviarCorreo(String texto,String subject, String destino) {
+	public void enviarCorreo(String texto,String subject, String destino ){
 		// TODO Auto-generated method stub
 		
 		//Elementos del correo
@@ -27,7 +45,7 @@ public class SAEmailImp implements SAEmail {
 		//String direccion = " https://coneta2.herokuapp.com/authorization?val=";
 		
 		String direccion ="localhost:8080/authorization?val=";
-		String direccionRandom = RandomStringUtils.random(112, true,true); 
+		String direccionRandom = RandomStringUtils.random(64, true,true); 
 		direccion=direccion+direccionRandom;
 		Properties props= new Properties();
 		
@@ -55,22 +73,27 @@ public class SAEmailImp implements SAEmail {
 			mensaje.setFrom(new InternetAddress(origen));
 			
 			mensaje.setRecipient(Message.RecipientType.TO, new InternetAddress(destino));
-			mensaje.setText(" Para continuar con el proceso de registro en Conecta2 acceda a la siguiente direccion" +direccion);
+			mensaje.setText(texto+direccion);
 			mensaje.setSubject(subject);
 			
 			Transport transport = sesion.getTransport("smtp");
 	        transport.connect("smtp.gmail.com", origen, pass);
 	        transport.sendMessage(mensaje, mensaje.getAllRecipients());
 	        transport.close();
-	         
-			System.out.println("Sent message successfully....");
+	    
 
 		}catch(MessagingException e){
 				System.out.println(e);
-				return false;
 		}
-		return true;
+		
+		Activacion miAct = new Activacion();
+		
+	    miAct.setActivacion(direccionRandom);
+        miAct.setEmail(destino);
+
+	    	miDao.save(miAct);
+
 	}
 
-	
+
 }

@@ -28,6 +28,11 @@ public class SAEmpresaImp implements SAEmpresa {
     /**
      * Método de Negoio que recibe un TranferEmpresa y lo inserta en la base de datos
      */
+    
+    @Autowired
+  	private SAEmail saEmail;
+    
+
     @Transactional
     @Override
 	public void crearEmpresa(TransferEmpresa transferEmpresa) {
@@ -36,7 +41,10 @@ public class SAEmpresaImp implements SAEmpresa {
          empresa.setNombre(transferEmpresa.getNombre());
          empresa.setEmail(transferEmpresa.getEmail());
          empresa.setPassword(bCryptPasswordEncoder.encode(transferEmpresa.getPassword()));
-         empresa.setActivo(true);
+         empresa.setActivo(false);
+
+         saEmail.enviarCorreo("Acceda al siguiente enlace para terminar el registro en Conecta2, ya casi está solo un paso más, ", "Alta cuenta en Conecta2", empresa.getEmail());;
+        
          daoEmpresa.save(empresa); //Hace el save al repositorio (función interna de JPARepository)
          //Después de esto el usuario ya estaría guardado en la Base de Datos
 	}

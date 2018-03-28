@@ -59,6 +59,8 @@ public class Empresa {
 	
 	private int puntuacion;
 	
+	
+	
 	/**
 	 * Constructora sin argumentos necesaria para JPA
 	 */

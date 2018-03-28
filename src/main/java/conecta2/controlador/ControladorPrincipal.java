@@ -130,6 +130,16 @@ public class ControladorPrincipal {
         return "informacion";
     }
 	
+	
+	@RequestMapping(value="/authorization", method = RequestMethod.GET)
+	public ModelAndView autorizacion(){ 
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("menu");
+		return modelAndView;
+	}
+	
+	
+	
 	//Esta anotación nos permite establecer variables permanentes para el modelo
 	@ModelAttribute
 	public void addAttributes(Model model) {
