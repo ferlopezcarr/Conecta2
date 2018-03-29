@@ -14,6 +14,8 @@ import conecta2.dao.DAOActivacion;
 import conecta2.modelo.Activacion;
 import conecta2.modelo.Empresa;
 import conecta2.modelo.Particular;
+import conecta2.transfer.TransferEmpresa;
+import conecta2.transfer.TransferParticular;
 
 import javax.mail.PasswordAuthentication;
 import java.util.Properties;
@@ -110,12 +112,25 @@ public class SAEmailImp  implements SAEmail {
 		Empresa empresa = saEmpresa.buscarPorEmail(aux.getEmail());
 		if(empresa!=null){
 			empresa.setActivo(true);
-			return empresa;
+			TransferEmpresa transEmpresa = new TransferEmpresa();
+			transEmpresa.setCif(empresa.getCif());
+			transEmpresa.setEmail(empresa.getEmail());
+			transEmpresa.setNombreEmpresa(empresa.getNombreEmpresa());
+			transEmpresa.setPassword(empresa.getPassword());
+		
+			return transEmpresa;
 		}else{
 			Particular particular = saParticular.buscarPorEmail(aux.getEmail()); 
 			if(particular!=null) {
 				particular.setActivo(true);
-				return particular;
+				TransferParticular transParticular = new TransferParticular();
+				transParticular.setNombre(particular.getNombre());
+				transParticular.setApellidos(particular.getApellidos());
+				transParticular.setDni(particular.getDni());
+				transParticular.setEmail(particular.getEmail());
+				transParticular.setPassword(particular.getPassword());
+				
+				return transParticular;
 				
 			}else {
 				return null;
