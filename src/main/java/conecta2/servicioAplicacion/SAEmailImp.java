@@ -12,10 +12,12 @@ import org.apache.commons.lang.RandomStringUtils;
 
 import conecta2.dao.DAOActivacion;
 import conecta2.modelo.Activacion;
+import conecta2.modelo.Empresa;
+import conecta2.modelo.Particular;
 
 import javax.mail.PasswordAuthentication;
 import java.util.Properties;
-
+import java.lang.String;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,6 +33,11 @@ public class SAEmailImp  implements SAEmail {
 	 */
 	@Autowired
 	private DAOActivacion miDao;
+	@Autowired	
+	private SAParticular saParticular;
+	@Autowired
+	private SAEmpresa saEmpresa;
+	
 	
     @Transactional
 	@Override
@@ -94,6 +101,31 @@ public class SAEmailImp  implements SAEmail {
 	    	miDao.save(miAct);
 
 	}
+
+	@Override
+	public Object validaUsuario(String urlValida) {
+		// TODO Auto-generated method stub
+		Activacion aux = miDao.findByActivacion(urlValida);
+		if(aux!=null) {
+		Empresa empresa = saEmpresa.buscarPorEmail(aux.getEmail());
+		if(empresa!=null){
+			empresa.setActivo(true);
+			return empresa;
+		}else{
+			Particular particular = saParticular.buscarPorEmail(aux.getEmail()); 
+			if(particular!=null) {
+				particular.setActivo(true);
+				return particular;
+				
+			}else {
+				return null;
+			}
+			
+		}
+		}else {
+			return null;
+		}
+		}
 
 
 }

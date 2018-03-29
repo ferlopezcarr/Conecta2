@@ -11,11 +11,13 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import conecta2.modelo.Empresa;
 import conecta2.modelo.Particular;
 import conecta2.modelo.Rol;
+import conecta2.servicioAplicacion.SAEmail;
 import conecta2.servicioAplicacion.SAEmpresa;
 import conecta2.servicioAplicacion.SAParticular;
 import conecta2.transfer.TransferParticular;
@@ -31,6 +33,8 @@ public class ControladorPrincipal {
 	private SAParticular saParticular;
 	@Autowired
 	private SAEmpresa saEmpresa;
+	@Autowired
+	private SAEmail saEmail;
 	
 
 	/**
@@ -148,10 +152,32 @@ public class ControladorPrincipal {
     }
 	
 	
-	@RequestMapping(value="/authorization", method = RequestMethod.GET)
-	public ModelAndView autorizacion(){ 
+	@RequestMapping(value="/authorization", method = RequestMethod.GET, params = {"val"})
+	public ModelAndView autorizacion(@RequestParam("val") String val){ 
+	
+		System.out.println(val);
+
+		Object obj = saEmail.validaUsuario(val);
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("menu");
+		modelAndView.setViewName("perfilEmpresa");
+		
+		if(obj==null) {
+			//MOSTRAR MENSAJE DE ERROR
+			
+		}else{
+			//ES UNA EMPRESA
+			if(obj.getClass()== (new TransferEmpresa()).getClass()){
+				TransferEmpresa myTransf= (TransferEmpresa) obj;
+
+				
+				
+			}else {
+				//ES UN PARTICULAR
+				TransferParticular myTransf= (TransferParticular) obj;
+				
+			}
+			
+		}
 		return modelAndView;
 	}
 	

@@ -11,6 +11,8 @@ div.container{
 	padding: 0px;	
 }
 
+
+
 .inicio-sesion{
 	margin-top: 10%;
 }
@@ -20,6 +22,11 @@ div.container{
 	background: #EFF0F5;
  }
 
+.perfil {
+	padding-top: 3%;
+	padding-bottom: 3%;
+	background: #EFF0F5;
+ }
 .formularioInicio {
 	padding: 0 5% 1%;
 	background: none;
@@ -29,7 +36,7 @@ div.container{
 	margin-top: 3%;
 }
 
-img{
+img-fondo{
 	
 	padding: 4% 5% 3%;
 }
@@ -53,8 +60,7 @@ div.card-deck{
 	color: white;
 }
 
-.btn {
-	margin: 1%;
+.btn-std {
 	background: #008f9b;
  	color: white;
  }
