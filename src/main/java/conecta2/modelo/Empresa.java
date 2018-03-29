@@ -31,7 +31,7 @@ public class Empresa {
 	
 	
 	@NotEmpty
-	private String nombre;
+	private String nombreEmpresa;
 	
 	/**
 	 * Filtro para evitar que se introduzcan CIFs erróneos
@@ -75,8 +75,8 @@ public class Empresa {
 	 * @param activo
 	 * @param puntuacion
 	 */
-	public Empresa(String nombre, String cif, String email, String password, boolean activo, int puntuacion) {
-		this.nombre = nombre;
+	public Empresa(String nombreEmpresa, String cif, String email, String password, boolean activo, int puntuacion) {
+		this.nombreEmpresa = nombreEmpresa;
 		this.cif = cif;
 		this.email = email;
 		this.password = password;
@@ -92,12 +92,12 @@ public class Empresa {
 		this.id = id;
 	}
 
-	public String getNombre() {
-		return nombre;
+	public String getNombreEmpresa() {
+		return nombreEmpresa;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setNombreEmpresa(String nombreEmpresa) {
+		this.nombreEmpresa = nombreEmpresa;
 	}
 	
 	public String getCif() {

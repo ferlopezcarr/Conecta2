@@ -1,0 +1,14 @@
+
+AVISO PARA LOS TEST
+
+------------------------
+
+Sistema
+-------
+Las pruebas de sistema no es posible añadirlas a la integración continua ya que es necesario 
+que la aplicación esté ejecutándose, por lo tanto NUNCA deben acabar las clases de pruebas de sistema 
+con "...Test.java"
+
+Unidad e Integración
+--------------------
+El resto de prueba deben SIEMPRE acabar con "...Test.java"

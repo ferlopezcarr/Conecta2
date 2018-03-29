@@ -1,6 +1,6 @@
-package unitTests;
+package integrationTests;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,27 +10,29 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import conecta2.Application;
-import conecta2.dao.DAOEmpresa;
 import conecta2.dao.DAOParticular;
-import conecta2.modelo.Empresa;
 import conecta2.modelo.Particular;
+import conecta2.servicioAplicacion.SAParticularImp;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = Application.class)
 @DataJpaTest
-public class TestHU2CrearParticular {
-	
+
+public class H2CrearParticularTest {
 	@Autowired
     private DAOParticular daoParticular;
 	
+	
 	@Test
-	public void testInsertFoundedByEmail() {
+	public void testBuscarPorEmail() {
 		
 		Particular particular = new Particular("nombre", "Apellido Apellido", "99999999Z", "particularPruebaEmail@particularPruebaEmail.com", "Abc1111", true, 0);
-
-		daoParticular.save(particular);
 		
-		Particular particularBD = daoParticular.findByEmail(particular.getEmail());
+		SAParticularImp SA = new SAParticularImp(daoParticular);
+		
+		SA.guardarParticular(particular);
+
+		Particular particularBD = SA.buscarPorEmail(particular.getEmail());
 		
 		boolean email = particularBD.getEmail() == particular.getEmail();
 		boolean nombre = particularBD.getNombre() == particular.getNombre();
@@ -44,12 +46,15 @@ public class TestHU2CrearParticular {
 	}
 	
 	@Test
-	public void testInsertFoundedByDni() {
-		Particular particular = new Particular("nombre", "Apellido Apellido", "99999999Z", "particularPruebaEmail@particularPruebaEmail.com", "Abc1111", true, 0);
-
-		daoParticular.save(particular);
+	public void testBuscarPorDni() {
 		
-		Particular particularBD = daoParticular.findByDni(particular.getDni());
+		Particular particular = new Particular("nombre", "Apellido Apellido", "99999999Z", "particularPruebaEmail@particularPruebaEmail.com", "Abc1111", true, 0);
+		
+		SAParticularImp SA = new SAParticularImp(daoParticular);
+		
+		SA.guardarParticular(particular);
+
+		Particular particularBD = SA.buscarPorDni(particular.getDni());
 		
 		boolean email = particularBD.getEmail() == particular.getEmail();
 		boolean nombre = particularBD.getNombre() == particular.getNombre();
