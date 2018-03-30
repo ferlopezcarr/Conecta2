@@ -88,9 +88,14 @@ div.enlace-inicio{
 	margin: 20px 0px 0px 0px;
 }
 
-.error{
+.errorEmpresa{
 	color: red;
 }
+
+.errorParticular{
+	color: red;
+}
+
 .fondoGris{
 	background: #89898C;
 	color:white;
