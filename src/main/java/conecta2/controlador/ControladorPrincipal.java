@@ -155,7 +155,6 @@ public class ControladorPrincipal {
 	@RequestMapping(value="/authorization", method = RequestMethod.GET, params = {"val"})
 	public ModelAndView autorizacion(@RequestParam("val") String val){ 
 	
-		System.out.println(val);
 
 		Object obj = saEmail.validaUsuario(val);
 		ModelAndView modelAndView = new ModelAndView();

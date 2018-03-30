@@ -93,6 +93,7 @@ public class SAEmailImp  implements SAEmail {
 
 		}catch(MessagingException e){
 				System.out.println(e);
+	
 		}
 		
 		Activacion miAct = new Activacion();
@@ -124,9 +125,8 @@ public class SAEmailImp  implements SAEmail {
 		}else{
 			Particular particular = saParticular.buscarPorEmail(aux.getEmail()); 
 			if(particular!=null) {
-				particular.setActivo(false);
+				particular.setActivo(true);
 
-				
 				TransferParticular transParticular = new TransferParticular();
 				transParticular.setNombre(particular.getNombre());
 				transParticular.setApellidos(particular.getApellidos());
