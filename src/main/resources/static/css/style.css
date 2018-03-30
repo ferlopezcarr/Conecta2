@@ -27,6 +27,14 @@ div.container{
 	padding-bottom: 3%;
 	background: #EFF0F5;
  }
+ 
+ label.perfilTitulo{
+ 	font-weight: bold;
+ 	display:block;
+ 
+ }
+ 
+ 
 .formularioInicio {
 	padding: 0 5% 1%;
 	background: none;

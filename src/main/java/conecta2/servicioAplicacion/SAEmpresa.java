@@ -14,4 +14,5 @@ public interface SAEmpresa {
 	public void crearEmpresa(TransferEmpresa transferEmpresa);
 	public Empresa buscarPorEmail(String email);
 	public Empresa buscarPorCif (String email);
+	public void save(TransferEmpresa transferEmpresa);
 }

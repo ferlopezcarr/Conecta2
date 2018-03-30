@@ -55,6 +55,7 @@ public class Empresa {
 	@Transient
 	private String password;
 
+	@NotEmpty
 	private boolean activo;
 	
 	private int puntuacion;

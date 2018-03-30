@@ -50,7 +50,7 @@ public class SAParticularImp implements SAParticular{
         particular.setApellidos(transferParticular.getApellidos());
         particular.setEmail(transferParticular.getEmail());
         particular.setPassword(bCryptPasswordEncoder.encode(transferParticular.getPassword()));
-        particular.setActivo(true);
+        particular.setActivo(false);
         daoParticular.save(particular); //Hace el save al repositorio (función interna de JPARepository)
         //Después de esto el usuario ya estaría guardado en la Base de Datos
         saEmail.enviarCorreo("Acceda al siguiente enlace para terminar el registro en Conecta2, ya casi está solo un paso más, ", "Alta cuenta en Conecta2", particular.getEmail());;
@@ -76,6 +76,22 @@ public class SAParticularImp implements SAParticular{
 	}
 	
 	public void guardarParticular(Particular particular) {
+		// TODO Auto-generated method stub
 		daoParticular.save(particular);
+	}
+	
+	@Override
+	public void save(TransferParticular transferParticular) {
+		// TODO Auto-generated method stub
+		 Particular particular = new Particular();
+	        particular.setDni(transferParticular.getDni());
+	        particular.setNombre(transferParticular.getNombre());
+	        particular.setApellidos(transferParticular.getApellidos());
+	        particular.setEmail(transferParticular.getEmail());
+	        particular.setPassword(bCryptPasswordEncoder.encode(transferParticular.getPassword()));
+	        particular.setActivo(transferParticular.isActivo());
+	        particular.setPuntuacion(transferParticular.getPuntuacion());
+	        daoParticular.save(particular);
+	        
 	}
 }

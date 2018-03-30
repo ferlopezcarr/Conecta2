@@ -2,8 +2,7 @@ package conecta2.transfer;
 
 import javax.validation.constraints.Pattern;
 
-import org.hibernate.validator.constraints.Email;
-import org.hibernate.validator.constraints.Length;
+
 import org.hibernate.validator.constraints.NotEmpty;
 
 public class TransferParticular {
@@ -34,16 +33,29 @@ public class TransferParticular {
 	@NotEmpty(message = "* Por favor, introduzca de nuevo su contraseña")
 	private String passwordConfirmacion;
 
+	private boolean activo;
+	
+	private int puntuacion;
+	
 	public TransferParticular() {}
 	
-	public TransferParticular(String nombre, String apellidos, String dni, String email, String password, boolean activo, int puntuacion ) {
+	public TransferParticular(String nombre, String apellidos, String dni, String email, String password, boolean activo, int puntuacion) {
 		this.nombre = nombre;
 		this.apellidos = apellidos;
 		this.dni = dni;
 		this.email = email;
 		this.password = password;
+		this.activo= activo;
 	}
 	
+	public boolean isActivo() {
+		return activo;
+	}
+
+	public void setActivo(boolean activo) {
+		this.activo = activo;
+	}
+
 	public String getNombre() {
 		return nombre;
 	}
@@ -90,5 +102,13 @@ public class TransferParticular {
 
 	public void setPasswordConfirmacion(String passwordConfirmacion) {
 		this.passwordConfirmacion = passwordConfirmacion;
+	}
+
+	public int getPuntuacion() {
+		return puntuacion;
+	}
+
+	public void setPuntuacion(int puntuacion) {
+		this.puntuacion = puntuacion;
 	}	
 }

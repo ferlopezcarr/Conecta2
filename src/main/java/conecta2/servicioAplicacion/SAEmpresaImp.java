@@ -76,9 +76,25 @@ public class SAEmpresaImp implements SAEmpresa {
 	}
 	
 	public void guardarEmpresa(Empresa empresa) {
-		
+		// TODO Auto-generated method stub
 		daoEmpresa.save(empresa);
 	}
+	@Override
+	public void save(TransferEmpresa transferEmpresa) {
+		// TODO Auto-generated method stub
+	 	 Empresa empresa = new Empresa();
+         
+	 	 empresa.setCif(transferEmpresa.getCif());
+         empresa.setNombreEmpresa(transferEmpresa.getNombreEmpresa());
+         empresa.setEmail(transferEmpresa.getEmail());
+         empresa.setPassword(bCryptPasswordEncoder.encode(transferEmpresa.getPassword()));
+         empresa.setActivo(transferEmpresa.isActivo());
+         empresa.setPuntuacion(transferEmpresa.getPuntuacion());
+        
+         daoEmpresa.save(empresa); //Hace el save al repositorio (función interna de JPARepository)
+	}
+
+	
 	
 
 }
