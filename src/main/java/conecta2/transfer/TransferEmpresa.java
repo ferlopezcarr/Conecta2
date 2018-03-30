@@ -83,7 +83,7 @@ public class TransferEmpresa {
 		this.passwordConfirmacion = passwordConfirmacion;
 	}	
 
-	public boolean isActivo() {
+	public boolean getActivo() {
 		return activo;
 	}
 

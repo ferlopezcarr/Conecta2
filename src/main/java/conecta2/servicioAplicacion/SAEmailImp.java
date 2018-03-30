@@ -124,7 +124,7 @@ public class SAEmailImp  implements SAEmail {
 		}else{
 			Particular particular = saParticular.buscarPorEmail(aux.getEmail()); 
 			if(particular!=null) {
-				particular.setActivo(true);
+				particular.setActivo(false);
 
 				
 				TransferParticular transParticular = new TransferParticular();

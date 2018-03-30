@@ -89,7 +89,7 @@ public class SAParticularImp implements SAParticular{
 	        particular.setApellidos(transferParticular.getApellidos());
 	        particular.setEmail(transferParticular.getEmail());
 	        particular.setPassword(bCryptPasswordEncoder.encode(transferParticular.getPassword()));
-	        particular.setActivo(transferParticular.isActivo());
+	        particular.setActivo(transferParticular.getActivo());
 	        particular.setPuntuacion(transferParticular.getPuntuacion());
 	        daoParticular.save(particular);
 	        

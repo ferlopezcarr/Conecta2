@@ -48,7 +48,7 @@ public class TransferParticular {
 		this.activo= activo;
 	}
 	
-	public boolean isActivo() {
+	public boolean getActivo() {
 		return activo;
 	}
 

@@ -59,7 +59,9 @@ public class Particular {
 	@Transient
 	private String password;
 
+
 	private boolean activo;
+	
 	
 	private int puntuacion;
 
