@@ -15,7 +15,7 @@ import conecta2.transfer.TransferEmpresa;
  * @author ferlo
  * Clase que se desarrolla la funcionalidad de la entidad Empresa
  */
-@Service ("SAEmpresa")
+@Service //("SAEmpresa")
 public class SAEmpresaImp implements SAEmpresa {
 	
 	/**
@@ -30,7 +30,7 @@ public class SAEmpresaImp implements SAEmpresa {
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
     
-    
+    @Autowired
     public SAEmpresaImp(DAOEmpresa daoEmpresa) {
     	this.daoEmpresa = daoEmpresa;
     }
@@ -79,6 +79,7 @@ public class SAEmpresaImp implements SAEmpresa {
 		// TODO Auto-generated method stub
 		daoEmpresa.save(empresa);
 	}
+	@Transactional
 	@Override
 	public void save(TransferEmpresa transferEmpresa) {
 		// TODO Auto-generated method stub
