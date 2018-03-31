@@ -85,6 +85,18 @@ public class SAEmpresaImp implements SAEmpresa {
 	public void save(TransferEmpresa transferEmpresa) {
 		// TODO Auto-generated method stub
 	 	 Empresa empresa = daoEmpresa.findByCif(transferEmpresa.getCif());
+	 	 
+	 	 if(empresa == null) {
+	 		 empresa = new Empresa(
+	 				 transferEmpresa.getNombreEmpresa(),
+	 				 transferEmpresa.getCif(), 
+	 				 transferEmpresa.getEmail(),
+	 				 transferEmpresa.getPassword(),
+	 				 transferEmpresa.getActivo(),
+	 				 transferEmpresa.getPuntuacion()
+	 				 );
+	 	 }
+	 	 
 	 	 System.out.println(transferEmpresa.getPassword());
          //empresa.setPassword(bCryptPasswordEncoder.encode(transferEmpresa.getPassword()));
          empresa.setActivo(transferEmpresa.getActivo());
