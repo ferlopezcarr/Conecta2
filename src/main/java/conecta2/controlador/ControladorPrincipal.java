@@ -180,7 +180,19 @@ public class ControladorPrincipal {
 		return modelAndView;
 	}
 	
-	
+	@RequestMapping(value ="/verPerfilEmpresa", method = RequestMethod.GET, params = {"val"})
+    public ModelAndView mostrarPerfil(@RequestParam("val") String val) { 
+		
+		
+		Empresa empresa = saEmpresa.buscarPorEmail(val);
+		ModelAndView modelAndView = new ModelAndView();
+		TransferEmpresa tEmpresa = new TransferEmpresa(empresa.getNombreEmpresa(),empresa.getCif(),empresa.getEmail(),"0","0",true);
+		modelAndView.addObject("transferEmpresa", tEmpresa);
+		modelAndView.setViewName("perfilEmpresa");
+		
+		
+		return modelAndView;
+    }
 	
 	//Esta anotación nos permite establecer variables permanentes para el modelo
 	@ModelAttribute

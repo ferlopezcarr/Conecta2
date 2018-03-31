@@ -1,1 +1,2 @@
 INSERT INTO `particulares`(`dni`, `nombre`, `apellidos`, `email`, `activo`, `puntuacion`, `password`) VALUES ('12345678L', 'Administrador', '', 'admin@admin.es', 1, 0, '$2a$10$qXgak7rkAqGqkJjzxT6/Ru0hHGgoGyN81Cobog4yZmO4v.y6cNrbO');
+INSERT INTO `empresas` (`activo`, `cif`, `email`, `nombre_empresa`, `password`, `puntuacion`) VALUES (1, '0124545723', 'admin@admin.com', 'Endesa', '0', '0');

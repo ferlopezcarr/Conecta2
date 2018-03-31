@@ -49,17 +49,17 @@
   	<div class="col-6  ml-auto">
   			<div class="form-group">
   			<label class="perfilTitulo" for="Nombre">CIF </label>
-  			<label> B123456</label>
+  			<span th:text=${transferEmpresa.cif}></span>
   			<!-- <input class="form-control" id="cif"> -->
   		</div>
   		<div class="form-group">
   			<label class="perfilTitulo"  class="perfilTitulo"  for="Nombre">Nombre </label>
-  			<label>Endesa</label>
+  			<span th:text=${transferEmpresa.nombreEmpresa}></span>
   			<!-- <input class="form-control" id="nombre"> -->
   		</div>
   	<div class="form-group">
   			<label class="perfilTitulo"  for="Nombre">Email </label>
-  			<label>info@endesa.com</label>
+  			<span th:text=${transferEmpresa.email}></span>
   			<!-- <input class="form-control" id="email"> -->
   		</div>
   		<div class="form-group">
