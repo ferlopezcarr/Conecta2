@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta content="text/html; charset=UTF-8" http-equiv="content-type" />
+	<title>Registrar Particular</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Registrar Particular sin meter campos</td></tr>
+</thead>
+<tbody>
+<tr><td>open</td><td>http://localhost:8080/<datalist><option>http://localhost:8080/</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>link=Crear cuenta<datalist><option>link=Crear cuenta</option><option>//a[contains(text(),'Crear cuenta')]</option><option>//a[contains(@href, '/crear-cuenta')]</option><option>//a</option><option>css=a.btn.btn-grey</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>id=pills-home-tab<datalist><option>id=pills-home-tab</option><option>link=Particulares</option><option>//a[contains(text(),'Particulares')]</option><option>//a[@id='pills-home-tab']</option><option>//ul[@id='pills-tab']/li[2]/a</option><option>//a[contains(@href, '#pills-home')]</option><option>//li[2]/a</option><option>css=#pills-home-tab</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>xpath=(//button[@type='submit'])[2]<datalist><option>xpath=(//button[@type='submit'])[2]</option><option>//div[@id='pills-home']/form/div[7]/button</option><option>//div[7]/button</option><option>css=#pills-home &gt; form.formulario &gt; div.text-center &gt; button.btn.btn-grey</option></datalist></td><td></td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Registrar Particular mal formato de campos</td></tr>
+</thead>
+<tbody>
+<tr><td>open</td><td>http://localhost:8080/<datalist><option>http://localhost:8080/</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>link=Crear cuenta<datalist><option>link=Crear cuenta</option><option>//a[contains(text(),'Crear cuenta')]</option><option>//a[contains(@href, '/crear-cuenta')]</option><option>//a</option><option>css=a.btn.btn-grey</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>id=pills-home-tab<datalist><option>id=pills-home-tab</option><option>link=Particulares</option><option>//a[contains(text(),'Particulares')]</option><option>//a[@id='pills-home-tab']</option><option>//ul[@id='pills-tab']/li[2]/a</option><option>//a[contains(@href, '#pills-home')]</option><option>//li[2]/a</option><option>css=#pills-home-tab</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>id=nombre<datalist><option>id=nombre</option><option>name=nombre</option><option>//input[@id='nombre']</option><option>//div[@id='pills-home']/form/div/input</option><option>//div[2]/form/div/input</option><option>css=#nombre</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=nombre<datalist><option>id=nombre</option><option>name=nombre</option><option>//input[@id='nombre']</option><option>//div[@id='pills-home']/form/div/input</option><option>//div[2]/form/div/input</option><option>css=#nombre</option></datalist></td><td>1</td>
+</tr>
+<tr><td>click</td><td>id=apellidos<datalist><option>id=apellidos</option><option>name=apellidos</option><option>//input[@id='apellidos']</option><option>//div[@id='pills-home']/form/div[2]/input</option><option>//div[2]/form/div[2]/input</option><option>css=#apellidos</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=apellidos<datalist><option>id=apellidos</option><option>name=apellidos</option><option>//input[@id='apellidos']</option><option>//div[@id='pills-home']/form/div[2]/input</option><option>//div[2]/form/div[2]/input</option><option>css=#apellidos</option></datalist></td><td>8</td>
+</tr>
+<tr><td>click</td><td>id=dni<datalist><option>id=dni</option><option>name=dni</option><option>//input[@id='dni']</option><option>//div[@id='pills-home']/form/div[3]/input</option><option>//div[2]/form/div[3]/input</option><option>css=#dni</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=dni<datalist><option>id=dni</option><option>name=dni</option><option>//input[@id='dni']</option><option>//div[@id='pills-home']/form/div[3]/input</option><option>//div[2]/form/div[3]/input</option><option>css=#dni</option></datalist></td><td>1</td>
+</tr>
+<tr><td>click</td><td>xpath=(//input[@id='email'])[2]<datalist><option>xpath=(//input[@id='email'])[2]</option><option>//div[@id='pills-home']/form/div[4]/input</option><option>//div[2]/form/div[4]/input</option><option>css=#pills-home &gt; form.formulario &gt; div.form-group &gt; #email</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>xpath=(//input[@id='email'])[2]<datalist><option>xpath=(//input[@id='email'])[2]</option><option>//div[@id='pills-home']/form/div[4]/input</option><option>//div[2]/form/div[4]/input</option><option>css=#pills-home &gt; form.formulario &gt; div.form-group &gt; #email</option></datalist></td><td>1</td>
+</tr>
+<tr><td>click</td><td>xpath=(//input[@id='password'])[2]<datalist><option>xpath=(//input[@id='password'])[2]</option><option>//div[@id='pills-home']/form/div[5]/input</option><option>//div[2]/form/div[5]/input</option><option>css=#pills-home &gt; form.formulario &gt; div.form-group &gt; #password</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>xpath=(//input[@id='password'])[2]<datalist><option>xpath=(//input[@id='password'])[2]</option><option>//div[@id='pills-home']/form/div[5]/input</option><option>//div[2]/form/div[5]/input</option><option>css=#pills-home &gt; form.formulario &gt; div.form-group &gt; #password</option></datalist></td><td>1</td>
+</tr>
+<tr><td>click</td><td>xpath=(//input[@id='passwordConfirmacion'])[2]<datalist><option>xpath=(//input[@id='passwordConfirmacion'])[2]</option><option>//div[@id='pills-home']/form/div[6]/input</option><option>//div[6]/input</option><option>css=#pills-home &gt; form.formulario &gt; div.form-group &gt; #passwordConfirmacion</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>xpath=(//input[@id='passwordConfirmacion'])[2]<datalist><option>xpath=(//input[@id='passwordConfirmacion'])[2]</option><option>//div[@id='pills-home']/form/div[6]/input</option><option>//div[6]/input</option><option>css=#pills-home &gt; form.formulario &gt; div.form-group &gt; #passwordConfirmacion</option></datalist></td><td>1</td>
+</tr>
+<tr><td>click</td><td>xpath=(//button[@type='submit'])[2]<datalist><option>xpath=(//button[@type='submit'])[2]</option><option>//div[@id='pills-home']/form/div[7]/button</option><option>//div[7]/button</option><option>css=#pills-home &gt; form.formulario &gt; div.text-center &gt; button.btn.btn-grey</option></datalist></td><td></td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Registrar Particular contraseñas no coincidentes</td></tr>
+</thead>
+<tbody>
+<tr><td>open</td><td>http://localhost:8080/<datalist><option>http://localhost:8080/</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>link=Crear cuenta<datalist><option>link=Crear cuenta</option><option>//a[contains(text(),'Crear cuenta')]</option><option>//a[contains(@href, '/crear-cuenta')]</option><option>//a</option><option>css=a.btn.btn-grey</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>id=pills-home-tab<datalist><option>id=pills-home-tab</option><option>link=Particulares</option><option>//a[contains(text(),'Particulares')]</option><option>//a[@id='pills-home-tab']</option><option>//ul[@id='pills-tab']/li[2]/a</option><option>//a[contains(@href, '#pills-home')]</option><option>//li[2]/a</option><option>css=#pills-home-tab</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=nombre<datalist><option>id=nombre</option><option>name=nombre</option><option>//input[@id='nombre']</option><option>//div[@id='pills-home']/form/div/input</option><option>//div[2]/form/div/input</option><option>css=#nombre</option></datalist></td><td>a</td>
+</tr>
+<tr><td>click</td><td>id=apellidos<datalist><option>id=apellidos</option><option>name=apellidos</option><option>//input[@id='apellidos']</option><option>//div[@id='pills-home']/form/div[2]/input</option><option>//div[2]/form/div[2]/input</option><option>css=#apellidos</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=apellidos<datalist><option>id=apellidos</option><option>name=apellidos</option><option>//input[@id='apellidos']</option><option>//div[@id='pills-home']/form/div[2]/input</option><option>//div[2]/form/div[2]/input</option><option>css=#apellidos</option></datalist></td><td>a</td>
+</tr>
+<tr><td>click</td><td>id=dni<datalist><option>id=dni</option><option>name=dni</option><option>//input[@id='dni']</option><option>//div[@id='pills-home']/form/div[3]/input</option><option>//div[2]/form/div[3]/input</option><option>css=#dni</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=dni<datalist><option>id=dni</option><option>name=dni</option><option>//input[@id='dni']</option><option>//div[@id='pills-home']/form/div[3]/input</option><option>//div[2]/form/div[3]/input</option><option>css=#dni</option></datalist></td><td>12345678A</td>
+</tr>
+<tr><td>click</td><td>xpath=(//input[@id='email'])[2]<datalist><option>xpath=(//input[@id='email'])[2]</option><option>//div[@id='pills-home']/form/div[4]/input</option><option>//div[2]/form/div[4]/input</option><option>css=#pills-home &gt; form.formulario &gt; div.form-group &gt; #email</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>xpath=(//input[@id='email'])[2]<datalist><option>xpath=(//input[@id='email'])[2]</option><option>//div[@id='pills-home']/form/div[4]/input</option><option>//div[2]/form/div[4]/input</option><option>css=#pills-home &gt; form.formulario &gt; div.form-group &gt; #email</option></datalist></td><td>pruebaSP@gmail.com</td>
+</tr>
+<tr><td>click</td><td>xpath=(//input[@id='password'])[2]<datalist><option>xpath=(//input[@id='password'])[2]</option><option>//div[@id='pills-home']/form/div[5]/input</option><option>//div[2]/form/div[5]/input</option><option>css=#pills-home &gt; form.formulario &gt; div.form-group &gt; #password</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>xpath=(//input[@id='password'])[2]<datalist><option>xpath=(//input[@id='password'])[2]</option><option>//div[@id='pills-home']/form/div[5]/input</option><option>//div[2]/form/div[5]/input</option><option>css=#pills-home &gt; form.formulario &gt; div.form-group &gt; #password</option></datalist></td><td>a</td>
+</tr>
+<tr><td>click</td><td>xpath=(//input[@id='passwordConfirmacion'])[2]<datalist><option>xpath=(//input[@id='passwordConfirmacion'])[2]</option><option>//div[@id='pills-home']/form/div[6]/input</option><option>//div[6]/input</option><option>css=#pills-home &gt; form.formulario &gt; div.form-group &gt; #passwordConfirmacion</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>xpath=(//input[@id='passwordConfirmacion'])[2]<datalist><option>xpath=(//input[@id='passwordConfirmacion'])[2]</option><option>//div[@id='pills-home']/form/div[6]/input</option><option>//div[6]/input</option><option>css=#pills-home &gt; form.formulario &gt; div.form-group &gt; #passwordConfirmacion</option></datalist></td><td>1</td>
+</tr>
+<tr><td>click</td><td>xpath=(//button[@type='submit'])[2]<datalist><option>xpath=(//button[@type='submit'])[2]</option><option>//div[@id='pills-home']/form/div[7]/button</option><option>//div[7]/button</option><option>css=#pills-home &gt; form.formulario &gt; div.text-center &gt; button.btn.btn-grey</option></datalist></td><td></td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Registrar Particular Correcto</td></tr>
+</thead>
+<tbody>
+<tr><td>open</td><td>http://localhost:8080/<datalist><option>http://localhost:8080/</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>link=Crear cuenta<datalist><option>link=Crear cuenta</option><option>//a[contains(text(),'Crear cuenta')]</option><option>//a[contains(@href, '/crear-cuenta')]</option><option>//a</option><option>css=a.btn.btn-grey</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>id=pills-home-tab<datalist><option>id=pills-home-tab</option><option>link=Particulares</option><option>//a[contains(text(),'Particulares')]</option><option>//a[@id='pills-home-tab']</option><option>//ul[@id='pills-tab']/li[2]/a</option><option>//a[contains(@href, '#pills-home')]</option><option>//li[2]/a</option><option>css=#pills-home-tab</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=nombre<datalist><option>id=nombre</option><option>name=nombre</option><option>//input[@id='nombre']</option><option>//div[@id='pills-home']/form/div/input</option><option>//div[2]/form/div/input</option><option>css=#nombre</option></datalist></td><td>Prueba</td>
+</tr>
+<tr><td>click</td><td>id=apellidos<datalist><option>id=apellidos</option><option>name=apellidos</option><option>//input[@id='apellidos']</option><option>//div[@id='pills-home']/form/div[2]/input</option><option>//div[2]/form/div[2]/input</option><option>css=#apellidos</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=apellidos<datalist><option>id=apellidos</option><option>name=apellidos</option><option>//input[@id='apellidos']</option><option>//div[@id='pills-home']/form/div[2]/input</option><option>//div[2]/form/div[2]/input</option><option>css=#apellidos</option></datalist></td><td>Prueba Prueba</td>
+</tr>
+<tr><td>click</td><td>id=dni<datalist><option>id=dni</option><option>name=dni</option><option>//input[@id='dni']</option><option>//div[@id='pills-home']/form/div[3]/input</option><option>//div[2]/form/div[3]/input</option><option>css=#dni</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=dni<datalist><option>id=dni</option><option>name=dni</option><option>//input[@id='dni']</option><option>//div[@id='pills-home']/form/div[3]/input</option><option>//div[2]/form/div[3]/input</option><option>css=#dni</option></datalist></td><td>12345678A</td>
+</tr>
+<tr><td>click</td><td>xpath=(//input[@id='email'])[2]<datalist><option>xpath=(//input[@id='email'])[2]</option><option>//div[@id='pills-home']/form/div[4]/input</option><option>//div[2]/form/div[4]/input</option><option>css=#pills-home &gt; form.formulario &gt; div.form-group &gt; #email</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>xpath=(//input[@id='email'])[2]<datalist><option>xpath=(//input[@id='email'])[2]</option><option>//div[@id='pills-home']/form/div[4]/input</option><option>//div[2]/form/div[4]/input</option><option>css=#pills-home &gt; form.formulario &gt; div.form-group &gt; #email</option></datalist></td><td>pruebaSP@gmail.com</td>
+</tr>
+<tr><td>click</td><td>xpath=(//input[@id='password'])[2]<datalist><option>xpath=(//input[@id='password'])[2]</option><option>//div[@id='pills-home']/form/div[5]/input</option><option>//div[2]/form/div[5]/input</option><option>css=#pills-home &gt; form.formulario &gt; div.form-group &gt; #password</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>xpath=(//input[@id='password'])[2]<datalist><option>xpath=(//input[@id='password'])[2]</option><option>//div[@id='pills-home']/form/div[5]/input</option><option>//div[2]/form/div[5]/input</option><option>css=#pills-home &gt; form.formulario &gt; div.form-group &gt; #password</option></datalist></td><td>12345A</td>
+</tr>
+<tr><td>click</td><td>xpath=(//input[@id='passwordConfirmacion'])[2]<datalist><option>xpath=(//input[@id='passwordConfirmacion'])[2]</option><option>//div[@id='pills-home']/form/div[6]/input</option><option>//div[6]/input</option><option>css=#pills-home &gt; form.formulario &gt; div.form-group &gt; #passwordConfirmacion</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>xpath=(//input[@id='passwordConfirmacion'])[2]<datalist><option>xpath=(//input[@id='passwordConfirmacion'])[2]</option><option>//div[@id='pills-home']/form/div[6]/input</option><option>//div[6]/input</option><option>css=#pills-home &gt; form.formulario &gt; div.form-group &gt; #passwordConfirmacion</option></datalist></td><td>12345A</td>
+</tr>
+<tr><td>click</td><td>xpath=(//button[@type='submit'])[2]<datalist><option>xpath=(//button[@type='submit'])[2]</option><option>//div[@id='pills-home']/form/div[7]/button</option><option>//div[7]/button</option><option>css=#pills-home &gt; form.formulario &gt; div.text-center &gt; button.btn.btn-grey</option></datalist></td><td></td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Registro Particular email y DNI repetidos</td></tr>
+</thead>
+<tbody>
+<tr><td>open</td><td>http://localhost:8080/<datalist><option>http://localhost:8080/</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>link=Crear cuenta<datalist><option>link=Crear cuenta</option><option>//a[contains(text(),'Crear cuenta')]</option><option>//a[contains(@href, '/crear-cuenta')]</option><option>//a</option><option>css=a.btn.btn-grey</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>id=pills-home-tab<datalist><option>id=pills-home-tab</option><option>link=Particulares</option><option>//a[contains(text(),'Particulares')]</option><option>//a[@id='pills-home-tab']</option><option>//ul[@id='pills-tab']/li[2]/a</option><option>//a[contains(@href, '#pills-home')]</option><option>//li[2]/a</option><option>css=#pills-home-tab</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=nombre<datalist><option>id=nombre</option><option>name=nombre</option><option>//input[@id='nombre']</option><option>//div[@id='pills-home']/form/div/input</option><option>//div[2]/form/div/input</option><option>css=#nombre</option></datalist></td><td>Prueba</td>
+</tr>
+<tr><td>click</td><td>id=apellidos<datalist><option>id=apellidos</option><option>name=apellidos</option><option>//input[@id='apellidos']</option><option>//div[@id='pills-home']/form/div[2]/input</option><option>//div[2]/form/div[2]/input</option><option>css=#apellidos</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=apellidos<datalist><option>id=apellidos</option><option>name=apellidos</option><option>//input[@id='apellidos']</option><option>//div[@id='pills-home']/form/div[2]/input</option><option>//div[2]/form/div[2]/input</option><option>css=#apellidos</option></datalist></td><td>Prueba Prueba</td>
+</tr>
+<tr><td>click</td><td>id=dni<datalist><option>id=dni</option><option>name=dni</option><option>//input[@id='dni']</option><option>//div[@id='pills-home']/form/div[3]/input</option><option>//div[2]/form/div[3]/input</option><option>css=#dni</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=dni<datalist><option>id=dni</option><option>name=dni</option><option>//input[@id='dni']</option><option>//div[@id='pills-home']/form/div[3]/input</option><option>//div[2]/form/div[3]/input</option><option>css=#dni</option></datalist></td><td>12345678A</td>
+</tr>
+<tr><td>click</td><td>xpath=(//input[@id='email'])[2]<datalist><option>xpath=(//input[@id='email'])[2]</option><option>//div[@id='pills-home']/form/div[4]/input</option><option>//div[2]/form/div[4]/input</option><option>css=#pills-home &gt; form.formulario &gt; div.form-group &gt; #email</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>xpath=(//input[@id='email'])[2]<datalist><option>xpath=(//input[@id='email'])[2]</option><option>//div[@id='pills-home']/form/div[4]/input</option><option>//div[2]/form/div[4]/input</option><option>css=#pills-home &gt; form.formulario &gt; div.form-group &gt; #email</option></datalist></td><td>pruebaSP@gmail.com</td>
+</tr>
+<tr><td>click</td><td>xpath=(//input[@id='password'])[2]<datalist><option>xpath=(//input[@id='password'])[2]</option><option>//div[@id='pills-home']/form/div[5]/input</option><option>//div[2]/form/div[5]/input</option><option>css=#pills-home &gt; form.formulario &gt; div.form-group &gt; #password</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>xpath=(//input[@id='password'])[2]<datalist><option>xpath=(//input[@id='password'])[2]</option><option>//div[@id='pills-home']/form/div[5]/input</option><option>//div[2]/form/div[5]/input</option><option>css=#pills-home &gt; form.formulario &gt; div.form-group &gt; #password</option></datalist></td><td>12345A</td>
+</tr>
+<tr><td>click</td><td>xpath=(//input[@id='passwordConfirmacion'])[2]<datalist><option>xpath=(//input[@id='passwordConfirmacion'])[2]</option><option>//div[@id='pills-home']/form/div[6]/input</option><option>//div[6]/input</option><option>css=#pills-home &gt; form.formulario &gt; div.form-group &gt; #passwordConfirmacion</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>xpath=(//input[@id='passwordConfirmacion'])[2]<datalist><option>xpath=(//input[@id='passwordConfirmacion'])[2]</option><option>//div[@id='pills-home']/form/div[6]/input</option><option>//div[6]/input</option><option>css=#pills-home &gt; form.formulario &gt; div.form-group &gt; #passwordConfirmacion</option></datalist></td><td>12345A</td>
+</tr>
+<tr><td>click</td><td>xpath=(//button[@type='submit'])[2]<datalist><option>xpath=(//button[@type='submit'])[2]</option><option>//div[@id='pills-home']/form/div[7]/button</option><option>//div[7]/button</option><option>css=#pills-home &gt; form.formulario &gt; div.text-center &gt; button.btn.btn-grey</option></datalist></td><td></td>
+</tr>
+</tbody></table>
+</body>
+</html>
