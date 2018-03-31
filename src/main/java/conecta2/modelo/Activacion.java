@@ -1,6 +1,5 @@
 package conecta2.modelo;
 
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,14 +20,20 @@ public class Activacion {
 	
 	private String activacion;
 	
-	
+	/**
+	 * Constructora sin argumentos necesaria para JPA
+	 */
 	public Activacion() {}
-
 	
+	/**
+	 * Constructora por defecto
+	 * @param activacion
+	 * @param email
+	 */
 	public Activacion(String activacion, String email) {
 		this.activacion = activacion;
 		this.email = email;
-		}
+	}
 	
 	
 	public int getId() {

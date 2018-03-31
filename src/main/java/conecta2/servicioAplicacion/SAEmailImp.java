@@ -24,10 +24,13 @@ import java.lang.String;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
+/**
+ * Clase que implementa las funciones de la interfaz SAEmail
+ * @author ferlo
+ * Clase que se desarrolla la funcionalidad de la entidad Activacion
+ */
 @Service //("saEmail")
 public class SAEmailImp  implements SAEmail {
-
 
 
 	/**
@@ -35,19 +38,27 @@ public class SAEmailImp  implements SAEmail {
 	 */
 	@Autowired
 	private DAOActivacion miDao;
+	
+	/**
+	 * SA del particular utilizado para comprobar que existe
+	 */
 	@Autowired	
 	private SAParticular saParticular;
+	
+	/**
+	 * SA de la empresa utilizado para comprobar que existe
+	 */
 	@Autowired
 	private SAEmpresa saEmpresa;
 	
-	
+	/**
+	 * Método que envía un correo a un 'destino', con asunto 'subject' y un 'texto'
+	 */
     @Transactional
 	@Override
 	public void enviarCorreo(String texto,String subject, String destino ){
-		// TODO Auto-generated method stub
-		
+
 		//Elementos del correo
-		
 		final String origen ="conecta2authentication@gmail.com"; 
 		final String pass = "margin0Auto";
 		
@@ -104,51 +115,58 @@ public class SAEmailImp  implements SAEmail {
 	    	miDao.save(miAct);
 
 	}
-
+    
+    /**
+     * Método que valida a un usuario mediante una url
+     */
 	@Override
 	public Object validaUsuario(String urlValida) {
-		// TODO Auto-generated method stub
+		
 		Activacion aux = miDao.findByActivacion(urlValida);
+		
 		if(aux!=null) {
-		Empresa empresa = saEmpresa.buscarPorEmail(aux.getEmail());
-		if(empresa!=null){
-			empresa.setActivo(true);
-			TransferEmpresa transEmpresa = new TransferEmpresa();
-			transEmpresa.setCif(empresa.getCif());
-			transEmpresa.setEmail(empresa.getEmail());
-			transEmpresa.setNombreEmpresa(empresa.getNombreEmpresa());
-			transEmpresa.setPassword(empresa.getPassword());
-			transEmpresa.setActivo(empresa.getActivo());
-			saEmpresa.save(transEmpresa);
 			
-			return transEmpresa;
-		}else{
-			Particular particular = saParticular.buscarPorEmail(aux.getEmail()); 
-			if(particular!=null) {
-				particular.setActivo(true);
-
-				TransferParticular transParticular = new TransferParticular();
-				transParticular.setNombre(particular.getNombre());
-				transParticular.setApellidos(particular.getApellidos());
-				transParticular.setDni(particular.getDni());
-				transParticular.setEmail(particular.getEmail());
-				transParticular.setPassword(particular.getPassword());
-				transParticular.setActivo(particular.getActivo());
+			Empresa empresa = saEmpresa.buscarPorEmail(aux.getEmail());
+			
+			if(empresa!=null){//Se comprueba que es una empresa
+				empresa.setActivo(true);
+				TransferEmpresa transEmpresa = new TransferEmpresa();
+				transEmpresa.setCif(empresa.getCif());
+				transEmpresa.setEmail(empresa.getEmail());
+				transEmpresa.setNombreEmpresa(empresa.getNombreEmpresa());
+				transEmpresa.setPassword(empresa.getPassword());
+				transEmpresa.setActivo(empresa.getActivo());
+				saEmpresa.save(transEmpresa);
 				
-				saParticular.save(transParticular);
-
+				return transEmpresa;
 				
-				return transParticular;
+			} else {//No se encuentra la empresa
 				
-			}else {
-				return null;
+				Particular particular = saParticular.buscarPorEmail(aux.getEmail()); 
+				
+				if(particular!=null) {//Se comprueba que es particular
+					particular.setActivo(true);
+			
+					TransferParticular transParticular = new TransferParticular();
+					transParticular.setNombre(particular.getNombre());
+					transParticular.setApellidos(particular.getApellidos());
+					transParticular.setDni(particular.getDni());
+					transParticular.setEmail(particular.getEmail());
+					transParticular.setPassword(particular.getPassword());
+					transParticular.setActivo(particular.getActivo());
+					
+					saParticular.save(transParticular);
+					
+					return transParticular;
+					
+				} else {//No se encuentra el particular
+					return null;
+				}
 			}
-			
-		}
-		}else {
+		} else {//aux == null
 			return null;
 		}
-		}
+	}//validaUsuario
 
 
 }

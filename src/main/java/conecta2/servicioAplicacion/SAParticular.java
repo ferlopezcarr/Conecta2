@@ -6,7 +6,7 @@ import conecta2.modelo.Particular;
 import conecta2.transfer.TransferParticular;
 
 /**
- * Interfaz que define las casos de uso
+ * Interfaz que define los casos de uso
  * @author ferlo
  * Interfaz que define los métodos o funciones que puede realizar el particular
  */

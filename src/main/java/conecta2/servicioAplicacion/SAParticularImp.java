@@ -95,6 +95,5 @@ public class SAParticularImp implements SAParticular{
 		}
         
         daoParticular.save(particular);
-	        
 	}
 }

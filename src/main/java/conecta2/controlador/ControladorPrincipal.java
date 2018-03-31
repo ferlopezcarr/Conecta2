@@ -69,16 +69,13 @@ public class ControladorPrincipal {
 	 * @return redirige a inicio si no ha habido fallos, en caso contrario notifica sin cambiar de pagina
 	 */
 	@RequestMapping(value = "/crear-empresa", method = RequestMethod.POST)
-	//Recogemos el @ModelAttribute que se nos ha mandado por post y su binding
 	public ModelAndView crearEmpresa (@ModelAttribute ("transferEmpresa") @Valid TransferEmpresa transferEmpresa, BindingResult bindingResult) {
 		ModelAndView modelAndView = null;
 		Empresa empresa = saEmpresa.buscarPorEmail(transferEmpresa.getEmail());
 		Empresa cif = saEmpresa.buscarPorCif(transferEmpresa.getCif());
 		
-		//lo creamos para pasarselo vacio a la pagina html porque sino no compila
 		TransferParticular transferParticular = new TransferParticular();
 		
-		//Si hay errores los binds muestran los fallos
 		if (!transferEmpresa.getPassword().equals(transferEmpresa.getPasswordConfirmacion())) {
 			bindingResult.rejectValue("password", "error.transferEmpresa", "* Las contraseñas no coinciden");
 		}
@@ -109,15 +106,12 @@ public class ControladorPrincipal {
 	 * @return redirige a inicio si no ha habido fallos, en caso contrario notifica sin cambiar de pagina
 	 */
 	@RequestMapping(value = "/crear-particular", method = RequestMethod.POST)
-	//Recogemos el @ModelAttribute que se nos ha mandado por post y su binding
 	public ModelAndView crearParticular(@ModelAttribute("transferParticular") @Valid TransferParticular transferParticular, BindingResult bindingResult) {
 		ModelAndView modelAndView = null;
 		Particular particular = saParticular.buscarPorEmail(transferParticular.getEmail());
 		
-		//lo creamos para pasarselo vacio a la pagina html porque sino no compila
 		TransferEmpresa transferEmpresa = new TransferEmpresa();
 		
-		//Si hay errores los binds muestran los fallos
 		if (!transferParticular.getPassword().equals(transferParticular.getPasswordConfirmacion())) {
 			bindingResult.rejectValue("password", "error.transferParticular", "* Las contraseñas no coinciden");
 		}
@@ -147,11 +141,15 @@ public class ControladorPrincipal {
 	}
 	
 	@RequestMapping("/informacion")
-    public String mostrarInformacion() { //Si queremos mostrar sólo una vista podemos devolver el String del nombre del fichero html en cuestión
+    public String mostrarInformacion() {
         return "informacion";
     }
 	
-	
+	/**
+	 * Método que autentica al usuario capturando la petición GET de /authorization
+	 * @param val usuario que se autentica
+	 * @return redirige a la página principal si no ha habido fallos, en caso contrario notifica sin cambiar de pagina
+	 */
 	@RequestMapping(value="/authorization", method = RequestMethod.GET, params = {"val"})
 	public ModelAndView autorizacion(@RequestParam("val") String val){ 
 	
@@ -180,63 +178,40 @@ public class ControladorPrincipal {
 		return modelAndView;
 	}
 	
+	/**
+	 * Método que captura la petición GET de /verPerfilEmpresa
+	 * @param val usuario que se autentica
+	 * @return redirige a la página que muestra el perfil si no ha habido fallos,
+	 *  en caso contrario redirige al login y notifica
+	 */
 	@RequestMapping(value ="/verPerfilEmpresa", method = RequestMethod.GET, params = {"val"})
     public ModelAndView mostrarPerfil(@RequestParam("val") String val) { 
 		
-		
 		Empresa empresa = saEmpresa.buscarPorEmail(val);
+		
 		ModelAndView modelAndView = new ModelAndView();
+		
 		TransferEmpresa tEmpresa = new TransferEmpresa(empresa.getNombreEmpresa(),empresa.getCif(),empresa.getEmail(),"0","0",true);
+		
 		modelAndView.addObject("transferEmpresa", tEmpresa);
 		modelAndView.setViewName("perfilEmpresa");
-		
 		
 		return modelAndView;
     }
 	
+	/**
+	 * Método que añade al particular como variable permanente para el modelo
+	 * @param model modelo al que se le inserta el particular
+	 */
 	//Esta anotación nos permite establecer variables permanentes para el modelo
 	@ModelAttribute
 	public void addAttributes(Model model) {
+		
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		
 		Particular particular = saParticular.buscarPorEmail(auth.getName());
+		
 		model.addAttribute("particular", particular); //En este caso el objeto usuario estará permanentemente en todas las vistas por el @ModelAttribute 
 	}
 	
-	/* --- IMPORTANTE --- THYMELEAF
-	 * 
-	 * Para recoger en la vista todos los objetos/variables que se lanzan desde el Controlador, se utiliza thymeleaf
-	 * y se importa desde la vista, en la etiqueta html, asi:
-	 * 
-	 * <html lang="es" xmlns:th="http://www.thymeleaf.org">
-	 * 
-	 * Elementos importantes de thymeleaf:
-	 * 
-	 * th:object="${dtoUsuario}" -> Objeto que se mandará en el formulario
-	 * th:field="*{apellidos}" -> Campo de un objeto que se mandará en el formulario
-	 * th:action="@{/registro}" -> url a la que mandaremos el objeto del formulario
-	 * th:if="${usuario != null}" -> Mostrará la etiqueta en la que se encuentre si cumple la condición
-	 * th:href -> enlace a una url
-	 * th:class -> definir una clase de html/css para una etiqueta
-	 * th:text="${usuario.nombre}" -> Texto que mostrará en la etiqueta en la que se encuentre
-	 * $ -> para representar variables
-	 * @ -> para representar url's
-	 * 
-	 * Página con la documentación de thymeleaf, está muy bien explicado y trae ejemplos:
-	 * https://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html 
-	 * 
-	 * --- IMPORTANTE --- APPLICATION.PROPERTIES
-	 * 
-	 * El application.properties contiene toda la configuración del proyecto, configuración de la BD, JPA, etc
-	 * 
-	 * --- IMPORTANTE --- DATA-MYSQL.SQL
-	 * 
-	 * El data-mysql.sql lo carga automáticamente Spring por defecto tras crear la Base de Datos con las entidades JPA de cada
-	 * clase, y ejecuta todas sus consultas
-	 * 
-	 * --- IMPORTANTE --- POM.XML
-	 * 
-	 * Este xml contiene todas las dependencias de Maven (mysql, jpa, springboot, springsecurity, etc) cuando se quiera añadir 
-	 * una nueva dependencia se ha de insertar en este fichero. En teoría no haría falta ninguna más.	 * 
-	 * 
-	 */
 }
