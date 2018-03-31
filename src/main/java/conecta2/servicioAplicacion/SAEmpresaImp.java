@@ -29,24 +29,23 @@ public class SAEmpresaImp implements SAEmpresa {
 	 */
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
-    
-    @Autowired
-    public SAEmpresaImp(DAOEmpresa daoEmpresa) {
-    	this.daoEmpresa = daoEmpresa;
-    }
 
     /**
-     * Método que recibe un TranferEmpresa y lo inserta en la base de datos
+     * Servicio de Aplicación para la autenticación por email
      */
-    
     @Autowired
   	private SAEmail saEmail;
     
 
+    /**
+     * Método que recibe un TranferEmpresa y lo inserta en la base de datos
+     */
     @Transactional
     @Override
 	public void crearEmpresa(TransferEmpresa transferEmpresa) {
+    	
     	 Empresa empresa = new Empresa();
+    	 
          empresa.setCif(transferEmpresa.getCif());
          empresa.setNombreEmpresa(transferEmpresa.getNombreEmpresa());
          empresa.setEmail(transferEmpresa.getEmail());
@@ -75,15 +74,13 @@ public class SAEmpresaImp implements SAEmpresa {
 		return daoEmpresa.findByCif(cif);
 	}
 	
-	public void guardarEmpresa(Empresa empresa) {
-		// TODO Auto-generated method stub
-		daoEmpresa.save(empresa);
-	}
-	
+	/**
+	 * Método que recibe un TransferEmpresa y lo guarda en la base de datos
+	 */
 	@Transactional
 	@Override
 	public void save(TransferEmpresa transferEmpresa) {
-		// TODO Auto-generated method stub
+
 	 	 Empresa empresa = daoEmpresa.findByCif(transferEmpresa.getCif());
 	 	 
 	 	 if(empresa == null) {
@@ -94,18 +91,15 @@ public class SAEmpresaImp implements SAEmpresa {
 	 				 transferEmpresa.getPassword(),
 	 				 transferEmpresa.getActivo(),
 	 				 transferEmpresa.getPuntuacion()
-	 				 );
+	 			);
 	 	 }
 	 	 
-	 	 System.out.println(transferEmpresa.getPassword());
          //empresa.setPassword(bCryptPasswordEncoder.encode(transferEmpresa.getPassword()));
          empresa.setActivo(transferEmpresa.getActivo());
          empresa.setPuntuacion(transferEmpresa.getPuntuacion());
      
          daoEmpresa.save(empresa); //Hace el save al repositorio (función interna de JPARepository)
 	}
-
-	
 	
 
 }

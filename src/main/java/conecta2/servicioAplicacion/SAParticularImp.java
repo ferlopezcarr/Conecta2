@@ -16,7 +16,7 @@ import conecta2.transfer.TransferParticular;
  * Clase que se desarrolla la funcionalidad de la entidad Particular
  */
 //Anotación de Servicio de Aplicación
-@Service("saParticular")
+@Service //("saParticular")
 public class SAParticularImp implements SAParticular{
 
 	/**
@@ -30,12 +30,12 @@ public class SAParticularImp implements SAParticular{
 	 */
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
+    
+    /**
+     * Servicio de Aplicación para la autenticación por email
+     */
     @Autowired
 	private SAEmail saEmail;
-    
-    public SAParticularImp(DAOParticular daoParticular) {
-    	this.daoParticular = daoParticular;
-    }
 	
     /**
      * Método que recibe un TransferParticular y lo inserta en la base de datos
@@ -44,7 +44,9 @@ public class SAParticularImp implements SAParticular{
     @Override
     //Convierte el dtoUsuario a Usuario
     public void crearParticular(TransferParticular transferParticular) {
+    	
         Particular particular = new Particular();
+        
         particular.setDni(transferParticular.getDni());
         particular.setNombre(transferParticular.getNombre());
         particular.setApellidos(transferParticular.getApellidos());
@@ -54,14 +56,11 @@ public class SAParticularImp implements SAParticular{
         daoParticular.save(particular); //Hace el save al repositorio (función interna de JPARepository)
         //Después de esto el usuario ya estaría guardado en la Base de Datos
         saEmail.enviarCorreo("Acceda al siguiente enlace para terminar el registro en Conecta2, ya casi está solo un paso más, ", "Alta cuenta en Conecta2", particular.getEmail());;
-
-        
     }
 
     /**
      * Método que recibe un email y busca a un particular con el mismo en la base de datos
      */
-    //Llama al repositorio para hacer el findByEmail
 	@Override
 	public Particular buscarPorEmail(String email) {
 		return daoParticular.findByEmail(email);
@@ -75,23 +74,27 @@ public class SAParticularImp implements SAParticular{
 		return daoParticular.findByDni(dni);
 	}
 	
-	public void guardarParticular(Particular particular) {
-		// TODO Auto-generated method stub
-		daoParticular.save(particular);
-	}
-	
+	/**
+	 * Método que recibe un TransferParticular y lo guarda en la base de datos
+	 */
 	@Override
 	public void save(TransferParticular transferParticular) {
-		// TODO Auto-generated method stub
-		 Particular particular = new Particular();
-	        particular.setDni(transferParticular.getDni());
-	        particular.setNombre(transferParticular.getNombre());
-	        particular.setApellidos(transferParticular.getApellidos());
-	        particular.setEmail(transferParticular.getEmail());
-	        particular.setPassword(bCryptPasswordEncoder.encode(transferParticular.getPassword()));
-	        particular.setActivo(transferParticular.getActivo());
-	        particular.setPuntuacion(transferParticular.getPuntuacion());
-	        daoParticular.save(particular);
+
+		Particular particular = daoParticular.findByDni(transferParticular.getDni());
+		
+		if(particular == null) {
+			particular = new Particular(
+					transferParticular.getNombre(),
+					transferParticular.getApellidos(),
+					transferParticular.getDni(),
+					transferParticular.getEmail(),
+					transferParticular.getPassword(),
+					transferParticular.getActivo(),
+					transferParticular.getPuntuacion()
+				);
+		}
+        
+        daoParticular.save(particular);
 	        
 	}
 }

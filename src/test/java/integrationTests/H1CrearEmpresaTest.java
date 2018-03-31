@@ -7,32 +7,32 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import conecta2.Application;
-import conecta2.dao.DAOEmpresa;
 import conecta2.modelo.Empresa;
-import conecta2.servicioAplicacion.SAEmpresaImp;
+import conecta2.servicioAplicacion.SAEmpresa;
+import conecta2.transfer.TransferEmpresa;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = Application.class)
 @DataJpaTest
+@ComponentScan(basePackages ="conecta2")
 public class H1CrearEmpresaTest {
 	
 	@Autowired
-    private DAOEmpresa daoEmpresa;
+	public SAEmpresa saEmpresa;
 	
 	
 	@Test
 	public void testBuscarPorEmail() {
 		
-		Empresa empresa = new Empresa("empresaPruebaNombre", "A28599033", "empresaPruebaEmail@empresaPruebaEmail.com", "Abc1111", true, 0);
+		TransferEmpresa empresa = new TransferEmpresa("empresaPruebaNombre", "A28599033", "empresaPruebaEmail@empresaPruebaEmail.com", "Abc1111", "Abc1111",true);
 		
-		SAEmpresaImp SA = new SAEmpresaImp(daoEmpresa);
-		
-		SA.guardarEmpresa(empresa);
+		saEmpresa.save(empresa);
 
-		Empresa empresaBD = SA.buscarPorEmail(empresa.getEmail());
+		Empresa empresaBD = saEmpresa.buscarPorEmail(empresa.getEmail());
 		
 		boolean email = empresaBD.getEmail() == empresa.getEmail();
 		boolean nombre = empresaBD.getNombreEmpresa() == empresa.getNombreEmpresa();
@@ -47,13 +47,11 @@ public class H1CrearEmpresaTest {
 	@Test
 	public void testBuscarPorCif() {
 		
-		Empresa empresa = new Empresa("empresaPruebaNombre", "A28599033", "empresaPruebaEmail@empresaPruebaEmail.com", "Abc1111", true, 0);
+		TransferEmpresa empresa = new TransferEmpresa("empresaPruebaNombre", "A28599033", "empresaPruebaEmail@empresaPruebaEmail.com", "Abc1111", "Abc1111",true);
 		
-		SAEmpresaImp SA = new SAEmpresaImp(daoEmpresa);
-		
-		SA.guardarEmpresa(empresa);
+		saEmpresa.save(empresa);
 
-		Empresa empresaBD = SA.buscarPorCif(empresa.getCif());
+		Empresa empresaBD = saEmpresa.buscarPorCif(empresa.getCif());
 		
 		boolean email = empresaBD.getEmail() == empresa.getEmail();
 		boolean nombre = empresaBD.getNombreEmpresa() == empresa.getNombreEmpresa();

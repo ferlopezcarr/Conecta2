@@ -7,32 +7,31 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import conecta2.Application;
-import conecta2.dao.DAOParticular;
 import conecta2.modelo.Particular;
-import conecta2.servicioAplicacion.SAParticularImp;
+import conecta2.servicioAplicacion.SAParticular;
+import conecta2.transfer.TransferParticular;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = Application.class)
 @DataJpaTest
-
+@ComponentScan(basePackages ="conecta2")
 public class H2CrearParticularTest {
-	@Autowired
-    private DAOParticular daoParticular;
 	
+	@Autowired
+	public SAParticular saParticular;
 	
 	@Test
 	public void testBuscarPorEmail() {
 		
-		Particular particular = new Particular("nombre", "Apellido Apellido", "99999999Z", "particularPruebaEmail@particularPruebaEmail.com", "Abc1111", true, 0);
+		TransferParticular particular = new TransferParticular("nombre", "Apellido Apellido", "99999999Z", "particularPruebaEmail@particularPruebaEmail.com", "Abc1111", true, 0);
 		
-		SAParticularImp SA = new SAParticularImp(daoParticular);
-		
-		SA.guardarParticular(particular);
+		saParticular.save(particular);
 
-		Particular particularBD = SA.buscarPorEmail(particular.getEmail());
+		Particular particularBD = saParticular.buscarPorEmail(particular.getEmail());
 		
 		boolean email = particularBD.getEmail() == particular.getEmail();
 		boolean nombre = particularBD.getNombre() == particular.getNombre();
@@ -48,13 +47,11 @@ public class H2CrearParticularTest {
 	@Test
 	public void testBuscarPorDni() {
 		
-		Particular particular = new Particular("nombre", "Apellido Apellido", "99999999Z", "particularPruebaEmail@particularPruebaEmail.com", "Abc1111", true, 0);
+		TransferParticular particular = new TransferParticular("nombre", "Apellido Apellido", "99999999Z", "particularPruebaEmail@particularPruebaEmail.com", "Abc1111", true, 0);
 		
-		SAParticularImp SA = new SAParticularImp(daoParticular);
-		
-		SA.guardarParticular(particular);
+		saParticular.save(particular);
 
-		Particular particularBD = SA.buscarPorDni(particular.getDni());
+		Particular particularBD = saParticular.buscarPorDni(particular.getDni());
 		
 		boolean email = particularBD.getEmail() == particular.getEmail();
 		boolean nombre = particularBD.getNombre() == particular.getNombre();
