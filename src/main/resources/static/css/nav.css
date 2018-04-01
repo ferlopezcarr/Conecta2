@@ -1,0 +1,52 @@
+
+.navbar {
+	padding: 0 1rem;
+}
+
+.navbar-brand {
+	padding: 0;
+}
+
+.inicio-nav {
+	
+}
+
+.logo-nav {
+	margin-right: 7%;
+}
+
+.title-nav {
+	color: white;
+	font-size:180%;
+}
+
+.title-nav:hover {
+	color: #19C1CC;
+	font-size:180%;
+}
+
+.notification-nav {
+	
+}
+
+.notification-nav:hover {
+	cursor: pointer;
+}
+
+.nav-link {
+	margin: auto 10%;	
+}
+
+.profile-nav {
+	color: white;
+}
+
+.profile-nav:hover {
+	color: #19C1CC;
+	text-decoration: none;
+}
+
+.img-nav {
+	border: 2px transparent;
+	border-radius: 0.25rem;	
+}

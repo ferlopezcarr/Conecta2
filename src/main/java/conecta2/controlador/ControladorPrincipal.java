@@ -199,6 +199,12 @@ public class ControladorPrincipal {
 		return modelAndView;
     }
 	
+	@RequestMapping("/paginaMenuEmpresa")
+	public String paginaMenuEmpresa(){
+		return "paginaMenuEmpresa";
+	}
+	
+	
 	/**
 	 * Método que añade al particular como variable permanente para el modelo
 	 * @param model modelo al que se le inserta el particular

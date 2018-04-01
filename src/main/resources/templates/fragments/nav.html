@@ -15,31 +15,44 @@
 	
 	<!-- Style CSS -->
 	<link href="css/style.css" rel="stylesheet" />
-	
+	<link href="css/nav.css" rel="stylesheet" />
 </head>
 <body>
 
-<div class="container">
-	<nav class=" navbar navbar-light  navbar-expand-lg fondoGris">
-		<a class="navbar-brand">
-			<img src="/images/logo.png" width="100" height="60" alt="Logo">
-			Conecta2
+<div class="container-fluid fix-padding">
+	<nav class="navbar navbar-light navbar-expand-lg fondoGris d-flex flex-row flex-nowrap justify-content-around">
+		<a href="/paginaMenuEmpresa" class="navbar-brand d-flex sflex-row flex-nowrap align-items-center inicio-nav">
+			<img src="/images/logoInicio.png" width="auto" height="75px" alt="Logo Conecta2" class="logo-nav">
+			<span class="title-nav mr-2">Conecta2</span>
 		</a>
-		
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<ul class="navbar-nav">
+		<!-- 
+		<div class="collapse navbar-collapse d-flex flex-row flex-nowrap" id="navbarSupportedContent">
+			<ul class="navbar-nav d-flex flex-row flex-nowrap">
 				<li class="nav-item">
-					<a class="nav-link" href="#">Perfil</a>
+					<a class="nav-link px-2 btn-grey" href="#">Perfil</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="#">Ofertas</a>
+					<a class="nav-link px-2 btn-grey" href="#">Ofertas</a>
 				</li>
 			</ul>
 		</div>
-		<form class="form-inline  my-2 my-lg-0 ">
+		-->
+		<div class="d-flex flex-row align-items-center">
+			<a class="notification-nav"><img src="/images/alert.png" height="40px" width="auto"></a>
+		
+			<a href="/verPerfilEmpresa" class="d-flex flex-column flex-nowrap justify-content-center px-4 pt-2 pb-1 profile-nav">
+				<img src="/images/avatar.png" height="50px" width="auto" class="img-nav">
+				<span>Nombre</span>
+			</a>
+			
+			<a class="btn btn-std" href="#">Desconectar</a>
+		</div>
+		<!-- 
+		<form class="form-inline my-2 my-lg-0 d-flex flex-row flex-nowrap">
 			<input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Buscar">
 			<button class="btn btn-std my-2 my-sm-0" type="submit">Buscar</button>
-		</form>  
+		</form>
+		 -->  
 	</nav>
 </div>
 	
