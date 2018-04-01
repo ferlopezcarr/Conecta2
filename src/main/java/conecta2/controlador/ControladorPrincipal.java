@@ -155,8 +155,9 @@ public class ControladorPrincipal {
 	
 
 		Object obj = saEmail.validaUsuario(val);
-		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("perfilEmpresa");
+		
+		ModelAndView modelAndView = null;
+		
 		
 		if(obj==null) {
 			//MOSTRAR MENSAJE DE ERROR
@@ -165,12 +166,15 @@ public class ControladorPrincipal {
 			//ES UNA EMPRESA
 			if(obj.getClass()== (new TransferEmpresa()).getClass()){
 				TransferEmpresa myTransf= (TransferEmpresa) obj;
-
+				
+				modelAndView = new ModelAndView("redirect:/verPerfilEmpresa");
 				
 				
 			}else {
 				//ES UN PARTICULAR
 				TransferParticular myTransf= (TransferParticular) obj;
+				modelAndView = new ModelAndView("redirect:/verPerfilParticular?val="+ myTransf.getEmail());
+				
 				
 			}
 			
@@ -185,7 +189,7 @@ public class ControladorPrincipal {
 	 *  en caso contrario redirige al login y notifica
 	 */
 	@RequestMapping(value ="/verPerfilEmpresa", method = RequestMethod.GET, params = {"val"})
-    public ModelAndView mostrarPerfil(@RequestParam("val") String val) { 
+    public ModelAndView mostrarPerfilEmpresa(@RequestParam("val") String val) { 
 		
 		Empresa empresa = saEmpresa.buscarPorEmail(val);
 		
@@ -195,6 +199,25 @@ public class ControladorPrincipal {
 		
 		modelAndView.addObject("transferEmpresa", tEmpresa);
 		modelAndView.setViewName("perfilEmpresa");
+		
+		return modelAndView;
+    }
+	
+	@RequestMapping(value ="/verPerfilParticular", method = RequestMethod.GET, params = {"val"})
+    public ModelAndView mostrarPerfilParticular(@RequestParam("val") String val) { 
+		
+		Particular particular = saParticular.buscarPorEmail(val);
+		
+		ModelAndView modelAndView = new ModelAndView();
+		
+		TransferParticular tParticular = new TransferParticular(particular.getNombre(),particular.getApellidos(), particular.getDni(),
+				particular.getEmail(),"0",true, particular.getPuntuacion());
+		
+		modelAndView.addObject("nombre", tParticular.getNombre());
+		modelAndView.addObject("apellidos", tParticular.getApellidos());
+		modelAndView.addObject("email", tParticular.getEmail());
+		modelAndView.addObject("dni", tParticular.getDni());
+		modelAndView.setViewName("perfilParticular");
 		
 		return modelAndView;
     }
