@@ -30,11 +30,11 @@ public class Particular {
 	private int id;
 	
 	@NotEmpty
-	//@Pattern(regexp="^([a-zA-Z ])*$")
+	@Pattern(regexp="^([a-zA-ZáéíóúñÁÉÍÓÚÑ ])*$")
 	private String nombre;
 	
 	@NotEmpty
-	//@Pattern(regexp="^([a-zA-Z ])*$")
+	@Pattern(regexp="^([a-zA-ZáéíóúñÁÉÍÓÚÑ ])*$")
 	private String apellidos;
 	
 	/**

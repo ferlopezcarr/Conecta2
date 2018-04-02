@@ -192,7 +192,8 @@ a.navbar-brand{
 
 .container-portada{
 	width: 100%;
-	height: 400px;
+	max-height: 400px;
+	min-height: 200px;
 	background-image: url(../images/ofi.png);
 	background-size: 100%;
 	background-repeat: no-repeat;
@@ -211,7 +212,7 @@ a.navbar-brand{
 }
 
 .margen-texto-inicio{
-	margin-top: 5%;
+	margin-top: 2%;
 	margin-left: 5%;
 }
 

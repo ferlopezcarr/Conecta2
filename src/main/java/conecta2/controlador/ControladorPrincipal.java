@@ -109,7 +109,7 @@ public class ControladorPrincipal {
 	public ModelAndView crearParticular(@ModelAttribute("transferParticular") @Valid TransferParticular transferParticular, BindingResult bindingResult) {
 		ModelAndView modelAndView = null;
 		Particular particular = saParticular.buscarPorEmail(transferParticular.getEmail());
-		
+		Particular DNI = saParticular.buscarPorDni(transferParticular.getDni());
 		TransferEmpresa transferEmpresa = new TransferEmpresa();
 		
 		if (!transferParticular.getPassword().equals(transferParticular.getPasswordConfirmacion())) {
@@ -117,7 +117,8 @@ public class ControladorPrincipal {
 		}
 		if (particular != null)
 			bindingResult.rejectValue("email", "error.dtoUsuario", "* Ya existe un particular con este e-mail");		
-		
+		if(DNI != null)
+			bindingResult.rejectValue("dni", "error.dtoUsuario", "* Ya existe un particular con este DNI");
 		if (bindingResult.hasErrors()) {
 			modelAndView = new ModelAndView("crearCuenta", bindingResult.getModel());
 			modelAndView.addObject("transferParticular", transferParticular);
