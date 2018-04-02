@@ -93,7 +93,7 @@ public class ControladorPrincipal {
 		}		
 		else {
 			saEmpresa.crearEmpresa(transferEmpresa);
-			modelAndView = new ModelAndView("redirect:/menu");
+			modelAndView = new ModelAndView("redirect:/");
 		}
 		
 		return modelAndView;
@@ -167,15 +167,18 @@ public class ControladorPrincipal {
 			if(obj.getClass()== (new TransferEmpresa()).getClass()){
 				TransferEmpresa myTransf= (TransferEmpresa) obj;
 				
-				modelAndView = new ModelAndView("redirect:/verPerfilEmpresa?val="+ myTransf.getEmail());
-				
+				modelAndView = new ModelAndView();
+				modelAndView.addObject("transferEmpresa", myTransf);
+				modelAndView.setViewName("modificarEmpresa");
 				
 			}else {
 				//ES UN PARTICULAR
+				
 				TransferParticular myTransf= (TransferParticular) obj;
-				modelAndView = new ModelAndView("redirect:/verPerfilParticular?val="+ myTransf.getEmail());
 				
-				
+				modelAndView = new ModelAndView();
+				modelAndView.addObject("transferParticular", myTransf);
+				modelAndView.setViewName("perfilParticular");
 			}
 			
 		}
@@ -213,10 +216,11 @@ public class ControladorPrincipal {
 		TransferParticular tParticular = new TransferParticular(particular.getNombre(),particular.getApellidos(), particular.getDni(),
 				particular.getEmail(),"0",true, particular.getPuntuacion());
 		
-		modelAndView.addObject("nombre", tParticular.getNombre());
+		/*modelAndView.addObject("nombre", tParticular.getNombre());
 		modelAndView.addObject("apellidos", tParticular.getApellidos());
 		modelAndView.addObject("email", tParticular.getEmail());
-		modelAndView.addObject("dni", tParticular.getDni());
+		modelAndView.addObject("dni", tParticular.getDni());*/
+		modelAndView.addObject("transferParticular", tParticular);
 		modelAndView.setViewName("perfilParticular");
 		
 		return modelAndView;
