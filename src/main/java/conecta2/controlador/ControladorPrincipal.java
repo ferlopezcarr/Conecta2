@@ -166,8 +166,10 @@ public class ControladorPrincipal {
 			//ES UNA EMPRESA
 			if(obj.getClass()== (new TransferEmpresa()).getClass()){
 				TransferEmpresa myTransf= (TransferEmpresa) obj;
-				
-				modelAndView = new ModelAndView("redirect:/verPerfilEmpresa?val="+ myTransf.getEmail());
+				modelAndView = new ModelAndView();
+				modelAndView.addObject("transferEmpresa", myTransf);
+				modelAndView.setViewName("modificarEmpresa");
+				//modelAndView = new ModelAndView("redirect:/verPerfilEmpresa?val="+ myTransf.getEmail());
 				
 				
 			}else {
