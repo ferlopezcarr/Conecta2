@@ -75,14 +75,6 @@ public class SAEmpresaImp implements SAEmpresa {
 	}
 	
 	/**
-     * Método que recibe un id y busca a una empresa con el mismo en la base de datos
-     */
-	@Override
-	public Empresa buscarPorId(int id) {
-		return daoEmpresa.findById(id);
-	}
-	
-	/**
 	 * Método que recibe un TransferEmpresa y lo guarda en la base de datos
 	 */
 	@Transactional

@@ -152,41 +152,50 @@ public class ControladorPrincipal {
 	 */
 	@RequestMapping(value="/authorization", method = RequestMethod.GET, params = {"val"})
 	public ModelAndView autorizacion(@RequestParam("val") String val){ 
-		Object obj = saEmail.validaUsuario(val);
-		ModelAndView modelAndView = null;
+	
 
+		Object obj = saEmail.validaUsuario(val);
+		
+		ModelAndView modelAndView = null;
+		
+		
 		if(obj==null) {
 			//MOSTRAR MENSAJE DE ERROR
-		}
-		else{
+			
+		}else{
 			//ES UNA EMPRESA
 			if(obj.getClass()== (new TransferEmpresa()).getClass()){
-				TransferEmpresa transferEmpresa = (TransferEmpresa) obj;
-				Empresa empresa = saEmpresa.buscarPorEmail(transferEmpresa.getEmail());
-				modelAndView = new ModelAndView("redirect:/empresa/perfil?id=" + empresa.getId());
-			}
-			else {
+				TransferEmpresa myTransf= (TransferEmpresa) obj;
+				
+				modelAndView = new ModelAndView("redirect:/verPerfilEmpresa?val="+ myTransf.getEmail());
+				
+				
+			}else {
 				//ES UN PARTICULAR
-				TransferParticular transferParticular = (TransferParticular) obj;
-				Particular particular = saParticular.buscarPorEmail(transferParticular.getEmail());
-				modelAndView = new ModelAndView("redirect:/particular/perfil?id="+ particular.getEmail());
+				TransferParticular myTransf= (TransferParticular) obj;
+				modelAndView = new ModelAndView("redirect:/verPerfilParticular?val="+ myTransf.getEmail());
+				
+				
 			}
+			
 		}
 		return modelAndView;
 	}
 	
 	/**
-	 * Método que captura la petición GET de /empresa/perfil
+	 * Método que captura la petición GET de /verPerfilEmpresa
 	 * @param val usuario que se autentica
 	 * @return redirige a la página que muestra el perfil si no ha habido fallos,
 	 *  en caso contrario redirige al login y notifica
 	 */
-	@RequestMapping(value ="/empresa/perfil", method = RequestMethod.GET, params = {"id"})
-    public ModelAndView mostrarPerfilEmpresa(@RequestParam("id") int id) { 
+	@RequestMapping(value ="/verPerfilEmpresa", method = RequestMethod.GET, params = {"val"})
+    public ModelAndView mostrarPerfilEmpresa(@RequestParam("val") String val) { 
 		
-		Empresa empresa = saEmpresa.buscarPorId(id);		
-		ModelAndView modelAndView = new ModelAndView();		
-		TransferEmpresa tEmpresa = new TransferEmpresa(empresa.getNombreEmpresa(), empresa.getCif(), empresa.getEmail(), "0", "0", true);
+		Empresa empresa = saEmpresa.buscarPorEmail(val);
+		
+		ModelAndView modelAndView = new ModelAndView();
+		
+		TransferEmpresa tEmpresa = new TransferEmpresa(empresa.getNombreEmpresa(),empresa.getCif(),empresa.getEmail(),"0","0",true);
 		
 		modelAndView.addObject("transferEmpresa", tEmpresa);
 		modelAndView.setViewName("perfilEmpresa");
@@ -194,14 +203,15 @@ public class ControladorPrincipal {
 		return modelAndView;
     }
 	
-	@RequestMapping(value ="/particular/perfil", method = RequestMethod.GET, params = {"id"})
-    public ModelAndView mostrarPerfilParticular(@RequestParam("id") int id) { 
+	@RequestMapping(value ="/verPerfilParticular", method = RequestMethod.GET, params = {"val"})
+    public ModelAndView mostrarPerfilParticular(@RequestParam("val") String val) { 
 		
-		Particular particular = saParticular.buscarPorId(id);		
+		Particular particular = saParticular.buscarPorEmail(val);
+		
 		ModelAndView modelAndView = new ModelAndView();
 		
-		TransferParticular tParticular = new TransferParticular(particular.getNombre(), particular.getApellidos(), particular.getDni(),
-				particular.getEmail(), "0", true, particular.getPuntuacion());
+		TransferParticular tParticular = new TransferParticular(particular.getNombre(),particular.getApellidos(), particular.getDni(),
+				particular.getEmail(),"0",true, particular.getPuntuacion());
 		
 		modelAndView.addObject("nombre", tParticular.getNombre());
 		modelAndView.addObject("apellidos", tParticular.getApellidos());
@@ -224,13 +234,13 @@ public class ControladorPrincipal {
 	 */
 	//Esta anotación nos permite establecer variables permanentes para el modelo
 	@ModelAttribute
-	public void addAttributes(Model model) {		
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();		
-		Particular particular = saParticular.buscarPorEmail(auth.getName());
-		Empresa empresa = saEmpresa.buscarPorEmail(auth.getName());
+	public void addAttributes(Model model) {
 		
-		model.addAttribute("particular", particular);
-		model.addAttribute("empresa", empresa);//En este caso el objeto usuario estará permanentemente en todas las vistas por el @ModelAttribute 
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		
+		Particular particular = saParticular.buscarPorEmail(auth.getName());
+		
+		model.addAttribute("particular", particular); //En este caso el objeto usuario estará permanentemente en todas las vistas por el @ModelAttribute 
 	}
 	
 }

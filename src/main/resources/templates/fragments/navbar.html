@@ -11,32 +11,40 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous" />
   </head>
     <body>
-	  <div class="container">		
-		<nav class=" navbar navbar-light navbar-expand-lg fondoGris" th:fragment="navbar">
-		    <a class="navbar-brand" href="/menu">
-			  <img src="/images/logo.png" width="100" height="60" alt="Logo" />
-			  Conecta2
-			</a>
-			<div class="collapse navbar-collapse" id="navbarSupportedContent" th:if="${particular} or ${empresa} != null">
-			 	<ul class="navbar-nav">
-			      	<li class="nav-item">
-			      		<a class="nav-link" th:href="'/particular/perfil?id=' + ${particular.id}" th:if="${particular != null}">Perfil</a>
-			        	<a class="nav-link" th:href="'/empresa/perfil?id=' + ${empresa.id}" th:if="${empresa != null}">Perfil</a>
-			      	</li>
-			      	<li class="nav-item">
-			        	<a class="nav-link" href="#">Ofertas</a>
-			      	</li>
-					<li class="nav-item">
-		        		<a class="nav-link" href="/logout">Desconectar</a>
-		      		</li>
-			     </ul>
-			</div>
-			<form class="form-inline  my-2 my-lg-0" th:if="${particular} or ${empresa} != null">
-				<input class="form-control mr-sm-2" type="search" aria-label="Buscar">
-				<button class="btn btn-std my-2 my-sm-0" type="submit">Buscar</button>
-			</form>			
-		</nav>
+	  <div class="container">
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark" th:fragment="navbar">
+		  <a class="navbar-brand" href="/menu">Conecta2</a>
+		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		    <span class="navbar-toggler-icon"></span>
+		  </button>
 		
+		  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+		    <ul class="navbar-nav mr-auto" th:if="${usuario != null}">		      
+		      <li class="nav-item dropdown">
+		        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		          Opciones
+		        </a>
+		        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+		          <a class="dropdown-item" href="#">Opción A</a>
+		          <a class="dropdown-item" href="#">Opción B</a>
+		          <div class="dropdown-divider"></div>
+		          <a class="dropdown-item" href="#">Opción C</a>
+		        </div>
+		      </li>
+		    </ul>
+		    <ul class="nav navbar-nav ml-auto justify-content-end">
+		    	<li class="nav-item" th:if="${usuario != null}">
+	                <a class="nav-link" href="#">Hola, <span th:utext="${usuario.nombre}"></span></a>
+	            </li>
+	            <li class="nav-item" th:if="${usuario != null}">
+			        <a class="nav-link" href="/logout">Cerrar Sesión<span class="sr-only">(current)</span></a>
+			      </li>
+	            <li class="nav-item">
+	                <a class="nav-link" href="/informacion">Acerca de</a>
+	            </li>
+        	</ul>
+		  </div>
+		</nav>
 		<!-- Optional JavaScript -->
     	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
     	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

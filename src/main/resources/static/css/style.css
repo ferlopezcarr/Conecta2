@@ -6,6 +6,8 @@ body {
 
 }
 
+
+
 div.container{
 	position: absolute;
 	padding: 0px;	
@@ -108,12 +110,8 @@ div.enlace-inicio{
 
 .fondoGris{
 	background: #89898C;
-	color: white;
-	height: 60px;
-}
-
-a.navbar-brand{
-	color: white !important;
+	color:white;
+	height: auto;
 }
 
 /*Irene*/

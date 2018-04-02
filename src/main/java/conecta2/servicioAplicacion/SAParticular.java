@@ -15,7 +15,6 @@ public interface SAParticular {
 	public void crearParticular(TransferParticular dtoUsuario);
 	public Particular buscarPorEmail(String email);
 	public Particular buscarPorDni(String dni);
-	public Particular buscarPorId(int id);
 	public void save(TransferParticular transferParticular);
 
 }

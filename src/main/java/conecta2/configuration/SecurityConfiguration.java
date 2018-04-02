@@ -43,7 +43,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 			.authorizeRequests()
-				.antMatchers("/", "/login", "/crear-cuenta", "/crear-particular", "/crear-empresa", "/informacion", "/authorization", "/h2", "/paginaMenuEmpresa").permitAll()
+				.antMatchers("/", "/login", "/crear-cuenta", "/crear-particular", "/crear-empresa", "/informacion", "/authorization","/h2","/verPerfilEmpresa","/paginaMenuEmpresa").permitAll()
 				.antMatchers("/admin/**").hasAuthority("ADMINISTRADOR").anyRequest()
 				.authenticated().and().csrf().disable()
 			.formLogin()
