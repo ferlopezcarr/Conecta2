@@ -93,7 +93,7 @@ public class ControladorPrincipal {
 		}		
 		else {
 			saEmpresa.crearEmpresa(transferEmpresa);
-			modelAndView = new ModelAndView("redirect:/");
+			modelAndView = new ModelAndView("redirect:/menu");
 		}
 		
 		return modelAndView;
@@ -161,28 +161,9 @@ public class ControladorPrincipal {
 		else{
 			//ES UNA EMPRESA
 			if(obj.getClass()== (new TransferEmpresa()).getClass()){
-<<<<<<< HEAD
 				TransferEmpresa transferEmpresa = (TransferEmpresa) obj;
 				Empresa empresa = saEmpresa.buscarPorEmail(transferEmpresa.getEmail());
 				modelAndView = new ModelAndView("redirect:/empresa/perfil?id=" + empresa.getId());
-=======
-				TransferEmpresa myTransf= (TransferEmpresa) obj;
-				modelAndView = new ModelAndView();
-				modelAndView.addObject("transferEmpresa", myTransf);
-				modelAndView.setViewName("modificarEmpresa");
-				//modelAndView = new ModelAndView("redirect:/verPerfilEmpresa?val="+ myTransf.getEmail());
-				
-				
-			}else {
-				//ES UN PARTICULAR
-				TransferParticular myTransf= (TransferParticular) obj;
-				modelAndView = new ModelAndView();
-				modelAndView.addObject("transferParticular", myTransf);
-				modelAndView.setViewName("perfilParticular");
-				//modelAndView = new ModelAndView("redirect:/verPerfilParticular?val="+ myTransf.getEmail());
-				
-				
->>>>>>> refs/remotes/origin/master
 			}
 			else {
 				//ES UN PARTICULAR
@@ -222,11 +203,10 @@ public class ControladorPrincipal {
 		TransferParticular tParticular = new TransferParticular(particular.getNombre(), particular.getApellidos(), particular.getDni(),
 				particular.getEmail(), "0", true, particular.getPuntuacion());
 		
-		/*modelAndView.addObject("nombre", tParticular.getNombre());
+		modelAndView.addObject("nombre", tParticular.getNombre());
 		modelAndView.addObject("apellidos", tParticular.getApellidos());
 		modelAndView.addObject("email", tParticular.getEmail());
-		modelAndView.addObject("dni", tParticular.getDni());*/
-		modelAndView.addObject("transferParticular", tParticular);
+		modelAndView.addObject("dni", tParticular.getDni());
 		modelAndView.setViewName("perfilParticular");
 		
 		return modelAndView;
