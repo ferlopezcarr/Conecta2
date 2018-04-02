@@ -11,45 +11,81 @@
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous" />
 	
+	<!-- Bootstrap CSS -->
+    	 <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 	<!-- Style CSS -->
 	<link href="css/style.css" rel="stylesheet" />
+
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 	
 <body>
+		<div class="row flex-nowrap justify-content-between align-items-center fondoGris rounded">
+  			<div class="col-3"></div>
+  			<div class="text-center">
+  				<a href="/"><img src="images/logo.png" width="130" height="80" alt="" > </a>
+  			</div>
+  			<div class="col-3"></div>
 
-<div class="container col-12">
-	<div class="row align-items-center justify-content-md-center inicio-sesion">
-		<div class="col-4" >
-		<img src="images/logo.png" width="100%" height="auto">
-	</div>
-	
-	<div class=" col-5">
-		<form class="formulario" th:action="@{/login}" method="POST">
-			<h1>Iniciar Sesión</h1>
-			<div class="form-group">
-				<label for="email">Correo electrónico</label>
-				<input type="email" class="form-control" name="email" id="email" required="true"/>
+  		</div>
+
+  		<div class="capa-gradient"></div>
+			<div class="container-details border">
+
+				<div class="details text-center border" >
+					
+					<h1>Bienvenido!</h1>
+					<h4>Encuentra de manera rápida el trabajo que deseas</h4>
+
+				</div>
 			</div>
-			<div class="form-group">
-				<label for="password">Contraseña</label>
-				<input type="password" class="form-control" name="password" id="password" required="true"/>
+	<div class="container-portada border cont-opaco">
+			
+	</div>
+
+
+	
+	</div>
+<div class= "row">
+	<div class="col-6 margen-texto-inicio letra-azul">
+		<h3><i class="material-icons">done</i>Registrate de forma gratuita</h3>
+		<hr class="mb-4 separador-gris">
+		<h3><i class="material-icons ">search</i>Busca entre miles de ofertas</h3>
+		<hr class="mb-4 separador-gris">
+		<h3><i class="material-icons ">tag_faces</i>  Encuentra el trabajo que siempre has querido</h3>
+	</div>
+	<div class=" col-5">
+		<form class="formulario border text-center margen-texto-inicio" th:action="@{/login}" method="POST">
+			<h2>Iniciar Sesión</h2>
+			<hr class="mb-4 separador-gris">
+			<div class="form-group col-md-8 ">
+				<label for="email" class="sr-only">Correo electrónico</label>
+				<input type="email" class="form-control margen-campos-form" name="email" id="email" required="true" placeholder="Correo Electronico" autofocus/>
+			</div>
+			<div class="form-group col-md-8">
+				<label for="password" class="sr-only">Contraseña</label>
+				<input type="password" class="form-control margen-campos-form" name="password" id="password" required="true" placeholder="Contraseña" autofocus/>
 			</div>
 			<div th:if="${param.error}">
 				<p class="errorEmpresa">Usuario o contraseña incorrectos</p>
 			</div>
 			<div  class=" text-center">
-				<button type="submit" class="btn btn-grey">Iniciar Sesión</button>
+				<button type="submit" class="btn botonAzul">Iniciar Sesión</button>
 				<a href="/crear-cuenta" class="btn btn-grey">Crear cuenta</a>
 			</div>
 		</form>
 	</div>
+
+
+	
+  </div>
 	
 	<!-- Optional JavaScript -->
 		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 		<script src="//code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 		<script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
 		<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>    
-</div>
+
 	
 </body>
 </html>

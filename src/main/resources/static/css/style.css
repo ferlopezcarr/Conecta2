@@ -186,3 +186,38 @@ div.enlace-inicio{
     transform:translateX(25%);
   }
 }
+
+/* añadido para el inicio*/
+
+.container-portada{
+	width: 100%;
+	height: 400px;
+	background-image: url(../images/ofi.png);
+	background-size: 100%;
+	background-repeat: no-repeat;
+	background-position: center center;
+	opacity: 0.7;
+	filter:alpha(opactiy=70);
+	
+
+}
+
+
+.details{
+	position: relative;
+	color: black;
+
+}
+
+.margen-texto-inicio{
+	margin-top: 5%;
+	margin-left: 5%;
+}
+
+.letra-azul{
+	color:rgba(16,184,197);
+}
+
+.margen-campos-form{
+	margin-left: 30%;
+}
