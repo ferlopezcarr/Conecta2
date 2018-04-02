@@ -13,36 +13,9 @@
     <link href="css/style.css" rel="stylesheet" />
   </head>
   <body>
-  
-  
-  
-  
-  <div class="container col-12">
-  	  
-
-  		<div class="row flex-nowrap justify-content-between align-items-center fondoGris rounded">
-  			<div class="col-3"></div>
-  			<div class="text-center">
-  				<a href="/"><img src="images/logoInicio.png" width="auto" height="80" alt="Logo Conecta2" > </a>
-  			</div>
-  			<div class="col-3"></div>
-
-  		</div>
-
-
-  		<div class="row flex-nowrap justify-content-between align-items-center">
-  			
-  			<div class="col-12"></div>
-  			
-  		</div>
-
-  	      
-
-
-
-
-
-
+  	<div class="container col-12">
+  	   <nav th:replace="fragments/navbar :: navbar"></nav>
+  	   
        <div class="row">
        	  <div class="col-md-3 "></div>
        	  <div class="col-md-6 flex-nowrap justify-content-between align-items-center ">
@@ -54,7 +27,7 @@
        	  		
        	  	    <ul class="nav nav-pills nav-fill" id="pills-tab" role="tablist">
        	  	    	<li class="nav-item">
-		               <a class="nav-link border"  id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Empresas</a>
+		               <a class="nav-link border active"  id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Empresas</a>
 		           </li>
 		           <li class="nav-item">
 		               <a class="nav-link border" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="false">Particulares</a>
@@ -63,7 +36,7 @@
 		
 			
 			  <div class="tab-content" id="pills-tabContent">
-			      <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+			      <div class="tab-pane fade show active" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
 				       <form class="formulario" th:action="@{/crear-empresa}" th:object="${transferEmpresa}" method="POST">
 		  		
 		  

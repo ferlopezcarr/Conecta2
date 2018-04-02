@@ -75,6 +75,14 @@ public class SAParticularImp implements SAParticular{
 	}
 	
 	/**
+     * Método que recibe un id y busca a un particular con el mismo en la base de datos
+     */
+	@Override
+	public Particular buscarPorId(int id) {
+		return daoParticular.findById(id);
+	}
+	
+	/**
 	 * Método que recibe un TransferParticular y lo guarda en la base de datos
 	 */
 	@Override
