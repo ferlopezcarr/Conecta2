@@ -203,6 +203,14 @@ a.navbar-brand{
 
 }
 
+.container-perfil{
+	
+	background-image: url(../images/fondoperfil.png);
+	background-size: 100% 10%;
+	background-repeat:no-repeat;
+	
+	
+}
 
 .details{
 	position: relative;
@@ -225,3 +233,11 @@ a.navbar-brand{
 
 
 
+.sep-vertical{
+	border-left: 1px solid #89898C;
+}
+
+.margenes-foto{
+	margin-bottom:10%;
+	margin-left:40%;
+}
