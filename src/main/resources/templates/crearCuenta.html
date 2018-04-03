@@ -140,7 +140,7 @@
 						  	<div class="form-group">
 			  					<label for="telefono" class="sr-only">Teléfono</label>
 									<input type="text"  class="form-control" th:field="*{telefono}" id="telefono" placeholder="Teléfono" autofocus/>
-									<label th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}" class="validation-message errorEmpresa"></label>
+									<label th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}" class="validation-message errorParticular"></label>
 			  				</div>
 						  <div class="form-group">
 						  	<label for="email" class="sr-only">Correo electrónico</label>
