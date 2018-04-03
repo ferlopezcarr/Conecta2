@@ -17,20 +17,95 @@
   </head>
   <body>
   	<nav th:replace="fragments/navbar :: navbar"></nav>
-	<div class="row  form-crear-cuenta">
+  	
+  	
+  	
+  	
+  	
+  	
+  	<div class="row mt-5">
+  	
+  		<div class="col-10 perfil mx-auto border border-dark rounded container-perfil">
+  		
+  		  <div class="col-3 mx-auto mb-5">
+			  	<img src="/images/avatar.png" class=" img-thumbnail img-fluid rounded-circle" height="200px" width="200px" alt="foto perfil">
+		
+	      </div>
+  		
+  		
+  		   <div class="row">
+  		     <div class="col-6  ml-auto text-center">
+  		          <h3>Datos personales</h3>
+  		          <hr class="mb-4 separador-gris">
+  		          <form>
+			  	    <div class="form-group row">
+			  		<label class="perfilTitulo letra-azul col-form-label col-7" for="Nombre"><u>Nombre:</u> </label>					  		  		
+			  		  <span class="form-control-plaintext " th:text=${transferParticular.nombre}></span>
+			  			<!-- <input class="form-control" id="cif"> -->			  			
+			  		 </div>
+			  		
+			  		  <div class="form-group row">
+			  		<label class="perfilTitulo letra-azul col-form-label col-7" for="Nombre"><u>Apellidos:</u> </label>					  		  		
+			  		  <span class="form-control-plaintext " th:text=${transferParticular.apellidos}></span>
+			  			<!-- <input class="form-control" id="cif"> -->			  			
+			  		 </div>
+			  		 
+			  		 
+			  		  <div class="form-group row">
+			  		<label class="perfilTitulo letra-azul col-form-label col-7" for="Nombre"><u>DNI:</u> </label>					  		  		
+			  		  <span class="form-control-plaintext " th:text=${transferParticular.dni}></span>
+			  			<!-- <input class="form-control" id="cif"> -->			  			
+			  		 </div>
+			  		 
+			  		  <div class="form-group row">
+			  		<label class="perfilTitulo letra-azul col-form-label col-7 " for="Nombre"><u>Email:</u> </label>					  		  		
+			  		  <span class="form-control-plaintext " th:text=${transferParticular.email}></span>
+			  			<!-- <input class="form-control" id="cif"> -->			  			
+			  		 </div>
+			  	    
+			  		</form>
+			  		
+			  	</div>
+  		     <div class="col-6  sep-vertical">
+ 		     <h3>Información Adicional</h3>
+  		          <hr class="mb-4 separador-gris">
+  		     	<div class="form-group">
+  		     	<label for="descripcion">Descripción:</label>
+  		     	<textarea class="form-control" rows="5" id="descripcion"></textarea>
+  		        </div>
+  		     
+  		     
+  		     </div>
+  		     
+  		   </div><!-- final row -->
+  	    </div>
+  	
+  	</div>
+
+
+
+
+
+  	
+	<!-- <div class="row  form-crear-cuenta">
   			
   	     <div class="col-6 perfil mx-auto border border-dark rounded">
   	       <div class="row">
   	          <div class="col-10 text-center">   	            
   	           <h2>Perfil</h2>  
   	           </div>
-  	           <div class="col-2 ">	          
-  	 	        <button type="submit" class="btn botonAzul rounded-circle " href="/login" name="botonModificar"><i class="material-icons">border_color</i></button>
+  	           <div class="col-2 ">	 
+  	           
+  	              <a href="/crear-cuenta"> 
+  	               	<button type="submit" class="btn botonAzul rounded-circle "  name="botonModificar"><i class="material-icons">border_color</i></button>
+  	               	</a>
+  	 	     
+  	           
   	          </div>
   	        </div>  
 		  	<div class="row">
 			  	<div class="col-4  my-auto mx-auto">
-			  		<img src="/images/avatar.png" class=" img-thumbnail img-fluid" height="200px" width="200px" alt="foto perfil">
+			  		<img src="/images/avatar.png" class=" img-thumbnail img-fluid rounded-circle" height="200px" width="200px" alt="foto perfil">
 			    		<img src="/images/puntuacionTest.png" class="img-fluid" height="50px" width="200px" alt="puntuacion">
 			  
 			  	</div>
@@ -41,32 +116,33 @@
 			  		
 			  		  <span th:text=${transferParticular.nombre}></span>
 			  			<!-- <input class="form-control" id="cif"> -->
-			  		</div>
+			  		<!-- </div>
 			  		
 			  		<div class="form-group">
 			  			<label class="perfilTitulo letra-azul"  for="Nombre"><u>Apellidos</u> </label>
 			  			<span  th:text=${transferParticular.apellidos}></span>
 			  			<!-- <input class="form-control" id="nombre"> -->
-			  		</div>
-			  	    <div class="form-group">
-			  			<label class="perfilTitulo letra-azul"  for="Nombre"><u>Email</u> </label>
-			  			<span th:text=${transferParticular.email}></span>
-			  			<!-- <input class="form-control" id="email"> -->
-			  		</div>
+			  		<!-- </div>
 			  		<div class="form-group">
 			  			<label class="perfilTitulo letra-azul"  for="Nombre"><u>DNI</u> </label>
 			  			<span th:text=${transferParticular.dni}></span>
 			  			<!-- <input class="form-control" id="telefono"> -->
-			  		</div>
+			  		<!-- </div>
+			  	    <div class="form-group">
+			  			<label class="perfilTitulo letra-azul"  for="Nombre"><u>Email</u> </label>
+			  			<span th:text=${transferParticular.email}></span>
+			  			<!-- <input class="form-control" id="email"> -->
+			  		<!-- </div>
+			  		
 			  	</div>
 			  	</div>
 			</div>
-	
+	 </div><--
 	<!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="//code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>    
-  </div>
+ 
   </body>
 </html>
