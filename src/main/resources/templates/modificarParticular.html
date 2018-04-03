@@ -51,16 +51,18 @@
   		          <h3>Datos personales</h3>
   		          <hr class="mb-4 separador-gris">
   		          <form>
-			  	    <div class="form-group row ">
-			  		<label class="perfilTitulo letra-azul col-form-label col-3  margen-datos " for="Nombre"><u>Nombre:</u> </label>					  		  		
-			  		  <span class="form-control-plaintext " th:text=${transferParticular.nombre}></span>
-			  			<!-- <input class="form-control" id="cif"> -->			  			
+			  	    <div class="form-group row">
+			  		<label class="perfilTitulo letra-azul col-form-label col-3  margen-datos "  for="Nombre"><u>Nombre:</u> </label>					  		  		
+			  		  <div>
+			  		  <input class="form-control " th:value=${transferParticular.nombre}></input>
+			  			</div>			  			
 			  		 </div>
 			  		
 			  		  <div class="form-group row">
-			  		<label class="perfilTitulo letra-azul col-form-label col-3 margen-datos" for="Nombre"><u>Apellidos:</u> </label>					  		  		
-			  		  <span class="form-control-plaintext " th:text=${transferParticular.apellidos}></span>
-			  			<!-- <input class="form-control" id="cif"> -->			  			
+			  		<label class="perfilTitulo letra-azul col-form-label col-3 margen-datos" for="Nombre"><u>Apellidos:</u> </label>		
+			  		<div>			  		  		
+			  		  <input class="form-control " th:value=${transferParticular.apellidos}></input>
+			  		</div>				  			
 			  		 </div>
 			  		 
 			  		 
@@ -71,9 +73,10 @@
 			  		 </div>
 			  		 
 			  		 <div class="form-group row">
-			  		<label class="perfilTitulo letra-azul col-form-label col-3 margen-datos" for="Nombre"><u>Teléfono:</u> </label>					  		  		
-			  		  <span class="form-control-plaintext " th:text=${transferParticular.telefono}></span>
-			  			<!-- <input class="form-control" id="cif"> -->			  			
+			  		<label class="perfilTitulo letra-azul col-form-label col-3 margen-datos " for="Nombre"><u>Teléfono:</u> </label>					  		  		
+			  		  <div>
+			  		  <input class="form-control " th:value=${transferParticular.telefono}></input>
+			  			</div>			  			
 			  		 </div>
 			  		 
 			  		  <div class="form-group row">
@@ -90,13 +93,22 @@
   		          <hr class="mb-4 separador-gris">
   		     	<div class="form-group text-left">
   		     	<label for="descripcion">Descripción:</label>
-  		     	<textarea class="form-control " rows="5" id="descripcion" readonly></textarea>
+  		     	<textarea class="form-control " rows="5" id="descripcion" ></textarea>
   		        </div>
   		     
   		     
   		     </div>
   		     
+  		     
   		   </div><!-- final row -->
+  		   
+  		  
+  		 
+  		    <div  class=" text-center  margen-botones">
+				<button type="submit" class=" btn-lg btn botonAzul">Guardar</button>
+				<button class="btn-lg btn btn-grey">Cancelar</button>
+			</div>
+			
   	    </div>
   	
   	</div>
