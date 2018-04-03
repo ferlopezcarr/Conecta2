@@ -27,7 +27,7 @@ public class H2CrearParticularTest {
 	@Test
 	public void testBuscarPorEmail() {
 		
-		TransferParticular particular = new TransferParticular("nombre", "Apellido Apellido", "99999999Z", "particularPruebaEmail@particularPruebaEmail.com", "Abc1111", true, 0);
+		TransferParticular particular = new TransferParticular("nombre", "Apellido Apellido", "99999999Z", "123456789", "particularPruebaEmail@particularPruebaEmail.com", "Abc1111", true, 0);
 		
 		saParticular.save(particular);
 
@@ -47,7 +47,7 @@ public class H2CrearParticularTest {
 	@Test
 	public void testBuscarPorDni() {
 		
-		TransferParticular particular = new TransferParticular("nombre", "Apellido Apellido", "99999999Z", "particularPruebaEmail@particularPruebaEmail.com", "Abc1111", true, 0);
+		TransferParticular particular = new TransferParticular("nombre", "Apellido Apellido", "99999999Z", "123456789", "particularPruebaEmail@particularPruebaEmail.com", "Abc1111", true, 0);
 		
 		saParticular.save(particular);
 

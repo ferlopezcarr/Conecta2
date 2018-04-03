@@ -20,6 +20,10 @@ public class TransferParticular {
 	@Pattern(regexp="^([0-9]{8}[A-Z]{1})*$", message= "* El DNI debe contener 8 dígitos y una letra mayúscula")
 	private String dni;
 	
+	@NotEmpty(message ="* Por favor, introduzca el teléfono")
+	@Pattern(regexp="^([0-9]{9})*$", message= "* Introduzca un teléfono válido")
+	private String telefono;
+	
 	@NotEmpty(message="* Por favor, introduzca un email")
 	//@Email
 	@Pattern(regexp="^([^@]+@[^@]+\\.[a-zA-Z]{2,})*$", message="* Por favor, introduzca un correo electrónico válido")
@@ -39,10 +43,11 @@ public class TransferParticular {
 	
 	public TransferParticular() {}
 	
-	public TransferParticular(String nombre, String apellidos, String dni, String email, String password, boolean activo, int puntuacion) {
+	public TransferParticular(String nombre, String apellidos, String dni, String telefono, String email, String password, boolean activo, int puntuacion) {
 		this.nombre = nombre;
 		this.apellidos = apellidos;
 		this.dni = dni;
+		this.telefono = telefono;
 		this.email = email;
 		this.password = password;
 		this.activo= activo;
@@ -78,6 +83,14 @@ public class TransferParticular {
 
 	public void setDni(String dni) {
 		this.dni = dni;
+	}
+	
+	public String getTelefono() {
+		return telefono;
+	}
+
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
 	}
 
 	public String getEmail() {

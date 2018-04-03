@@ -28,7 +28,7 @@ public class HU5VerPerfilParticularTest {
 	@Test
 	public void testEmpresaFoundedByEmailYActivo() {
 		
-		TransferParticular particular = new TransferParticular("nombre", "Apellido Apellido", "99999999Z", "particularPruebaEmail@particularPruebaEmail.com", "Abc1111", true, 0);
+		TransferParticular particular = new TransferParticular("nombre", "Apellido Apellido", "99999999Z", "123456789", "particularPruebaEmail@particularPruebaEmail.com", "Abc1111", true, 0);
 		
 		saParticular.save(particular);
 
@@ -46,7 +46,7 @@ public class HU5VerPerfilParticularTest {
 	@Test
 	public void testEmpresaFoundedByCifYActivo() {
 		
-		TransferParticular particular = new TransferParticular("nombre", "Apellido Apellido", "99999999Z", "particularPruebaEmail@particularPruebaEmail.com", "Abc1111", true, 0);
+		TransferParticular particular = new TransferParticular("nombre", "Apellido Apellido", "99999999Z", "123456789", "particularPruebaEmail@particularPruebaEmail.com", "Abc1111", true, 0);
 		
 		saParticular.save(particular);
 

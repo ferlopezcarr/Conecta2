@@ -46,6 +46,13 @@ public class Particular {
 	private String dni;
 	
 	/**
+	 * Filtro para evitar que se introduzcan telefonos erróneos
+	 */
+	@NotEmpty
+	@Pattern(regexp="^([0-9]{9})*$")
+	private String telefono;
+	
+	/**
 	 * Filtro para evitar que se introduzcan emails erróneos
 	 */
 	@Email
@@ -80,10 +87,11 @@ public class Particular {
 	 * @param activo
 	 * @param puntuacion
 	 */
-	public Particular(String nombre, String apellidos, String dni, String email, String password, boolean activo, int puntuacion ) {
+	public Particular(String nombre, String apellidos, String dni, String telefono, String email, String password, boolean activo, int puntuacion ) {
 		this.nombre = nombre;
 		this.apellidos = apellidos;
 		this.dni = dni;
+		this.telefono = telefono;
 		this.email = email;
 		this.password = password;
 		this.activo = activo;
@@ -112,6 +120,14 @@ public class Particular {
 
 	public void setApellidos(String apellidos) {
 		this.apellidos = apellidos;
+	}
+	
+	public String getTelefono() {
+		return telefono;
+	}
+
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
 	}
 	
 	public String getDni() {

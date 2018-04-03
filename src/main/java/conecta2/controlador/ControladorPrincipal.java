@@ -188,7 +188,7 @@ public class ControladorPrincipal {
     public ModelAndView mostrarPerfilEmpresa(@RequestParam("id") int id) {		
 		Empresa empresa = saEmpresa.buscarPorId(id);		
 		ModelAndView modelAndView = new ModelAndView();		
-		TransferEmpresa tEmpresa = new TransferEmpresa(empresa.getNombreEmpresa(), empresa.getCif(), empresa.getEmail(), "0", "0", true);
+		TransferEmpresa tEmpresa = new TransferEmpresa(empresa.getNombreEmpresa(), empresa.getCif(), empresa.getTelefono(), empresa.getEmail(), "0", "0", true);
 		
 		modelAndView.addObject("transferEmpresa", tEmpresa);
 		modelAndView.setViewName("perfilEmpresa");
@@ -200,7 +200,7 @@ public class ControladorPrincipal {
     public ModelAndView modificarPerfilEmpresa(@RequestParam("id") int id) {		
 		Empresa empresa = saEmpresa.buscarPorId(id);		
 		ModelAndView modelAndView = new ModelAndView();		
-		TransferEmpresa tEmpresa = new TransferEmpresa(empresa.getNombreEmpresa(), empresa.getCif(), empresa.getEmail(), "0", "0", true);
+		TransferEmpresa tEmpresa = new TransferEmpresa(empresa.getNombreEmpresa(), empresa.getCif(), empresa.getTelefono(), empresa.getEmail(), "0", "0", true);
 		
 		modelAndView.addObject("transferEmpresa", tEmpresa);
 		modelAndView.setViewName("modificarEmpresa");
@@ -213,7 +213,7 @@ public class ControladorPrincipal {
 		Particular particular = saParticular.buscarPorId(id);		
 		ModelAndView modelAndView = new ModelAndView();		
 		TransferParticular tParticular = new TransferParticular(particular.getNombre(), particular.getApellidos(), particular.getDni(),
-				particular.getEmail(), "0", true, particular.getPuntuacion());
+				particular.getTelefono(), particular.getEmail(), "0", true, particular.getPuntuacion());
 		
 		modelAndView.addObject("transferParticular", tParticular);
 		modelAndView.setViewName("perfilParticular");
@@ -226,7 +226,7 @@ public class ControladorPrincipal {
 		Particular particular = saParticular.buscarPorId(id);		
 		ModelAndView modelAndView = new ModelAndView();		
 		TransferParticular tParticular = new TransferParticular(particular.getNombre(), particular.getApellidos(), particular.getDni(),
-				particular.getEmail(), "0", true, particular.getPuntuacion());
+				particular.getTelefono(), particular.getEmail(), "0", true, particular.getPuntuacion());
 		
 		modelAndView.addObject("transferParticular", tParticular);
 		modelAndView.setViewName("perfilParticular"); //Cambiar a la vista de modificar particular

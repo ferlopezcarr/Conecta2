@@ -95,6 +95,7 @@ public class SAParticularImp implements SAParticular{
 					transferParticular.getNombre(),
 					transferParticular.getApellidos(),
 					transferParticular.getDni(),
+					transferParticular.getTelefono(),
 					transferParticular.getEmail(),
 					transferParticular.getPassword(),
 					transferParticular.getActivo(),

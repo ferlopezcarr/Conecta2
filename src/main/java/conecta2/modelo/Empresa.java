@@ -42,6 +42,13 @@ public class Empresa {
 	private String cif;
 	
 	/**
+	 * Filtro para evitar que se introduzcan telefonos erróneos
+	 */
+	@NotEmpty
+	@Pattern(regexp="^([0-9]{9})*$")
+	private String telefono;
+	
+	/**
 	 * Filtro para evitar que se introduzcan emails erróneos
 	 */
 	@Email
@@ -70,14 +77,16 @@ public class Empresa {
 	 * Constructora por defecto que se utiliza para crear empresas en los tests
 	 * @param nombre
 	 * @param cif
+	 * @param telefono
 	 * @param email
 	 * @param password
 	 * @param activo
 	 * @param puntuacion
 	 */
-	public Empresa(String nombreEmpresa, String cif, String email, String password, boolean activo, int puntuacion) {
+	public Empresa(String nombreEmpresa, String cif, String telefono, String email, String password, boolean activo, int puntuacion) {
 		this.nombreEmpresa = nombreEmpresa;
 		this.cif = cif;
+		this.telefono = telefono;
 		this.email = email;
 		this.password = password;
 		this.activo = activo;
@@ -99,13 +108,21 @@ public class Empresa {
 	public void setNombreEmpresa(String nombreEmpresa) {
 		this.nombreEmpresa = nombreEmpresa;
 	}
-	
+
 	public String getCif() {
 		return cif;
 	}
 
 	public void setCif(String cif) {
 		this.cif = cif;
+	}
+
+	public String getTelefono() {
+		return telefono;
+	}
+
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
 	}
 
 	public String getEmail() {
@@ -138,6 +155,7 @@ public class Empresa {
 
 	public void setPuntuacion(int puntuacion) {
 		this.puntuacion = puntuacion;
-	}	
-	
+	}
+
+
 }

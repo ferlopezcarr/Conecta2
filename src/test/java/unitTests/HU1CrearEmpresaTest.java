@@ -24,7 +24,7 @@ public class HU1CrearEmpresaTest {
 	@Test
 	public void testInsertFoundedByEmail() {
 		
-		Empresa empresa = new Empresa("empresaPruebaNombre", "A28599033", "empresaPruebaEmail@empresaPruebaEmail.com", "Abc1111", true, 0);
+		Empresa empresa = new Empresa("empresaPruebaNombre", "A28599033", "123456789", "empresaPruebaEmail@empresaPruebaEmail.com", "Abc1111", true, 0);
 
 		daoEmpresa.save(empresa);
 		
@@ -42,7 +42,7 @@ public class HU1CrearEmpresaTest {
 	
 	@Test
 	public void testInsertFoundedByCif() {
-		Empresa empresa = new Empresa("empresaPruebaNombre", "A28599033", "empresaPruebaEmail@empresaPruebaEmail.com", "Abc1111", true, 0);
+		Empresa empresa = new Empresa("empresaPruebaNombre", "A28599033", "123456789", "empresaPruebaEmail@empresaPruebaEmail.com", "Abc1111", true, 0);
 		
 		daoEmpresa.save(empresa);
 		

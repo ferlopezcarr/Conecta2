@@ -48,6 +48,7 @@ public class SAEmpresaImp implements SAEmpresa {
     	 
          empresa.setCif(transferEmpresa.getCif());
          empresa.setNombreEmpresa(transferEmpresa.getNombreEmpresa());
+         empresa.setTelefono(transferEmpresa.getTelefono());
          empresa.setEmail(transferEmpresa.getEmail());
          empresa.setPassword(bCryptPasswordEncoder.encode(transferEmpresa.getPassword()));
          empresa.setActivo(false);
@@ -94,7 +95,8 @@ public class SAEmpresaImp implements SAEmpresa {
 	 	 if(empresa == null) {
 	 		 empresa = new Empresa(
 	 				 transferEmpresa.getNombreEmpresa(),
-	 				 transferEmpresa.getCif(), 
+	 				 transferEmpresa.getCif(),
+	 				 transferEmpresa.getTelefono(),
 	 				 transferEmpresa.getEmail(),
 	 				 transferEmpresa.getPassword(),
 	 				 transferEmpresa.getActivo(),

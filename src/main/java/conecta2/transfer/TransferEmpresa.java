@@ -14,6 +14,10 @@ public class TransferEmpresa {
 	@NotEmpty (message ="* Por favor, introduzca el CIF")
 	@Pattern(regexp="^([ABCDEFGHJKLMNPQRSUVW]{1}[0-9]{7}([0-9]|[ABCDEFGHJKLMNPQRSUVW]){1})*$", message="* Por favor, introduzca un CIF válido (1 letra en mayúscula, 7 dígitos y 1 número o letra en mayúscula)")
 	private String cif;
+	
+	@NotEmpty(message ="* Por favor, introduzca el teléfono")
+	@Pattern(regexp="^([0-9]{9})*$", message= "* Introduzca un teléfono válido")
+	private String telefono;
 				
 	@NotEmpty(message ="* Por favor, introduzca un email")
 	//@Email
@@ -34,15 +38,16 @@ public class TransferEmpresa {
 	
 	public TransferEmpresa() {}
 		
-	public TransferEmpresa(String nombreEmpresa, String cif, String email, String password, String passwordConfirmation, boolean activo) {
+	public TransferEmpresa(String nombreEmpresa, String cif, String telefono, String email, String password, String passwordConfirmation, boolean activo) {
 		this.nombreEmpresa = nombreEmpresa;
 		this.cif = cif;
+		this.telefono = telefono;
 		this.email = email;
 		this.password = password;
 		this.passwordConfirmacion = passwordConfirmation; 
 		this.activo=activo;
 	}
-		
+
 	public String getNombreEmpresa() {
 		return nombreEmpresa;
 	}
@@ -50,13 +55,21 @@ public class TransferEmpresa {
 	public void setNombreEmpresa(String nombreEmpresa) {
 		this.nombreEmpresa = nombreEmpresa;
 	}
-	
+
 	public String getCif() {
 		return cif;
 	}
 
 	public void setCif(String cif) {
 		this.cif = cif;
+	}
+
+	public String getTelefono() {
+		return telefono;
+	}
+
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
 	}
 
 	public String getEmail() {
@@ -81,7 +94,7 @@ public class TransferEmpresa {
 
 	public void setPasswordConfirmacion(String passwordConfirmacion) {
 		this.passwordConfirmacion = passwordConfirmacion;
-	}	
+	}
 
 	public boolean getActivo() {
 		return activo;
@@ -98,6 +111,6 @@ public class TransferEmpresa {
 	public void setPuntuacion(int puntuacion) {
 		this.puntuacion = puntuacion;
 	}
-
-
+		
+	
 }
