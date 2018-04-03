@@ -45,7 +45,7 @@
 	text-decoration:none;
 }
 
-input[type=text] {
+search {
     width: 130px;
     padding: 3px 10px 6px 40px;
     
@@ -63,7 +63,7 @@ input[type=text] {
     transition: width 0.4s ease-in-out;
 }
 
-input[type=text]:focus {
+search:focus {
     width: 100%;
 }
 

@@ -22,6 +22,7 @@ import conecta2.servicioAplicacion.SAEmpresa;
 import conecta2.servicioAplicacion.SAParticular;
 import conecta2.transfer.TransferParticular;
 import conecta2.transfer.TransferEmpresa;
+import conecta2.transfer.TransferOferta;
 /**
  * Controlador de la aplicación, en él se mapean las diferentes peticiones (GET, POST...),
  * @author ferlo
@@ -238,6 +239,21 @@ public class ControladorPrincipal {
 		return "paginaMenuEmpresa";
 	}
 	
+	@RequestMapping("/crear-oferta")
+	public String crearOferta(){
+		return "crearOferta";
+	}
+	
+	/*
+	@RequestMapping(value="/crear-oferta", method = RequestMethod.GET)
+	public ModelAndView crearOferta(){
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.addObject("transferOferta", new TransferOferta());
+		modelAndView.setViewName("crearOferta");
+	
+		return modelAndView;
+	}
+	*/
 	
 	/**
 	 * Método que añade al particular como variable permanente para el modelo
