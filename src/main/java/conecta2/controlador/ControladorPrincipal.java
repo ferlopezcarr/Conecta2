@@ -229,7 +229,7 @@ public class ControladorPrincipal {
 				particular.getTelefono(), particular.getEmail(), "0", true, particular.getPuntuacion());
 		
 		modelAndView.addObject("transferParticular", tParticular);
-		modelAndView.setViewName("perfilParticular"); //Cambiar a la vista de modificar particular
+		modelAndView.setViewName("modificarParticular"); //Cambiar a la vista de modificar particular
 		
 		return modelAndView;
     }
