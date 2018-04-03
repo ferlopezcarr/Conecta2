@@ -238,6 +238,15 @@ a.navbar-brand{
 }
 
 .margenes-foto{
-	margin-bottom:10%;
+	
 	margin-left:40%;
+	margin-bottom:5%;
+}
+
+.margen-boton-modificar{
+	margin-left:15%;
+}
+
+.margen-datos{
+	margin-left:30%;
 }
