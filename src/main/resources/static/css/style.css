@@ -178,6 +178,15 @@ a.navbar-brand{
 	
 }
 
+.containter-crear-oferta{
+	background-image: url(../images/fondo-2.jpg);
+	background-size: 100%;
+	background-repeat:no-repeat;
+}
+
+.letra-oferta{
+	color:rgba(16,184,197);
+}
 
 .margen-texto-inicio{
 	margin-top: 2%;
