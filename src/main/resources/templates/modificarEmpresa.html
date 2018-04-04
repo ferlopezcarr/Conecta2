@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
   <head th:fragment="head">
@@ -13,49 +12,88 @@
     
     <!-- Style CSS -->
     <link href="../css/style.css" rel="stylesheet" />
+    
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   </head>
   <body>
- 
   	<nav th:replace="fragments/navbar :: navbar"></nav>
-	<div class="row  form-crear-cuenta">
-  
-  	<div class="col-6 perfil mx-auto">
-  	<div class="row">
-  	<div class="col-4  my-auto mx-auto">
-  		<img src="/images/avatar.png" class=" img-thumbnail img-fluid" height="200px" width="200px" alt="foto perfil">
-    		<img src="/images/puntuacionTest.png" class="img-fluid" height="50px" width="200px" alt="puntuacion">
-  
+  	
+  	
+  	<div class="row mt-5">
+  	
+  		<div class="col-10 color-perfil mx-auto border border-dark rounded container-perfilEmpresa">
+  			
+	        	<div class="row">
+	        		<div class="col-4 margenes-foto"> 
+	        			 <img src="/images/avatar.png" class=" img-thumbnail img-fluid rounded-circle" height="200px" width="200px" alt="foto perfil">
+	        	    </div>    
+	        	    	 
+	        	</div> 
+
+  		   <div class="row">
+  		     <div class="col-6  ml-auto text-center">
+  		          <h3>Datos personales</h3>
+  		          <hr class="mb-4 separador-gris">
+  		          <form>
+  		          
+  		          
+			  		 
+			  		 
+			  	    <div class="form-group row ">
+			  		<label class="perfilTitulo letra-azul col-form-label col-3  margen-datos" id="nombreEmpresa" for="Nombre"><u>Nombre:</u> </label>
+			  		<div>				  		  		
+			  		  <input class="form-control " th:value=${transferEmpresa.nombreEmpresa}></input>
+			  		   <!--  <label th:if="${#fields.hasErrors('nombreEmpresa')}" th:errors="*{nombreEmpresa}" class="validation-message error"></label>-->
+			  		 </div>
+			  		</div>				  		 
+			  		 
+			  		 
+			  		  <div class="form-group row">
+			  		<label class="perfilTitulo letra-azul col-form-label col-3 margen-datos" for="CIF"><u>CIF:</u> </label>					  		  		
+			  		  <span class="form-control-plaintext " th:text=${transferEmpresa.cif}></span>
+			  		 </div>
+			  		 
+			  		 
+			  		  <div class="form-group row ">
+			  		<label class="perfilTitulo letra-azul col-form-label col-3  margen-datos" id="tlfEmpresa" for="Teléfono"><u>Teléfono:</u> </label>
+			  		<div>				  		  		
+			  		  <input class="form-control " th:value=${transferEmpresa.telefono}></input>
+			  		   <!--  <label th:if="${#fields.hasErrors('tlfEmpresa')}" th:errors="*{tlfEmpresa}" class="validation-message error"></label>-->
+			  		 </div>
+			  		</div>
+			  		 
+			  		 
+			  		  <div class="form-group row">
+			  		<label class="perfilTitulo letra-azul col-form-label col-3 margen-datos " for="Email"><u>Email:</u> </label>					  		  		
+			  		  <span class="form-control-plaintext " th:text=${transferEmpresa.email}></span>
+			  		 </div>
+			  	    
+			  		</form>
+			  		
+			  	</div>
+  		     <div class="col-6  sep-vertical text-center">
+ 		     <h3>Información Adicional</h3>
+  		          <hr class="mb-4 separador-gris">
+  		     	<div class="form-group text-left">
+  		     	<label for="descripcion" class="letra-azul perfilTitulo "><u>Descripción:</u></label>
+  		     	<textarea class="form-control " rows="5" id="descripcion" ></textarea>
+  		        </div>
+  		     
+  		     
+  		     </div>
+  		     
+  		   </div><!-- final row -->
+  	    </div>
+  	
   	</div>
-  	<div class="col-6  ml-auto">
-  			<div class="form-group">
-  			<label class="perfilTitulo" for="Nombre">CIF </label>
-  			<span th:text=${transferEmpresa.cif}></span>
-  			<!-- <input class="form-control" id="cif"> -->
-  		</div>
-  		<div class="form-group">
-  			<label class="perfilTitulo"  class="perfilTitulo"  for="Nombre">Nombre </label>
-  			<span th:text=${transferEmpresa.nombreEmpresa}></span>
-  			<!-- <input class="form-control" id="nombre"> -->
-  		</div>
-  	<div class="form-group">
-  			<label class="perfilTitulo"  for="Nombre">Email </label>
-  			<span th:text=${transferEmpresa.email}></span>
-  			<!-- <input class="form-control" id="email"> -->
-  		</div>
-  		<div class="form-group">
-  			<label class="perfilTitulo"  for="Nombre">Telefono </label>
-  			<label>123456789</label>
-  			<!-- <input class="form-control" id="telefono"> -->
-  		</div>
-  	</div>
-  	</div>
-	</div>
-	</div>
+
+  	
+	
 	<!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="//code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>    
-  </div>
+    <script src="/js/jquery-3.2.1.slim.min.js" ></script>
+    <script src="/js/popper.min.js"></script>
+    <script src="/js/bootstrap.min.js" ></script>    
+ 
   </body>
 </html>
