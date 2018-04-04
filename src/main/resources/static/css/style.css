@@ -27,6 +27,8 @@ div.container{
 	padding-top: 3%;
 	padding-bottom: 3%;
 	background: #EFF0F5;
+	
+	
  }
  
  label.perfilTitulo{
@@ -209,8 +211,8 @@ a.navbar-brand{
 
 .container-perfil{
 	
-	background-image: url(../images/fondoperfil.png);
-	background-size: 100% 10%;
+	background-image: url(../images/fondo.png);
+	background-size: 200% 15%;
 	background-repeat:no-repeat;
 	
 	
@@ -259,3 +261,6 @@ a.navbar-brand{
 .margen-botones{
 	margin-top:5%;
 }
+
+
+
