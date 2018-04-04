@@ -166,13 +166,13 @@ public class ControladorPrincipal {
 			if(obj.getClass()== (new TransferEmpresa()).getClass()){
 				TransferEmpresa transferEmpresa= (TransferEmpresa) obj;
 				Empresa empresa = saEmpresa.buscarPorEmail(transferEmpresa.getEmail());
-				modelAndView = new ModelAndView("redirect:/empresa/modificar?id=" + empresa.getId());
+				modelAndView = new ModelAndView("redirect:/empresa/perfil?id=" + empresa.getId());
 			}
 			else {
 				//ES UN PARTICULAR
 				TransferParticular transferParticular= (TransferParticular) obj;
 				Particular particular = saParticular.buscarPorEmail(transferParticular.getEmail());
-				modelAndView = new ModelAndView("redirect:/particular/modificar?id="+ particular.getId());
+				modelAndView = new ModelAndView("redirect:/particular/perfil?id="+ particular.getId());
 			}			
 		}
 		return modelAndView;
