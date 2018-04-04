@@ -105,6 +105,10 @@ div.enlace-inicio{
 	color: red;
 }
 
+.error{
+	color: red;
+}
+
 .fondoGris{
 	background: #89898C;
 	color: white;
