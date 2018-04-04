@@ -21,7 +21,7 @@
   	
   	<div class="row mt-5">
   	
-  		<div class="col-10 perfil mx-auto border border-dark rounded container-perfil">
+  		<div class="col-10 color-perfil mx-auto border border-dark rounded container-perfilEmpresa">
   			
 	        	<div class="row">
 	        		<div class="col-4 margenes-foto"> 
@@ -30,7 +30,7 @@
 	        	    	<div class="col-1  margen-boton-modificar"> 
 	        	    	
   	              <a href="/empresa/modificar"> 
-  	               	<button type="submit" class="btn botonAzul rounded-circle "  name="botonModificar"><i class="material-icons">border_color</i></button>
+  	               	<button type="submit" class="mt-4 btn boton  border-Azul rounded-circle "  name="botonModificar"><i class="material-icons">border_color</i></button>
   	               	</a>
 	        	    	</div>	 
 	        	</div> 
@@ -43,22 +43,20 @@
 			  	    <div class="form-group row ">
 			  		<label class="perfilTitulo letra-azul col-form-label col-3  margen-datos " for="Nombre"><u>Nombre:</u> </label>					  		  		
 			  		  <span class="form-control-plaintext " th:text=${transferEmpresa.nombreEmpresa}></span>
-			  			<!-- <input class="form-control" id="cif"> -->			  			
 			  		 </div>
 			  		 
 			  		  <div class="form-group row">
-			  		<label class="perfilTitulo letra-azul col-form-label col-3 margen-datos" for="Nombre"><u>CIF:</u> </label>					  		  		
+			  		<label class="perfilTitulo letra-azul col-form-label col-3 margen-datos" for="CIF"><u>CIF:</u> </label>					  		  		
 			  		  <span class="form-control-plaintext " th:text=${transferEmpresa.cif}></span>
-			  			<!-- <input class="form-control" id="cif"> -->			  			
 			  		 </div>
 			  		 
 			  		 <div class="form-group row">
-			  		<label class="perfilTitulo letra-azul col-form-label col-3 margen-datos" for="Nombre"><u>Teléfono:</u> </label>					  		  		
+			  		<label class="perfilTitulo letra-azul col-form-label col-3 margen-datos" for="Telefono"><u>Teléfono:</u> </label>					  		  		
 			  		  <span class="form-control-plaintext " th:text=${transferEmpresa.telefono}></span>
 			  		 </div>
 			  		 
 			  		  <div class="form-group row">
-			  		<label class="perfilTitulo letra-azul col-form-label col-3 margen-datos " for="Nombre"><u>Email:</u> </label>					  		  		
+			  		<label class="perfilTitulo letra-azul col-form-label col-3 margen-datos " for="Email"><u>Email:</u> </label>					  		  		
 			  		  <span class="form-control-plaintext " th:text=${transferEmpresa.email}></span>
 			  		 </div>
 			  	    
@@ -69,7 +67,7 @@
  		     <h3>Información Adicional</h3>
   		          <hr class="mb-4 separador-gris">
   		     	<div class="form-group text-left">
-  		     	<label for="descripcion">Descripción:</label>
+  		     	<label for="descripcion" class="letra-azul perfilTitulo "><u>Descripción:</u></label>
   		     	<textarea class="form-control " rows="5" id="descripcion" readonly></textarea>
   		        </div>
   		     
