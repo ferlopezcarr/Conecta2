@@ -156,6 +156,26 @@ public class Empresa {
 	public void setPuntuacion(int puntuacion) {
 		this.puntuacion = puntuacion;
 	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if (o == null) return false;
+	    if (o == this) return true;
+	    if (!(o instanceof Empresa))return false;
+		
+	    Empresa empObj = (Empresa)o;
+	    
+	    return !(
+	    		(this.id != empObj.id) ||
+	    		(this.nombreEmpresa != empObj.nombreEmpresa) ||
+	    		(this.cif != empObj.cif) ||
+	    		(this.telefono != empObj.telefono) ||
+	    		(this.email != empObj.email) ||
+	    		(this.password != empObj.password) ||
+	    		(this.activo != empObj.activo) ||
+	    		(this.puntuacion != empObj.puntuacion)
+	    		);
+	}
 
 
 }

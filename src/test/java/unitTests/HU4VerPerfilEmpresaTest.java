@@ -30,12 +30,10 @@ public class HU4VerPerfilEmpresaTest {
 		
 		Empresa empresaBD = daoEmpresa.findByEmail(empresa.getEmail());
 		
-		boolean email = empresaBD.getEmail() == empresa.getEmail();
-		boolean nombre = empresaBD.getNombreEmpresa() == empresa.getNombreEmpresa();
-		boolean cif = empresaBD.getCif() == empresa.getCif();
+		boolean iguales = empresa.equals(empresaBD);
 		boolean activo = (empresaBD.getActivo() == empresa.getActivo()) == true;
 		
-		assertEquals(true, (email && nombre && cif && activo));
+		assertEquals(true, iguales && activo);
 	}
 	
 	@Test
@@ -47,12 +45,10 @@ public class HU4VerPerfilEmpresaTest {
 		
 		Empresa empresaBD = daoEmpresa.findByCif(empresa.getCif());
 		
-		boolean email = empresaBD.getEmail() == empresa.getEmail();
-		boolean nombre = empresaBD.getNombreEmpresa() == empresa.getNombreEmpresa();
-		boolean cif = empresaBD.getCif() == empresa.getCif();
+		boolean iguales = empresa.equals(empresaBD);
 		boolean activo = (empresaBD.getActivo() == empresa.getActivo()) == true;
 		
-		assertEquals(true, (email && nombre && cif && activo));
+		assertEquals(true, iguales && activo);
 	}
 
 }

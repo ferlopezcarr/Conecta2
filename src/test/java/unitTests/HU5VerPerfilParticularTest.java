@@ -30,13 +30,10 @@ public class HU5VerPerfilParticularTest {
 		
 		Particular particularBD = daoParticular.findByEmail(particular.getEmail());
 		
-		boolean email = particularBD.getEmail() == particular.getEmail();
-		boolean nombre = particularBD.getNombre() == particular.getNombre();
-		boolean apellidos = particularBD.getApellidos() == particular.getApellidos();
-		boolean dni = particularBD.getDni() == particular.getDni();
+		boolean iguales = particular.equals(particularBD);
 		boolean activo = (particularBD.getActivo() == particular.getActivo()) == true;
 		
-		assertEquals(true, (email && nombre && apellidos && dni && activo));
+		assertEquals(true, iguales && activo);
 	}
 	
 	@Test
@@ -47,13 +44,10 @@ public class HU5VerPerfilParticularTest {
 		
 		Particular particularBD = daoParticular.findByDni(particular.getDni());
 		
-		boolean email = particularBD.getEmail() == particular.getEmail();
-		boolean nombre = particularBD.getNombre() == particular.getNombre();
-		boolean apellidos = particularBD.getApellidos() == particular.getApellidos();
-		boolean dni = particularBD.getDni() == particular.getDni();
+		boolean iguales = particular.equals(particularBD);
 		boolean activo = (particularBD.getActivo() == particular.getActivo()) == true;
 		
-		assertEquals(true, (email && nombre && apellidos && dni && activo));
+		assertEquals(true, iguales && activo);
 	}
 
 }

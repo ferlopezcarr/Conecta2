@@ -9,6 +9,8 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import org.springframework.dao.InvalidDataAccessApiUsageException;
+
 import conecta2.Application;
 import conecta2.dao.DAOEmpresa;
 import conecta2.modelo.Empresa;
@@ -21,23 +23,51 @@ public class HU1CrearEmpresaTest {
 	@Autowired
     private DAOEmpresa daoEmpresa;
 	
+	@Test(expected = InvalidDataAccessApiUsageException.class)
+	public void testInsertNull() {
+		Empresa empresa = null;
+		
+		daoEmpresa.save(empresa);
+	}
+	
+	@Test
+	public void testInsertNotNull() {
+		Empresa empresa = new Empresa("empresaPruebaNombre", "A28599033", "123456789", "empresaPruebaEmail@empresaPruebaEmail.com", "Abc1111", true, 0);
+		
+		Empresa empresaGuardada = daoEmpresa.save(empresa);
+		
+		assertEquals(empresa, empresaGuardada);
+	}
+	
+	@Test
+	public void testNotFounded() {
+		Empresa empresa = new Empresa("empresaPruebaNombre", "A28599033", "123456789", "empresaPruebaEmail@empresaPruebaEmail.com", "Abc1111", true, 0);
+		
+		Empresa empresaBD = daoEmpresa.findByCif(empresa.getCif());
+		
+		assertEquals(empresaBD, null);
+	}
+	
+	@Test
+	public void testInsertFoundedById() {
+		Empresa empresa = new Empresa("empresaPruebaNombre", "A28599033", "123456789", "empresaPruebaEmail@empresaPruebaEmail.com", "Abc1111", true, 0);
+		
+		daoEmpresa.save(empresa);
+		
+		Empresa empresaBD = daoEmpresa.findById(empresa.getId());
+		
+		assertEquals(empresa, empresaBD);
+	}
+	
 	@Test
 	public void testInsertFoundedByEmail() {
-		
 		Empresa empresa = new Empresa("empresaPruebaNombre", "A28599033", "123456789", "empresaPruebaEmail@empresaPruebaEmail.com", "Abc1111", true, 0);
-
+		
 		daoEmpresa.save(empresa);
 		
 		Empresa empresaBD = daoEmpresa.findByEmail(empresa.getEmail());
 		
-		boolean email = empresaBD.getEmail() == empresa.getEmail();
-		boolean nombre = empresaBD.getNombreEmpresa() == empresa.getNombreEmpresa();
-		boolean cif = empresaBD.getCif() == empresa.getCif();
-		boolean password = empresaBD.getPassword() == empresa.getPassword();
-		boolean activo = empresaBD.getActivo() == empresa.getActivo();
-		boolean puntuacion = empresaBD.getPuntuacion() == empresa.getPuntuacion();
-		
-		assertEquals(true, (email && nombre && cif && password && activo && puntuacion));
+		assertEquals(empresa, empresaBD);
 	}
 	
 	@Test
@@ -48,14 +78,7 @@ public class HU1CrearEmpresaTest {
 		
 		Empresa empresaBD = daoEmpresa.findByCif(empresa.getCif());
 		
-		boolean email = empresaBD.getEmail() == empresa.getEmail();
-		boolean nombre = empresaBD.getNombreEmpresa() == empresa.getNombreEmpresa();
-		boolean cif = empresaBD.getCif() == empresa.getCif();
-		boolean password = empresaBD.getPassword() == empresa.getPassword();
-		boolean activo = empresaBD.getActivo() == empresa.getActivo();
-		boolean puntuacion = empresaBD.getPuntuacion() == empresa.getPuntuacion();
-		
-		assertEquals(true, (email && nombre && cif && password && activo && puntuacion));
+		assertEquals(empresa, empresaBD);
 	}
 
 }

@@ -169,4 +169,25 @@ public class Particular {
 	public void setPuntuacion(int puntuacion) {
 		this.puntuacion = puntuacion;
 	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if (o == null) return false;
+	    if (o == this) return true;
+	    if (!(o instanceof Particular))return false;
+		
+	    Particular partObj = (Particular)o;
+	    
+	    return !(
+	    		(this.id != partObj.id) ||
+	    		(this.nombre != partObj.nombre) ||
+	    		(this.apellidos != partObj.apellidos) ||
+	    		(this.dni != partObj.dni) ||
+	    		(this.telefono != partObj.telefono) ||
+	    		(this.email != partObj.email) ||
+	    		(this.password != partObj.password) ||
+	    		(this.activo != partObj.activo) ||
+	    		(this.puntuacion != partObj.puntuacion)
+	    		);
+	}
 }

@@ -7,6 +7,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.dao.InvalidDataAccessApiUsageException;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import conecta2.Application;
@@ -21,6 +22,44 @@ public class HU2CrearParticularTest {
 	@Autowired
     private DAOParticular daoParticular;
 	
+	@Test(expected = InvalidDataAccessApiUsageException.class)
+	public void testInsertNull() {
+		
+		Particular particular = null;
+		
+		daoParticular.save(particular);
+	}
+	
+	@Test
+	public void testInsertNotNull() {
+		Particular particular = new Particular("nombre", "Apellido Apellido", "99999999Z", "123456789", "particularPruebaEmail@particularPruebaEmail.com", "Abc1111", true, 0);
+
+		Particular particularGuardado = daoParticular.save(particular);
+		
+		assertEquals(particular, particularGuardado);
+	}
+	
+	@Test
+	public void testInsertNotFounded() {
+		Particular particular = new Particular("nombre", "Apellido Apellido", "99999999Z", "123456789", "particularPruebaEmail@particularPruebaEmail.com", "Abc1111", true, 0);
+
+		Particular particularGuardado = daoParticular.findByDni(particular.getDni());
+		
+		assertEquals(particularGuardado, null);
+	}
+	
+	@Test
+	public void testInsertFoundedById() {
+		
+		Particular particular = new Particular("nombre", "Apellido Apellido", "99999999Z", "123456789", "particularPruebaEmail@particularPruebaEmail.com", "Abc1111", true, 0);
+
+		daoParticular.save(particular);
+		
+		Particular particularBD = daoParticular.findById(particular.getId());
+		
+		assertEquals(particular, particularBD);
+	}
+	
 	@Test
 	public void testInsertFoundedByEmail() {
 		
@@ -30,15 +69,7 @@ public class HU2CrearParticularTest {
 		
 		Particular particularBD = daoParticular.findByEmail(particular.getEmail());
 		
-		boolean email = particularBD.getEmail() == particular.getEmail();
-		boolean nombre = particularBD.getNombre() == particular.getNombre();
-		boolean apellidos = particularBD.getApellidos() == particular.getApellidos();
-		boolean dni = particularBD.getDni() == particular.getDni();
-		boolean password = particularBD.getPassword() == particular.getPassword();
-		boolean activo = particularBD.getActivo() == particular.getActivo();
-		boolean puntuacion = particularBD.getPuntuacion() == particular.getPuntuacion();
-		
-		assertEquals(true, (email && nombre && apellidos && dni && password && activo && puntuacion));
+		assertEquals(particular, particularBD);
 	}
 	
 	@Test
@@ -49,15 +80,7 @@ public class HU2CrearParticularTest {
 		
 		Particular particularBD = daoParticular.findByDni(particular.getDni());
 		
-		boolean email = particularBD.getEmail() == particular.getEmail();
-		boolean nombre = particularBD.getNombre() == particular.getNombre();
-		boolean apellidos = particularBD.getApellidos() == particular.getApellidos();
-		boolean dni = particularBD.getDni() == particular.getDni();
-		boolean password = particularBD.getPassword() == particular.getPassword();
-		boolean activo = particularBD.getActivo() == particular.getActivo();
-		boolean puntuacion = particularBD.getPuntuacion() == particular.getPuntuacion();
-		
-		assertEquals(true, (email && nombre && apellidos && dni && password && activo && puntuacion));
+		assertEquals(particular, particularBD);
 	}
 
 }
