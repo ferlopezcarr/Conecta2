@@ -71,7 +71,7 @@ public class SAEmailImp  implements SAEmail {
 		
 		//Que el sistema va autorizado
 		props.setProperty("mail.stmp.auth", "true");
-		//Que vamos a utilizar tls ( a ver estudiao redes)
+		//Que vamos a utilizar tls pra que sea seguro
 		props.setProperty("mail.smtp.starttls.enable", "true");
 		//servidor smtp de gmail
 		props.setProperty("mail.smtp.host", "smtp.gmail.com");
@@ -79,7 +79,6 @@ public class SAEmailImp  implements SAEmail {
 		props.setProperty("mail.smtp.port", "587");
 				
 		//Creacion de la sesion en el servidor de google
-		//Session sesion = Session.getDefaultInstance(props);
 		Session sesion = Session.getInstance(props , new javax.mail.Authenticator() {
 			//Este metodo sobreEscribe el metodo de la clase principal con los datos de nuestro servidor
 			protected PasswordAuthentication getPasswordAuthentication() {
