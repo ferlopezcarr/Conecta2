@@ -1,9 +1,15 @@
 package conecta2.modelo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.validator.constraints.Length;
@@ -44,6 +50,12 @@ public class Oferta {
 	
 	private boolean activo;
 	
+	@ManyToMany(mappedBy="ofertas", fetch=FetchType.LAZY)
+	private List<Particular> particulares;
+	
+	@ManyToOne (fetch=FetchType.EAGER)
+	private Empresa empresa;
+
 	/**
 	 * Constructora sin argumentos necesaria para JPA
 	 */
@@ -58,6 +70,7 @@ public class Oferta {
 		this.ccaa = ccaa;
 		this.descripcion = descripcion;
 		this.activo = activo;
+		this.particulares = new ArrayList<Particular>();
 	}
 	
 	public int getId() {
@@ -131,5 +144,22 @@ public class Oferta {
 	public void setActivo(boolean activo) {
 		this.activo = activo;
 	}
+	
+	public List<Particular> getParticulares() {
+		return particulares;
+	}
+
+	public void setParticulares(List<Particular> particulares) {
+		this.particulares = particulares;
+	}
+
+	public Empresa getEmpresa() {
+		return empresa;
+	}
+
+	public void setEmpresa(Empresa empresa) {
+		this.empresa = empresa;
+	}
+	
 	
 }

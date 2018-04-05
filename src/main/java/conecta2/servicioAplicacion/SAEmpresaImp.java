@@ -103,7 +103,6 @@ public class SAEmpresaImp implements SAEmpresa {
 	 				 transferEmpresa.getPuntuacion()
 	 			);
 	 	 }
-	 	 
          //empresa.setPassword(bCryptPasswordEncoder.encode(transferEmpresa.getPassword()));
          empresa.setActivo(transferEmpresa.getActivo());
          empresa.setPuntuacion(transferEmpresa.getPuntuacion());
