@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+  <head th:fragment="head">
+    <title>Conecta2</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous" />
+    
+    <!-- Style CSS -->
+    <link href="../css/style.css" rel="stylesheet" />
+    
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  </head>
+  <body>
+  	<nav th:replace="fragments/navbar :: navbar"></nav>
+  	
+  	<div class="row mt-5">
+  		
+  		
+  		<div class="  mx-auto letra-azul text-center rounded">
+  		  
+  			<h1>Tus ofertas publicadas</h1>
+  			
+  		</div>
+  		
+  	</div>
+  	<div class="row mt-5">
+  	
+  		<div class="col-10 color-perfil mx-auto border border-dark rounded ">
+  			 	
+	       <div class="row"> 
+	        	   <div class="col-4  ml-auto text-center"> 
+	        	   	
+	 	           <!--  <a href="/empresa/">             DESCOMENTAR PARA AÑADIR LA REDIRECCION A CREAR OFERTA!!!!!!!!! -->    
+	  	               	<button type="submit" class="btn botonAzul"  name="botonCrearOferta">Crear Oferta Nueva</button>
+	  	            <!--  </a>-->
+  	            
+	  	            <div class="mt-4">
+	  	            <button type="submit" class="btn  botonAzul"  name="botonCrearOferta">Modificar Oferta</button>
+	  	            </div>
+  	              
+	  	            <div class="mt-4">
+	  	            <button type="submit" class=" btn btn-grey"  name="botonCrearOferta">
+	  	               <span data-icon="glyphicon glyphicon-remove"></span>Eliminar Oferta
+	  	            </button>
+	  	            </div>
+	  	            
+		  	        <div class="mt-4">  
+	  	            <button type="submit" class="btn btn-finalizar"  name="botonCrearOferta">Finalizar Oferta</button>
+	  	            </div> 
+	  	            
+	  	            
+	
+  	            </div>
+  	            
+  	            <div class="col-8  sep-vertical text-center">
+ 		          
+ 		        </div>  
+	        </div> 	   
+  	    </div>
+  	</div>
+
+  	
+	
+	<!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="/js/jquery-3.2.1.slim.min.js" ></script>
+    <script src="/js/popper.min.js"></script>
+    <script src="/js/bootstrap.min.js" ></script>    
+ 
+  </body>
+</html>
