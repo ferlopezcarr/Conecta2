@@ -5,6 +5,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 import org.hibernate.validator.constraints.Range;
 
 import conecta2.modelo.Contrato;
+import conecta2.modelo.Empresa;
 import conecta2.modelo.JornadaLaboral;
 
 public class TransferOferta {
@@ -32,12 +33,14 @@ public class TransferOferta {
 	
 	private boolean activo;
 	
+	private Empresa empresa;
+	
 	/**
 	 * Constructora sin argumentos necesaria para JPA
 	 */
 	public TransferOferta() {}
 	
-	public TransferOferta(String nombre, JornadaLaboral jornada, Contrato contrato, int vacantes, double salario, String ccaa, String descripcion, boolean activo) {
+	public TransferOferta(String nombre, JornadaLaboral jornada, Contrato contrato, int vacantes, double salario, String ccaa, String descripcion, boolean activo, Empresa empresa) {
 		this.nombre = nombre;
 		this.jornada = jornada;
 		this.contrato = contrato;
@@ -46,6 +49,7 @@ public class TransferOferta {
 		this.ccaa = ccaa;
 		this.descripcion = descripcion;
 		this.activo = activo;
+		this.empresa = empresa;
 	}
 
 	public String getNombre() {
@@ -110,6 +114,16 @@ public class TransferOferta {
 
 	public void setActivo(boolean activo) {
 		this.activo = activo;
+	}
+
+	public Empresa getEmpresa() {
+		// TODO Auto-generated method stub
+		return this.empresa;
+	}
+	
+	public void setEmpresa(Empresa empresa) {
+		
+		this.empresa = empresa;
 	}
 	
 }

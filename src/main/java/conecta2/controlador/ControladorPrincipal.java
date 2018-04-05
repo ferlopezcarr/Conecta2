@@ -292,6 +292,7 @@ public class ControladorPrincipal {
 		
 		model.addAttribute("particular", particular);
 		model.addAttribute("empresa", empresa);//En este caso el objeto usuario estará permanentemente en todas las vistas por el @ModelAttribute 
+	
 	}
 	
 }

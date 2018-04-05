@@ -16,9 +16,21 @@ public class SAOfertaImp implements SAOferta {
 	private RepositorioOferta repoOferta;
 	
 	@Override
-	public void crearOferta(TransferOferta transferOferta) {
+	public void crearOferta(TransferOferta tOferta) {
 		// TODO Auto-generated method stub
 		
+		Oferta oferta = new Oferta();
+		
+		oferta.setNombre(tOferta.getNombre());
+		oferta.setCcaa(tOferta.getCcaa());
+		oferta.setContrato(tOferta.getContrato());
+		oferta.setDescripcion(tOferta.getDescripcion());
+		oferta.setJornadaLaboral(tOferta.getJornadaLaboral());
+		oferta.setSalario(tOferta.getSalario());
+		oferta.setVacantes(tOferta.getVacantes());
+		oferta.setEmpresa(tOferta.getEmpresa());
+		
+		repoOferta.save(oferta);
 	}
 
 	@Override
@@ -31,22 +43,6 @@ public class SAOfertaImp implements SAOferta {
 	public Oferta buscarPorId(int id) {
 		// TODO Auto-generated method stub
 		return repoOferta.findById(id);
-	}
-
-	@Override
-	public void save(TransferOferta tOferta) {
-		// TODO Auto-generated method stub
-		Oferta oferta = new Oferta();
-		
-		oferta.setNombre(tOferta.getNombre());
-		oferta.setCcaa(tOferta.getCcaa());
-		oferta.setContrato(tOferta.getContrato());
-		oferta.setDescripcion(tOferta.getDescripcion());
-		oferta.setJornadaLaboral(tOferta.getJornadaLaboral());
-		oferta.setSalario(tOferta.getSalario());
-		oferta.setVacantes(tOferta.getVacantes());
-		
-		repoOferta.save(oferta);
 	}
 
 }
