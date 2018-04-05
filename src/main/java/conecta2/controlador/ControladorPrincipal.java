@@ -37,14 +37,25 @@ public class ControladorPrincipal {
 	@Autowired
 	private SAEmail saEmail;
 	
+	private ModelAndView modeloyVista;
+	
+	public  ModelAndView obtenerInstancia() {
 
+		if (modeloyVista == null) {
+
+			modeloyVista = new ModelAndView();
+		}
+
+		return modeloyVista;
+	}
+	
 	/**
 	 * Método que captura las peticiones GET de /login
 	 * @return devuelve la vista de Inicio de sesion
 	 */
 	@RequestMapping(value={"/", "/login"}, method = RequestMethod.GET)
 	public ModelAndView login(){
-		ModelAndView modelAndView = new ModelAndView();
+		ModelAndView modelAndView = this.obtenerInstancia();
 		modelAndView.setViewName("index");
 		return modelAndView;
 	}
@@ -55,11 +66,10 @@ public class ControladorPrincipal {
 	 */
 	@RequestMapping(value="/crear-cuenta", method = RequestMethod.GET)
 	public ModelAndView registration(){
-		ModelAndView modelAndView = new ModelAndView();
+		ModelAndView modelAndView = this.obtenerInstancia();
 		modelAndView.addObject("transferParticular", new TransferParticular());
 		modelAndView.addObject("transferEmpresa", new TransferEmpresa());
 		modelAndView.setViewName("crearCuenta");
-	
 		return modelAndView;
 	}
 	
@@ -207,6 +217,20 @@ public class ControladorPrincipal {
 		
 		return modelAndView;
     }
+	
+	@RequestMapping(value = "/empresa/modificar", method = RequestMethod.POST)
+	public ModelAndView modificarPerfilEmpresa(@ModelAttribute("transferEmpresa") @Valid TransferEmpresa transferEmpresa) {
+		ModelAndView modelAndView = null;
+		
+		saEmpresa.save(transferEmpresa);
+		modelAndView = new ModelAndView("redirect:/empresa/perfil");
+	
+		
+		
+		return modelAndView;
+	}
+	
+	
 	
 	@RequestMapping(value ="/particular/perfil", method = RequestMethod.GET, params = {"id"})
     public ModelAndView mostrarPerfilParticular(@RequestParam("id") int id) {		
