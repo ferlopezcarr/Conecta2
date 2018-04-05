@@ -57,7 +57,19 @@
 	
   	            </div>
   	            
-  	            <div class="col-8  sep-vertical text-center">
+  	            <div class="col-12">
+ 		          	 <table>
+ 		          	  	<tr th:each="oferta : ${listaOfertas}">
+	  						<td th:text="${oferta.tituloOferta}">Titulo oferta</td>
+	  						<td th:text="${oferta.tipoJornada}">Tipo jornada</td>
+	  						<td th:text="${oferta.tipoContrato}">Tipo Contrato</td>
+							<td th:text="${oferta.ciudad}">Ciudad</td>
+							<td th:text="${oferta.vacantes}">Vacantes</td>
+							<td th:text="${oferta.salario}">Salario</td>
+							<td th:text="${oferta.descripcion}">Descripcion</td>
+      					</tr>
+ 		          	
+ 		          	</table>
  		          
  		        </div>  
 	        </div> 	   
