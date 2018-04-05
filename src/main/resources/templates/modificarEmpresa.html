@@ -27,9 +27,9 @@
 	        		<div class="col-4 margenes-foto"> 
 	        			 <img src="/images/avatar.png" class=" img-thumbnail img-fluid rounded-circle" height="200px" width="200px" alt="foto perfil">
 	        	    </div>    
-	        	    	 
-	        	</div> 
-
+	        	   	</div> 
+	        	
+		<form class="formulario" th:action="@{/modificar/empresa}" th:object="${transferEmpresa}" method="POST">
   		   <div class="row">
   		     <div class="col-6  ml-auto text-center">
   		          <h3>Datos personales</h3>
@@ -104,7 +104,8 @@
 									      </div>
 									      
 									    </div>
-									  </div>
+				
+				</form>
 				<button class="btn-lg btn btn-grey">Cancelar</button>
 			</div>
   		   
