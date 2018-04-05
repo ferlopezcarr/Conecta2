@@ -31,20 +31,20 @@
   	
   	<div class="row mt-5">
   	
-		<div class="col-8  mx-auto border border-dark text-center rounded color-perfil">
+		<div class="col-8  mx-auto border border-dark text-center rounded color-perfil formulario">
 			
 			<div class="row">
 				<div class="col-2"></div>
 				<div class="col-8">
-			<!--  	<form th:action="@{/crear-oferta}" th:object="${transferOferta}" method="POST"> -->
+			 	<form >
 					  <div class="form-group ">
 					    <label for="nombre" class="sr-only">Título oferta</label>
-					<!--    <input type="text" class="form-control" id="nombre" th:field="*{nombre} placeholder="Título oferta"> -->
+						<input type="text" class="form-control" id="nombre" placeholder="Título oferta">
 					  </div>
 					  <div class="form-row">
 					  <div class="form-row align-items-center col-6">
 							    <div class="col-auto my-1">
-							    <!--	<input type="text" th:field="*{jornada}" id="jornada"> -->
+							    
 							      <label class="mr-sm-2 letra-oferta" for="jornada">Tipo jornada</label>
 							      <select class="custom-select mr-sm-2" id="jornada">
 							        <option selected>Completa</option>
@@ -58,7 +58,7 @@
 					   <div class="form-row align-items-center col-6">
 							    <div class="col-auto my-1">
 							      <label class="mr-sm-2 letra-oferta" for="Contrato">Tipo contrato</label>
-							    <!--  <input type="text" th:field="*{contrato}" id="contrato"> -->
+							    
 							      <select class="custom-select mr-sm-2" id="Contrato">
 							        <option selected>Indefinido</option>
 							        <option value="1">Indefinido</option>
@@ -69,23 +69,27 @@
 							    </div>
 					    </div>
 					  </div>
-					  <div class="form-row mt-4">
-					    <div class="form-group col-md-6">
+					  <div class="form-row mt-3">
+					    <div class="form-group col-4">
 					      <label for="ciudad" class ="sr-only">City</label>
-					   <!--   <input type="text" th:field="*{ccaa} class="form-control" id="ciudad" placeholder="Ciudad"> -->
+					   		 <input type="text" class="form-control" id="ciudad" placeholder="Ciudad">
 					    </div>
 					   
-					    <div class="form-group col-6">
+					    <div class="form-group col-4">
+					    <label for="salario" class="sr-only">Vacantes</label>
+					   	<input type="text" class="form-control" id="vacantes" placeholder="Vacantes">
+					 	</div>
+					 	
+					 	<div class="form-group col-4">
 					    <label for="salario" class="sr-only">Salario</label>
-					   <!-- <input type="text" th:field="*{salario} class="form-control" id="salario" placeholder="Salario"> -->
-					 
-					     
-					  </div>
+					   	<input type="text" class="form-control" id="salario" placeholder="Salario">
+					 	</div>
+					 	
 					  
 					  </div>
-					  <div class="form-row mt-3">
+					  <div class="form-row mt-2">
 					  <label for="descripcion" class= "letra-oferta">Descripcion:</label>
-					<!--    <input type="text" th:field="*{descripcion}" id="descripcion">-->
+
 					    <textarea class="form-control " rows="5" id="descripcion" placeholder="Añade aquí los detalles de la oferta..."></textarea>
 					  </div>
 					  <div  class=" text-center  margen-botones">
