@@ -8,22 +8,81 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous" />
     
     <!-- Style CSS -->
-    <link href="css/style.css" rel="stylesheet" />
+    <link href="../css/style.css" rel="stylesheet" />
+    
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   </head>
   <body>
-  <div class="container col-12">
   	<nav th:replace="fragments/navbar :: navbar"></nav>
   	
-  	Lista de todas las ofertas (implementar)
+  	<div class="row mt-5">
+  		
+  		
+  		<div class="  mx-auto letra-azul text-center rounded">
+  		  
+  			<h1>Ofertas publicadas</h1>
+  			
+  		</div>
+  		
+  	</div>
+  	<div class="row mt-5">
+  	
+  		<div class="col-10 color-perfil mx-auto border border-dark rounded ">
+  			 	
+	       <div class="row"> 
+	        	   <div class="col-4  ml-auto text-center"> 
+	        	   	
+	 	           <!--  <a href="/empresa/">             DESCOMENTAR PARA AÑADIR LA REDIRECCION A CREAR OFERTA!!!!!!!!! -->    
+	  	               	<button type="submit" class="btn botonAzul"  name="botonCrearOferta">Crear Oferta Nueva</button>
+	  	            <!--  </a>-->
+  	            
+	  	            <div class="mt-4">
+	  	            <button type="submit" class="btn  botonAzul"  name="botonCrearOferta">Modificar Oferta</button>
+	  	            </div>
+  	              
+	  	            <div class="mt-4">
+	  	            <button type="submit" class=" btn btn-grey"  name="botonCrearOferta">
+	  	               <span data-icon="glyphicon glyphicon-remove"></span>Eliminar Oferta
+	  	            </button>
+	  	            </div>
+	  	            
+		  	        <div class="mt-4">  
+	  	            <button type="submit" class="btn btn-finalizar"  name="botonCrearOferta">Finalizar Oferta</button>
+	  	            </div> 
+	  	            
+	  	            
+	
+  	            </div>
+  	            
+  	            <div class="col-12">
+ 		          	 <table>
+ 		          	  	<tr th:each="oferta : ${listaOfertas}">
+	  						<td th:text="${oferta.tituloOferta}">Titulo oferta</td>
+	  						<td th:text="${oferta.tipoJornada}">Tipo jornada</td>
+	  						<td th:text="${oferta.tipoContrato}">Tipo Contrato</td>
+							<td th:text="${oferta.ciudad}">Ciudad</td>
+							<td th:text="${oferta.vacantes}">Vacantes</td>
+							<td th:text="${oferta.salario}">Salario</td>
+							<td th:text="${oferta.descripcion}">Descripcion</td>
+      					</tr>
+ 		          	
+ 		          	</table>
+ 		          
+ 		        </div>  
+	        </div> 	   
+  	    </div>
+  	</div>
+
+  	
 	
 	<!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="//code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>    
-  </div>
+    <script src="/js/jquery-3.2.1.slim.min.js" ></script>
+    <script src="/js/popper.min.js"></script>
+    <script src="/js/bootstrap.min.js" ></script>    
+ 
   </body>
 </html>
