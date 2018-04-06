@@ -11,10 +11,14 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
-import org.hibernate.validator.constraints.Range;
 
 @Entity
 @Table(name = "ofertas")
@@ -31,17 +35,19 @@ public class Oferta {
 	@Length(max = 50)
 	private String nombre;
 	
-	@NotEmpty
+	@NotNull
 	private JornadaLaboral jornada;
 	
-	@NotEmpty
+	@NotNull
 	private Contrato contrato;
 	
-	@NotEmpty
-	@Range(min=1)
-	private int vacantes;
+	@Digits(integer = 3, fraction = 0)
+	@Min(value = 0)
+	@Max(value = 999)
+	private Integer vacantes;
 	
-	private double salario;
+	@DecimalMin(value = "0.00")
+	private Double salario;
 
 	private String ciudad;
 	
@@ -61,7 +67,7 @@ public class Oferta {
 	 */
 	public Oferta() {}
 	
-	public Oferta(String nombre, JornadaLaboral jornada, Contrato contrato, int vacantes, double salario, String ciudad, String descripcion, boolean activo, Empresa empresa, List<Particular> particulares) {
+	public Oferta(String nombre, JornadaLaboral jornada, Contrato contrato, Integer vacantes, Double salario, String ciudad, String descripcion, boolean activo, Empresa empresa, List<Particular> particulares) {
 		this.nombre = nombre;
 		this.jornada = jornada;
 		this.contrato = contrato;
@@ -110,19 +116,19 @@ public class Oferta {
 		this.contrato = contrato;
 	}
 	
-	public int getVacantes() {
+	public Integer getVacantes() {
 		return vacantes;
 	}
 
-	public void setVacantes(int vacantes) {
+	public void setVacantes(Integer vacantes) {
 		this.vacantes = vacantes;
 	}
 	
-	public double getSalario() {
+	public Double getSalario() {
 		return salario;
 	}
 
-	public void setSalario(double salario) {
+	public void setSalario(Double salario) {
 		this.salario = salario;
 	}
 	

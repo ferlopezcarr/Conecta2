@@ -317,6 +317,11 @@ public class ControladorPrincipal {
 		return modelAndView;
     }
 	
+	@RequestMapping("/verOferta")
+	public String verOferta(){
+		return "verOferta";
+	}
+	
 	@RequestMapping(value="/crear-oferta", method = RequestMethod.GET)
 	public ModelAndView crearOferta(){
 		ModelAndView modelAndView = this.obtenerInstancia();
@@ -345,6 +350,10 @@ public class ControladorPrincipal {
 		if (transferOferta.containsContrato(transferOferta.getContrato().toString()))
 			bindingResult.rejectValue("contrato", "error.transferOferta", "* Tipo de contrato no válido");
 			*/
+		if(transferOferta.getVacantes() == null) {
+			bindingResult.rejectValue("vacantes", "error.transferOferta", "* Debes introducir un número");
+		}
+			
 		if (bindingResult.hasErrors()) {
 			modelAndView = new ModelAndView("crearCuenta", bindingResult.getModel());
 			modelAndView.addObject("transferOferta", transferOferta);
@@ -352,7 +361,7 @@ public class ControladorPrincipal {
 		else {
 			transferOferta.setEmpresa(empresa);
 			saOferta.crearOferta(transferOferta);
-			modelAndView = new ModelAndView("redirect:/");
+			modelAndView = new ModelAndView("redirect:/verOferta");
 		}
 		
 		modelAndView.addObject("roles", Rol.values());

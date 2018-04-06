@@ -6,10 +6,14 @@ import java.util.List;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
-import org.hibernate.validator.constraints.Range;
 
 import conecta2.modelo.Contrato;
 import conecta2.modelo.Empresa;
@@ -22,17 +26,19 @@ public class TransferOferta {
 	@Length(max = 50, message = "* Por favor, el nombre no debe superar los 50 caracteres")
 	private String nombre;
 	
-	@NotEmpty(message = "* Por favor, introduzca una jornada laboral válida")
+	@NotNull(message = "* Por favor, introduzca una jornada laboral válida")
 	private JornadaLaboral jornada;
 	
-	@NotEmpty(message = "* Por favor, introduzca un contrato válido")
+	@NotNull(message = "* Por favor, introduzca un contrato válido")
 	private Contrato contrato;
 	
-	@NotEmpty(message = "* Por favor, introduzca el número de vacantes")
-	@Range(min=1, message = "* Por favor, debe haber al menos una vacante")
-	private int vacantes;
+	@Digits(integer = 3, fraction = 0, message = "* Por favor, el número de vacantes debe ser un entero")
+	@Min(value = 1, message = "* Por favor, debe haber al menos una vacante")
+	@Max(value = 999, message = "* Por favor, sólo puede haber como máximo 999 vacantes")
+	private Integer vacantes;
 	
-	private double salario;
+	@DecimalMin(value = "0.00", message = "* Debe introducir un número positivo")
+	private Double salario;
 
 	private String ciudad;
 	
@@ -52,7 +58,7 @@ public class TransferOferta {
 	 */
 	public TransferOferta() {}
 	
-	public TransferOferta(String nombre, JornadaLaboral jornada, Contrato contrato, int vacantes, double salario, String ciudad, String descripcion, boolean activo, Empresa empresa, List<Particular> particulares) {
+	public TransferOferta(String nombre, JornadaLaboral jornada, Contrato contrato, Integer vacantes, Double salario, String ciudad, String descripcion, boolean activo, Empresa empresa, List<Particular> particulares) {
 		this.nombre = nombre;
 		this.jornada = jornada;
 		this.contrato = contrato;
@@ -93,19 +99,19 @@ public class TransferOferta {
 		this.contrato = contrato;
 	}
 
-	public int getVacantes() {
+	public Integer getVacantes() {
 		return vacantes;
 	}
 
-	public void setVacantes(int vacantes) {
+	public void setVacantes(Integer vacantes) {
 		this.vacantes = vacantes;
 	}
 
-	public double getSalario() {
+	public Double getSalario() {
 		return salario;
 	}
 
-	public void setSalario(double salario) {
+	public void setSalario(Double salario) {
 		this.salario = salario;
 	}
 
