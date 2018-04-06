@@ -1,10 +1,15 @@
 package conecta2.modelo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Pattern;
 
@@ -71,6 +76,9 @@ public class Particular {
 	
 	
 	private int puntuacion;
+	
+	@ManyToMany
+	private List<Oferta> ofertas;
 
 	/**
 	 * Constructora sin argumentos necesaria para JPA
@@ -96,6 +104,7 @@ public class Particular {
 		this.password = password;
 		this.activo = activo;
 		this.puntuacion = puntuacion;
+		this.ofertas = new ArrayList<Oferta>();
 	}
 	
 	public int getId() {
@@ -170,6 +179,16 @@ public class Particular {
 		this.puntuacion = puntuacion;
 	}
 	
+	
+	
+	public List<Oferta> getOfertas() {
+		return ofertas;
+	}
+
+	public void setOfertas(List<Oferta> ofertas) {
+		this.ofertas = ofertas;
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (o == null) return false;

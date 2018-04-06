@@ -107,6 +107,7 @@ public class SAEmpresaImp implements SAEmpresa {
 	 		 empresa.setTelefono(transferEmpresa.getTelefono());
 	 		 empresa.setDescripcion(transferEmpresa.getDescripcion());
 	 	 }
+
 	 	 
          empresa.setActivo(transferEmpresa.getActivo());
          empresa.setPuntuacion(transferEmpresa.getPuntuacion());

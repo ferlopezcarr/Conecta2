@@ -14,11 +14,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import conecta2.modelo.Contrato;
 import conecta2.modelo.Empresa;
+import conecta2.modelo.JornadaLaboral;
 import conecta2.modelo.Particular;
 import conecta2.modelo.Rol;
 import conecta2.servicioAplicacion.SAEmail;
 import conecta2.servicioAplicacion.SAEmpresa;
+import conecta2.servicioAplicacion.SAOferta;
 import conecta2.servicioAplicacion.SAParticular;
 import conecta2.transfer.TransferParticular;
 import conecta2.transfer.TransferEmpresa;
@@ -36,13 +39,15 @@ public class ControladorPrincipal {
 	private SAEmpresa saEmpresa;
 	@Autowired
 	private SAEmail saEmail;
+	@Autowired
+	private SAOferta saOferta;
 	
 	private ModelAndView modeloyVista;
 	
 	public  ModelAndView obtenerInstancia() {
 
 		if (modeloyVista == null) {
-
+			
 			modeloyVista = new ModelAndView();
 		}
 
@@ -260,26 +265,69 @@ public class ControladorPrincipal {
 		return modelAndView;
     }
 	
+	
+	
+	
+	
+	// ------------- OFERTAS ------------- //
+	
 	@RequestMapping("/paginaMenuEmpresa")
 	public String paginaMenuEmpresa(){
 		return "paginaMenuEmpresa";
 	}
 	
-	@RequestMapping("/crear-oferta")
-	public String crearOferta(){
-		return "crearOferta";
-	}
+	@RequestMapping(value ="/ofertas", method = RequestMethod.GET)
+    public ModelAndView mostrarOfertas() {			
+		ModelAndView modelAndView = new ModelAndView();		
+		modelAndView.addObject("listaOfertas", saOferta.buscarTodas());
+		modelAndView.setViewName("paginaMenuEmpresa"); //Cambiar a la vista de modificar particular
+		
+		return modelAndView;
+    }
 	
-	/*
 	@RequestMapping(value="/crear-oferta", method = RequestMethod.GET)
 	public ModelAndView crearOferta(){
-		ModelAndView modelAndView = new ModelAndView();
+		ModelAndView modelAndView = this.obtenerInstancia();
+		modelAndView.addObject("transferOferta", new TransferOferta());
+		modelAndView.addObject("jornadaValues", JornadaLaboral.values());
+		modelAndView.addObject("contratoValues", Contrato.values());
+		modelAndView.setViewName("crearOferta");
+		return modelAndView;
+	}
+	
+	@RequestMapping(value="/crear-oferta", method = RequestMethod.POST)
+	public ModelAndView crearOfertaPost(@ModelAttribute("transferOferta") @Valid TransferOferta transferOferta, BindingResult bindingResult){
+		ModelAndView modelAndView = this.obtenerInstancia();
 		modelAndView.addObject("transferOferta", new TransferOferta());
 		modelAndView.setViewName("crearOferta");
 	
+		//Oferta oferta = saOferta.buscarPorId(transferOferta.getId());
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		Empresa empresa = saEmpresa.buscarPorEmail(auth.getName());
+		
+		transferOferta.getJornadaLaboral();
+		
+		/*
+		if (transferOferta.containsJornada(transferOferta.getJornadaLaboral().toString()))
+			bindingResult.rejectValue("jornada", "error.transferOferta", "* Jornada laboral no válida");
+		if (transferOferta.containsContrato(transferOferta.getContrato().toString()))
+			bindingResult.rejectValue("contrato", "error.transferOferta", "* Tipo de contrato no válido");
+			*/
+		if (bindingResult.hasErrors()) {
+			modelAndView = new ModelAndView("crearCuenta", bindingResult.getModel());
+			modelAndView.addObject("transferOferta", transferOferta);
+		}			
+		else {
+			transferOferta.setEmpresa(empresa);
+			saOferta.crearOferta(transferOferta);
+			modelAndView = new ModelAndView("redirect:/");
+		}
+		
+		modelAndView.addObject("roles", Rol.values());
+		
 		return modelAndView;
 	}
-	*/
+	
 	
 	/**
 	 * Método que añade al particular como variable permanente para el modelo

@@ -1,9 +1,15 @@
 package conecta2.modelo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.validator.constraints.Length;
@@ -37,27 +43,39 @@ public class Oferta {
 	
 	private double salario;
 
-	private String ccaa;
+	private String ciudad;
 	
 	@Length(max = 1000)
 	private String descripcion;
 	
 	private boolean activo;
 	
+	@ManyToMany(mappedBy="ofertas", fetch=FetchType.LAZY)
+	private List<Particular> particulares;
+	
+	@ManyToOne (fetch=FetchType.EAGER)
+	private Empresa empresa;
+
 	/**
 	 * Constructora sin argumentos necesaria para JPA
 	 */
 	public Oferta() {}
 	
-	public Oferta(String nombre, JornadaLaboral jornada, Contrato contrato, int vacantes, double salario, String ccaa, String descripcion, boolean activo) {
+	public Oferta(String nombre, JornadaLaboral jornada, Contrato contrato, int vacantes, double salario, String ciudad, String descripcion, boolean activo, Empresa empresa, List<Particular> particulares) {
 		this.nombre = nombre;
 		this.jornada = jornada;
 		this.contrato = contrato;
 		this.vacantes = vacantes;
 		this.salario = salario;
-		this.ccaa = ccaa;
+		this.ciudad = ciudad;
 		this.descripcion = descripcion;
 		this.activo = activo;
+		this.empresa = empresa;
+		
+		if(particulares == null)
+			this.particulares = new ArrayList<Particular>();
+		else
+			this.particulares = particulares;
 	}
 	
 	public int getId() {
@@ -108,12 +126,12 @@ public class Oferta {
 		this.salario = salario;
 	}
 	
-	public String getCcaa() {
-		return ccaa;
+	public String getCiudad() {
+		return ciudad;
 	}
 
-	public void setCcaa(String ccaa) {
-		this.ccaa = ccaa;
+	public void setCiudad(String ciudad) {
+		this.ciudad = ciudad;
 	}
 	
 	public String getDescripcion() {
@@ -130,6 +148,44 @@ public class Oferta {
 
 	public void setActivo(boolean activo) {
 		this.activo = activo;
+	}
+	
+	public List<Particular> getParticulares() {
+		return particulares;
+	}
+
+	public void setParticulares(List<Particular> particulares) {
+		this.particulares = particulares;
+	}
+
+	public Empresa getEmpresa() {
+		return empresa;
+	}
+
+	public void setEmpresa(Empresa empresa) {
+		this.empresa = empresa;
+	}
+	
+	public boolean containsJornada(String text) {
+		
+	    for (JornadaLaboral j : JornadaLaboral.values()) {
+	        if (j.name().equals(text)) {
+	            return true;
+	        }
+	    }
+
+	    return false;
+	}
+	
+	public boolean containsContrato(String text) {
+		
+	    for (Contrato j : Contrato.values()) {
+	        if (j.name().equals(text)) {
+	            return true;
+	        }
+	    }
+
+	    return false;
 	}
 	
 }

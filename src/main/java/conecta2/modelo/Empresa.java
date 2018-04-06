@@ -1,10 +1,15 @@
 package conecta2.modelo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Pattern;
 
@@ -68,6 +73,8 @@ public class Empresa {
 	private int puntuacion;
 	
 	private String descripcion;
+	@OneToMany(mappedBy = "empresa",fetch=FetchType.LAZY)
+	private List<Oferta> ofertas;
 	
 	/**
 	 * Constructora sin argumentos necesaria para JPA
@@ -158,6 +165,15 @@ public class Empresa {
 		this.puntuacion = puntuacion;
 	}
 	
+	
+	public List<Oferta> getOfertas() {
+		return ofertas;
+	}
+
+	public void setOfertas(List<Oferta> ofertas) {
+		this.ofertas = ofertas;
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (o == null) return false;
