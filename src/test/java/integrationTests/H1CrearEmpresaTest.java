@@ -28,7 +28,7 @@ public class H1CrearEmpresaTest {
 	@Test
 	public void testBuscarPorEmail() {
 		
-		TransferEmpresa empresa = new TransferEmpresa("empresaPruebaNombre", "A28599033", "123456789", "empresaPruebaEmail@empresaPruebaEmail.com", "Abc1111", "Abc1111",true);
+		TransferEmpresa empresa = new TransferEmpresa("empresaPruebaNombre", "A28599033", "123456789", "empresaPruebaEmail@empresaPruebaEmail.com", "Abc1111", "Abc1111","",true);
 		
 		saEmpresa.save(empresa);
 
@@ -47,7 +47,7 @@ public class H1CrearEmpresaTest {
 	@Test
 	public void testBuscarPorCif() {
 		
-		TransferEmpresa empresa = new TransferEmpresa("empresaPruebaNombre", "A28599033", "123456789", "empresaPruebaEmail@empresaPruebaEmail.com", "Abc1111", "Abc1111",true);
+		TransferEmpresa empresa = new TransferEmpresa("empresaPruebaNombre", "A28599033", "123456789", "empresaPruebaEmail@empresaPruebaEmail.com", "Abc1111", "Abc1111","", true);
 		
 		saEmpresa.save(empresa);
 

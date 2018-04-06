@@ -28,7 +28,7 @@ public class HU4VerPerfilEmpresaTest {
 	@Test
 	public void testEmpresaFoundedByEmailYActivo() {
 		
-		TransferEmpresa empresa = new TransferEmpresa("empresaPruebaNombre", "A28599033", "123456789", "empresaPruebaEmail@empresaPruebaEmail.com", "Abc1111", "Abc1111",true);
+		TransferEmpresa empresa = new TransferEmpresa("empresaPruebaNombre", "A28599033", "123456789", "empresaPruebaEmail@empresaPruebaEmail.com", "Abc1111", "Abc1111","", true);
 		
 		saEmpresa.save(empresa);
 
@@ -45,7 +45,7 @@ public class HU4VerPerfilEmpresaTest {
 	@Test
 	public void testEmpresaFoundedByCifYActivo() {
 		
-		TransferEmpresa empresa = new TransferEmpresa("empresaPruebaNombre", "A28599033", "123456789", "empresaPruebaEmail@empresaPruebaEmail.com", "Abc1111", "Abc1111",true);
+		TransferEmpresa empresa = new TransferEmpresa("empresaPruebaNombre", "A28599033", "123456789", "empresaPruebaEmail@empresaPruebaEmail.com", "Abc1111", "Abc1111","",true);
 		
 		saEmpresa.save(empresa);
 

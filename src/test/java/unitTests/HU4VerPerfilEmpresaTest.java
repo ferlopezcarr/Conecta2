@@ -24,7 +24,7 @@ public class HU4VerPerfilEmpresaTest {
 	@Test
 	public void testEmpresaFoundedByEmailYActivo() {
 		
-		Empresa empresa = new Empresa("empresaPruebaNombre", "A28599033", "123456789", "empresaPruebaEmail@empresaPruebaEmail.com", "Abc1111", true, 0);
+		Empresa empresa = new Empresa("empresaPruebaNombre", "A28599033", "123456789", "empresaPruebaEmail@empresaPruebaEmail.com", "Abc1111", true, 0, "");
 
 		daoEmpresa.save(empresa);
 		
@@ -39,7 +39,7 @@ public class HU4VerPerfilEmpresaTest {
 	@Test
 	public void testEmpresaFoundedByCifYActivo() {
 		
-		Empresa empresa = new Empresa("empresaPruebaNombre", "A28599033", "123456789", "empresaPruebaEmail@empresaPruebaEmail.com", "Abc1111", true, 0);
+		Empresa empresa = new Empresa("empresaPruebaNombre", "A28599033", "123456789", "empresaPruebaEmail@empresaPruebaEmail.com", "Abc1111", true, 0, "");
 		
 		daoEmpresa.save(empresa);
 		

@@ -24,7 +24,7 @@ public class HU5ModificarPerfilEmpresa {
 	
 	@Test
 	public void testModifyExistingCompany() {
-		Empresa empresa = new Empresa("empresaPruebaNombre", "A11223344", "123456789", "empresaPruebaEmail@empresaPruebaEmail.com", "Abc1111", true, 0);
+		Empresa empresa = new Empresa("empresaPruebaNombre", "A11223344", "123456789", "empresaPruebaEmail@empresaPruebaEmail.com", "Abc1111", true, 0, "");
 		
 		daoEmpresa.save(empresa);
 		
