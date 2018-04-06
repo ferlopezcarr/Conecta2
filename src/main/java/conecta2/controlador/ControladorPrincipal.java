@@ -174,7 +174,9 @@ public class ControladorPrincipal {
 
 		if(obj==null) {
 			//MOSTRAR MENSAJE DE ERROR
-
+			modelAndView = new ModelAndView("redirect:/login");
+			String msg = "Código de confirmación incorrecto";
+			modelAndView.addObject("errorPopUp", msg);
 		}
 		else{
 			//ES UNA EMPRESA
@@ -245,7 +247,7 @@ public class ControladorPrincipal {
 		Particular particular = saParticular.buscarPorId(id);		
 		ModelAndView modelAndView = new ModelAndView();		
 		TransferParticular tParticular = new TransferParticular(particular.getNombre(), particular.getApellidos(), particular.getDni(),
-				particular.getTelefono(), particular.getEmail(), "0", true, particular.getPuntuacion());
+				particular.getTelefono(), particular.getEmail(), "0", true, particular.getPuntuacion(),particular.getDescripcion());
 		modelAndView.addObject("transferParticular", tParticular);
 		modelAndView.setViewName("perfilParticular");
 		
@@ -257,11 +259,26 @@ public class ControladorPrincipal {
 		Particular particular = saParticular.buscarPorId(id);		
 		ModelAndView modelAndView = new ModelAndView();		
 		TransferParticular tParticular = new TransferParticular(particular.getNombre(), particular.getApellidos(), particular.getDni(),
-				particular.getTelefono(), particular.getEmail(), "0", true, particular.getPuntuacion());
+				particular.getTelefono(), particular.getEmail(), "0", true, particular.getPuntuacion(),particular.getDescripcion());
 		
 		modelAndView.addObject("transferParticular", tParticular);
 		modelAndView.setViewName("modificarParticular"); //Cambiar a la vista de modificar particular
 		
+		return modelAndView;
+    }
+	
+	@RequestMapping(value ="/particular/modificar", method = RequestMethod.POST)
+    public ModelAndView modificarPerfilParticular(@ModelAttribute("transferParticular") @Valid TransferParticular transferParticular, BindingResult bindingResult) {
+		ModelAndView modelAndView = null;
+		Particular particular = saParticular.buscarPorEmail(transferParticular.getEmail());
+		if (bindingResult.hasErrors() && bindingResult.getErrorCount() > 2) {		
+			modelAndView = new ModelAndView("modificarParticular", bindingResult.getModel());
+			modelAndView.addObject("transferParticular", transferParticular);
+		}			
+		else {
+			saParticular.save(transferParticular);
+			modelAndView = new ModelAndView("redirect:/particular/perfil?id=" + particular.getId());
+		}		
 		return modelAndView;
     }
 	

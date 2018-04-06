@@ -99,6 +99,7 @@ public class Empresa {
 		this.password = password;
 		this.activo = activo;
 		this.puntuacion = puntuacion;
+		this.ofertas = new ArrayList<Oferta>();
 	}
 
 	public int getId() {

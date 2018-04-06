@@ -80,6 +80,7 @@ public class Particular {
 	@ManyToMany
 	private List<Oferta> ofertas;
 
+	private String descripcion;
 	/**
 	 * Constructora sin argumentos necesaria para JPA
 	 */
@@ -95,7 +96,7 @@ public class Particular {
 	 * @param activo
 	 * @param puntuacion
 	 */
-	public Particular(String nombre, String apellidos, String dni, String telefono, String email, String password, boolean activo, int puntuacion ) {
+	public Particular(String nombre, String apellidos, String dni, String telefono, String email, String password, boolean activo, int puntuacion, String descripcion) {
 		this.nombre = nombre;
 		this.apellidos = apellidos;
 		this.dni = dni;
@@ -104,6 +105,7 @@ public class Particular {
 		this.password = password;
 		this.activo = activo;
 		this.puntuacion = puntuacion;
+		this.descripcion = descripcion;
 		this.ofertas = new ArrayList<Oferta>();
 	}
 	
@@ -179,7 +181,13 @@ public class Particular {
 		this.puntuacion = puntuacion;
 	}
 	
-	
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
 	
 	public List<Oferta> getOfertas() {
 		return ofertas;
@@ -188,7 +196,7 @@ public class Particular {
 	public void setOfertas(List<Oferta> ofertas) {
 		this.ofertas = ofertas;
 	}
-
+	
 	@Override
 	public boolean equals(Object o) {
 		if (o == null) return false;
@@ -206,7 +214,8 @@ public class Particular {
 	    		(this.email != partObj.email) ||
 	    		(this.password != partObj.password) ||
 	    		(this.activo != partObj.activo) ||
-	    		(this.puntuacion != partObj.puntuacion)
+	    		(this.puntuacion != partObj.puntuacion) ||
+	    		(this.descripcion != partObj.descripcion)
 	    		);
 	}
 }

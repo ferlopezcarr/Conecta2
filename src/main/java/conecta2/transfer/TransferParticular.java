@@ -41,9 +41,11 @@ public class TransferParticular {
 	
 	private int puntuacion;
 	
+	private String descripcion;
+	
 	public TransferParticular() {}
 	
-	public TransferParticular(String nombre, String apellidos, String dni, String telefono, String email, String password, boolean activo, int puntuacion) {
+	public TransferParticular(String nombre, String apellidos, String dni, String telefono, String email, String password, boolean activo, int puntuacion, String descripcion) {
 		this.nombre = nombre;
 		this.apellidos = apellidos;
 		this.dni = dni;
@@ -51,6 +53,7 @@ public class TransferParticular {
 		this.email = email;
 		this.password = password;
 		this.activo= activo;
+		this.descripcion = descripcion;
 	}
 	
 	public boolean getActivo() {
@@ -123,5 +126,13 @@ public class TransferParticular {
 
 	public void setPuntuacion(int puntuacion) {
 		this.puntuacion = puntuacion;
-	}	
+	}
+	
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
 }
