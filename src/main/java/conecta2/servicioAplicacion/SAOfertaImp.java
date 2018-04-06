@@ -34,7 +34,7 @@ public class SAOfertaImp implements SAOferta {
 	}
 
 	@Override
-	public List<Oferta> listarOfertas() {
+	public List<Oferta> buscarTodas() {
 		// TODO Auto-generated method stub
 		return repoOferta.findAll();
 	}

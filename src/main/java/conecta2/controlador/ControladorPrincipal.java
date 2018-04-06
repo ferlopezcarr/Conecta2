@@ -19,10 +19,10 @@ import conecta2.modelo.Particular;
 import conecta2.modelo.Rol;
 import conecta2.servicioAplicacion.SAEmail;
 import conecta2.servicioAplicacion.SAEmpresa;
+import conecta2.servicioAplicacion.SAOferta;
 import conecta2.servicioAplicacion.SAParticular;
 import conecta2.transfer.TransferParticular;
 import conecta2.transfer.TransferEmpresa;
-import conecta2.transfer.TransferOferta;
 /**
  * Controlador de la aplicación, en él se mapean las diferentes peticiones (GET, POST...),
  * @author ferlo
@@ -36,6 +36,8 @@ public class ControladorPrincipal {
 	private SAEmpresa saEmpresa;
 	@Autowired
 	private SAEmail saEmail;
+	@Autowired
+	private SAOferta saOferta;
 	
 	private ModelAndView modeloyVista;
 	
@@ -267,6 +269,15 @@ public class ControladorPrincipal {
 	public String crearOferta(){
 		return "crearOferta";
 	}
+	
+	@RequestMapping(value ="/ofertas", method = RequestMethod.GET)
+    public ModelAndView mostrarOfertas() {			
+		ModelAndView modelAndView = new ModelAndView();		
+		modelAndView.addObject("listaOfertas", saOferta.buscarTodas());
+		modelAndView.setViewName("paginaMenuEmpresa"); //Cambiar a la vista de modificar particular
+		
+		return modelAndView;
+    }
 	
 	/*
 	@RequestMapping(value="/crear-oferta", method = RequestMethod.GET)
