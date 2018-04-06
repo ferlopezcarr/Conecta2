@@ -29,12 +29,12 @@
 	        	    </div>    
 	        	   	</div> 
 	        	
-		<form class="formulario" th:action="@{/modificar/empresa}" th:object="${transferEmpresa}" method="POST">
+		<form class="formulario" th:action="@{/empresa/modificar}" th:object="${transferEmpresa}" method="POST">
   		   <div class="row">
   		     <div class="col-6  ml-auto text-center">
   		          <h3>Datos personales</h3>
   		          <hr class="mb-4 separador-gris">
-  		          <form>
+  		          
   		          
   		          
 			  		 
@@ -42,8 +42,8 @@
 			  	    <div class="form-group row ">
 			  		<label class="perfilTitulo letra-azul col-form-label col-3  margen-datos" id="nombreEmpresa" for="Nombre"><u>Nombre:</u> </label>
 			  		<div>				  		  		
-			  		  <input class="form-control " th:value=${transferEmpresa.nombreEmpresa}></input>
-			  		   <!--  <label th:if="${#fields.hasErrors('nombreEmpresa')}" th:errors="*{nombreEmpresa}" class="validation-message error"></label>-->
+			  		  <input class="form-control " th:value=${transferEmpresa.nombreEmpresa} th:field="*{nombreEmpresa}"></input>
+			  		   <label th:if="${#fields.hasErrors('nombreEmpresa')}" th:errors="*{nombreEmpresa}" class="validation-message error"></label>
 			  		 </div>
 			  		</div>				  		 
 			  		 
@@ -51,14 +51,17 @@
 			  		  <div class="form-group row">
 			  		<label class="perfilTitulo letra-azul col-form-label col-3 margen-datos" for="CIF"><u>CIF:</u> </label>					  		  		
 			  		  <span class="form-control-plaintext " th:text=${transferEmpresa.cif}></span>
+			  		  <input type="hidden" th:value="${transferEmpresa.cif}" th:field="*{cif}" />
+			  		  <input type="hidden" th:value="${transferEmpresa.activo}" th:field="*{activo}" />
+			  		  
 			  		 </div>
 			  		 
 			  		 
 			  		  <div class="form-group row ">
 			  		<label class="perfilTitulo letra-azul col-form-label col-3  margen-datos" id="tlfEmpresa" for="Teléfono"><u>Teléfono:</u> </label>
 			  		<div>				  		  		
-			  		  <input class="form-control " th:value=${transferEmpresa.telefono}></input>
-			  		   <!--  <label th:if="${#fields.hasErrors('tlfEmpresa')}" th:errors="*{tlfEmpresa}" class="validation-message error"></label>-->
+			  		  <input class="form-control " th:value=${transferEmpresa.telefono} th:field="*{telefono}"></input>
+			  		  <label th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}" class="validation-message error"></label>
 			  		 </div>
 			  		</div>
 			  		 
@@ -66,6 +69,8 @@
 			  		  <div class="form-group row">
 			  		<label class="perfilTitulo letra-azul col-form-label col-3 margen-datos " for="Email"><u>Email:</u> </label>					  		  		
 			  		  <span class="form-control-plaintext " th:text=${transferEmpresa.email}></span>
+			  		  <input type="hidden" th:value="${transferEmpresa.email}" th:field="*{email}" />
+			  		  
 			  		 </div>
 			  	    
 			  		</form>
@@ -76,7 +81,7 @@
   		          <hr class="mb-4 separador-gris">
   		     	<div class="form-group text-left">
   		     	<label for="descripcion" class="letra-azul perfilTitulo "><u>Descripción:</u></label>
-  		     	<textarea class="form-control " rows="5" id="descripcion" ></textarea>
+  		     	<textarea class="form-control " rows="5" id="descripcion" th:text=${transferEmpresa.descripcion} th:field="*{descripcion}"></textarea>
   		        </div>
   		     
   		     

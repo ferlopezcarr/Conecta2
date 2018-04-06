@@ -36,6 +36,8 @@ public class TransferEmpresa {
 	
 	private int puntuacion;
 	
+	private String descripcion;
+	
 	public TransferEmpresa() {}
 		
 	public TransferEmpresa(String nombreEmpresa, String cif, String telefono, String email, String password, String passwordConfirmation, boolean activo) {
@@ -110,6 +112,14 @@ public class TransferEmpresa {
 
 	public void setPuntuacion(int puntuacion) {
 		this.puntuacion = puntuacion;
+	}
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
 	}
 		
 	

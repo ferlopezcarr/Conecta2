@@ -102,9 +102,12 @@ public class SAEmpresaImp implements SAEmpresa {
 	 				 transferEmpresa.getActivo(),
 	 				 transferEmpresa.getPuntuacion()
 	 			);
+	 	 }else {
+	 		 empresa.setNombreEmpresa(transferEmpresa.getNombreEmpresa());
+	 		 empresa.setTelefono(transferEmpresa.getTelefono());
+	 		 empresa.setDescripcion(transferEmpresa.getDescripcion());
 	 	 }
 	 	 
-         //empresa.setPassword(bCryptPasswordEncoder.encode(transferEmpresa.getPassword()));
          empresa.setActivo(transferEmpresa.getActivo());
          empresa.setPuntuacion(transferEmpresa.getPuntuacion());
      

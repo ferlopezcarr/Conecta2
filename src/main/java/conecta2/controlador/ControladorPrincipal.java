@@ -198,9 +198,9 @@ public class ControladorPrincipal {
     public ModelAndView mostrarPerfilEmpresa(@RequestParam("id") int id) {		
 		Empresa empresa = saEmpresa.buscarPorId(id);		
 		ModelAndView modelAndView = new ModelAndView();		
-		TransferEmpresa tEmpresa = new TransferEmpresa(empresa.getNombreEmpresa(), empresa.getCif(), empresa.getTelefono(), empresa.getEmail(), "0", "0", true);
+		TransferEmpresa transferEmpresa = new TransferEmpresa(empresa.getNombreEmpresa(), empresa.getCif(), empresa.getTelefono(), empresa.getEmail(), "0", "0", true);
 		
-		modelAndView.addObject("transferEmpresa", tEmpresa);
+		modelAndView.addObject("transferEmpresa", transferEmpresa);
 		modelAndView.setViewName("perfilEmpresa");
 		
 		return modelAndView;
@@ -210,23 +210,26 @@ public class ControladorPrincipal {
     public ModelAndView modificarPerfilEmpresa(@RequestParam("id") int id) {		
 		Empresa empresa = saEmpresa.buscarPorId(id);		
 		ModelAndView modelAndView = new ModelAndView();		
-		TransferEmpresa tEmpresa = new TransferEmpresa(empresa.getNombreEmpresa(), empresa.getCif(), empresa.getTelefono(), empresa.getEmail(), "0", "0", true);
+		TransferEmpresa transferEmpresa = new TransferEmpresa(empresa.getNombreEmpresa(), empresa.getCif(), empresa.getTelefono(), empresa.getEmail(), "0", "0", true);
 		
-		modelAndView.addObject("transferEmpresa", tEmpresa);
+		modelAndView.addObject("transferEmpresa", transferEmpresa);
 		modelAndView.setViewName("modificarEmpresa");
 		
 		return modelAndView;
     }
 	
 	@RequestMapping(value = "/empresa/modificar", method = RequestMethod.POST)
-	public ModelAndView modificarPerfilEmpresa(@ModelAttribute("transferEmpresa") @Valid TransferEmpresa transferEmpresa) {
+	public ModelAndView modificarPerfilEmpresa(@ModelAttribute("transferEmpresa") TransferEmpresa transferEmpresa,BindingResult bindingResult) {
 		ModelAndView modelAndView = null;
-		
-		saEmpresa.save(transferEmpresa);
-		modelAndView = new ModelAndView("redirect:/empresa/perfil");
-	
-		
-		
+		if (bindingResult.hasErrors()) {
+			modelAndView = new ModelAndView("modificarEmpresa", bindingResult.getModel());
+			modelAndView.addObject("transferEmpresa", transferEmpresa);
+		}else {
+			saEmpresa.save(transferEmpresa);
+			modelAndView = new ModelAndView("redirect:/empresa/perfil");
+
+		}
+
 		return modelAndView;
 	}
 	
@@ -238,7 +241,6 @@ public class ControladorPrincipal {
 		ModelAndView modelAndView = new ModelAndView();		
 		TransferParticular tParticular = new TransferParticular(particular.getNombre(), particular.getApellidos(), particular.getDni(),
 				particular.getTelefono(), particular.getEmail(), "0", true, particular.getPuntuacion());
-		
 		modelAndView.addObject("transferParticular", tParticular);
 		modelAndView.setViewName("perfilParticular");
 		

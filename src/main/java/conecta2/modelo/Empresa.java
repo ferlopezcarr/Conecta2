@@ -67,6 +67,7 @@ public class Empresa {
 	
 	private int puntuacion;
 	
+	private String descripcion;
 	
 	/**
 	 * Constructora sin argumentos necesaria para JPA
@@ -175,6 +176,14 @@ public class Empresa {
 	    		(this.activo != empObj.activo) ||
 	    		(this.puntuacion != empObj.puntuacion)
 	    		);
+	}
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
 	}
 
 
