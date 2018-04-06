@@ -184,7 +184,11 @@ a.navbar-brand{
 	background-repeat:no-repeat;
 }
 
-
+.containter-ver-oferta{
+	background-image: url(../images/luz.png);
+	background-size: 100%;
+	background-repeat:no-repeat;
+}
 
 .margen-texto-inicio{
 	margin-top: 2%;
@@ -245,4 +249,15 @@ a.navbar-brand{
 .btn-finalizar{
 	background-color: #ff6340;
 	color: #fff;
+}
+
+.separador-dos-lineas{
+	
+
+   border-top: 2px solid ; 
+   border-bottom: 2px solid ; 
+   border-left:none; 
+   border-right:none; 
+   height: 6px;
+  
 }

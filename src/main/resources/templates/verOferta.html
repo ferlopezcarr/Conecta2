@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+  <head th:fragment="head">
+    <title>Conecta2</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous" />
+    
+    <!-- Style CSS -->
+    <link href="../css/style.css" rel="stylesheet" />
+    
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  </head>
+  <body>
+  	<nav th:replace="fragments/navbar :: navbar"></nav>
+  	
+  	
+  	<div class="row mt-5">
+  	
+  		<div class="col-10 color-perfil mx-auto border border-dark rounded container-ver-oferta">
+  		 
+	        <div class="row">				    
+				<div class="col-2"></div>
+				<div class="col-8 ">  
+				    
+				    
+				    <form>
+				    
+				       <div class="form-group text-center">
+			  		      <label  for="Nombre"><h1><u>NOMBRE OFERTA<u></u></h1></label>
+			  		     <!--  <span class="form-control-plaintext " th:text=${transferOferta.nombre}></span>	-->			  					  			
+			  		   </div>
+				    
+				    		<div class="form-row mt-4  ">
+						      <div class="form-row align-items-center col-6  letra-azul ">
+								    <div class="col-auto my-1 ">
+					  		          <label class=" mr-sm-2 " for="Nombre">NOMBRE EMPRESA:</label>
+					  		     <!--  <span class="form-control-plaintext " th:text=${transferEmpresa.nombre}></span>	-->	
+					  		        </div>
+					  		   </div> 
+					  		   
+					  		  <div class="form-row align-items-center col-6 letra-azul">
+								    <div class="col-auto my-1 ">
+					  		          <label class=" mr-sm-2" for="Nombre">NUMERO VACANTES:</label>
+					  		     <!--  <span class="form-control-plaintext " th:text=${transferOferta.vacantes}></span>	-->	
+					  		        </div>
+					  		   </div>  
+					  		         		  					  			
+				  		</div>
+				    
+					    <div class="form-row mt-4">
+						      <div class="form-row align-items-center col-6 letra-azul">
+								    <div class="col-auto my-1">
+					  		          <label class="mr-sm-2" for="Nombre">JORNADA:</label>
+					  		     <!--  <span class="form-control-plaintext " th:text=${transferOferta.jornada}></span>	-->	
+					  		        </div>
+					  		   </div> 
+					  		   
+					  		  <div class="form-row align-items-center col-6 letra-azul">
+								    <div class="col-auto my-1">
+					  		          <label class=" mr-sm-2" for="Nombre">CONTRATO:</label>
+					  		     <!--  <span class="form-control-plaintext " th:text=${transferOferta.contrato}></span>	-->	
+					  		        </div>
+					  		   </div>  
+					  		         		  					  			
+				  		</div>
+				  		
+				  		<div class="form-row mt-4">
+						      <div class="form-row align-items-center col-6 letra-azul">
+								    <div class="col-auto my-1">
+					  		          <label class=" mr-sm-2" for="Nombre">CIUDAD:</label>
+					  		     <!--  <span class="form-control-plaintext " th:text=${transferOferta.ciudad}></span>	-->	
+					  		        </div>
+					  		   </div> 
+					  		   
+					  		  <div class="form-row align-items-center col-6 letra-azul">
+								    <div class="col-auto my-1">
+					  		          <label class=" mr-sm-2" for="Nombre">SALARIO:</label>
+					  		     <!--  <span class="form-control-plaintext " th:text=${transferOferta.salario}></span>	-->	
+					  		        </div>
+					  		   </div>  
+					  		         		  					  			
+				  		</div>
+				  		<hr class="separador-dos-lineas">
+				  		<div class="form-row mt-4 ">
+						  <label class="letra-azul" for="descripcion" readonly ><i>Descripcion Oferta:</i></label>
+						  <textarea type="text" class="form-control" rows="10"  id="descripcion" ></textarea>
+						  
+					    </div>
+				  		
+				  		
+				    </form>
+
+				</div>
+				
+				
+				<div class="col-2"></div>
+			</div>	
+  	    </div>
+  	
+  	</div>
+
+  	
+	
+	<!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="/js/jquery-3.2.1.slim.min.js" ></script>
+    <script src="/js/popper.min.js"></script>
+    <script src="/js/bootstrap.min.js" ></script>    
+ 
+  </body>
+</html>
