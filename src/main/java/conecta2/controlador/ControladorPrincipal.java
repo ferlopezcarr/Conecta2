@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import conecta2.modelo.Contrato;
 import conecta2.modelo.Empresa;
 import conecta2.modelo.JornadaLaboral;
+import conecta2.modelo.Oferta;
 import conecta2.modelo.Particular;
 import conecta2.modelo.Rol;
 import conecta2.servicioAplicacion.SAEmail;
@@ -317,10 +318,28 @@ public class ControladorPrincipal {
 		return modelAndView;
     }
 	
-	@RequestMapping("/verOferta")
+	/*@RequestMapping("/verOferta")
 	public String verOferta(){
 		return "verOferta";
-	}
+	}*/
+	
+	//FALTA TERMINARLO!!!!!!!
+	@RequestMapping(value ="/verOferta", method = RequestMethod.GET, params = {"id"})
+    public ModelAndView mostrarOfertaEmpresa(@RequestParam("id") int id) {		
+		Oferta oferta = saOferta.buscarPorId(id);
+		
+		ModelAndView modelAndView = new ModelAndView();
+		TransferOferta tOferta = new TransferOferta(oferta.getNombre(),oferta.getJornadaLaboral(), oferta.getContrato(), oferta.getVacantes(), oferta.getSalario(), oferta.getCiudad(), oferta.getDescripcion(),
+				true, oferta.getEmpresa(), oferta.getParticulares());
+		
+		modelAndView.addObject("transferOferta", tOferta);
+		modelAndView.setViewName("verOferta");
+		
+		return modelAndView;
+    }
+	
+	
+	
 	
 	@RequestMapping(value="/crear-oferta", method = RequestMethod.GET)
 	public ModelAndView crearOferta(){
