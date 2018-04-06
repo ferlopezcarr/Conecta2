@@ -13,7 +13,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import conecta2.Application;
 import conecta2.modelo.Empresa;
 import conecta2.servicioAplicacion.SAEmpresa;
-import conecta2.servicioAplicacion.SAParticular;
 import conecta2.transfer.TransferEmpresa;
 
 @RunWith(SpringJUnit4ClassRunner.class)
