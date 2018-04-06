@@ -9,11 +9,11 @@ public class TransferParticular {
 	//Anotaciones para cuando los campos del formulario son incorrectos	
 	
 	@NotEmpty(message = "* Por favor, introduzca su nombre")
-	@Pattern(regexp="^([a-zA-ZáéíóúñÁÉÍÓÚÑ ])*$", message="* El nombre debe contener solo letras")
+	@Pattern(regexp="^([a-zA-ZáéíóúñÁÉÍÓÚÑ ])*$", message="* Introduzca únicamente letras")
 	private String nombre;	
 	
 	@NotEmpty(message = "* Por favor, introduzca su apellido")
-	@Pattern(regexp="^([a-zA-ZáéíóúñÁÉÍÓÚÑ ])*$", message="* El apellido debe contener solo letras")
+	@Pattern(regexp="^([a-zA-ZáéíóúñÁÉÍÓÚÑ ])*$", message="* Introduzca únicamente letras")
 	private String apellidos;	
 	
 	@NotEmpty(message ="* Por favor, introduzca el DNI")

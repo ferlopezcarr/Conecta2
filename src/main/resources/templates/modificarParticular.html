@@ -35,7 +35,7 @@
   	          
   	            
 
-  		   <form class="formulario" th:action="@{/particular/modificar}" th:object="${transferParticular}" method="POST">
+  		   <form  th:action="@{/particular/modificar}" th:object="${transferParticular}" method="POST">
   		   <div class="row">
   		     <div class="col-6  ml-auto text-center">
   		          <h3>Datos personales</h3>
@@ -45,7 +45,7 @@
 				  	<label class="perfilTitulo letra-azul col-form-label col-3  margen-datos " id="nombreParticular"  for="Nombre"><u>Nombre:</u> </label>			  		  		
 			  		<div>
 			  		  <input type="text" th:field="*{nombre}" class="form-control " th:value=${transferParticular.nombre}></input>
-			  		  <label th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}" class="validation-message errorParticular"></label>
+			  		  <label  th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}" class="validation-message errorParticular"></label>
 			  		</div>			  			
 			  	  </div>
 			  		
