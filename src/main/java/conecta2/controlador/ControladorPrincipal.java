@@ -150,7 +150,12 @@ public class ControladorPrincipal {
 		return modelAndView;
 	}
 	
-	
+	@RequestMapping(value="/menu", method = RequestMethod.GET)
+	public ModelAndView mostrarMenu(){
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("menu");
+		return modelAndView;
+	}
 	
 	
 	/**
@@ -307,7 +312,7 @@ public class ControladorPrincipal {
     public ModelAndView mostrarOfertas() {			
 		ModelAndView modelAndView = new ModelAndView();		
 		modelAndView.addObject("listaOfertas", saOferta.buscarTodas());
-		modelAndView.setViewName("paginaMenuEmpresa"); //Cambiar a la vista de modificar particular
+		modelAndView.setViewName("misOfertasEmpresa"); //Cambiar a la vista de modificar particular
 		
 		return modelAndView;
     }
