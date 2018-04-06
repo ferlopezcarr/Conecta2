@@ -1,5 +1,12 @@
 package conecta2.transfer;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.FetchType;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.hibernate.validator.constraints.Range;
@@ -7,6 +14,7 @@ import org.hibernate.validator.constraints.Range;
 import conecta2.modelo.Contrato;
 import conecta2.modelo.Empresa;
 import conecta2.modelo.JornadaLaboral;
+import conecta2.modelo.Particular;
 
 public class TransferOferta {
 	
@@ -26,13 +34,17 @@ public class TransferOferta {
 	
 	private double salario;
 
-	private String ccaa;
+	private String ciudad;
 	
 	@Length(max = 1000, message = "* Por favor, la descripción no debe superar los 1000 caracteres")
 	private String descripcion;
 	
 	private boolean activo;
 	
+	@ManyToMany(mappedBy="ofertas", fetch=FetchType.LAZY)
+	private List<Particular> particulares;
+	
+	@ManyToOne (fetch=FetchType.EAGER)
 	private Empresa empresa;
 	
 	/**
@@ -40,16 +52,21 @@ public class TransferOferta {
 	 */
 	public TransferOferta() {}
 	
-	public TransferOferta(String nombre, JornadaLaboral jornada, Contrato contrato, int vacantes, double salario, String ccaa, String descripcion, boolean activo, Empresa empresa) {
+	public TransferOferta(String nombre, JornadaLaboral jornada, Contrato contrato, int vacantes, double salario, String ciudad, String descripcion, boolean activo, Empresa empresa, List<Particular> particulares) {
 		this.nombre = nombre;
 		this.jornada = jornada;
 		this.contrato = contrato;
 		this.vacantes = vacantes;
 		this.salario = salario;
-		this.ccaa = ccaa;
+		this.ciudad = ciudad;
 		this.descripcion = descripcion;
 		this.activo = activo;
 		this.empresa = empresa;
+		
+		if(particulares == null)
+			this.particulares = new ArrayList<Particular>();
+		else
+			this.particulares = particulares;
 	}
 
 	public String getNombre() {
@@ -92,12 +109,12 @@ public class TransferOferta {
 		this.salario = salario;
 	}
 	
-	public String getCcaa() {
-		return ccaa;
+	public String getCiudad() {
+		return ciudad;
 	}
 
-	public void setCcaa(String ccaa) {
-		this.ccaa = ccaa;
+	public void setCiudad(String ciudad) {
+		this.ciudad = ciudad;
 	}
 	
 	public String getDescripcion() {
@@ -115,15 +132,43 @@ public class TransferOferta {
 	public void setActivo(boolean activo) {
 		this.activo = activo;
 	}
+	
+	public List<Particular> getParticulares() {
+		return particulares;
+	}
+
+	public void setParticulares(List<Particular> particulares) {
+		this.particulares = particulares;
+	}
 
 	public Empresa getEmpresa() {
-		// TODO Auto-generated method stub
-		return this.empresa;
+		return empresa;
+	}
+
+	public void setEmpresa(Empresa empresa) {
+		this.empresa = empresa;
 	}
 	
-	public void setEmpresa(Empresa empresa) {
+	public boolean containsJornada(String text) {
 		
-		this.empresa = empresa;
+	    for (JornadaLaboral j : JornadaLaboral.values()) {
+	        if (j.name().equals(text)) {
+	            return true;
+	        }
+	    }
+
+	    return false;
+	}
+	
+	public boolean containsContrato(String text) {
+		
+	    for (Contrato j : Contrato.values()) {
+	        if (j.name().equals(text)) {
+	            return true;
+	        }
+	    }
+
+	    return false;
 	}
 	
 }

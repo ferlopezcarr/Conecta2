@@ -9,4 +9,5 @@ public interface SAOferta {
 		public void crearOferta(TransferOferta transferOferta);
 		public List<Oferta> buscarTodas();
 		public Oferta buscarPorId (int id);
+		public void save(TransferOferta transferEmpresa);
 }

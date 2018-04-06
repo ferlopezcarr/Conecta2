@@ -16,33 +16,47 @@ public class SAOfertaImp implements SAOferta {
 	private RepositorioOferta repoOferta;
 	
 	@Override
-	public void crearOferta(TransferOferta tOferta) {
-		// TODO Auto-generated method stub
+	public void crearOferta(TransferOferta transferOferta) {
 		
-		Oferta oferta = new Oferta();
-		
-		oferta.setNombre(tOferta.getNombre());
-		oferta.setCcaa(tOferta.getCcaa());
-		oferta.setContrato(tOferta.getContrato());
-		oferta.setDescripcion(tOferta.getDescripcion());
-		oferta.setJornadaLaboral(tOferta.getJornadaLaboral());
-		oferta.setSalario(tOferta.getSalario());
-		oferta.setVacantes(tOferta.getVacantes());
-		oferta.setEmpresa(tOferta.getEmpresa());
+		Oferta oferta = new Oferta(
+				transferOferta.getNombre(),
+				transferOferta.getJornadaLaboral(),
+				transferOferta.getContrato(),
+				transferOferta.getVacantes(),
+				transferOferta.getSalario(),
+				transferOferta.getCiudad(),
+				transferOferta.getDescripcion(),
+				transferOferta.getActivo(),
+				transferOferta.getEmpresa(),
+				transferOferta.getParticulares()
+				);
 		
 		repoOferta.save(oferta);
 	}
 
 	@Override
 	public List<Oferta> buscarTodas() {
-		// TODO Auto-generated method stub
 		return repoOferta.findAll();
 	}
 
 	@Override
 	public Oferta buscarPorId(int id) {
-		// TODO Auto-generated method stub
 		return repoOferta.findById(id);
+	}
+
+	@Override
+	public void save(TransferOferta tOferta) {
+		Oferta oferta = new Oferta();
+		
+		oferta.setNombre(tOferta.getNombre());
+		oferta.setCiudad(tOferta.getCiudad());
+		oferta.setContrato(tOferta.getContrato());
+		oferta.setDescripcion(tOferta.getDescripcion());
+		oferta.setJornadaLaboral(tOferta.getJornadaLaboral());
+		oferta.setSalario(tOferta.getSalario());
+		oferta.setVacantes(tOferta.getVacantes());
+		
+		repoOferta.save(oferta);
 	}
 
 }

@@ -45,63 +45,61 @@
 			<div class="row">
 				<div class="col-2"></div>
 				<div class="col-8">
-			 	<form >
+			 	<form th:action="@{/crear-oferta}" th:object="${transferOferta}" method="POST">
 					  <div class="form-group ">
 					    <label for="nombre" class="sr-only">Título oferta</label>
-						<input type="text" class="form-control" id="nombre" placeholder="Título oferta">
+						<input type="text" class="form-control" th:field="*{nombre}" id="nombre" placeholder="Título oferta">
+						<label th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></label>
 					  </div>
 					  <div class="form-row mt-4">
 					     <div class="form-row align-items-center col-6">
 							    <div class="col-auto my-1">
 							    
 							      <label class="mr-sm-2 letra-azul" for="jornada">Tipo jornada:</label>
-							      <select class="custom-select mr-sm-2" id="jornada">
-							        <option selected>Completa</option>
-							        <option value="1">Parcial</option>
-							        <option value="2">Por horas</option>
-							        
+							      <select class="custom-select mr-sm-2" id="jornada" th:field="*{jornada}">
+							        <option selected th:each="j : ${jornadaValues}" th:value="${j}" th:text="${j.displayName}"></option>
 							      </select>
+							      <label th:if="${#fields.hasErrors('jornada')}" th:errors="*{jornada}"></label>
 							    </div>
 					     </div>
 					    
 					     <div class="form-row align-items-center col-6">
-							    <div class="col-auto my-1">
-							      <label class="mr-sm-2 letra-azul " for="Contrato">Tipo contrato:</label>
-							    
-							      <select class="custom-select mr-sm-2" id="Contrato">
-							        <option selected>Indefinido</option>
-							        <option value="1">Temporal</option>
-							        <option value="2">En formación</option>
-							        <option value="3">Prácticas</option>
-							        
-							      </select>
-							    </div>
+						    <div class="col-auto my-1">
+						      <label class="mr-sm-2 letra-azul " for="Contrato">Tipo contrato:</label>
+						      <select class="custom-select mr-sm-2" id="Contrato" th:field="*{contrato}">
+						      	<option selected th:each="c : ${contratoValues}" th:value="${c}" th:text="${c.displayName}"></option>
+						      </select>
+						      <label th:if="${#fields.hasErrors('contrato')}" th:errors="*{contrato}"></label>
+						    </div>
 					     </div>
 					  </div>
 					  <div class="form-row mt-4">
 					    <div class="form-group col-4">
-					      <label for="ciudad" class ="sr-only">City</label>
-					   		 <input type="text" class="form-control" id="ciudad" placeholder="Ciudad">
+					    	<label for="ciudad" class ="sr-only">City</label>
+					   		<input type="text" class="form-control" th:field="*{ciudad}" id="ciudad" placeholder="Ciudad">
+					   		<label th:if="${#fields.hasErrors('ciudad')}" th:errors="*{ciudad}"></label>
 					    </div>
 					   
 					    <div class="form-group col-4">
-					    <label for="salario" class="sr-only">Vacantes:</label>
-					   	<input type="text" class="form-control" id="vacantes" placeholder="Vacantes">
+						    <label for="salario" class="sr-only">Vacantes:</label>
+						   	<input type="text" class="form-control" th:field="*{vacantes}" id="vacantes" placeholder="Vacantes">
+						   	<label th:if="${#fields.hasErrors('vacantes')}" th:errors="*{vacantes}"></label>
 					 	</div>
 					 	
 					 	<div class="form-group col-4">
-					    <label for="salario" class="sr-only">Salario:</label>
-					   	<input type="text" class="form-control" id="salario" placeholder="Salario">
-					   	
+						    <label for="salario" class="sr-only">Salario:</label>
+						   	<input type="text" class="form-control" th:field="*{salario}" id="salario" placeholder="Salario">
+						   	<label th:if="${#fields.hasErrors('salario')}" th:errors="*{salario}"></label>
 					 	</div>
 					 	
 					  
 					  </div>
 					  <div class="form-row mt-4">
-					  <label for="descripcion" class= "letra-azul">Descripcion:</label>
-
-					    <textarea class="form-control " rows="5" id="descripcion" placeholder="Añade aquí los detalles de la oferta..."></textarea>
+						  <label for="descripcion" class= "letra-azul">Descripcion:</label>
+						  <textarea class="form-control " rows="5" th:field="*{descripcion}" id="descripcion" placeholder="Añade aquí los detalles de la oferta..."></textarea>
+						  <label th:if="${#fields.hasErrors('descripcion')}" th:errors="*{descripcion}"></label>
 					  </div>
+					  
 					  <div  class=" text-center  margen-botones">
 				<button type="submit" class=" btn-lg btn botonAzul" data-toggle="modal" data-target="#modalModificarParticular">Crear Oferta</button>
 				<!-- Modal -->

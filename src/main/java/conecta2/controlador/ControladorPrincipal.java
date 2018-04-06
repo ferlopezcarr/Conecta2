@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import conecta2.modelo.Contrato;
 import conecta2.modelo.Empresa;
+import conecta2.modelo.JornadaLaboral;
 import conecta2.modelo.Particular;
 import conecta2.modelo.Rol;
 import conecta2.servicioAplicacion.SAEmail;
@@ -23,6 +25,7 @@ import conecta2.servicioAplicacion.SAOferta;
 import conecta2.servicioAplicacion.SAParticular;
 import conecta2.transfer.TransferParticular;
 import conecta2.transfer.TransferEmpresa;
+import conecta2.transfer.TransferOferta;
 /**
  * Controlador de la aplicación, en él se mapean las diferentes peticiones (GET, POST...),
  * @author ferlo
@@ -44,7 +47,7 @@ public class ControladorPrincipal {
 	public  ModelAndView obtenerInstancia() {
 
 		if (modeloyVista == null) {
-
+			
 			modeloyVista = new ModelAndView();
 		}
 
@@ -165,13 +168,15 @@ public class ControladorPrincipal {
 	 * @return redirige a la página principal si no ha habido fallos, en caso contrario notifica sin cambiar de pagina
 	 */
 	@RequestMapping(value="/authorization", method = RequestMethod.GET, params = {"val"})
-	public ModelAndView autorizacion(@RequestParam("val") String val,  BindingResult bindingResult){ 
+	public ModelAndView autorizacion(@RequestParam("val") String val){ 
 		Object obj = saEmail.validaUsuario(val);
 		ModelAndView modelAndView = null;	
 
 		if(obj==null) {
 			//MOSTRAR MENSAJE DE ERROR
-
+			modelAndView = new ModelAndView("redirect:/login");
+			String msg = "Código de confirmación incorrecto";
+			modelAndView.addObject("errorPopUp", msg);
 		}
 		else{
 			//ES UNA EMPRESA
@@ -227,8 +232,6 @@ public class ControladorPrincipal {
 		saEmpresa.save(transferEmpresa);
 		modelAndView = new ModelAndView("redirect:/empresa/perfil");
 	
-		
-		
 		return modelAndView;
 	}
 	
@@ -260,14 +263,15 @@ public class ControladorPrincipal {
 		return modelAndView;
     }
 	
+	
+	
+	
+	
+	// ------------- OFERTAS ------------- //
+	
 	@RequestMapping("/paginaMenuEmpresa")
 	public String paginaMenuEmpresa(){
 		return "paginaMenuEmpresa";
-	}
-	
-	@RequestMapping("/crear-oferta")
-	public String crearOferta(){
-		return "crearOferta";
 	}
 	
 	@RequestMapping(value ="/ofertas", method = RequestMethod.GET)
@@ -279,16 +283,49 @@ public class ControladorPrincipal {
 		return modelAndView;
     }
 	
-	/*
 	@RequestMapping(value="/crear-oferta", method = RequestMethod.GET)
 	public ModelAndView crearOferta(){
-		ModelAndView modelAndView = new ModelAndView();
+		ModelAndView modelAndView = this.obtenerInstancia();
+		modelAndView.addObject("transferOferta", new TransferOferta());
+		modelAndView.addObject("jornadaValues", JornadaLaboral.values());
+		modelAndView.addObject("contratoValues", Contrato.values());
+		modelAndView.setViewName("crearOferta");
+		return modelAndView;
+	}
+	
+	@RequestMapping(value="/crear-oferta", method = RequestMethod.POST)
+	public ModelAndView crearOfertaPost(@ModelAttribute("transferOferta") @Valid TransferOferta transferOferta, BindingResult bindingResult){
+		ModelAndView modelAndView = this.obtenerInstancia();
 		modelAndView.addObject("transferOferta", new TransferOferta());
 		modelAndView.setViewName("crearOferta");
 	
+		//Oferta oferta = saOferta.buscarPorId(transferOferta.getId());
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		Empresa empresa = saEmpresa.buscarPorEmail(auth.getName());
+		
+		transferOferta.getJornadaLaboral();
+		
+		/*
+		if (transferOferta.containsJornada(transferOferta.getJornadaLaboral().toString()))
+			bindingResult.rejectValue("jornada", "error.transferOferta", "* Jornada laboral no válida");
+		if (transferOferta.containsContrato(transferOferta.getContrato().toString()))
+			bindingResult.rejectValue("contrato", "error.transferOferta", "* Tipo de contrato no válido");
+			*/
+		if (bindingResult.hasErrors()) {
+			modelAndView = new ModelAndView("crearCuenta", bindingResult.getModel());
+			modelAndView.addObject("transferOferta", transferOferta);
+		}			
+		else {
+			transferOferta.setEmpresa(empresa);
+			saOferta.crearOferta(transferOferta);
+			modelAndView = new ModelAndView("redirect:/");
+		}
+		
+		modelAndView.addObject("roles", Rol.values());
+		
 		return modelAndView;
 	}
-	*/
+	
 	
 	/**
 	 * Método que añade al particular como variable permanente para el modelo
@@ -303,7 +340,6 @@ public class ControladorPrincipal {
 		
 		model.addAttribute("particular", particular);
 		model.addAttribute("empresa", empresa);//En este caso el objeto usuario estará permanentemente en todas las vistas por el @ModelAttribute 
-	
 	}
 	
 }
