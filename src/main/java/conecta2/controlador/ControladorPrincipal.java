@@ -312,7 +312,7 @@ public class ControladorPrincipal {
     public ModelAndView mostrarOfertas() {			
 		ModelAndView modelAndView = new ModelAndView();		
 		modelAndView.addObject("listaOfertas", saOferta.buscarTodas());
-		modelAndView.setViewName("misOfertasEmpresa"); //Cambiar a la vista de modificar particular
+		modelAndView.setViewName("mostrarOfertas"); //Cambiar a la vista de modificar particular
 		
 		return modelAndView;
     }
