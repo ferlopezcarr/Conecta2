@@ -108,7 +108,10 @@
 									    </div> 
 									    
 									       
-									      <button  class="btn-lg btn btn-grey" type="submit" value="Cancelar">Cancelar</button>
+									     <a th:href="'/empresa/perfil?id=' + ${empresa.id}" th:if="${empresa != null}">
+									              <input type="button" class="btn-lg btn btn-grey" value="Cancelar"></input>
+									              
+									    </a>
 									      
 									    </div>
 				

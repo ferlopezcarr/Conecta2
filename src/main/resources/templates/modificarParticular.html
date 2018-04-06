@@ -114,7 +114,10 @@
 									      
 									    </div>
 									  </div>
-				<button class="btn-lg btn btn-grey">Cancelar</button>
+										 <a th:href="'/particular/perfil?id=' + ${particular.id}" th:if="${particular != null}"> 
+									              <input type="button" class="btn-lg btn btn-grey" value="Cancelar"></input>
+									              
+									    </a>
 			</div>
 		</form>
 			
