@@ -16,7 +16,7 @@ import conecta2.modelo.Particular;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = Application.class)
 @DataJpaTest
-public class HU5VerPerfilParticularTest {
+public class HU4VerPerfilParticularTest {
 
 	@Autowired
 	private DAOParticular daoParticular;
