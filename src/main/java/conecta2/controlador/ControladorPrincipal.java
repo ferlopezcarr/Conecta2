@@ -205,7 +205,8 @@ public class ControladorPrincipal {
     public ModelAndView mostrarPerfilEmpresa(@RequestParam("id") int id) {		
 		Empresa empresa = saEmpresa.buscarPorId(id);		
 		ModelAndView modelAndView = new ModelAndView();		
-		TransferEmpresa transferEmpresa = new TransferEmpresa(empresa.getNombreEmpresa(), empresa.getCif(), empresa.getTelefono(), empresa.getEmail(), "0", "0", true);
+		TransferEmpresa transferEmpresa = new TransferEmpresa(empresa.getNombreEmpresa(), empresa.getCif(), empresa.getTelefono(), 
+				empresa.getEmail(), "0", "0", empresa.getDescripcion(), true);
 		
 		modelAndView.addObject("transferEmpresa", transferEmpresa);
 		modelAndView.setViewName("perfilEmpresa");
@@ -217,7 +218,8 @@ public class ControladorPrincipal {
     public ModelAndView modificarPerfilEmpresa(@RequestParam("id") int id) {		
 		Empresa empresa = saEmpresa.buscarPorId(id);		
 		ModelAndView modelAndView = new ModelAndView();		
-		TransferEmpresa transferEmpresa = new TransferEmpresa(empresa.getNombreEmpresa(), empresa.getCif(), empresa.getTelefono(), empresa.getEmail(), "0", "0", true);
+		TransferEmpresa transferEmpresa = new TransferEmpresa(empresa.getNombreEmpresa(), empresa.getCif(), 
+				empresa.getTelefono(), empresa.getEmail(), "0", "0", empresa.getDescripcion(), true);
 		
 		modelAndView.addObject("transferEmpresa", transferEmpresa);
 		modelAndView.setViewName("modificarEmpresa");
@@ -229,6 +231,13 @@ public class ControladorPrincipal {
 	public ModelAndView modificarPerfilEmpresa(@ModelAttribute("transferEmpresa") TransferEmpresa transferEmpresa,BindingResult bindingResult) {
 		ModelAndView modelAndView = null;
 		Empresa empresa = saEmpresa.buscarPorEmail(transferEmpresa.getEmail());
+		if(!transferEmpresa.getNombreEmpresa().matches("^(?!\\s*$).+")) { //Patron not empty
+			bindingResult.rejectValue("nombreEmpresa", "error.transferEmpresa", "* Introduzca un nombre");
+		}
+		if(!transferEmpresa.getTelefono().matches("^([0-9]{9})*$")) {
+			bindingResult.rejectValue("telefono", "error.transferEmpresa", "* Introduzca un teléfono válido");
+		}
+		
 		if (bindingResult.hasErrors()) {
 			modelAndView = new ModelAndView("modificarEmpresa", bindingResult.getModel());
 			modelAndView.addObject("transferEmpresa", transferEmpresa);
@@ -269,13 +278,22 @@ public class ControladorPrincipal {
     }
 	
 	@RequestMapping(value ="/particular/modificar", method = RequestMethod.POST)
-    public ModelAndView modificarPerfilParticular(@ModelAttribute("transferParticular") @Valid TransferParticular transferParticular, BindingResult bindingResult) {
+    public ModelAndView modificarPerfilParticular(@ModelAttribute("transferParticular") TransferParticular transferParticular, BindingResult bindingResult) {
 		ModelAndView modelAndView = null;
 		Particular particular = saParticular.buscarPorEmail(transferParticular.getEmail());
-		if (bindingResult.hasErrors() && bindingResult.getErrorCount() > 2) {		
+		if (!transferParticular.getNombre().matches("^([a-zA-ZáéíóúñÁÉÍÓÚÑ ])*$")) {		
+			bindingResult.rejectValue("nombre", "error.transferParticular", "* Introduzca únicamente letras");
+		}
+		if (!transferParticular.getApellidos().matches("^([a-zA-ZáéíóúñÁÉÍÓÚÑ ])*$")) {		
+			bindingResult.rejectValue("apellidos", "error.transferParticular", "* Introduzca únicamente letras");
+		}
+		if(!transferParticular.getTelefono().matches("^([0-9]{9})*$")) {
+			bindingResult.rejectValue("telefono", "error.transferParticular", "* Introduzca un teléfono válido");
+		}
+		if (bindingResult.hasErrors()) {		
 			modelAndView = new ModelAndView("modificarParticular", bindingResult.getModel());
 			modelAndView.addObject("transferParticular", transferParticular);
-		}			
+		}	
 		else {
 			saParticular.save(transferParticular);
 			modelAndView = new ModelAndView("redirect:/particular/perfil?id=" + particular.getId());

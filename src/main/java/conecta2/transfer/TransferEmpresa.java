@@ -40,13 +40,14 @@ public class TransferEmpresa {
 	
 	public TransferEmpresa() {}
 		
-	public TransferEmpresa(String nombreEmpresa, String cif, String telefono, String email, String password, String passwordConfirmation, boolean activo) {
+	public TransferEmpresa(String nombreEmpresa, String cif, String telefono, String email, String password, String passwordConfirmation, String descripcion, boolean activo) {
 		this.nombreEmpresa = nombreEmpresa;
 		this.cif = cif;
 		this.telefono = telefono;
 		this.email = email;
 		this.password = password;
-		this.passwordConfirmacion = passwordConfirmation; 
+		this.passwordConfirmacion = passwordConfirmation;
+		this.descripcion = descripcion;
 		this.activo=activo;
 	}
 

@@ -100,17 +100,14 @@ public class SAEmpresaImp implements SAEmpresa {
 	 				 transferEmpresa.getEmail(),
 	 				 transferEmpresa.getPassword(),
 	 				 transferEmpresa.getActivo(),
-	 				 transferEmpresa.getPuntuacion()
+	 				 transferEmpresa.getPuntuacion(),
+	 				 transferEmpresa.getDescripcion()
 	 			);
 	 	 }else {
 	 		 empresa.setNombreEmpresa(transferEmpresa.getNombreEmpresa());
 	 		 empresa.setTelefono(transferEmpresa.getTelefono());
 	 		 empresa.setDescripcion(transferEmpresa.getDescripcion());
 	 	 }
-
-	 	 
-         empresa.setActivo(transferEmpresa.getActivo());
-         empresa.setPuntuacion(transferEmpresa.getPuntuacion());
      
          daoEmpresa.save(empresa); //Hace el save al repositorio (función interna de JPARepository)
 	}

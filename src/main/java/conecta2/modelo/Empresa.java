@@ -73,6 +73,7 @@ public class Empresa {
 	private int puntuacion;
 	
 	private String descripcion;
+	
 	@OneToMany(mappedBy = "empresa",fetch=FetchType.LAZY)
 	private List<Oferta> ofertas;
 	
@@ -90,8 +91,9 @@ public class Empresa {
 	 * @param password
 	 * @param activo
 	 * @param puntuacion
+	 * @param descripcion
 	 */
-	public Empresa(String nombreEmpresa, String cif, String telefono, String email, String password, boolean activo, int puntuacion) {
+	public Empresa(String nombreEmpresa, String cif, String telefono, String email, String password, boolean activo, int puntuacion, String descripcion) {
 		this.nombreEmpresa = nombreEmpresa;
 		this.cif = cif;
 		this.telefono = telefono;
@@ -99,6 +101,7 @@ public class Empresa {
 		this.password = password;
 		this.activo = activo;
 		this.puntuacion = puntuacion;
+		this.descripcion = descripcion;
 		this.ofertas = new ArrayList<Oferta>();
 	}
 
