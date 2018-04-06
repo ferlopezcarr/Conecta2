@@ -228,12 +228,13 @@ public class ControladorPrincipal {
 	@RequestMapping(value = "/empresa/modificar", method = RequestMethod.POST)
 	public ModelAndView modificarPerfilEmpresa(@ModelAttribute("transferEmpresa") TransferEmpresa transferEmpresa,BindingResult bindingResult) {
 		ModelAndView modelAndView = null;
+		Empresa empresa = saEmpresa.buscarPorEmail(transferEmpresa.getEmail());
 		if (bindingResult.hasErrors()) {
 			modelAndView = new ModelAndView("modificarEmpresa", bindingResult.getModel());
 			modelAndView.addObject("transferEmpresa", transferEmpresa);
 		}else {
 			saEmpresa.save(transferEmpresa);
-			modelAndView = new ModelAndView("redirect:/empresa/perfil");
+			modelAndView = new ModelAndView("redirect:/empresa/perfil?id="+ empresa.getId());
 
 		}
 

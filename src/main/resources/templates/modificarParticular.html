@@ -59,7 +59,8 @@
 			  		 
 			  	  <div class="form-group row">
 			  		<label class="perfilTitulo letra-azul col-form-label col-3 margen-datos" for="Nombre"><u>DNI:</u> </label>					  		  		
-			  		  <input type="text" th:field="*{dni}" class="form-control-plaintext " th:value=${transferParticular.dni} readonly></input>					  		  					  					  			
+			  		<span class="form-control-plaintext " th:text=${transferParticular.dni}></span>
+			  		<input type="hidden" th:value="${transferParticular.dni}" th:field="*{dni}" />					  		  					  					  			
 			  	  </div>
 			  		 
 			  	  <div class="form-group row">
@@ -72,7 +73,8 @@
 			  		 
 			  	 <div class="form-group row">
 			  		<label class="perfilTitulo letra-azul col-form-label col-3 margen-datos " for="Nombre"><u>Email:</u> </label>
-			  		<input type="text" th:field="*{email}" class="form-control-plaintext " th:value=${transferParticular.email} readonly></input>					  		  					  			
+			  		<span class="form-control-plaintext " th:text=${transferParticular.email}></span>
+			  		<input type="hidden" th:value="${transferParticular.email}" th:field="*{email}" />
 			  	 </div>
 			  </div>
 			  
