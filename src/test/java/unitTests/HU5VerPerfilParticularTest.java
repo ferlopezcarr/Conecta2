@@ -24,7 +24,7 @@ public class HU5VerPerfilParticularTest {
 	@Test
 	public void testEmpresaFoundedByEmailYActivo() {
 		
-		Particular particular = new Particular("nombre", "Apellido Apellido", "99999999Z", "123456789", "particularPruebaEmail@particularPruebaEmail.com", "Abc1111", true, 0);
+		Particular particular = new Particular("nombre", "Apellido Apellido", "99999999Z", "123456789", "particularPruebaEmail@particularPruebaEmail.com", "Abc1111", true, 0, "descripcion");
 
 		daoParticular.save(particular);
 		
@@ -38,7 +38,7 @@ public class HU5VerPerfilParticularTest {
 	
 	@Test
 	public void testEmpresaFoundedByCifYActivo() {
-		Particular particular = new Particular("nombre", "Apellido Apellido", "99999999Z", "123456789", "particularPruebaEmail@particularPruebaEmail.com", "Abc1111", true, 0);
+		Particular particular = new Particular("nombre", "Apellido Apellido", "99999999Z", "123456789", "particularPruebaEmail@particularPruebaEmail.com", "Abc1111", true, 0, "descripcion");
 		
 		daoParticular.save(particular);
 		

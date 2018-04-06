@@ -32,7 +32,7 @@ public class HU2CrearParticularTest {
 	
 	@Test
 	public void testInsertNotNull() {
-		Particular particular = new Particular("nombre", "Apellido Apellido", "99999999Z", "123456789", "particularPruebaEmail@particularPruebaEmail.com", "Abc1111", true, 0);
+		Particular particular = new Particular("nombre", "Apellido Apellido", "99999999Z", "123456789", "particularPruebaEmail@particularPruebaEmail.com", "Abc1111", true, 0, "descripcion");
 
 		Particular particularGuardado = daoParticular.save(particular);
 		
@@ -41,7 +41,7 @@ public class HU2CrearParticularTest {
 	
 	@Test
 	public void testInsertNotFounded() {
-		Particular particular = new Particular("nombre", "Apellido Apellido", "99999999Z", "123456789", "particularPruebaEmail@particularPruebaEmail.com", "Abc1111", true, 0);
+		Particular particular = new Particular("nombre", "Apellido Apellido", "99999999Z", "123456789", "particularPruebaEmail@particularPruebaEmail.com", "Abc1111", true, 0, "descripcion");
 
 		Particular particularGuardado = daoParticular.findByDni(particular.getDni());
 		
@@ -51,7 +51,7 @@ public class HU2CrearParticularTest {
 	@Test
 	public void testInsertFoundedById() {
 		
-		Particular particular = new Particular("nombre", "Apellido Apellido", "99999999Z", "123456789", "particularPruebaEmail@particularPruebaEmail.com", "Abc1111", true, 0);
+		Particular particular = new Particular("nombre", "Apellido Apellido", "99999999Z", "123456789", "particularPruebaEmail@particularPruebaEmail.com", "Abc1111", true, 0, "descripcion");
 
 		daoParticular.save(particular);
 		
@@ -63,7 +63,7 @@ public class HU2CrearParticularTest {
 	@Test
 	public void testInsertFoundedByEmail() {
 		
-		Particular particular = new Particular("nombre", "Apellido Apellido", "99999999Z", "123456789", "particularPruebaEmail@particularPruebaEmail.com", "Abc1111", true, 0);
+		Particular particular = new Particular("nombre", "Apellido Apellido", "99999999Z", "123456789", "particularPruebaEmail@particularPruebaEmail.com", "Abc1111", true, 0, "descripcion");
 
 		daoParticular.save(particular);
 		
@@ -74,7 +74,7 @@ public class HU2CrearParticularTest {
 	
 	@Test
 	public void testInsertFoundedByDni() {
-		Particular particular = new Particular("nombre", "Apellido Apellido", "99999999Z", "123456789", "particularPruebaEmail@particularPruebaEmail.com", "Abc1111", true, 0);
+		Particular particular = new Particular("nombre", "Apellido Apellido", "99999999Z", "123456789", "particularPruebaEmail@particularPruebaEmail.com", "Abc1111", true, 0, "descripcion");
 
 		daoParticular.save(particular);
 		
