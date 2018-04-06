@@ -34,7 +34,7 @@
 	        	    </div>    
 	        	    	<div class="col-1  margen-boton-modificar"> 
 	        	    	
-  	              <a href="/empresa/modificar"> 
+  	              <a th:href="'/particular/modificar?id=' + ${particular.id}" th:if="${particular != null}"> 
   	               	<button type="submit" class="mt-4 btn boton  border-Azul rounded-circle "  name="botonModificar"><i class="material-icons">border_color</i></button>
   	               	</a>
 	        	    	</div>	 
@@ -84,7 +84,7 @@
   		          <hr class="mb-4 separador-gris">
   		     	<div class="form-group text-left">
   		     	<label for="descripcion" class="perfilTitulo letra-azul"><u>Descripción:</u></label>
-  		     	<textarea class="form-control " rows="5" id="descripcion" readonly></textarea>
+  		     	<textarea  th:text=${transferParticular.descripcion} class="form-control " rows="5" id="descripcion" readonly></textarea>
   		        </div>
   		     
   		     

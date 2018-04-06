@@ -35,61 +35,54 @@
   	          
   	            
 
-  				<form class="formulario" th:action="@{/modificar/particular}" th:object="${transferParticular}" method="POST">
+  		   <form class="formulario" th:action="@{/particular/modificar}" th:object="${transferParticular}" method="POST">
   		   <div class="row">
   		     <div class="col-6  ml-auto text-center">
   		          <h3>Datos personales</h3>
   		          <hr class="mb-4 separador-gris">
-  		          <form>
-			  	    <div class="form-group row">
-			  		<label class="perfilTitulo letra-azul col-form-label col-3  margen-datos " id="nombreParticular"  for="Nombre"><u>Nombre:</u> </label>					  		  		
-			  		  <div>
-			  		  <input class="form-control " th:value=${transferParticular.nombre}></input>
-			  		  <!--  <label th:if="${#fields.hasErrors('nombreParticular')}" th:errors="*{nombreParticular}" class="validation-message error"></label>-->
-			  			</div>			  			
-			  		 </div>
+  		          <input type="hidden" name="id" th:value="${id}"></input>	
+			  	  <div class="form-group row">
+				  	<label class="perfilTitulo letra-azul col-form-label col-3  margen-datos " id="nombreParticular"  for="Nombre"><u>Nombre:</u> </label>			  		  		
+			  		<div>
+			  		  <input type="text" th:field="*{nombre}" class="form-control " th:value=${transferParticular.nombre}></input>
+			  		  <label th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}" class="validation-message errorParticular"></label>
+			  		</div>			  			
+			  	  </div>
 			  		
-			  		  <div class="form-group row">
+			  	  <div class="form-group row">
 			  		<label class="perfilTitulo letra-azul col-form-label col-3 margen-datos" for="Nombre"><u>Apellidos:</u> </label>		
 			  		<div>			  		  		
-			  		  <input class="form-control " th:value=${transferParticular.apellidos}></input>
-			  		   <!-- <label th:if="${#fields.hasErrors('apellidoParticular')}" th:errors="*{apellidoParticular}" class="validation-message error"></label> -->
+			  		  <input type="text" th:field="*{apellidos}" class="form-control " th:value=${transferParticular.apellidos}></input>
+			  		  <label th:if="${#fields.hasErrors('apellidos')}" th:errors="*{apellidos}" class="validation-message errorParticular"></label>
 			  		</div>				  			
-			  		 </div>
+			  	  </div>
 			  		 
-			  		 
-			  		  <div class="form-group row">
+			  	  <div class="form-group row">
 			  		<label class="perfilTitulo letra-azul col-form-label col-3 margen-datos" for="Nombre"><u>DNI:</u> </label>					  		  		
-			  		  <span class="form-control-plaintext " th:text=${transferParticular.dni}></span>
-			  			<!-- <input class="form-control" id="cif"> -->			  			
-			  		 </div>
+			  		  <input type="text" th:field="*{dni}" class="form-control-plaintext " th:value=${transferParticular.dni} readonly></input>					  		  					  					  			
+			  	  </div>
 			  		 
-			  		 <div class="form-group row">
+			  	  <div class="form-group row">
 			  		<label class="perfilTitulo letra-azul col-form-label col-3 margen-datos " for="Nombre"><u>Teléfono:</u> </label>					  		  		
-			  		  <div>
-			  		  <input class="form-control " th:value=${transferParticular.telefono}></input>
-			  		   <!--  <label th:if="${#fields.hasErrors('tlfParticular')}" th:errors="*{tlfParticular}" class="validation-message error"></label> -->
-			  			</div>			  			
-			  		 </div>
+			  		<div>
+			  		  <input type="text" th:field="*{telefono}" class="form-control " th:value=${transferParticular.telefono}></input>
+			  		  <label th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}" class="validation-message errorParticular"></label>
+			  		</div>			  			
+			  	  </div>
 			  		 
-			  		  <div class="form-group row">
-			  		<label class="perfilTitulo letra-azul col-form-label col-3 margen-datos " for="Nombre"><u>Email:</u> </label>					  		  		
-			  		  <span class="form-control-plaintext " th:text=${transferParticular.email}></span>
-			  			<!-- <input class="form-control" id="cif"> -->			  			
-			  		 </div>
-			  	    
-			  		</form>
-			  		
-			  	</div>
+			  	 <div class="form-group row">
+			  		<label class="perfilTitulo letra-azul col-form-label col-3 margen-datos " for="Nombre"><u>Email:</u> </label>
+			  		<input type="text" th:field="*{email}" class="form-control-plaintext " th:value=${transferParticular.email} readonly></input>					  		  					  			
+			  	 </div>
+			  </div>
+			  
   		     <div class="col-6  sep-vertical text-center">
- 		     <h3>Información Adicional</h3>
-  		          <hr class="mb-4 separador-gris">
+ 		     	<h3>Información Adicional</h3>
+  		        <hr class="mb-4 separador-gris">
   		     	<div class="form-group text-left ">
-  		     	<label for="descripcion" class="perfilTitulo letra-azul"><u>Descripción:</u></label>
-  		     	<textarea class="form-control " rows="5" id="descripcion" ></textarea>
-  		        </div>
-  		     
-  		     
+	  		     	<label for="descripcion" class="perfilTitulo letra-azul"><u>Descripción:</u></label>
+	  		     	<textarea th:field="*{descripcion}" th:value=${transferParticular.descripcion} class="form-control " rows="5" id="descripcion"></textarea>
+  		        </div>    
   		     </div>
   		     
   		     
@@ -119,9 +112,9 @@
 									      
 									    </div>
 									  </div>
-				</form>
 				<button class="btn-lg btn btn-grey">Cancelar</button>
 			</div>
+		</form>
 			
   	    </div>
   	

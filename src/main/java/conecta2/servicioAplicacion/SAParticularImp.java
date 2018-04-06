@@ -100,8 +100,15 @@ public class SAParticularImp implements SAParticular{
 					transferParticular.getEmail(),
 					transferParticular.getPassword(),
 					transferParticular.getActivo(),
-					transferParticular.getPuntuacion()
+					transferParticular.getPuntuacion(),
+					transferParticular.getDescripcion()
 				);
+		}
+		else {
+			particular.setNombre(transferParticular.getNombre());
+			particular.setApellidos(transferParticular.getApellidos());
+			particular.setTelefono(transferParticular.getTelefono());
+			particular.setDescripcion(transferParticular.getDescripcion());
 		}
         
         daoParticular.save(particular);
