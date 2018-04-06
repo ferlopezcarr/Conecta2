@@ -20,7 +20,7 @@ public class SAOfertaImp implements SAOferta {
 		
 		Oferta oferta = new Oferta(
 				transferOferta.getNombre(),
-				transferOferta.getJornadaLaboral(),
+				transferOferta.getJornada(),
 				transferOferta.getContrato(),
 				transferOferta.getVacantes(),
 				transferOferta.getSalario(),
@@ -52,7 +52,7 @@ public class SAOfertaImp implements SAOferta {
 		oferta.setCiudad(tOferta.getCiudad());
 		oferta.setContrato(tOferta.getContrato());
 		oferta.setDescripcion(tOferta.getDescripcion());
-		oferta.setJornadaLaboral(tOferta.getJornadaLaboral());
+		oferta.setJornadaLaboral(tOferta.getJornada());
 		oferta.setSalario(tOferta.getSalario());
 		oferta.setVacantes(tOferta.getVacantes());
 		

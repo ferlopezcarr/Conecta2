@@ -337,7 +337,7 @@ public class ControladorPrincipal {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		Empresa empresa = saEmpresa.buscarPorEmail(auth.getName());
 		
-		transferOferta.getJornadaLaboral();
+		transferOferta.getJornada();
 		
 		/*
 		if (transferOferta.containsJornada(transferOferta.getJornadaLaboral().toString()))

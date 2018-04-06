@@ -56,10 +56,10 @@
 							    <div class="col-auto my-1">
 							    
 							      <label class="mr-sm-2 letra-azul" for="jornada">Tipo jornada:</label>
-							      <select class="custom-select mr-sm-2" id="jornada" th:field="*{jornadaLaboral}">
+							      <select class="custom-select mr-sm-2" id="jornada" th:field="*{jornada}">
 							        <option selected th:each="jornada : ${T(conecta2.modelo.JornadaLaboral).values()}" th:value="${jornada}" th:text="${jornada}"></option>
 							      </select>
-							      <label th:if="${#fields.hasErrors('jornadaLaboral')}" th:errors="*{jornada}"></label>
+							      <label th:if="${#fields.hasErrors('jornada')}" th:errors="*{jornada}"></label>
 							    </div>
 					     </div>
 					    

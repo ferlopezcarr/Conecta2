@@ -68,7 +68,7 @@ public class TransferOferta {
 		else
 			this.particulares = particulares;
 	}
-
+	
 	public String getNombre() {
 		return nombre;
 	}
@@ -76,15 +76,15 @@ public class TransferOferta {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	
-	public JornadaLaboral getJornadaLaboral() {
+
+	public JornadaLaboral getJornada() {
 		return jornada;
 	}
 
-	public void setJornadaLaboral(JornadaLaboral jornada) {
+	public void setJornada(JornadaLaboral jornada) {
 		this.jornada = jornada;
 	}
-	
+
 	public Contrato getContrato() {
 		return contrato;
 	}
@@ -92,7 +92,7 @@ public class TransferOferta {
 	public void setContrato(Contrato contrato) {
 		this.contrato = contrato;
 	}
-	
+
 	public int getVacantes() {
 		return vacantes;
 	}
@@ -100,7 +100,7 @@ public class TransferOferta {
 	public void setVacantes(int vacantes) {
 		this.vacantes = vacantes;
 	}
-	
+
 	public double getSalario() {
 		return salario;
 	}
@@ -108,7 +108,7 @@ public class TransferOferta {
 	public void setSalario(double salario) {
 		this.salario = salario;
 	}
-	
+
 	public String getCiudad() {
 		return ciudad;
 	}
@@ -116,7 +116,7 @@ public class TransferOferta {
 	public void setCiudad(String ciudad) {
 		this.ciudad = ciudad;
 	}
-	
+
 	public String getDescripcion() {
 		return descripcion;
 	}
@@ -124,7 +124,7 @@ public class TransferOferta {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-	
+
 	public boolean getActivo() {
 		return activo;
 	}
@@ -132,7 +132,7 @@ public class TransferOferta {
 	public void setActivo(boolean activo) {
 		this.activo = activo;
 	}
-	
+
 	public List<Particular> getParticulares() {
 		return particulares;
 	}
@@ -148,7 +148,7 @@ public class TransferOferta {
 	public void setEmpresa(Empresa empresa) {
 		this.empresa = empresa;
 	}
-	
+
 	public boolean containsJornada(String text) {
 		
 	    for (JornadaLaboral j : JornadaLaboral.values()) {
