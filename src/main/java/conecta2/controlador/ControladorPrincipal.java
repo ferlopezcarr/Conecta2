@@ -168,7 +168,7 @@ public class ControladorPrincipal {
 	 * @return redirige a la página principal si no ha habido fallos, en caso contrario notifica sin cambiar de pagina
 	 */
 	@RequestMapping(value="/authorization", method = RequestMethod.GET, params = {"val"})
-	public ModelAndView autorizacion(@RequestParam("val") String val,  BindingResult bindingResult){ 
+	public ModelAndView autorizacion(@RequestParam("val") String val){ 
 		Object obj = saEmail.validaUsuario(val);
 		ModelAndView modelAndView = null;	
 

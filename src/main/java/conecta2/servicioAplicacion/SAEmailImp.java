@@ -73,6 +73,8 @@ public class SAEmailImp  implements SAEmail {
 		props.setProperty("mail.stmp.auth", "true");
 		//Que vamos a utilizar tls pra que sea seguro
 		props.setProperty("mail.smtp.starttls.enable", "true");
+		props.setProperty("mail.smtp.ssl.trust", "smtp.gmail.com");
+
 		//servidor smtp de gmail
 		props.setProperty("mail.smtp.host", "smtp.gmail.com");
 		//el puerto std de correo electronico
@@ -135,6 +137,7 @@ public class SAEmailImp  implements SAEmail {
 				transEmpresa.setNombreEmpresa(empresa.getNombreEmpresa());
 				transEmpresa.setPassword(empresa.getPassword());
 				transEmpresa.setActivo(empresa.getActivo());
+				transEmpresa.setTelefono(empresa.getTelefono());
 				saEmpresa.save(transEmpresa);
 				
 				return transEmpresa;
@@ -153,7 +156,8 @@ public class SAEmailImp  implements SAEmail {
 					transParticular.setEmail(particular.getEmail());
 					transParticular.setPassword(particular.getPassword());
 					transParticular.setActivo(particular.getActivo());
-					
+					transParticular.setTelefono(particular.getTelefono());
+
 					saParticular.save(transParticular);
 					
 					return transParticular;
