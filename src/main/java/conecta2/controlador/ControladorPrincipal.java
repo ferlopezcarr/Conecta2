@@ -150,17 +150,8 @@ public class ControladorPrincipal {
 		return modelAndView;
 	}
 	
-	@RequestMapping(value="/menu", method = RequestMethod.GET)
-	public ModelAndView mostrarMenu(){
-		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("menu");
-		return modelAndView;
-	}
 	
-	@RequestMapping("/informacion")
-    public String mostrarInformacion() {
-        return "informacion";
-    }
+	
 	
 	/**
 	 * Método que autentica al usuario capturando la petición GET de /authorization
@@ -309,7 +300,7 @@ public class ControladorPrincipal {
 	
 	@RequestMapping("/paginaMenuEmpresa")
 	public String paginaMenuEmpresa(){
-		return "paginaMenuEmpresa";
+		return "misOfertasEmpresa";
 	}
 	
 	@RequestMapping(value ="/ofertas", method = RequestMethod.GET)
