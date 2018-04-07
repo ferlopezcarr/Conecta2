@@ -276,4 +276,9 @@ public class Empresa {
 			return false;
 		return true;
 	}
+	
+	public String toString() {
+		
+		return nombreEmpresa;
+	}
 }
