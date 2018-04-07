@@ -58,7 +58,7 @@ public class Oferta {
 	
 	@ManyToMany(mappedBy="ofertas", fetch=FetchType.LAZY)
 	private List<Particular> particulares;
-	
+
 	@ManyToOne (fetch=FetchType.EAGER)
 	private Empresa empresa;
 
@@ -193,5 +193,101 @@ public class Oferta {
 
 	    return false;
 	}
-	
+	/*
+	@Override
+	public boolean equals(Object o) {
+		if (o == null) return false;
+	    if (o == this) return true;
+	    if (!(o instanceof Oferta))return false;
+		
+	    Oferta oferObj = (Oferta)o;
+	    
+	    return !(
+	    		(this.id != oferObj.id) ||
+	    		(this.nombre != oferObj.nombre) ||
+	    		(this.jornada != oferObj.jornada) ||
+	    		(this.contrato != oferObj.contrato) ||
+	    		(this.vacantes != oferObj.vacantes) ||
+	    		(this.salario != oferObj.salario) ||
+	    		(this.ciudad != oferObj.ciudad) ||
+	    		(this.descripcion != oferObj.descripcion) ||
+	    		(this.activo != oferObj.activo) ||
+	    		(this.empresa != oferObj.empresa) ||
+	    		(this.particulares != oferObj.particulares)
+	    		);
+	}
+	*/
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (activo ? 1231 : 1237);
+		result = prime * result + ((ciudad == null) ? 0 : ciudad.hashCode());
+		result = prime * result + ((contrato == null) ? 0 : contrato.hashCode());
+		result = prime * result + ((descripcion == null) ? 0 : descripcion.hashCode());
+		result = prime * result + ((empresa == null) ? 0 : empresa.hashCode());
+		result = prime * result + id;
+		result = prime * result + ((jornada == null) ? 0 : jornada.hashCode());
+		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
+		result = prime * result + ((particulares == null) ? 0 : particulares.hashCode());
+		result = prime * result + ((salario == null) ? 0 : salario.hashCode());
+		result = prime * result + ((vacantes == null) ? 0 : vacantes.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Oferta other = (Oferta) obj;
+		if (activo != other.activo)
+			return false;
+		if (ciudad == null) {
+			if (other.ciudad != null)
+				return false;
+		} else if (!ciudad.equals(other.ciudad))
+			return false;
+		if (contrato != other.contrato)
+			return false;
+		if (descripcion == null) {
+			if (other.descripcion != null)
+				return false;
+		} else if (!descripcion.equals(other.descripcion))
+			return false;
+		if (empresa == null) {
+			if (other.empresa != null)
+				return false;
+		} else if (!empresa.equals(other.empresa))
+			return false;
+		if (id != other.id)
+			return false;
+		if (jornada != other.jornada)
+			return false;
+		if (nombre == null) {
+			if (other.nombre != null)
+				return false;
+		} else if (!nombre.equals(other.nombre))
+			return false;
+		if (particulares == null) {
+			if (other.particulares != null)
+				return false;
+		} else if (!particulares.equals(other.particulares))
+			return false;
+		if (salario == null) {
+			if (other.salario != null)
+				return false;
+		} else if (!salario.equals(other.salario))
+			return false;
+		if (vacantes == null) {
+			if (other.vacantes != null)
+				return false;
+		} else if (!vacantes.equals(other.vacantes))
+			return false;
+		return true;
+	}
 }

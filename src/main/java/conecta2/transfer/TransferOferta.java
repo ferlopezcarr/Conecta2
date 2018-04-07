@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.DecimalMin;
@@ -21,6 +24,13 @@ import conecta2.modelo.JornadaLaboral;
 import conecta2.modelo.Particular;
 
 public class TransferOferta {
+	
+	/**
+	 * Id que genera la base de datos automáticamente, no se debe asignar manualmente
+	 */
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int id;
 	
 	@NotEmpty(message = "* Por favor, introduzca el nombre de la oferta")
 	@Length(max = 50, message = "* Por favor, el nombre no debe superar los 50 caracteres")
@@ -73,6 +83,14 @@ public class TransferOferta {
 			this.particulares = new ArrayList<Particular>();
 		else
 			this.particulares = particulares;
+	}
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 	
 	public String getNombre() {
