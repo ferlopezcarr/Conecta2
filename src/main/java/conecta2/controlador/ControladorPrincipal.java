@@ -400,7 +400,7 @@ ModelAndView modelAndView = obtenerInstancia();
 		}
 			
 		if (bindingResult.hasErrors()) {
-			modelAndView = new ModelAndView("crearCuenta", bindingResult.getModel());
+			modelAndView = new ModelAndView("crearOferta", bindingResult.getModel());
 			modelAndView.addObject("transferOferta", transferOferta);
 		}			
 		else {
