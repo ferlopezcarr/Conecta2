@@ -15,8 +15,6 @@ public enum JornadaLaboral {
         return displayName;
     }
     
-   public String toString() {
-    	return displayName;
-    }
+   
 }
 

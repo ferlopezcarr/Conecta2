@@ -63,7 +63,7 @@
  		          	 <tbody>
  		          	  	<tr th:each="oferta : ${listaOfertas}">
 	  						<td  th:text="${oferta.nombre}"></td>
-	  						<td  th:text="${oferta.JornadaLaboral}"></td>
+	  						<td  th:text="${oferta.JornadaLaboral.displayName}"></td>
 	  						<td th:text="${oferta.contrato}"></td>
 							<td th:text="${oferta.ciudad}"></td>
 							<td th:text="${oferta.vacantes}"></td>
