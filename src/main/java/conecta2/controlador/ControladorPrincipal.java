@@ -155,12 +155,6 @@ public class ControladorPrincipal {
 		return modelAndView;
 	}
 	
-	@RequestMapping(value="/menu", method = RequestMethod.GET)
-	public ModelAndView mostrarMenu(){
-		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("menu");
-		return modelAndView;
-	}
 	
 	
 	/**
@@ -357,9 +351,12 @@ ModelAndView modelAndView = obtenerInstancia();
     public ModelAndView mostrarOfertaEmpresa(@RequestParam("id") int id) {		
 		Oferta oferta = saOferta.buscarPorId(id);
 		
+	
 		ModelAndView modelAndView = new ModelAndView();
 		TransferOferta tOferta = new TransferOferta(oferta.getNombre(),oferta.getJornadaLaboral(), oferta.getContrato(), oferta.getVacantes(), oferta.getSalario(), oferta.getCiudad(), oferta.getDescripcion(),
 				true, oferta.getEmpresa(), oferta.getParticulares());
+		
+		
 		
 		modelAndView.addObject("transferOferta", tOferta);
 		modelAndView.setViewName("verOferta");
@@ -409,10 +406,11 @@ ModelAndView modelAndView = obtenerInstancia();
 		else {
 			transferOferta.setEmpresa(empresa);
 			saOferta.crearOferta(transferOferta);
-			modelAndView = new ModelAndView("redirect:/verOferta");
+			Oferta oferta = saOferta.buscarPorNombreAndJornadaAndContratoAndEmpresa(transferOferta.getNombre(), transferOferta.getJornada(), transferOferta.getContrato(), transferOferta.getEmpresa());
+			modelAndView = new ModelAndView("redirect:/verOferta?id=" + oferta.getId());
 		}
 		
-		modelAndView.addObject("roles", Rol.values());
+		//modelAndView.addObject("roles", Rol.values());
 		
 		return modelAndView;
 	}
