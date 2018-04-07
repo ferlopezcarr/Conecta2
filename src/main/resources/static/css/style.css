@@ -171,22 +171,22 @@ a.navbar-brand{
 }
 .container-perfilEmpresa{
 	
-	background-image: url(../images/fondo-2.jpg);
+	background-image: url(../images/fondo-2.jpg);	
 	background-size: 200% 15%;
 	background-repeat:no-repeat;
 	
 	
 }
 
-.containter-crear-oferta{
+.container-crear-oferta{
 	background-image: url(../images/fondo-2.jpg);
 	background-size: 100%;
 	background-repeat:no-repeat;
 }
 
-.containter-verOferta{
-	background-image: url(../images/fondo-2.jpg);
-	background-size: 200% 15%;
+.container-verOferta{
+	background-image: url(../images/luz.png);
+	background-size: 100% 10%;
 	background-repeat:no-repeat;
 }
 
@@ -272,4 +272,8 @@ a.navbar-brand{
 	display: inline-flex;
 	text-decoration:none;
     vertical-align: top;
+}
+
+.margen-col-uno{
+	margion-left:40%;
 }

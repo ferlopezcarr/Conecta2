@@ -37,9 +37,16 @@
 				    <form>				     
 				       <div class="form-group text-center">
 			  		      <label  for="Nombre"></label>
-			  		      <h1><span class="form-control-plaintext" th:text=${transferOferta.nombre}></span></h1>				  					  			
+			  		      <h1><span class="form-control-plaintext " th:text=${transferOferta.nombre}></span></h1>				  					  			
 			  		   </div>
 				       <hr class="mb-4 separador-gris">
+				       
+				       
+				       
+				       
+				       
+				       
+				       
 				       
 				       <div class="row text-center">  
 				          <div class="col-6">
@@ -48,21 +55,21 @@
 				          </div>
 				       	
 				           <div class="col-6">
-				              <label class=" mr-sm-2 letra-azul letra-negrita-sub alinear-icono" for="Nombre"><i class="material-icons">navigate_next</i>NUMERO VACANTES:</label>
+				              <label class=" mr-sm-2 letra-azul letra-negrita-sub alinear-icono " for="Nombre"><i class="material-icons">navigate_next</i>NUMERO VACANTES:</label>
 					  		  <span class="form-control-plaintext " th:text=${transferOferta.vacantes}></span>
 					       </div>
 				       </div>
 				       
 				       
 				       
-				       <div class="row text-center mt-4">  
-				          <div class="col-6">
+				       <div class="row  mt-4 ">  
+				          <div class="col-6 text-center ">
 				             <label class="mr-sm-2 letra-azul letra-negrita-sub alinear-icono" for="Nombre"><i class="material-icons">navigate_next</i>JORNADA:</label>
 					  		 <span class="form-control-plaintext " th:text=${transferOferta.jornada.displayName}></span>		
 				          </div>
 				       
-				           <div class="col-6">
-				               <label class=" mr-sm-2  letra-azul letra-negrita-sub text-left alinear-icono" for="Nombre"><i class="material-icons">navigate_next</i>CONTRATO:</label>
+				           <div class="col-6 text-center ">
+				               <label class=" mr-sm-2  letra-azul letra-negrita-sub  alinear-icono " for="Nombre"><i class="material-icons">navigate_next</i>CONTRATO:</label>
 					  		   <span class="form-control-plaintext " th:text=${transferOferta.contrato.displayName}></span>
 					       </div>
 				       </div>
