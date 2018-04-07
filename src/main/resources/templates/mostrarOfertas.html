@@ -33,45 +33,58 @@
   		<div class="col-10 color-perfil mx-auto border border-dark rounded ">
   			 	
 	       <div class="row"> 
-	        	   <div class="col-4  ml-auto text-center"> 
-	        	   	
+	        	   <div class="col-10  mx-auto justify-content-between"> 
+	        	   <label>
+	        		¿Desea crear una nueva oferta de trabajo?	   	
+	 	           </label>
 	 	            <a href="/crear-oferta">              
-	  	               	<button type="submit" class="btn botonAzul"  name="botonCrearOferta">Crear Oferta Nueva</button>
+	  	               	<button type="submit" class="btn botonAzul flex-row-reverse"  name="botonCrearOferta">Crear Oferta Nueva</button>
 	  	             </a>
-  	            
-	  	            <div class="mt-4">
-	  	            <button type="submit" class="btn  botonAzul"  name="botonCrearOferta">Modificar Oferta</button>
-	  	            </div>
-  	              
-	  	            <div class="mt-4">
-	  	            <button type="submit" class=" btn btn-grey"  name="botonCrearOferta">
-	  	               <span data-icon="glyphicon glyphicon-remove"></span>Eliminar Oferta
-	  	            </button>
-	  	            </div>
-	  	            
-		  	        <div class="mt-4">  
-	  	            <button type="submit" class="btn btn-finalizar"  name="botonCrearOferta">Finalizar Oferta</button>
-	  	            </div> 
-	  	            
-	  	            
-	
+  	        
   	            </div>
   	            
-  	            <div class="col-12">
- 		          	 <table>
+  	       
+	        </div>
+	        <div class="row mt-5">
+	              <div class="col-10 mx-auto">
+ 		          	 <table class="table table-hover table-responsive">
+ 		          	 <thead>
+ 		          	 <tr>
+ 		          	 		<th >Titulo oferta </th>
+	  						<th >Tipo jornada</th>
+	  						<th >Tipo Contrato</th>
+							<th >Ciudad</th>
+							<th >Vacantes</th>
+							<th >Salario</th>
+							<th  >Descripcion</th>
+							<th>Opciones </th>
+ 		          	 </tr>
+ 		          	 </thead>
+ 		          	 <tbody>
  		          	  	<tr th:each="oferta : ${listaOfertas}">
-	  						<td th:text="${oferta.tituloOferta}">Titulo oferta</td>
-	  						<td th:text="${oferta.tipoJornada}">Tipo jornada</td>
-	  						<td th:text="${oferta.tipoContrato}">Tipo Contrato</td>
-							<td th:text="${oferta.ciudad}">Ciudad</td>
-							<td th:text="${oferta.vacantes}">Vacantes</td>
-							<td th:text="${oferta.salario}">Salario</td>
-							<td th:text="${oferta.descripcion}">Descripcion</td>
+	  						<td  th:text="${oferta.nombre}"></td>
+	  						<td  th:text="${oferta.JornadaLaboral}"></td>
+	  						<td th:text="${oferta.contrato}"></td>
+							<td th:text="${oferta.ciudad}"></td>
+							<td th:text="${oferta.vacantes}"></td>
+							<td th:text="${oferta.salario}"></td>
+							<td width="20%" th:text="${oferta.descripcion}"></td>
+							<td> 
+							 <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="${oferta.id}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+   								Opciones
+ 							 </a>
+							 <div class="dropdown-menu" aria-labelledby="${oferta.id}">
+							  		  <a class="dropdown-item" href="#"> Ver</a>
+  									  <a class="dropdown-item" href="#">Modificar</a>
+  									  <a class="dropdown-item" href="#">Eliminar</a>
+ 									  <a class="dropdown-item" href="#">Finalizar</a>
+ 							 </div>
+							</td>
       					</tr>
- 		          	
+ 		          	</tbody>
  		          	</table>
  		          
- 		        </div>  
+ 		        </div> 
 	        </div> 	   
   	    </div>
   	</div>
