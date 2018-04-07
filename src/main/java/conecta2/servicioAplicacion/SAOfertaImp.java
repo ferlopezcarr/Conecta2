@@ -53,7 +53,12 @@ public class SAOfertaImp implements SAOferta {
 	}
 
 	@Override
-	public void save(TransferOferta tOferta) {
+	public List<Oferta> buscarOfertasPorEmpresa(int id_empresa) {
+		return repoOferta.findByIdAndActivoTrue(id_empresa);
+	}
+	
+	@Override
+	public Oferta save(TransferOferta tOferta) {
 		Oferta oferta = new Oferta();
 		
 		oferta.setNombre(tOferta.getNombre());
@@ -67,7 +72,7 @@ public class SAOfertaImp implements SAOferta {
 		oferta.setEmpresa(tOferta.getEmpresa());
 		oferta.setParticulares(tOferta.getParticulares());
 		
-		repoOferta.save(oferta);
+		return repoOferta.save(oferta);
 	}
 
 }

@@ -14,6 +14,7 @@ public interface SAOferta {
 		public Oferta buscarPorId (int id);
 		public Oferta buscarPorNombreAndJornadaAndContratoAndEmpresa(String nombre, JornadaLaboral jornada, Contrato contrato,
 				Empresa empresa);
-		public void save(TransferOferta transferEmpresa);
+		public List<Oferta> buscarOfertasPorEmpresa(int id_empresa);
+		public Oferta save(TransferOferta transferEmpresa);
 		
 }
