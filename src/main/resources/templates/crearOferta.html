@@ -82,14 +82,14 @@
 					   
 					    <div class="form-group col-4">
 						    <label for="salario" class="sr-only">Vacantes:</label>
-						   	<input type="text" class="form-control" th:field="*{vacantes}" id="vacantes" placeholder="Vacantes">
-						   	<label th:if="${#fields.hasErrors('vacantes')}" th:errors="*{vacantes}" class="validation-message error"></label>
+						   	<input type="text" class="form-control" th:field="*{auxVacantes}" id="vacantes" placeholder="Vacantes">
+						   	<label th:if="${#fields.hasErrors('auxVacantes')}" th:errors="*{auxVacantes}" class="validation-message error"></label>
 					 	</div>
 					 	
 					 	<div class="form-group col-4">
 						    <label for="salario" class="sr-only">Salario:</label>
-						   	<input type="text" class="form-control" th:field="*{salario}" id="salario" placeholder="Salario">
-						   	<label th:if="${#fields.hasErrors('salario')}" th:errors="*{salario}" class="validation-message error"></label>
+						   	<input type="text" class="form-control" th:field="*{auxSalario}" id="salario" placeholder="Salario">
+						   	<label th:if="${#fields.hasErrors('auxSalario')}" th:errors="*{auxSalario}" class="validation-message error"></label>
 					 	</div>
 					 	
 					  

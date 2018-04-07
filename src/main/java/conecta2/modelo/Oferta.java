@@ -16,6 +16,7 @@ import javax.validation.constraints.Digits;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -41,12 +42,9 @@ public class Oferta {
 	@NotNull
 	private Contrato contrato;
 	
-	@Digits(integer = 3, fraction = 0)
-	@Min(value = 0)
-	@Max(value = 999)
+	@NotNull
 	private Integer vacantes;
 	
-	@DecimalMin(value = "0.00")
 	private Double salario;
 
 	private String ciudad;

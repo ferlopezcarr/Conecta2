@@ -14,6 +14,7 @@ import javax.validation.constraints.Digits;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -42,14 +43,11 @@ public class TransferOferta {
 	@NotNull(message = "* Por favor, introduzca un contrato válido")
 	private Contrato contrato;
 	
-	@Digits(integer = 3, fraction = 0, message = "* Por favor, el número de vacantes debe ser un entero")
-	@Min(value = 1, message = "* Por favor, debe haber al menos una vacante")
-	@Max(value = 999, message = "* Por favor, sólo puede haber como máximo 999 vacantes")
 	private Integer vacantes;
 	
-	@DecimalMin(value = "0.00", message = "* Por favor, debe introducir un número positivo")
 	private Double salario;
 
+	@Pattern(regexp="^([a-zA-ZáéíóúñÁÉÍÓÚÑ ])*$", message="* Introduzca únicamente letras")
 	private String ciudad;
 	
 	@Length(max = 1000, message = "* Por favor, la descripción no debe superar los 1000 caracteres")
@@ -62,6 +60,13 @@ public class TransferOferta {
 	
 	@ManyToOne (fetch=FetchType.EAGER)
 	private Empresa empresa;
+	
+	@Pattern(regexp="^([0-9]{1,}(\\.[0-9]{1,}){0,1})*$", message= "* No puede introducir letras ni números negativos")
+	private String auxSalario;
+	
+	@NotEmpty(message ="* Por favor, introduzca un número")
+	@Pattern(regexp="^([0-9])*$", message= "* No puede introducir letras ni números negativos")
+	private String auxVacantes;
 	
 	/**
 	 * Constructora sin argumentos necesaria para JPA
@@ -124,13 +129,14 @@ public class TransferOferta {
 	public void setVacantes(Integer vacantes) {
 		this.vacantes = vacantes;
 	}
+	
 
 	public Double getSalario() {
 		return salario;
 	}
 
 	public void setSalario(Double salario) {
-		this.salario = salario;
+			this.salario = salario;
 	}
 
 	public String getCiudad() {
@@ -171,6 +177,35 @@ public class TransferOferta {
 
 	public void setEmpresa(Empresa empresa) {
 		this.empresa = empresa;
+	}
+	
+
+	public String getAuxSalario() {
+		return auxSalario;
+	}
+
+	public void setAuxSalario(String auxSalario) {
+		this.auxSalario = auxSalario;
+		try {
+			this.salario = Double.parseDouble(auxSalario);
+		}
+		catch(Exception e) {
+			this.salario = null;
+		}
+	}
+
+	public String getAuxVacantes() {
+		return auxVacantes;
+	}
+
+	public void setAuxVacantes(String auxVacantes) {
+		this.auxVacantes = auxVacantes;
+		try {
+			this.vacantes = Integer.parseInt(auxVacantes);
+		}
+		catch(Exception e) {
+			this.vacantes = null;
+		}
 	}
 
 	public boolean containsJornada(String text) {

@@ -382,13 +382,12 @@ public class ControladorPrincipal {
 			bindingResult.rejectValue("contrato", "error.transferOferta", "* Tipo de contrato no válido");
 			*/	
 		
-		if(transferOferta.getVacantes() == null) {
-			bindingResult.rejectValue("vacantes", "error.transferOferta", "* Por favor, debe introducir un número");
-		}
-		if(transferOferta.getSalario() == null) {
-			bindingResult.rejectValue("salario", "error.transferOferta", "* Por favor, debe introducir un número");
-		}
-			
+		if(transferOferta.getVacantes() != null) {
+			if(transferOferta.getVacantes() == 0) 
+				bindingResult.rejectValue("auxVacantes", "error.transferOferta", "* Por favor, debe haber al menos una vacante");
+			if(transferOferta.getVacantes() > 999)
+				bindingResult.rejectValue("auxVacantes", "error.transferOferta", "* Por favor, sólo puede haber como máximo 999 vacantes");
+		}		
 		if (bindingResult.hasErrors()) {
 			modelAndView = new ModelAndView("crearOferta", bindingResult.getModel());
 			modelAndView.addObject("jornadaValues", JornadaLaboral.values());
