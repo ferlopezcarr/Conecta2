@@ -20,11 +20,11 @@
 			<div class="collapse navbar-collapse" id="navbarSupportedContent" th:if="${particular} or ${empresa} != null">
 			 	<ul class="navbar-nav">
 			      	<li class="nav-item">
-			      		<a class="nav-link" th:href="'/particular/perfil?id=' + ${particular.id}" th:if="${particular != null}">Perfil</a>
-			        	<a class="nav-link" th:href="'/empresa/perfil?id=' + ${empresa.id}" th:if="${empresa != null}">Perfil</a>
+			      		<a class="nav-link" th:href="'/particular/perfil'" th:if="${particular != null}">Perfil</a>
+			        	<a class="nav-link" th:href="'/empresa/perfil'" th:if="${empresa != null}">Perfil</a>
 			      	</li>
 			      	<li class="nav-item">
-			        	<a class="nav-link" href="#">Ofertas</a>
+			        	<a class="nav-link" href="/ofertas">Ofertas</a>
 			      	</li>
 					<li class="nav-item">
 		        		<a class="nav-link" href="/logout">Desconectar</a>

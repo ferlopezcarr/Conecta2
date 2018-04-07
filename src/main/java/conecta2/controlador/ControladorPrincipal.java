@@ -1,5 +1,8 @@
 package conecta2.controlador;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +11,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.support.BindingAwareModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -198,10 +202,17 @@ public class ControladorPrincipal {
 	 * @return redirige a la página que muestra el perfil si no ha habido fallos,
 	 *  en caso contrario redirige al login y notifica
 	 */
-	@RequestMapping(value ="/empresa/perfil", method = RequestMethod.GET, params = {"id"})
-    public ModelAndView mostrarPerfilEmpresa(@RequestParam("id") int id) {		
-		Empresa empresa = saEmpresa.buscarPorId(id);		
-		ModelAndView modelAndView = new ModelAndView();		
+	@RequestMapping(value ="/empresa/perfil", method = RequestMethod.GET)
+    public ModelAndView mostrarPerfilEmpresa() {		
+			
+		ModelAndView modelAndView = obtenerInstancia();
+		
+		Map<String, Object> modelo = modelAndView.getModel();
+		BindingAwareModelMap mod = (BindingAwareModelMap) modelo.get("modelo");
+		Empresa  emp = (Empresa)mod.get("empresa");
+		
+		
+		Empresa empresa = saEmpresa.buscarPorId(emp.getId());	
 		TransferEmpresa transferEmpresa = new TransferEmpresa(empresa.getNombreEmpresa(), empresa.getCif(), empresa.getTelefono(), 
 				empresa.getEmail(), "0", "0", empresa.getDescripcion(), true);
 		
@@ -211,10 +222,17 @@ public class ControladorPrincipal {
 		return modelAndView;
     }
 	
-	@RequestMapping(value ="/empresa/modificar", method = RequestMethod.GET, params = {"id"})
-    public ModelAndView modificarPerfilEmpresa(@RequestParam("id") int id) {		
-		Empresa empresa = saEmpresa.buscarPorId(id);		
-		ModelAndView modelAndView = new ModelAndView();		
+	@RequestMapping(value ="/empresa/modificar", method = RequestMethod.GET)
+    public ModelAndView modificarPerfilEmpresa() {		
+				
+		ModelAndView modelAndView = obtenerInstancia();
+		
+		Map<String, Object> modelo = modelAndView.getModel();
+		BindingAwareModelMap mod = (BindingAwareModelMap) modelo.get("modelo");
+		Empresa  emp = (Empresa)mod.get("empresa");
+		
+		Empresa empresa = saEmpresa.buscarPorId(emp.getId());
+		
 		TransferEmpresa transferEmpresa = new TransferEmpresa(empresa.getNombreEmpresa(), empresa.getCif(), 
 				empresa.getTelefono(), empresa.getEmail(), "0", "0", empresa.getDescripcion(), true);
 		
@@ -249,10 +267,16 @@ public class ControladorPrincipal {
 	
 	
 	
-	@RequestMapping(value ="/particular/perfil", method = RequestMethod.GET, params = {"id"})
-    public ModelAndView mostrarPerfilParticular(@RequestParam("id") int id) {		
-		Particular particular = saParticular.buscarPorId(id);		
-		ModelAndView modelAndView = new ModelAndView();		
+	@RequestMapping(value ="/particular/perfil", method = RequestMethod.GET)
+    public ModelAndView mostrarPerfilParticular() {		
+		
+		ModelAndView modelAndView = obtenerInstancia();
+		
+		Map<String, Object> modelo = modelAndView.getModel();
+		BindingAwareModelMap mod = (BindingAwareModelMap) modelo.get("modelo");
+		Particular par = (Particular)mod.get("particular");
+		
+		Particular particular = saParticular.buscarPorId(par.getId());				
 		TransferParticular tParticular = new TransferParticular(particular.getNombre(), particular.getApellidos(), particular.getDni(),
 				particular.getTelefono(), particular.getEmail(), "0", true, particular.getPuntuacion(),particular.getDescripcion());
 		modelAndView.addObject("transferParticular", tParticular);
@@ -261,10 +285,15 @@ public class ControladorPrincipal {
 		return modelAndView;
     }
 	
-	@RequestMapping(value ="/particular/modificar", method = RequestMethod.GET, params = {"id"})
-    public ModelAndView modificarPerfilParticular(@RequestParam("id") int id) {		
-		Particular particular = saParticular.buscarPorId(id);		
-		ModelAndView modelAndView = new ModelAndView();		
+	@RequestMapping(value ="/particular/modificar", method = RequestMethod.GET)
+    public ModelAndView modificarPerfilParticular() {		
+ModelAndView modelAndView = obtenerInstancia();
+		
+		Map<String, Object> modelo = modelAndView.getModel();
+		BindingAwareModelMap mod = (BindingAwareModelMap) modelo.get("modelo");
+		Particular par = (Particular)mod.get("particular");
+		
+		Particular particular = saParticular.buscarPorId(par.getId());	
 		TransferParticular tParticular = new TransferParticular(particular.getNombre(), particular.getApellidos(), particular.getDni(),
 				particular.getTelefono(), particular.getEmail(), "0", true, particular.getPuntuacion(),particular.getDescripcion());
 		
@@ -360,7 +389,7 @@ public class ControladorPrincipal {
 		//Oferta oferta = saOferta.buscarPorId(transferOferta.getId());
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		Empresa empresa = saEmpresa.buscarPorEmail(auth.getName());
-		
+
 		transferOferta.getJornada();
 		
 		/*
@@ -402,6 +431,7 @@ public class ControladorPrincipal {
 		
 		model.addAttribute("particular", particular);
 		model.addAttribute("empresa", empresa);//En este caso el objeto usuario estará permanentemente en todas las vistas por el @ModelAttribute 
+		this.modeloyVista = new ModelAndView("/ofertas","modelo", model);
 	}
 	
 }
