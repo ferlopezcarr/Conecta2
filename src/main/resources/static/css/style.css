@@ -184,11 +184,13 @@ a.navbar-brand{
 	background-repeat:no-repeat;
 }
 
-.containter-ver-oferta{
-	background-image: url(../images/luz.png);
-	background-size: 100%;
+.containter-verOferta{
+	background-image: url(../images/fondo-2.jpg);
+	background-size: 200% 15%;
 	background-repeat:no-repeat;
 }
+
+
 
 .margen-texto-inicio{
 	margin-top: 2%;
@@ -252,12 +254,22 @@ a.navbar-brand{
 }
 
 .separador-dos-lineas{
-	
 
    border-top: 2px solid ; 
    border-bottom: 2px solid ; 
    border-left:none; 
    border-right:none; 
-   height: 6px;
-  
+   height: 6px;  
+}
+
+
+.letra-negrita-sub{
+	font-weight: bold;
+	text-decoration:underline;
+}
+
+.alinear-icono{
+	display: inline-flex;
+	text-decoration:none;
+    vertical-align: top;
 }
