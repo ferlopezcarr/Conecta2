@@ -325,7 +325,7 @@ public class ControladorPrincipal {
 	
 	
 	
-	
+	/*
 	@RequestMapping(value ="/verOferta", method = RequestMethod.GET, params = {"id"})
     public ModelAndView mostrarOfertaEmpresa(@RequestParam("id") int id) {		
 		Oferta oferta = saOferta.buscarPorId(id);
@@ -342,9 +342,43 @@ public class ControladorPrincipal {
 		
 		return modelAndView;
     }
+	*/
 	
-	
-	
+	@RequestMapping(value ="/verOferta", method = RequestMethod.GET, params = {"id"})
+    public ModelAndView mostrarOfertaEmpresa(@RequestParam("id") int id) {		
+		
+		ModelAndView modelAndView = null;
+		Oferta oferta = null;
+		
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		Empresa empresa = saEmpresa.buscarPorEmail(auth.getName());
+		
+		if(empresa == null) {//si no es empresa
+			Particular particular = saParticular.buscarPorEmail(auth.getName());
+			
+			if(particular != null) {//si es particular
+				//Se deja acceder a cualquier oferta
+				oferta = saOferta.buscarPorId(id);
+			}
+		}
+		else {//si es empresa
+			oferta = saOferta.buscarPorIdYEmpresa(id, empresa);
+		}
+		
+		if(oferta == null) {
+			//avisar de error o redirigir
+			modelAndView = new ModelAndView("redirect:/ofertas");
+		}
+		else {
+			modelAndView = new ModelAndView();
+			TransferOferta tOferta = new TransferOferta(oferta.getNombre(),oferta.getJornadaLaboral(), oferta.getContrato(), oferta.getVacantes(), oferta.getSalario(), oferta.getCiudad(), oferta.getDescripcion(),
+					true, oferta.getEmpresa(), oferta.getParticulares());
+			
+			modelAndView.addObject("transferOferta", tOferta);
+			modelAndView.setViewName("verOferta");
+		}
+		return modelAndView;
+    }
 	
 	@RequestMapping(value="/crear-oferta", method = RequestMethod.GET)
 	public ModelAndView crearOferta(){

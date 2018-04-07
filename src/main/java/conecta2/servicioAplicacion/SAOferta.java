@@ -16,5 +16,6 @@ public interface SAOferta {
 				Empresa empresa);
 		public List<Oferta> buscarOfertasPorEmpresa(int id_empresa);
 		public Oferta save(TransferOferta transferEmpresa);
+		public Oferta buscarPorIdYEmpresa(int id, Empresa empresa);
 		
 }

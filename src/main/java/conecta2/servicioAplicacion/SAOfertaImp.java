@@ -48,6 +48,11 @@ public class SAOfertaImp implements SAOferta {
 	}
 	
 	@Override
+	public Oferta buscarPorIdYEmpresa(int id, Empresa empresa) {
+		return repoOferta.findByIdAndEmpresa(id, empresa);
+	}
+	
+	@Override
 	public Oferta buscarPorNombreAndJornadaAndContratoAndEmpresa(String nombre, JornadaLaboral jornada, Contrato contrato, Empresa empresa) {
 		return repoOferta.findByNombreAndJornadaAndContratoAndEmpresa(nombre, jornada, contrato, empresa);
 	}
