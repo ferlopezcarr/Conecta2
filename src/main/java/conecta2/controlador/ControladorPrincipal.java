@@ -239,11 +239,10 @@ public class ControladorPrincipal {
 	@RequestMapping(value = "/empresa/modificar", method = RequestMethod.POST)
 	public ModelAndView modificarPerfilEmpresa(@ModelAttribute("transferEmpresa") TransferEmpresa transferEmpresa,BindingResult bindingResult) {
 		ModelAndView modelAndView = null;
-		Empresa empresa = saEmpresa.buscarPorEmail(transferEmpresa.getEmail());
 		if(!transferEmpresa.getNombreEmpresa().matches("^(?!\\s*$).+")) { //Patron not empty
 			bindingResult.rejectValue("nombreEmpresa", "error.transferEmpresa", "* Introduzca un nombre");
 		}
-		if(!transferEmpresa.getTelefono().matches("^([0-9]{9})*$")) {
+		if(!transferEmpresa.getTelefono().matches("^([0-9]{9})$")) {
 			bindingResult.rejectValue("telefono", "error.transferEmpresa", "* Introduzca un teléfono válido");
 		}
 		
@@ -252,7 +251,7 @@ public class ControladorPrincipal {
 			modelAndView.addObject("transferEmpresa", transferEmpresa);
 		}else {
 			saEmpresa.save(transferEmpresa);
-			modelAndView = new ModelAndView("redirect:/empresa/perfil?id="+ empresa.getId());
+			modelAndView = new ModelAndView("redirect:/empresa/perfil");
 
 		}
 
@@ -300,14 +299,13 @@ ModelAndView modelAndView = obtenerInstancia();
 	@RequestMapping(value ="/particular/modificar", method = RequestMethod.POST)
     public ModelAndView modificarPerfilParticular(@ModelAttribute("transferParticular") TransferParticular transferParticular, BindingResult bindingResult) {
 		ModelAndView modelAndView = null;
-		Particular particular = saParticular.buscarPorEmail(transferParticular.getEmail());
-		if (!transferParticular.getNombre().matches("^([a-zA-ZáéíóúñÁÉÍÓÚÑ ])*$")) {		
+		if (!transferParticular.getNombre().matches("^[a-zA-ZáéíóúñÁÉÍÓÚÑ ]{1,}$")) {		
 			bindingResult.rejectValue("nombre", "error.transferParticular", "* Introduzca únicamente letras");
 		}
-		if (!transferParticular.getApellidos().matches("^([a-zA-ZáéíóúñÁÉÍÓÚÑ ])*$")) {		
+		if (!transferParticular.getApellidos().matches("^[a-zA-ZáéíóúñÁÉÍÓÚÑ ]{1,}$")) {		
 			bindingResult.rejectValue("apellidos", "error.transferParticular", "* Introduzca únicamente letras");
 		}
-		if(!transferParticular.getTelefono().matches("^([0-9]{9})*$")) {
+		if(!transferParticular.getTelefono().matches("^([0-9]{9})$")) {
 			bindingResult.rejectValue("telefono", "error.transferParticular", "* Introduzca un teléfono válido");
 		}
 		if (bindingResult.hasErrors()) {		
@@ -316,7 +314,7 @@ ModelAndView modelAndView = obtenerInstancia();
 		}	
 		else {
 			saParticular.save(transferParticular);
-			modelAndView = new ModelAndView("redirect:/particular/perfil?id=" + particular.getId());
+			modelAndView = new ModelAndView("redirect:/particular/perfil");
 		}		
 		return modelAndView;
     }
