@@ -1,6 +1,5 @@
 package conecta2.controlador;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import javax.validation.Valid;
@@ -174,9 +173,8 @@ public class ControladorPrincipal {
 			modelAndView.addObject("errorPopUp", msg);
 		}
 		else{
-					modelAndView.setViewName("redirect:/login");
-			}			
-		
+			modelAndView.setViewName("redirect:/login");
+		}	
 		return modelAndView;
 	}
 	
@@ -270,7 +268,7 @@ public class ControladorPrincipal {
 	
 	@RequestMapping(value ="/particular/modificar", method = RequestMethod.GET)
     public ModelAndView modificarPerfilParticular() {		
-ModelAndView modelAndView = obtenerInstancia();
+		ModelAndView modelAndView = obtenerInstancia();
 		
 		Map<String, Object> modelo = modelAndView.getModel();
 		BindingAwareModelMap mod = (BindingAwareModelMap) modelo.get("modelo");
@@ -351,10 +349,19 @@ ModelAndView modelAndView = obtenerInstancia();
 	@RequestMapping(value="/crear-oferta", method = RequestMethod.GET)
 	public ModelAndView crearOferta(){
 		ModelAndView modelAndView = this.obtenerInstancia();
-		modelAndView.addObject("transferOferta", new TransferOferta());
-		modelAndView.addObject("jornadaValues", JornadaLaboral.values());
-		modelAndView.addObject("contratoValues", Contrato.values());
-		modelAndView.setViewName("crearOferta");
+		
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		Empresa empresa = saEmpresa.buscarPorEmail(auth.getName());
+		
+		if(empresa == null) {//no es particular
+			modelAndView = new ModelAndView("redirect:/ofertas");
+		}
+		else {//es empresa
+			modelAndView.addObject("transferOferta", new TransferOferta());
+			modelAndView.addObject("jornadaValues", JornadaLaboral.values());
+			modelAndView.addObject("contratoValues", Contrato.values());
+			modelAndView.setViewName("crearOferta");
+		}
 		return modelAndView;
 	}
 	
@@ -367,8 +374,6 @@ ModelAndView modelAndView = obtenerInstancia();
 		//Oferta oferta = saOferta.buscarPorId(transferOferta.getId());
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		Empresa empresa = saEmpresa.buscarPorEmail(auth.getName());
-
-		transferOferta.getJornada();
 		
 		/*
 		if (transferOferta.containsJornada(transferOferta.getJornadaLaboral().toString()))
