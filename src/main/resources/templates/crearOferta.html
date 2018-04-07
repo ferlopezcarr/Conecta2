@@ -49,7 +49,7 @@
 					  <div class="form-group ">
 					    <label for="nombre" class="sr-only">Título oferta</label>
 						<input type="text" class="form-control" th:field="*{nombre}" id="nombre" placeholder="Título oferta">
-						<label th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></label>
+						<label th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}" class="validation-message error"></label>
 					  </div>
 					  <div class="form-row mt-4">
 					     <div class="form-row align-items-center col-6">
@@ -59,7 +59,7 @@
 							      <select class="custom-select mr-sm-2" id="jornada" th:field="*{jornada}">
 							        <option selected th:each="jornada : ${jornadaValues}" th:value="${jornada}" th:text="${jornada.displayName}"></option>
 							      </select>
-							      <label th:if="${#fields.hasErrors('jornada')}" th:errors="*{jornada}"></label>
+							      <label th:if="${#fields.hasErrors('jornada')}" th:errors="*{jornada}" class="validation-message error"></label>
 							    </div>
 					     </div>
 					    
@@ -69,7 +69,7 @@
 						      <select class="custom-select mr-sm-2" id="Contrato" th:field="*{contrato}">
 						      	<option selected th:each="c : ${contratoValues}" th:value="${c}" th:text="${c.displayName}"></option>
 						      </select>
-						      <label th:if="${#fields.hasErrors('contrato')}" th:errors="*{contrato}"></label>
+						      <label th:if="${#fields.hasErrors('contrato')}" th:errors="*{contrato}" class="validation-message error"></label>
 						    </div>
 					     </div>
 					  </div>
@@ -77,19 +77,19 @@
 					    <div class="form-group col-4">
 					    	<label for="ciudad" class ="sr-only">City</label>
 					   		<input type="text" class="form-control" th:field="*{ciudad}" id="ciudad" placeholder="Ciudad">
-					   		<label th:if="${#fields.hasErrors('ciudad')}" th:errors="*{ciudad}"></label>
+					   		<label th:if="${#fields.hasErrors('ciudad')}" th:errors="*{ciudad}" class="validation-message error"></label>
 					    </div>
 					   
 					    <div class="form-group col-4">
 						    <label for="salario" class="sr-only">Vacantes:</label>
 						   	<input type="text" class="form-control" th:field="*{vacantes}" id="vacantes" placeholder="Vacantes">
-						   	<label th:if="${#fields.hasErrors('vacantes')}" th:errors="*{vacantes}"></label>
+						   	<label th:if="${#fields.hasErrors('vacantes')}" th:errors="*{vacantes}" class="validation-message error"></label>
 					 	</div>
 					 	
 					 	<div class="form-group col-4">
 						    <label for="salario" class="sr-only">Salario:</label>
 						   	<input type="text" class="form-control" th:field="*{salario}" id="salario" placeholder="Salario">
-						   	<label th:if="${#fields.hasErrors('salario')}" th:errors="*{salario}"></label>
+						   	<label th:if="${#fields.hasErrors('salario')}" th:errors="*{salario}" class="validation-message error"></label>
 					 	</div>
 					 	
 					  
@@ -97,13 +97,13 @@
 					  <div class="form-row mt-4">
 						  <label for="descripcion" class= "letra-azul">Descripcion:</label>
 						  <textarea class="form-control " rows="5" th:field="*{descripcion}" id="descripcion" placeholder="Añade aquí los detalles de la oferta..."></textarea>
-						  <label th:if="${#fields.hasErrors('descripcion')}" th:errors="*{descripcion}"></label>
+						  <label th:if="${#fields.hasErrors('descripcion')}" th:errors="*{descripcion}" ></label>
 					  </div>
 					  
 					  <div  class=" text-center  margen-botones">
-					  <a href="/verOferta">
+					 
 				<button type="submit" class=" btn-lg btn botonAzul" data-toggle="modal" data-target="#modalModificarParticular">Crear Oferta</button>
-					</a>
+				
 				
 				<!-- Modal -->
 									  <!-- <div class="modal fade" id="modalModificarParticular" role="dialog">
@@ -125,8 +125,9 @@
 									      
 									    </div>
 									  </div>-->
-									  
-				<button class="btn-lg btn btn-grey">Cancelar</button>
+				 <a th:href="'/ofertas'">
+				     <input type="button" class="btn-lg btn btn-grey" value="Cancelar"></input>							              
+				</a>
 				  
 			</div>
 				</form>
