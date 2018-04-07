@@ -3,7 +3,7 @@ package conecta2.modelo;
 public enum Contrato {
 	Indefinido("Indefinido"),
 	Temporal("Temporal"),
-	Formacion("En formación"),
+	Formación("Formación"),
 	Prácticas("Prácticas");
 	
     private final String displayName;

@@ -380,19 +380,24 @@ public class ControladorPrincipal {
 			bindingResult.rejectValue("jornada", "error.transferOferta", "* Jornada laboral no válida");
 		if (transferOferta.containsContrato(transferOferta.getContrato().toString()))
 			bindingResult.rejectValue("contrato", "error.transferOferta", "* Tipo de contrato no válido");
-			*/
+			*/	
+		
 		if(transferOferta.getVacantes() == null) {
-			bindingResult.rejectValue("vacantes", "error.transferOferta", "* Debes introducir un número");
+			bindingResult.rejectValue("vacantes", "error.transferOferta", "* Por favor, debe introducir un número");
+		}
+		if(transferOferta.getSalario() == null) {
+			bindingResult.rejectValue("salario", "error.transferOferta", "* Por favor, debe introducir un número");
 		}
 			
 		if (bindingResult.hasErrors()) {
 			modelAndView = new ModelAndView("crearOferta", bindingResult.getModel());
+			modelAndView.addObject("jornadaValues", JornadaLaboral.values());
+			modelAndView.addObject("contratoValues", Contrato.values());
 			modelAndView.addObject("transferOferta", transferOferta);
 		}			
 		else {
 			transferOferta.setEmpresa(empresa);
-			saOferta.crearOferta(transferOferta);
-			Oferta oferta = saOferta.buscarPorNombreAndJornadaAndContratoAndEmpresa(transferOferta.getNombre(), transferOferta.getJornada(), transferOferta.getContrato(), transferOferta.getEmpresa());
+			Oferta oferta = saOferta.save(transferOferta);
 			modelAndView = new ModelAndView("redirect:/verOferta?id=" + oferta.getId());
 		}
 		

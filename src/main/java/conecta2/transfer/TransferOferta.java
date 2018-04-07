@@ -47,7 +47,7 @@ public class TransferOferta {
 	@Max(value = 999, message = "* Por favor, sólo puede haber como máximo 999 vacantes")
 	private Integer vacantes;
 	
-	@DecimalMin(value = "0.00", message = "* Debe introducir un número positivo")
+	@DecimalMin(value = "0.00", message = "* Por favor, debe introducir un número positivo")
 	private Double salario;
 
 	private String ciudad;

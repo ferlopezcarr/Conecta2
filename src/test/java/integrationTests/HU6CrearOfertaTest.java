@@ -36,7 +36,7 @@ public class HU6CrearOfertaTest {
 		TransferOferta transferOferta = new TransferOferta(
 				"oferta", 
 				JornadaLaboral.PorHoras,
-				Contrato.Formacion,
+				Contrato.Formación,
 				1,
 				200.0,
 				"Madrid",
