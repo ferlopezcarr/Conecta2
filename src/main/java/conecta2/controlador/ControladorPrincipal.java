@@ -165,7 +165,7 @@ public class ControladorPrincipal {
 	@RequestMapping(value="/authorization", method = RequestMethod.GET, params = {"val"})
 	public ModelAndView autorizacion(@RequestParam("val") String val){ 
 		Object obj = saEmail.validaUsuario(val);
-		ModelAndView modelAndView = null;	
+		ModelAndView modelAndView = obtenerInstancia();	
 
 		if(obj==null) {
 			//MOSTRAR MENSAJE DE ERROR
@@ -174,19 +174,9 @@ public class ControladorPrincipal {
 			modelAndView.addObject("errorPopUp", msg);
 		}
 		else{
-			//ES UNA EMPRESA
-			if(obj.getClass()== (new TransferEmpresa()).getClass()){
-				TransferEmpresa transferEmpresa= (TransferEmpresa) obj;
-				Empresa empresa = saEmpresa.buscarPorEmail(transferEmpresa.getEmail());
-				modelAndView = new ModelAndView("redirect:/empresa/perfil?id=" + empresa.getId());
-			}
-			else {
-				//ES UN PARTICULAR
-				TransferParticular transferParticular= (TransferParticular) obj;
-				Particular particular = saParticular.buscarPorEmail(transferParticular.getEmail());
-				modelAndView = new ModelAndView("redirect:/particular/perfil?id="+ particular.getId());
+					modelAndView.setViewName("redirect:/login");
 			}			
-		}
+		
 		return modelAndView;
 	}
 	
@@ -398,7 +388,7 @@ ModelAndView modelAndView = obtenerInstancia();
 		}
 			
 		if (bindingResult.hasErrors()) {
-			modelAndView = new ModelAndView("crearCuenta", bindingResult.getModel());
+			modelAndView = new ModelAndView("crearOferta", bindingResult.getModel());
 			modelAndView.addObject("transferOferta", transferOferta);
 		}			
 		else {
