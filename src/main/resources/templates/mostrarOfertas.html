@@ -56,7 +56,7 @@
 							<th >Ciudad</th>
 							<th >Vacantes</th>
 							<th >Salario</th>
-							<th  >Descripcion</th>
+					
 							<th>Opciones </th>
  		          	 </tr>
  		          	 </thead>
@@ -68,16 +68,17 @@
 							<td th:text="${oferta.ciudad}"></td>
 							<td th:text="${oferta.vacantes}"></td>
 							<td th:text="${oferta.salario}"></td>
-							<td width="20%" th:text="${oferta.descripcion}"></td>
+							
 							<td> 
 							 <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="${oferta.id}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
    								Opciones
  							 </a>
 							 <div class="dropdown-menu" aria-labelledby="${oferta.id}">
-							  		  <a class="dropdown-item" href="#"> Ver</a>
-  									  <a class="dropdown-item" href="#">Modificar</a>
-  									  <a class="dropdown-item" href="#">Eliminar</a>
- 									  <a class="dropdown-item" href="#">Finalizar</a>
+							 
+							  		  <a class="dropdown-item" th:href="'/verOferta?id=' +${oferta.id}" > Ver</a>
+  									  <a class="dropdown-item" th:href="'/modificar?id=' +${oferta.id}">Modificar</a>
+  									  <a class="dropdown-item" th:href="'/eliminarOferta?id=' +${oferta.id}">Eliminar</a>
+ 									  <a class="dropdown-item" th:href="'/finalizarOferta?id=' +${oferta.id}">Finalizar</a>
  							 </div>
 							</td>
       					</tr>
