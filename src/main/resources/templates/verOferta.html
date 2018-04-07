@@ -89,7 +89,13 @@
 						  <textarea type="text" class="form-control" rows="10"  id="descripcion" th:text=${transferOferta.descripcion}  readonly></textarea>
 						  
 					    </div>
-				       
+					    
+					    <div class="row mt-4 justify-content-center"> 
+					  
+					    <a th:href="'/ofertas'">
+				             <input type="button" class="btn-lg btn botonAzul " value="Volver al listado de ofertas"></input>							              
+				         </a>
+				         </div>
 				     </form>
 				  </div>
 		 </div><!-- final row -->	
@@ -99,76 +105,7 @@
 				       
 				       
 				       
-				    		<!-- <div class="form-row mt-4">
-						      <div class="form-row align-items-center margen-datos ">
-								    <div class="col-auto my-1 ">								   
-					  		          <label class=" mr-sm-2 letra-azul perfilTitulo  " for="Nombre">NOMBRE EMPRESA:</label>
-					  		       <span class="form-control-plaintext " th:text=${transferOferta.empresa}></span>		
-					  		        </div>
-					  		   </div> 
-					  		   
-					  		  <div class="form-row align-items-center   margen-datos ">
-								    <div class="col-auto my-1 ">
-					  		          <label class=" mr-sm-2 letra-azul perfilTitulo" for="Nombre">NUMERO VACANTES:</label>
-					  		       <span class="form-control-plaintext " th:text=${transferOferta.vacantes}></span>	
-					  		        </div>
-					  		   </div>  
-					  		         		  					  			
-				  		</div>
-				    
-					    <div class="form-row mt-4">
-						      <div class="form-row align-items-center col-6">
-								    <div class="col-auto my-1">
-					  		          <label class="mr-sm-2 letra-azul" for="Nombre">JORNADA:</label>
-					  		       <span class="form-control-plaintext " th:text=${transferOferta.jornada.displayName}></span>		
-					  		        </div>
-					  		   </div> 
-					  		   
-					  		  <div class="form-row align-items-center col-6">
-								    <div class="col-auto my-1">
-					  		          <label class=" mr-sm-2  letra-azul" for="Nombre">CONTRATO:</label>
-					  		       <span class="form-control-plaintext " th:text=${transferOferta.contrato.displayName}></span>
-					  		        </div>
-					  		   </div>  
-					  		         		  					  			
-				  		</div>
-				  		
-				  		<div class="form-row mt-4">
-						      <div class="form-row align-items-center col-6">
-								    <div class="col-auto my-1">
-					  		          <label class=" mr-sm-2  letra-azul" for="Nombre">CIUDAD:</label>
-					  		       <span class="form-control-plaintext " th:text=${transferOferta.ciudad}></span>		
-					  		        </div>
-					  		   </div> 
-					  		   
-					  		  <div class="form-row align-items-center col-6 ">
-								    <div class="col-auto my-1">
-					  		          <label class=" mr-sm-2 letra-azul" for="Nombre">SALARIO:</label>
-					  		       <span class="form-control-plaintext " th:text=${transferOferta.salario}></span>		
-					  		        </div>
-					  		   </div>  
-					  		         		  					  			
-				  		</div>
-				  		<hr class="separador-dos-lineas">
-				  		<div class="form-row mt-4 ">
-						  <label class="letra-azul" for="descripcion" ><i>Descripcion Oferta:</i></label>
-						  <textarea type="text" class="form-control" rows="10"  id="descripcion" th:text=${transferOferta.descripcion}  readonly></textarea>
-						  
-					    </div>
-				  		
-				  		
-				    </form>
-
-				</div>
-				
-				
-				<div class="col-2"></div>
-			</div>	
-	        
-  	    </div>
-  	
-  	</div>-->
-
+				    	
   	
 	
 	<!-- Optional JavaScript -->
