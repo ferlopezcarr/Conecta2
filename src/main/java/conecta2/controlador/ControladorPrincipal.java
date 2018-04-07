@@ -315,10 +315,6 @@ ModelAndView modelAndView = obtenerInstancia();
 	
 	// ------------- OFERTAS ------------- //
 	
-	@RequestMapping("/paginaMenuEmpresa")
-	public String paginaMenuEmpresa(){
-		return "misOfertasEmpresa";
-	}
 	
 	@RequestMapping(value ="/ofertas", method = RequestMethod.GET)
     public ModelAndView mostrarOfertas() {			
@@ -329,12 +325,9 @@ ModelAndView modelAndView = obtenerInstancia();
 		return modelAndView;
     }
 	
-	/*@RequestMapping("/verOferta")
-	public String verOferta(){
-		return "verOferta";
-	}*/
 	
-	//FALTA TERMINARLO!!!!!!!
+	
+	
 	@RequestMapping(value ="/verOferta", method = RequestMethod.GET, params = {"id"})
     public ModelAndView mostrarOfertaEmpresa(@RequestParam("id") int id) {		
 		Oferta oferta = saOferta.buscarPorId(id);
