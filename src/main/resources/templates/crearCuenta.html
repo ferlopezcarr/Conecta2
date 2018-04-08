@@ -36,7 +36,7 @@
 		
 			
 			  <div class="tab-content" id="pills-tabContent">
-			      <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+			      <div class="tab-pane"  th:classappend="${msg} ? fade : 'show active'" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
 				       <form class="formulario" th:action="@{/crear-empresa}" th:object="${transferEmpresa}" method="POST">
 		  		
 		  
@@ -117,7 +117,7 @@
 		     
 		   
 		   
-		          <div class="tab-pane fade" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+		          <div class="tab-pane fade" th:classappend="${msg} ? 'show active' : fade"  id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
 					  <form class="formulario" th:action="@{/crear-particular}" th:object="${transferParticular}" method="POST">
 						  
 						  <div class="form-group">
@@ -211,27 +211,7 @@
      <script src="/js/jquery-3.2.1.slim.min.js" ></script>
     <script src="/js/popper.min.js"></script>
     <script src="/js/bootstrap.min.js" ></script>    
-  	<script>
-  	$(document).ready(function() {
-    	let msgsEmpresa = $(".errorEmpresa");
-    	if(msgsEmpresa.length == 0) {
-    		
-    	}
-    	else {
-    		$("#pills-profile-tab").addClass("active");
-    		$("#pills-profile").addClass("show active");
-    	}
-    	
-    	let msgsParticular = $(".errorParticular");
-		if(msgsParticular.length == 0) {
-    		
-    	}
-    	else {
-    		$("#pills-home-tab").addClass("active");
-    		$("#pills-home").addClass("show active");
-    	}
-  	});
-    </script>
+  
   
   </div>
   </body>

@@ -147,6 +147,8 @@ public class ControladorPrincipal {
 			modelAndView = new ModelAndView("crearCuenta", bindingResult.getModel());
 			modelAndView.addObject("transferParticular", transferParticular);
 			modelAndView.addObject("transferEmpresa", transferEmpresa);
+			boolean done=true;
+			modelAndView.addObject("msg", done);
 		}			
 		else {
 			transferParticular.setActivo(true);
