@@ -184,11 +184,8 @@ a.navbar-brand{
 	background-repeat:no-repeat;
 }
 
-.texto-rojo{
-	color:red;
-}
 .container-lista-oferta{
-	background-image: url(../images/ofertaFondo.png);
+	background-image: url(../images/fondoGris.png);
 	background-size: 100%;
 	background-repeat:no-repeat;
 }
