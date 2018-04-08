@@ -85,10 +85,10 @@
 		    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 		}
 		
-    	let errorMsg = getParameterByName("errorPopUp");
+    	let message = getParameterByName("popup");
     	
-    	if(errorMsg != "") {
-    		alert(errorMsg);
+    	if(message != "") {
+    		alert(message);
     	}
   	});
 	</script>

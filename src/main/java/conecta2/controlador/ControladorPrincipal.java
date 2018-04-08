@@ -166,14 +166,15 @@ public class ControladorPrincipal {
 		Object obj = saEmail.validaUsuario(val);
 		ModelAndView modelAndView = obtenerInstancia();	
 
-		if(obj==null) {
-			//MOSTRAR MENSAJE DE ERROR
+		if(obj==null) {//error validacion
 			modelAndView = new ModelAndView("redirect:/login");
-			String msg = "Código de confirmación incorrecto";
-			modelAndView.addObject("errorPopUp", msg);
+			String msg = "¡Código de confirmación incorrecto!";
+			modelAndView.addObject("popup", msg);
 		}
 		else{
 			modelAndView.setViewName("redirect:/login");
+			String msg = "¡Se ha verificado la cuenta!";
+			modelAndView.addObject("popup", msg);
 		}	
 		return modelAndView;
 	}
@@ -313,36 +314,29 @@ public class ControladorPrincipal {
 	
 	// ------------- OFERTAS ------------- //
 	
-	
 	@RequestMapping(value ="/ofertas", method = RequestMethod.GET)
     public ModelAndView mostrarOfertas() {			
-		ModelAndView modelAndView = new ModelAndView();		
-		modelAndView.addObject("listaOfertas", saOferta.buscarTodas());
-		modelAndView.setViewName("mostrarOfertas"); //Cambiar a la vista de modificar particular
+		ModelAndView modelAndView = obtenerInstancia();		
+		
+		Map<String, Object> modelo = modelAndView.getModel();
+		BindingAwareModelMap mod = (BindingAwareModelMap) modelo.get("modelo");
+		Empresa emp = (Empresa)mod.get("empresa");
+		Particular par = (Particular)mod.get("particular");
+		
+		if(emp != null) {// si es empresa
+			modelAndView.addObject("listaOfertas", saOferta.buscarOfertasPorEmpresa(emp));
+		}
+		else if(par != null) {
+			//Habria que cambiarlo para que solo salgan las ofertas
+			//en las que se ha inscrito el particular
+			modelAndView.addObject("listaOfertas", saOferta.buscarTodas());
+		}
+		
+		modelAndView.setViewName("mostrarOfertas");
 		
 		return modelAndView;
     }
 	
-	
-	
-	/*
-	@RequestMapping(value ="/verOferta", method = RequestMethod.GET, params = {"id"})
-    public ModelAndView mostrarOfertaEmpresa(@RequestParam("id") int id) {		
-		Oferta oferta = saOferta.buscarPorId(id);
-		
-	
-		ModelAndView modelAndView = new ModelAndView();
-		TransferOferta tOferta = new TransferOferta(oferta.getNombre(),oferta.getJornadaLaboral(), oferta.getContrato(), oferta.getVacantes(), oferta.getSalario(), oferta.getCiudad(), oferta.getDescripcion(),
-				true, oferta.getEmpresa(), oferta.getParticulares());
-		
-		
-		
-		modelAndView.addObject("transferOferta", tOferta);
-		modelAndView.setViewName("verOferta");
-		
-		return modelAndView;
-    }
-	*/
 	
 	@RequestMapping(value ="/verOferta", method = RequestMethod.GET, params = {"id"})
     public ModelAndView mostrarOfertaEmpresa(@RequestParam("id") int id) {		
@@ -353,23 +347,43 @@ public class ControladorPrincipal {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		Empresa empresa = saEmpresa.buscarPorEmail(auth.getName());
 		
-		if(empresa == null) {//si no es empresa
+		if(empresa != null) {//si es empresa
+			oferta = saOferta.buscarPorId(id);
+			
+			//Si no se encuentra la oferta
+			if(oferta == null) {
+				modelAndView = new ModelAndView("redirect:/ofertas");
+				String msg = "¡Oferta no encontrada!";
+				modelAndView.addObject("popup", msg);
+			}
+			else {
+				//Si la oferta no es de la empresa de la sesion
+				if(!oferta.getEmpresa().equals(empresa)) {
+					modelAndView = new ModelAndView("redirect:/ofertas");
+					String msg = "¡No puedes acceder a las ofertas de otras empresas!";
+					modelAndView.addObject("popup", msg);
+					
+					oferta = null;
+				}
+			}
+		}
+		else {
 			Particular particular = saParticular.buscarPorEmail(auth.getName());
 			
 			if(particular != null) {//si es particular
 				//Se deja acceder a cualquier oferta
 				oferta = saOferta.buscarPorId(id);
+				
+				if(oferta == null) {
+					modelAndView = new ModelAndView("redirect:/ofertas");
+					String msg = "¡Oferta no encontrada!";
+					modelAndView.addObject("popup", msg);
+				}
 			}
 		}
-		else {//si es empresa
-			oferta = saOferta.buscarPorIdYEmpresa(id, empresa);
-		}
-		
-		if(oferta == null) {
-			//avisar de error o redirigir
-			modelAndView = new ModelAndView("redirect:/ofertas");
-		}
-		else {
+
+		//Si no hay errores
+		if(oferta != null) {
 			modelAndView = new ModelAndView();
 			TransferOferta tOferta = new TransferOferta(oferta.getNombre(),oferta.getJornadaLaboral(), oferta.getContrato(), oferta.getVacantes(), oferta.getSalario(), oferta.getCiudad(), oferta.getDescripcion(),
 					true, oferta.getEmpresa(), oferta.getParticulares());
@@ -377,6 +391,7 @@ public class ControladorPrincipal {
 			modelAndView.addObject("transferOferta", tOferta);
 			modelAndView.setViewName("verOferta");
 		}
+		
 		return modelAndView;
     }
 	
@@ -387,7 +402,7 @@ public class ControladorPrincipal {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		Empresa empresa = saEmpresa.buscarPorEmail(auth.getName());
 		
-		if(empresa == null) {//no es particular
+		if(empresa == null) {//no es empresa
 			modelAndView = new ModelAndView("redirect:/ofertas");
 		}
 		else {//es empresa
@@ -405,16 +420,8 @@ public class ControladorPrincipal {
 		modelAndView.addObject("transferOferta", new TransferOferta());
 		modelAndView.setViewName("crearOferta");
 	
-		//Oferta oferta = saOferta.buscarPorId(transferOferta.getId());
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		Empresa empresa = saEmpresa.buscarPorEmail(auth.getName());
-		
-		/*
-		if (transferOferta.containsJornada(transferOferta.getJornadaLaboral().toString()))
-			bindingResult.rejectValue("jornada", "error.transferOferta", "* Jornada laboral no válida");
-		if (transferOferta.containsContrato(transferOferta.getContrato().toString()))
-			bindingResult.rejectValue("contrato", "error.transferOferta", "* Tipo de contrato no válido");
-			*/	
 		
 		if(transferOferta.getVacantes() != null) {
 			if(transferOferta.getVacantes() == 0) 
@@ -430,8 +437,9 @@ public class ControladorPrincipal {
 		}			
 		else {
 			transferOferta.setEmpresa(empresa);
+			transferOferta.setActivo(true);
 			Oferta oferta = saOferta.save(transferOferta);
-			modelAndView = new ModelAndView("redirect:/ofertas?id=" + oferta.getId());
+			modelAndView = new ModelAndView("redirect:/verOferta?id=" + oferta.getId());
 		}
 		
 		//modelAndView.addObject("roles", Rol.values());

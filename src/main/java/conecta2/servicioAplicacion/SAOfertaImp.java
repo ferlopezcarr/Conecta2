@@ -58,8 +58,8 @@ public class SAOfertaImp implements SAOferta {
 	}
 
 	@Override
-	public List<Oferta> buscarOfertasPorEmpresa(int id_empresa) {
-		return repoOferta.findByIdAndActivoTrue(id_empresa);
+	public List<Oferta> buscarOfertasPorEmpresa(Empresa empresa) {
+		return repoOferta.findByEmpresaAndActivoTrue(empresa);
 	}
 	
 	@Override
