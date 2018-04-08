@@ -344,11 +344,11 @@ public class ControladorPrincipal {
 		return modelAndView;
     }
 	
-	@RequestMapping(value ="/search", method = RequestMethod.POST)
-	public ModelAndView buscar(@ModelAttribute("text") String text) {	
+	@RequestMapping(value ="/buscar", method = RequestMethod.POST)
+	public ModelAndView buscar(@ModelAttribute("texto") String texto) {	
 		ModelAndView modelAndView = this.obtenerInstancia();
 		
-		String pattern ="%"+text+"%";
+		String pattern ="%"+texto+"%";
 		
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		Empresa empresa = saEmpresa.buscarPorEmail(auth.getName());
