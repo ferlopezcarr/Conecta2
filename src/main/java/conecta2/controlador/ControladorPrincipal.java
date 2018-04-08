@@ -349,31 +349,15 @@ public class ControladorPrincipal {
 		ModelAndView modelAndView = this.obtenerInstancia();
 		
 		String pattern ="%"+texto+"%";
-		
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		Empresa empresa = saEmpresa.buscarPorEmail(auth.getName());
-		
-		if(empresa != null) {//si es empresa
 			
-		}
-		else {
-			Particular particular = saParticular.buscarPorEmail(auth.getName());
-			
-			if(particular != null) {//si es particular
-				List<Oferta> listaOfertas = null;
-				
-				Object obj = saOferta.buscarOfertasPorNombreYPatron(pattern);
-				if(obj != null) {
-					listaOfertas = new ArrayList<Oferta>();
-					listaOfertas.addAll((Collection<Oferta>) obj);
-				}
-					
-				modelAndView.addObject("listaOfertas", listaOfertas);
-			}
-			modelAndView = new ModelAndView();
-			//de momento renderizamos en mostrarOfertas
-			modelAndView.setViewName("mostrarOfertas");
-		}
+		List<Oferta> listaOfertas = saOferta.buscarOfertasPorNombreYPatron(pattern);
+		
+		modelAndView = new ModelAndView();
+		modelAndView.addObject("listaOfertas", listaOfertas);
+		
+		//de momento renderizamos en mostrarOfertas
+		modelAndView.setViewName("mostrarOfertas");
+
 		
 		return modelAndView;
 	}
