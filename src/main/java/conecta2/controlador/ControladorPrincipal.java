@@ -329,6 +329,7 @@ public class ControladorPrincipal {
 		Particular par = (Particular)mod.get("particular");
 		modelAndView.addObject("emp", emp);
 		modelAndView.addObject("par", par);
+		modelAndView.addObject("listaOfertasBuscadas", null);
 		
 		if(emp != null) {// si es empresa
 			modelAndView.addObject("listaOfertas", saOferta.buscarOfertasPorEmpresa(emp));
@@ -355,7 +356,7 @@ public class ControladorPrincipal {
 		List<Oferta> listaOfertas = saOferta.buscarOfertasPorNombreYPatron(pattern);
 		
 		modelAndView = new ModelAndView();
-		modelAndView.addObject("listaOfertas", listaOfertas);
+		modelAndView.addObject("listaOfertasBuscadas", listaOfertas);
 		
 		//de momento renderizamos en mostrarOfertas
 		modelAndView.setViewName("mostrarOfertas");
