@@ -366,11 +366,18 @@ public class ControladorPrincipal {
 	@RequestMapping(value ="/verOferta", method = RequestMethod.GET, params = {"id"})
     public ModelAndView mostrarOfertaEmpresa(@RequestParam("id") int id) {		
 		
-		ModelAndView modelAndView = null;
-		Oferta oferta = null;
+		ModelAndView modelAndView = this.obtenerInstancia();
+	
+		Map<String, Object> modelo = modelAndView.getModel();
+		BindingAwareModelMap mod = (BindingAwareModelMap) modelo.get("modelo");
+		Empresa emp = (Empresa)mod.get("empresa");
+		Particular par = (Particular)mod.get("particular");
 		
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		Empresa empresa = saEmpresa.buscarPorEmail(auth.getName());
+		Empresa empresa = saEmpresa.buscarPorEmail(emp.getEmail());
+
+		modelAndView = null;
+		
+		Oferta oferta = null;
 		
 		if(empresa != null) {//si es empresa
 			oferta = saOferta.buscarPorId(id);
@@ -394,7 +401,7 @@ public class ControladorPrincipal {
 			
 		}
 		else {
-			Particular particular = saParticular.buscarPorEmail(auth.getName());
+			Particular particular = saParticular.buscarPorEmail(par.getEmail());
 			
 			if(particular != null) {//si es particular
 				//Se deja acceder a cualquier oferta
@@ -425,8 +432,11 @@ public class ControladorPrincipal {
 	public ModelAndView crearOferta(){
 		ModelAndView modelAndView = this.obtenerInstancia();
 		
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		Empresa empresa = saEmpresa.buscarPorEmail(auth.getName());
+		Map<String, Object> modelo = modelAndView.getModel();
+		BindingAwareModelMap mod = (BindingAwareModelMap) modelo.get("modelo");
+		Empresa emp = (Empresa)mod.get("empresa");
+		
+		Empresa empresa = saEmpresa.buscarPorEmail(emp.getEmail());
 		
 		if(empresa == null) {//no es empresa
 			modelAndView = new ModelAndView("redirect:/ofertas");
@@ -446,8 +456,11 @@ public class ControladorPrincipal {
 		modelAndView.addObject("transferOferta", new TransferOferta());
 		modelAndView.setViewName("crearOferta");
 	
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		Empresa empresa = saEmpresa.buscarPorEmail(auth.getName());
+		Map<String, Object> modelo = modelAndView.getModel();
+		BindingAwareModelMap mod = (BindingAwareModelMap) modelo.get("modelo");
+		Empresa emp = (Empresa)mod.get("empresa");
+		
+		Empresa empresa = saEmpresa.buscarPorEmail(emp.getEmail());
 		
 		if(transferOferta.getVacantes() != null) {
 			if(transferOferta.getVacantes() == 0) 
