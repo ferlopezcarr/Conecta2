@@ -395,9 +395,7 @@ public class ControladorPrincipal {
 				String msg = "¡Oferta no encontrada!";
 				modelAndView.addObject("popup", msg);
 			}
-			/*
 			else {
-				
 				//Si la oferta no es de la empresa de la sesion
 				if(!oferta.getEmpresa().equals(empresa)) {
 					modelAndView = new ModelAndView("redirect:/ofertas");
@@ -407,7 +405,7 @@ public class ControladorPrincipal {
 					oferta = null;
 				}
 			}
-			*/
+			
 		}
 		else {
 			Particular particular = saParticular.buscarPorEmail(auth.getName());
