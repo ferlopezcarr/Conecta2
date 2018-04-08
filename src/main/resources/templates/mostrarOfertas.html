@@ -18,7 +18,7 @@
   <body>
   	<nav th:replace="fragments/navbar :: navbar"></nav>
   	
-  	<div class="row mt-5">
+  	<div th:if="${emp != null}" class="row mt-5">
   		
   		
   		<div class="  mx-auto letra-azul text-center rounded">
@@ -30,7 +30,7 @@
   	</div>
   	<div class="row mt-5">
   	
-  		<div class="col-10 color-perfil mx-auto border border-dark rounded ">
+  		<div th:if="${emp != null}" class="col-10 color-perfil mx-auto border border-dark rounded ">
   			 	
 	       <div class="row"> 
 	        	   <div class="col-10  mx-auto justify-content-between text-right"> 
@@ -60,7 +60,7 @@
 							<th>Opciones </th>
  		          	 </tr>
  		          	 </thead>
- 		          	 <tbody>
+ 		          	 <tbody  >
  		          	  	<tr th:each="oferta : ${listaOfertas}">
 	  						<td  th:text="${oferta.nombre}"></td>
 	  						<td  th:text="${oferta.JornadaLaboral.displayName}"></td>
@@ -82,12 +82,93 @@
  							 </div>
 							</td>
       					</tr>
+      					
  		          	</tbody>
+ 		          	
+ 		          	
+ 		          	
+ 		          	
  		          	</table>
  		          
  		        </div> 
 	        </div> 	   
   	    </div>
+  	    </div>
+  	    
+  	    
+  	    <!-- PARTICULARES -->
+  	    
+  	    
+  	  	<div th:if="${par != null}" class="row mt-5">
+  		<div class="col-2 rounded"></div>
+  		<div class="col-2 container-lista-oferta rounded"></div>
+  		<div class="col-4  mx-auto letra-azul text-center rounded ">
+  		  
+  			<h1>Ofertas inscritas</h1>
+  			
+  		</div>
+  		<div class="col-2 container-lista-oferta rounded"></div>
+  		<div class="col-2 rounded"></div>
+  	</div>
+  		
+  	    
+  	    
+  	    
+  	    
+  	    
+  	    
+  	    
+  	
+  	    
+  	    <div class="row mt-5">
+  	    <div th:if="${par != null}" class="col-8 color-perfil mx-auto border border-dark rounded text-center ">
+  	    <h4>... Estas son todas las ofertas en las que te has inscrito! ...</h4>
+  	   
+  	    <div class="row mt-5 ">
+	              <div class="col-10 mx-auto  ">
+ 		          	 <table class="table table-hover table-responsive ">
+ 		          	 <thead>
+ 		          	 <tr>
+ 		          	 		<th >Titulo oferta </th>
+	  						<th >Tipo jornada</th>
+	  						<th >Tipo Contrato</th>
+							<th >Ciudad</th>
+							<th >Vacantes</th>
+							<th >Salario</th>
+					
+							<th class="text-center"> - </th>
+ 		          	 </tr>
+ 		          	 </thead>
+ 		          	 <tbody  >
+ 		          	  	<tr th:each="oferta : ${listaOfertas}">
+	  						<td  th:text="${oferta.nombre}"></td>
+	  						<td  th:text="${oferta.JornadaLaboral.displayName}"></td>
+	  						<td th:text="${oferta.contrato.displayName}"></td>
+							<td th:text="${oferta.ciudad}"></td>
+							<td th:text="${oferta.vacantes}"></td>
+							<td th:text="${oferta.salario}"></td>
+							
+							<td> 
+							
+							<a th:href="'/verOferta?id=' +${oferta.id}">
+				             <input type="button" class="btn botonAzul " value="Ver oferta"></input>							              
+				         </a>
+ 							
+							
+							</td>
+      					</tr>
+      					
+ 		          	</tbody>
+ 		          	
+ 		          	
+ 		          	
+ 		          	
+ 		          	</table>
+ 		          
+ 		        </div> 
+	        </div> 	   
+  	    </div>
+  	    
   	</div>
 
   	
