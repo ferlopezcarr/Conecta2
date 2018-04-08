@@ -18,5 +18,5 @@ public interface RepositorioOferta extends JpaRepository<Oferta, Integer>{
 	//Oferta findByNombreAndJornadaAndContratoAndEmpresa(String nombre, JornadaLaboral jornada, Contrato contrato, Empresa empresa);
 	List<Oferta> findByEmpresaAndActivoTrue(Empresa empresa);
 	
-	List<Oferta> findByNombreLike(String nombre, String pattern);
+	List<Oferta> findByNombreLike(String nombrePattern);
 }

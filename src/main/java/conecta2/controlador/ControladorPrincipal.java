@@ -335,6 +335,8 @@ public class ControladorPrincipal {
 			//Habria que cambiarlo para que solo salgan las ofertas
 			//en las que se ha inscrito el particular
 			modelAndView.addObject("listaOfertas", saOferta.buscarTodas());
+			String text = "";
+			modelAndView.addObject("text", text);
 		}
 		
 		modelAndView.setViewName("mostrarOfertas");
@@ -360,7 +362,7 @@ public class ControladorPrincipal {
 			if(particular != null) {//si es particular
 				List<Oferta> listaOfertas = null;
 				
-				Object obj = saOferta.buscarOfertasPorNombreYPatron(text, pattern);
+				Object obj = saOferta.buscarOfertasPorNombreYPatron(pattern);
 				if(obj != null) {
 					listaOfertas = new ArrayList<Oferta>();
 					listaOfertas.addAll((Collection<Oferta>) obj);
