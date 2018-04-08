@@ -327,6 +327,8 @@ public class ControladorPrincipal {
 		BindingAwareModelMap mod = (BindingAwareModelMap) modelo.get("modelo");
 		Empresa emp = (Empresa)mod.get("empresa");
 		Particular par = (Particular)mod.get("particular");
+		modelAndView.addObject("emp", emp);
+		modelAndView.addObject("par", par);
 		
 		if(emp != null) {// si es empresa
 			modelAndView.addObject("listaOfertas", saOferta.buscarOfertasPorEmpresa(emp));
