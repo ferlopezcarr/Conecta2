@@ -18,7 +18,9 @@
   <body>
   	<nav th:replace="fragments/navbar :: navbar"></nav>
   	
-  		<div th:if="${emp != null}" class="row mt-5">
+  	
+  	<div th:if="${popup == null}">
+  	<div th:if="${emp != null}" class="row mt-5">
   		<div class="col-2 rounded"></div>
   		<div class="col-2 container-lista-oferta rounded"></div>
   		<div class="col-4  mx-auto letra-azul text-center rounded ">
@@ -57,7 +59,6 @@
 							<th >Ciudad</th>
 							<th >Vacantes</th>
 							<th >Salario</th>
-					
 							<th>Opciones </th>
  		          	 </tr>
  		          	 </thead>
@@ -111,15 +112,6 @@
   		<div class="col-2 container-lista-oferta rounded"></div>
   		<div class="col-2 rounded"></div>
   	</div>
-  		
-  	    
-  	    
-  	    
-  	    
-  	    
-  	    
-  	    
-  	
   	    
   	    <div class="row mt-5">
   	    <div th:if="${par != null}" class="col-8 color-perfil mx-auto border border-dark rounded text-center ">
@@ -171,30 +163,37 @@
   	    </div>
   	    
   	</div>
-
   	
+	</div>
+  	    <!-- Si hay un error -->
+	<div th:if="${popup != null}">
+	
+		 <div class="modal-dialog">
+									    
+			 <!-- Modal content-->
+			<div class="modal-content">
+			 <div class="modal-body">
+			<label th:text="${popup}"></label>
+	</div>
+			<div class="modal-footer">
+			<a href="/ofertas" class="btn">Ir atras</a> 
+			 </div>
+			 </div>
+									      
+		 </div>
+	
+	
+		
+			
+			
+	</div>
+	
 	
 	<!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="/js/jquery-3.2.1.slim.min.js" ></script>
     <script src="/js/popper.min.js"></script>
     <script src="/js/bootstrap.min.js" ></script>    
- 	<script>
-	$(document).ready(function() {
-		
-		function getParameterByName(name) {
-		    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-		    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-		    results = regex.exec(location.search);
-		    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-		}
-		
-    	let message = getParameterByName("popup");
-    	
-    	if(message != "") {
-    		alert(message);
-    	}
-  	});
-	</script>
+
   </body>
 </html>

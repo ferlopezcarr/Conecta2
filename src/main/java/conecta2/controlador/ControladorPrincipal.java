@@ -382,7 +382,6 @@ public class ControladorPrincipal {
 		} 
 		
 
-		modelAndView = null;
 		
 		Oferta oferta = null;
 		
@@ -391,9 +390,10 @@ public class ControladorPrincipal {
 			
 			//Si no se encuentra la oferta
 			if(oferta == null) {
-				modelAndView = new ModelAndView("redirect:/ofertas");
 				String msg = "¡Oferta no encontrada!";
 				modelAndView.addObject("popup", msg);
+				modelAndView.setViewName("mostrarOfertas");
+				
 			}
 			else {
 				//Si la oferta no es de la empresa de la sesion
