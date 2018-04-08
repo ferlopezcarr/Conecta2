@@ -2,6 +2,8 @@ package unitTests;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,8 @@ import conecta2.dao.RepositorioOferta;
 import conecta2.modelo.Contrato;
 import conecta2.modelo.JornadaLaboral;
 import conecta2.modelo.Oferta;
+import conecta2.modelo.Particular;
+import conecta2.transfer.TransferOferta;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = Application.class)
@@ -58,6 +62,84 @@ public class HU6CrearOfertaTest {
 		Oferta ofertaGuardada = repOferta.findById(oferta.getId());
 		
 		assertEquals(oferta, ofertaGuardada);
+	}
+	
+	@Test
+	public void testDatosNumeradosIncorrectos() {
+		
+		TransferOferta transferOferta = new TransferOferta(
+				"oferta", 
+				JornadaLaboral.PorHoras,
+				Contrato.Formación,
+				1,
+				200.0,
+				"Madrid",
+				"hola",
+				true,
+				false,
+				null,
+				new ArrayList<Particular>()
+			);
+		
+		transferOferta.setAuxSalario("p");
+		transferOferta.setAuxVacantes("p");
+		Boolean equal1 = false;
+		Boolean equal2 = false;
+		if(transferOferta.getSalario() == null) equal1= true;
+		if(transferOferta.getVacantes() == null) equal2 = true;	
+		
+		assertEquals(equal1 && equal2, true);
+	}
+	
+	@Test
+	public void testDatosNumeradosNegativos() {
+		
+		TransferOferta transferOferta = new TransferOferta(
+				"oferta", 
+				JornadaLaboral.PorHoras,
+				Contrato.Formación,
+				1,
+				200.0,
+				"Madrid",
+				"hola",
+				true,
+				false,
+				null,
+				new ArrayList<Particular>()
+			);
+		
+		transferOferta.setAuxSalario("-1");
+		transferOferta.setAuxVacantes("-1");
+		Boolean equal1 = false;
+		Boolean equal2 = false;
+		if(transferOferta.getSalario() == null) equal1= true;
+		if(transferOferta.getVacantes() == null) equal2 = true;	
+		
+		assertEquals(equal1 && equal2, true);
+	}
+	
+	@Test
+	public void testVacantesDecimales() {
+		
+		TransferOferta transferOferta = new TransferOferta(
+				"oferta", 
+				JornadaLaboral.PorHoras,
+				Contrato.Formación,
+				1,
+				200.0,
+				"Madrid",
+				"hola",
+				true,
+				false,
+				null,
+				new ArrayList<Particular>()
+			);
+		
+		transferOferta.setAuxVacantes("1.5");
+		Boolean equal1 = false;
+		if(transferOferta.getVacantes() == null) equal1 = true;	
+		
+		assertEquals(equal1, true);
 	}
 
 }

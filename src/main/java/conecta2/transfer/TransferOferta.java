@@ -191,6 +191,7 @@ public class TransferOferta {
 		this.auxSalario = auxSalario;
 		try {
 			this.salario = Double.parseDouble(auxSalario);
+			if(this.salario < 0) this.salario = null;
 		}
 		catch(Exception e) {
 			this.salario = null;
@@ -205,6 +206,7 @@ public class TransferOferta {
 		this.auxVacantes = auxVacantes;
 		try {
 			this.vacantes = Integer.parseInt(auxVacantes);
+			if(this.vacantes < 0) this.vacantes = null;
 		}
 		catch(Exception e) {
 			this.vacantes = null;
