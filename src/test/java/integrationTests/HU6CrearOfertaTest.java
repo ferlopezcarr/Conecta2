@@ -42,18 +42,12 @@ public class HU6CrearOfertaTest {
 				"Madrid",
 				"hola",
 				true,
+				false,
 				null,
 				new ArrayList<Particular>()
 			);
 		
-		saOferta.save(transferOferta);
-		
-		Oferta ofertaGuardada = saOferta.buscarPorNombreAndJornadaAndContratoAndEmpresa(
-				transferOferta.getNombre(),
-				transferOferta.getJornada(),
-				transferOferta.getContrato(),
-				transferOferta.getEmpresa()
-				);
+		Oferta ofertaGuardada = saOferta.save(transferOferta);
 		
 		Oferta oferta = new Oferta(
 				transferOferta.getNombre(), 
@@ -64,6 +58,7 @@ public class HU6CrearOfertaTest {
 				transferOferta.getCiudad(),
 				transferOferta.getDescripcion(),
 				transferOferta.getActivo(),
+				transferOferta.getFinalizada(),
 				transferOferta.getEmpresa(),
 				transferOferta.getParticulares()
 			);

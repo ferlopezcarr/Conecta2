@@ -30,6 +30,7 @@ public class SAOfertaImp implements SAOferta {
 				transferOferta.getCiudad(),
 				transferOferta.getDescripcion(),
 				transferOferta.getActivo(),
+				transferOferta.getFinalizada(),
 				transferOferta.getEmpresa(),
 				transferOferta.getParticulares()
 				);
@@ -51,16 +52,22 @@ public class SAOfertaImp implements SAOferta {
 	public Oferta buscarPorIdYEmpresa(int id, Empresa empresa) {
 		return repoOferta.findByIdAndEmpresa(id, empresa);
 	}
-	
+	/*
 	@Override
 	public Oferta buscarPorNombreAndJornadaAndContratoAndEmpresa(String nombre, JornadaLaboral jornada, Contrato contrato, Empresa empresa) {
 		return repoOferta.findByNombreAndJornadaAndContratoAndEmpresa(nombre, jornada, contrato, empresa);
 	}
-
+	*/
 	@Override
 	public List<Oferta> buscarOfertasPorEmpresa(Empresa empresa) {
 		return repoOferta.findByEmpresaAndActivoTrue(empresa);
 	}
+	
+	@Override
+	public List<Oferta> buscarOfertasPorNombreYPatron(String nombre, String pattern) {
+		return repoOferta.findByNombreLike(nombre, pattern);
+	}
+	
 	
 	@Override
 	public Oferta save(TransferOferta tOferta) {

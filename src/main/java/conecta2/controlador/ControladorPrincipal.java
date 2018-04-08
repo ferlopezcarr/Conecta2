@@ -1,5 +1,8 @@
 package conecta2.controlador;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 
 import javax.validation.Valid;
@@ -112,6 +115,7 @@ public class ControladorPrincipal {
 			
 		}		
 		else {
+			transferEmpresa.setActivo(true);
 			saEmpresa.crearEmpresa(transferEmpresa);
 			modelAndView = new ModelAndView("redirect:/");
 		}
@@ -145,6 +149,7 @@ public class ControladorPrincipal {
 			modelAndView.addObject("transferEmpresa", transferEmpresa);
 		}			
 		else {
+			transferParticular.setActivo(true);
 			saParticular.crearParticular(transferParticular);
 			modelAndView = new ModelAndView("redirect:/");
 		}
@@ -197,7 +202,7 @@ public class ControladorPrincipal {
 		
 		Empresa empresa = saEmpresa.buscarPorId(emp.getId());	
 		TransferEmpresa transferEmpresa = new TransferEmpresa(empresa.getNombreEmpresa(), empresa.getCif(), empresa.getTelefono(), 
-				empresa.getEmail(), "0", "0", empresa.getDescripcion(), true);
+				empresa.getEmail(), "0", "0", empresa.getDescripcion(), empresa.getActivo());
 		
 		modelAndView.addObject("transferEmpresa", transferEmpresa);
 		modelAndView.setViewName("perfilEmpresa");
@@ -217,7 +222,7 @@ public class ControladorPrincipal {
 		Empresa empresa = saEmpresa.buscarPorId(emp.getId());
 		
 		TransferEmpresa transferEmpresa = new TransferEmpresa(empresa.getNombreEmpresa(), empresa.getCif(), 
-				empresa.getTelefono(), empresa.getEmail(), "0", "0", empresa.getDescripcion(), true);
+				empresa.getTelefono(), empresa.getEmail(), "0", "0", empresa.getDescripcion(), empresa.getActivo());
 		
 		modelAndView.addObject("transferEmpresa", transferEmpresa);
 		modelAndView.setViewName("modificarEmpresa");
@@ -260,7 +265,7 @@ public class ControladorPrincipal {
 		
 		Particular particular = saParticular.buscarPorId(par.getId());				
 		TransferParticular tParticular = new TransferParticular(particular.getNombre(), particular.getApellidos(), particular.getDni(),
-				particular.getTelefono(), particular.getEmail(), "0", true, particular.getPuntuacion(),particular.getDescripcion());
+				particular.getTelefono(), particular.getEmail(), "0", particular.getActivo(), particular.getPuntuacion(),particular.getDescripcion());
 		modelAndView.addObject("transferParticular", tParticular);
 		modelAndView.setViewName("perfilParticular");
 		
@@ -277,7 +282,7 @@ public class ControladorPrincipal {
 		
 		Particular particular = saParticular.buscarPorId(par.getId());	
 		TransferParticular tParticular = new TransferParticular(particular.getNombre(), particular.getApellidos(), particular.getDni(),
-				particular.getTelefono(), particular.getEmail(), "0", true, particular.getPuntuacion(),particular.getDescripcion());
+				particular.getTelefono(), particular.getEmail(), "0", particular.getActivo(), particular.getPuntuacion(),particular.getDescripcion());
 		
 		modelAndView.addObject("transferParticular", tParticular);
 		modelAndView.setViewName("modificarParticular"); //Cambiar a la vista de modificar particular
@@ -337,6 +342,40 @@ public class ControladorPrincipal {
 		return modelAndView;
     }
 	
+	@RequestMapping(value ="/search", method = RequestMethod.POST)
+	public ModelAndView buscar(@ModelAttribute("text") String text) {	
+		ModelAndView modelAndView = this.obtenerInstancia();
+		
+		String pattern ="%"+text+"%";
+		
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		Empresa empresa = saEmpresa.buscarPorEmail(auth.getName());
+		
+		if(empresa != null) {//si es empresa
+			
+		}
+		else {
+			Particular particular = saParticular.buscarPorEmail(auth.getName());
+			
+			if(particular != null) {//si es particular
+				List<Oferta> listaOfertas = null;
+				
+				Object obj = saOferta.buscarOfertasPorNombreYPatron(text, pattern);
+				if(obj != null) {
+					listaOfertas = new ArrayList<Oferta>();
+					listaOfertas.addAll((Collection<Oferta>) obj);
+				}
+					
+				modelAndView.addObject("listaOfertas", listaOfertas);
+			}
+			modelAndView = new ModelAndView();
+			//de momento renderizamos en mostrarOfertas
+			modelAndView.setViewName("mostrarOfertas");
+		}
+		
+		return modelAndView;
+	}
+	
 	
 	@RequestMapping(value ="/verOferta", method = RequestMethod.GET, params = {"id"})
     public ModelAndView mostrarOfertaEmpresa(@RequestParam("id") int id) {		
@@ -356,7 +395,9 @@ public class ControladorPrincipal {
 				String msg = "¡Oferta no encontrada!";
 				modelAndView.addObject("popup", msg);
 			}
+			/*
 			else {
+				
 				//Si la oferta no es de la empresa de la sesion
 				if(!oferta.getEmpresa().equals(empresa)) {
 					modelAndView = new ModelAndView("redirect:/ofertas");
@@ -366,6 +407,7 @@ public class ControladorPrincipal {
 					oferta = null;
 				}
 			}
+			*/
 		}
 		else {
 			Particular particular = saParticular.buscarPorEmail(auth.getName());
@@ -386,7 +428,7 @@ public class ControladorPrincipal {
 		if(oferta != null) {
 			modelAndView = new ModelAndView();
 			TransferOferta tOferta = new TransferOferta(oferta.getNombre(),oferta.getJornadaLaboral(), oferta.getContrato(), oferta.getVacantes(), oferta.getSalario(), oferta.getCiudad(), oferta.getDescripcion(),
-					true, oferta.getEmpresa(), oferta.getParticulares());
+					oferta.getActivo(), oferta.getFinalizada(), oferta.getEmpresa(), oferta.getParticulares());
 			
 			modelAndView.addObject("transferOferta", tOferta);
 			modelAndView.setViewName("verOferta");
@@ -438,6 +480,7 @@ public class ControladorPrincipal {
 		else {
 			transferOferta.setEmpresa(empresa);
 			transferOferta.setActivo(true);
+			transferOferta.setFinalizada(false);
 			Oferta oferta = saOferta.save(transferOferta);
 			modelAndView = new ModelAndView("redirect:/verOferta?id=" + oferta.getId());
 		}

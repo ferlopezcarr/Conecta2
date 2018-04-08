@@ -55,6 +55,8 @@ public class TransferOferta {
 	
 	private boolean activo;
 	
+	private boolean finalizada;
+	
 	@ManyToMany(mappedBy="ofertas", fetch=FetchType.LAZY)
 	private List<Particular> particulares;
 	
@@ -73,7 +75,7 @@ public class TransferOferta {
 	 */
 	public TransferOferta() {}
 	
-	public TransferOferta(String nombre, JornadaLaboral jornada, Contrato contrato, Integer vacantes, Double salario, String ciudad, String descripcion, boolean activo, Empresa empresa, List<Particular> particulares) {
+	public TransferOferta(String nombre, JornadaLaboral jornada, Contrato contrato, Integer vacantes, Double salario, String ciudad, String descripcion, boolean activo, boolean finalizada, Empresa empresa, List<Particular> particulares) {
 		this.nombre = nombre;
 		this.jornada = jornada;
 		this.contrato = contrato;
@@ -82,6 +84,7 @@ public class TransferOferta {
 		this.ciudad = ciudad;
 		this.descripcion = descripcion;
 		this.activo = activo;
+		this.finalizada = finalizada;
 		this.empresa = empresa;
 		
 		if(particulares == null)
@@ -206,6 +209,14 @@ public class TransferOferta {
 		catch(Exception e) {
 			this.vacantes = null;
 		}
+	}
+
+	public boolean getFinalizada() {
+		return finalizada;
+	}
+
+	public void setFinalizada(boolean finalizada) {
+		this.finalizada = finalizada;
 	}
 
 	public boolean containsJornada(String text) {

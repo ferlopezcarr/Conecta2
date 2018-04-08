@@ -12,10 +12,13 @@ public interface SAOferta {
 		public void crearOferta(TransferOferta transferOferta);
 		public List<Oferta> buscarTodas();
 		public Oferta buscarPorId (int id);
+		/*
 		public Oferta buscarPorNombreAndJornadaAndContratoAndEmpresa(String nombre, JornadaLaboral jornada, Contrato contrato,
 				Empresa empresa);
+				*/
 		public List<Oferta> buscarOfertasPorEmpresa(Empresa empresa);
 		public Oferta save(TransferOferta transferEmpresa);
 		public Oferta buscarPorIdYEmpresa(int id, Empresa empresa);
+		public List<Oferta> buscarOfertasPorNombreYPatron(String nombre, String pattern);
 		
 }

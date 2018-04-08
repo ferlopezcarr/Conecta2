@@ -11,12 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.DecimalMin;
-import javax.validation.constraints.Digits;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -54,6 +49,8 @@ public class Oferta {
 	
 	private boolean activo;
 	
+	private boolean finalizada;
+	
 	@ManyToMany(mappedBy="ofertas", fetch=FetchType.LAZY)
 	private List<Particular> particulares;
 
@@ -65,7 +62,7 @@ public class Oferta {
 	 */
 	public Oferta() {}
 	
-	public Oferta(String nombre, JornadaLaboral jornada, Contrato contrato, Integer vacantes, Double salario, String ciudad, String descripcion, boolean activo, Empresa empresa, List<Particular> particulares) {
+	public Oferta(String nombre, JornadaLaboral jornada, Contrato contrato, Integer vacantes, Double salario, String ciudad, String descripcion, boolean activo, boolean finalizada, Empresa empresa, List<Particular> particulares) {
 		this.nombre = nombre;
 		this.jornada = jornada;
 		this.contrato = contrato;
@@ -74,6 +71,7 @@ public class Oferta {
 		this.ciudad = ciudad;
 		this.descripcion = descripcion;
 		this.activo = activo;
+		this.finalizada = finalizada;
 		this.empresa = empresa;
 		
 		if(particulares == null)
@@ -170,6 +168,14 @@ public class Oferta {
 		this.empresa = empresa;
 	}
 	
+	public boolean getFinalizada() {
+		return finalizada;
+	}
+
+	public void setFinalizada(boolean finalizada) {
+		this.finalizada = finalizada;
+	}
+
 	public boolean containsJornada(String text) {
 		
 	    for (JornadaLaboral j : JornadaLaboral.values()) {
@@ -225,6 +231,7 @@ public class Oferta {
 		result = prime * result + ((contrato == null) ? 0 : contrato.hashCode());
 		result = prime * result + ((descripcion == null) ? 0 : descripcion.hashCode());
 		result = prime * result + ((empresa == null) ? 0 : empresa.hashCode());
+		result = prime * result + (finalizada ? 1231 : 1237);
 		result = prime * result + id;
 		result = prime * result + ((jornada == null) ? 0 : jornada.hashCode());
 		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
@@ -261,6 +268,8 @@ public class Oferta {
 			if (other.empresa != null)
 				return false;
 		} else if (!empresa.equals(other.empresa))
+			return false;
+		if (finalizada != other.finalizada)
 			return false;
 		if (id != other.id)
 			return false;

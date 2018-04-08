@@ -33,7 +33,7 @@ public class HU6CrearOfertaTest {
 	
 	@Test
 	public void testInsertNotNull() {
-		Oferta oferta = new Oferta("oferta", JornadaLaboral.PorHoras, Contrato.Formación, 1, 200.0, "Madrid", "", true, null, null);
+		Oferta oferta = new Oferta("oferta", JornadaLaboral.PorHoras, Contrato.Formación, 1, 200.0, "Madrid", "", true, false, null, null);
 		
 		Oferta ofertaGuardada = repOferta.save(oferta);
 		
@@ -42,7 +42,7 @@ public class HU6CrearOfertaTest {
 	
 	@Test
 	public void testNotFounded() {
-		Oferta oferta = new Oferta("oferta", JornadaLaboral.PorHoras, Contrato.Formación, 1, 200.0, "Madrid", "", true, null, null);
+		Oferta oferta = new Oferta("oferta", JornadaLaboral.PorHoras, Contrato.Formación, 1, 200.0, "Madrid", "", true, false, null, null);
 		
 		Oferta ofertaGuardada = repOferta.findById(oferta.getId());
 		
@@ -51,7 +51,7 @@ public class HU6CrearOfertaTest {
 	
 	@Test
 	public void testInsertFoundedById() {
-		Oferta oferta = new Oferta("oferta", JornadaLaboral.PorHoras, Contrato.Formación, 1, 200.0, "Madrid", "", true, null, null);
+		Oferta oferta = new Oferta("oferta", JornadaLaboral.PorHoras, Contrato.Formación, 1, 200.0, "Madrid", "", true, false, null, null);
 		
 		repOferta.save(oferta);
 		
