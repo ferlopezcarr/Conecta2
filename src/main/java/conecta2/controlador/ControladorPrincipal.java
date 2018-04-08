@@ -485,8 +485,8 @@ public class ControladorPrincipal {
 			transferOferta.setEmpresa(empresa);
 			transferOferta.setActivo(true);
 			transferOferta.setFinalizada(false);
-			Oferta oferta = saOferta.save(transferOferta);
-			modelAndView = new ModelAndView("redirect:/verOferta?id=" + oferta.getId());
+			saOferta.save(transferOferta);
+			modelAndView = new ModelAndView("redirect:/ofertas");
 		}
 		
 		//modelAndView.addObject("roles", Rol.values());
