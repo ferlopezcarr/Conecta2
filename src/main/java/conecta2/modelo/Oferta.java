@@ -197,30 +197,14 @@ public class Oferta {
 
 	    return false;
 	}
-	/*
-	@Override
-	public boolean equals(Object o) {
-		if (o == null) return false;
-	    if (o == this) return true;
-	    if (!(o instanceof Oferta))return false;
+	
+	public void inscribirParticular(Particular particular) {
 		
-	    Oferta oferObj = (Oferta)o;
-	    
-	    return !(
-	    		(this.id != oferObj.id) ||
-	    		(this.nombre != oferObj.nombre) ||
-	    		(this.jornada != oferObj.jornada) ||
-	    		(this.contrato != oferObj.contrato) ||
-	    		(this.vacantes != oferObj.vacantes) ||
-	    		(this.salario != oferObj.salario) ||
-	    		(this.ciudad != oferObj.ciudad) ||
-	    		(this.descripcion != oferObj.descripcion) ||
-	    		(this.activo != oferObj.activo) ||
-	    		(this.empresa != oferObj.empresa) ||
-	    		(this.particulares != oferObj.particulares)
-	    		);
+		if(this.particulares == null)
+			this.particulares = new ArrayList<Particular>();
+
+		particulares.add(particular);
 	}
-	*/
 
 	@Override
 	public int hashCode() {

@@ -2,9 +2,7 @@ package conecta2.servicioAplicacion;
 
 import java.util.List;
 
-import conecta2.modelo.Contrato;
 import conecta2.modelo.Empresa;
-import conecta2.modelo.JornadaLaboral;
 import conecta2.modelo.Oferta;
 import conecta2.transfer.TransferOferta;
 
@@ -20,5 +18,6 @@ public interface SAOferta {
 		public Oferta save(TransferOferta transferEmpresa);
 		public Oferta buscarPorIdYEmpresa(int id, Empresa empresa);
 		public List<Oferta> buscarOfertasPorNombreYPatron(String nombrePattern);
+		public Oferta actualizarOferta(Oferta oferta);
 		
 }
