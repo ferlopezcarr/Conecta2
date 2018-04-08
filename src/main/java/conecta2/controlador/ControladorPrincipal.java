@@ -375,7 +375,12 @@ public class ControladorPrincipal {
 		Empresa emp = (Empresa)mod.get("empresa");
 		Particular par = (Particular)mod.get("particular");
 		
-		Empresa empresa = saEmpresa.buscarPorEmail(emp.getEmail());
+		Empresa empresa = null;
+		
+		if (emp != null) {
+			empresa = saEmpresa.buscarPorEmail(emp.getEmail());
+		} 
+		
 
 		modelAndView = null;
 		
