@@ -380,9 +380,7 @@ public class ControladorPrincipal {
 		if (emp != null) {
 			empresa = saEmpresa.buscarPorEmail(emp.getEmail());
 		} 
-		
-
-		
+				
 		Oferta oferta = null;
 		
 		if(empresa != null) {//si es empresa
@@ -398,10 +396,10 @@ public class ControladorPrincipal {
 			else {
 				//Si la oferta no es de la empresa de la sesion
 				if(!oferta.getEmpresa().equals(empresa)) {
-					modelAndView = new ModelAndView("redirect:/ofertas");
+
 					String msg = "¡No puedes acceder a las ofertas de otras empresas!";
 					modelAndView.addObject("popup", msg);
-					
+					modelAndView.setViewName("mostrarOfertas");
 					oferta = null;
 				}
 			}
@@ -415,9 +413,11 @@ public class ControladorPrincipal {
 				oferta = saOferta.buscarPorId(id);
 				
 				if(oferta == null) {
-					modelAndView = new ModelAndView("redirect:/ofertas");
+					
 					String msg = "¡Oferta no encontrada!";
 					modelAndView.addObject("popup", msg);
+					modelAndView.setViewName("mostrarOfertas");
+		
 				}
 			}
 		}
