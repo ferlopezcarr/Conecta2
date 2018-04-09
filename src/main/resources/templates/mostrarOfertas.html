@@ -25,7 +25,7 @@
   		<div class="col-3 container-lista-oferta rounded"></div>
   		<div class="col-4  mx-auto letra-azul text-center rounded ">
   		  
-  			<h1>Ofertas</h1>
+  			<h1>Ofertas publicadas</h1>
   			
   		</div>
   		<div class="col-3 container-lista-oferta rounded"></div>
@@ -104,7 +104,7 @@
   	    <!-- PARTICULARES -->
   	    
   	    
-  	  	<div th:if="${par != null}" class="row mt-5">
+  	  	<div th:if="${par != null}" class="row mt-4">
   		<div class="col-1 rounded"></div>
   		<div class="col-3 container-lista-oferta rounded"></div>
   		<div class="col-4  mx-auto letra-azul text-center rounded ">
@@ -118,20 +118,20 @@
   	    
   	    <div class="row mt-5">
   	    <div th:if="${par != null}" class="col-10 color-perfil mx-auto border border-dark rounded text-center ">
-  	    <h4>... Estas son todas las ofertas en las que te has inscrito! ...</h4>
+  	   <h4>... Estas son todas las ofertas en las que te has inscrito! ...</h4>
   	   
   	    <div class="row mt-5 ">
-	              <div class="col-10 mx-auto  ">
- 		          	 <table class="table table-hover table-responsive ">
+	              <div class="col-10 mx-auto">
+ 		          	 <table class="table table-hover table-responsive">
  		          	 <thead>
  		          	 <tr>
- 		          	 		<th class="text-center">Titulo oferta </th>
-	  						<th class="text-center">Tipo jornada</th>
-	  						<th class="text-center">Tipo Contrato</th>
-							<th class="text-center">Ciudad</th>
-							<th class="text-center">Vacantes</th>
-							<th class="text-center">Salario</th>
-							<th class="text-center">Particulares inscritos</th>
+ 		          	 		<th>Titulo oferta </th>
+	  						<th>Tipo jornada</th>
+	  						<th>Tipo Contrato</th>
+							<th>Ciudad</th>
+							<th>Vacantes</th>
+							<th>Salario</th>
+							<th>Particulares inscritos</th>
 							<th class="text-center">&nbsp;</th>
  		          	 </tr>
  		          	 </thead>
@@ -169,12 +169,12 @@
   	</div>
   	
   	<!-- BUSCADOR -->
-  	<div th:if="${listaOfertasBuscadas != null}" class="row mt-5">
+  	<div th:if="${listaOfertasBuscadas != null}" class="row mt-1">
   		<div class="col-1 rounded"></div>
   		<div class="col-3 container-lista-oferta rounded"></div>
   		<div class="col-4  mx-auto letra-azul text-center rounded ">
   		  
-  			<h1>Resultados de búsqueda</h1>
+  			<h1>Resultados Búsqueda</h1>
   			
   		</div>
   		<div class="col-3 container-lista-oferta rounded"></div>
@@ -216,7 +216,7 @@
 							<td class="text-center" th:text="${oferta.getParticulares().size()}"></td>
 							
 							<td> 
-								<a class="btn botonAzul" th:href="'/verOferta?id=' +${oferta.id}">VerOferta</a>
+								<a class="btn botonAzul" th:href="'/verOferta?id=' +${oferta.id}">Ver oferta</a>
 							</td>
 							<td>
 								<!-- th:if="${!(oferta.particulares.contains(par))}" -->

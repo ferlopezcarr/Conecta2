@@ -185,13 +185,13 @@ a.navbar-brand{
 }
 
 .container-lista-oferta{
-	background-image: url(../images/fondoGris.png);
+	background-image: url(../images/azul.png);
 	background-size: 100%;
 	background-repeat:no-repeat;
 }
 
 .container-verOferta{
-	background-image: url(../images/luz.png);
+	background-image: url(../images/verOferta.png);
 	background-size: 100% 10%;
 	background-repeat:no-repeat;
 }
