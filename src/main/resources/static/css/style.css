@@ -134,7 +134,7 @@ a.navbar-brand{
 
 .botonAzul{
 	color:white;
-	background-color:rgba(16,184,197);
+	background-color:#10b8c5;
 }
 
 
@@ -204,11 +204,11 @@ a.navbar-brand{
 }
 
 .border-Azul{
-	border: 1px solid rgba(16,184,197);
+	border: 1px solid #10b8c5;
 }
 
 .letra-azul{
-	color:rgba(16,184,197);
+	color:#10b8c5;
 }
 
 .margen-campos-form{

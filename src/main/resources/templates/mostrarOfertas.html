@@ -36,7 +36,7 @@
   		<div th:if="${emp != null}" class="col-10 color-perfil mx-auto border border-dark rounded ">
   			
 	       <div class="row"> 
-	        	   <div class="col-10  mx-auto justify-content-between text-right"> 
+	        	   <div class="col-11  mx-auto justify-content-between text-right"> 
 	        	   <label>
 	        		¿Desea crear una nueva oferta de trabajo?	   	
 	 	           </label>
@@ -49,29 +49,29 @@
   	       
 	        </div>
 	        <div class="row mt-5">
-	              <div class="col-10 mx-auto">
+	              <div class="col-11 mx-auto">
  		          	 <table class="table table-hover table-responsive ">
  		          	 <thead>
  		          	 <tr>
- 		          	 		<th class="text-center">Titulo oferta</th>
-	  						<th class="text-center">Tipo jornada</th>
-	  						<th class="text-center">Tipo Contrato</th>
-							<th class="text-center">Ciudad</th>
-							<th class="text-center">Vacantes</th>
-							<th class="text-center">Salario</th>
-							<th class="text-center">Particulares inscritos</th>
-							<th class="text-center">Opciones</th>
+ 		          	 		<th >Titulo oferta</th>
+	  						<th>Tipo jornada</th>
+	  						<th>Tipo Contrato</th>
+							<th>Ciudad</th>
+							<th>Vacantes</th>
+							<th >Salario</th>
+							<th>Particulares inscritos</th>
+							<th>Opciones</th>
  		          	 </tr>
  		          	 </thead>
  		          	 <tbody  >
- 		          	  	<tr th:each="oferta : ${listaOfertas}">
-	  						<td class="text-center" th:text="${oferta.nombre}"></td>
-	  						<td class="text-center" th:text="${oferta.JornadaLaboral.displayName}"></td>
-	  						<td class="text-center" th:text="${oferta.contrato.displayName}"></td>
-							<td class="text-center" th:text="${oferta.ciudad}"></td>
-							<td class="text-center" th:text="${oferta.vacantes}"></td>
-							<td class="text-center" th:text="${oferta.salario}"></td>
-							<td class="text-center" th:text="${oferta.particulares.size()}"></td>
+ 		          	  	<tr class="align-middle" th:each="oferta : ${listaOfertas}">
+	  						<td  class="align-middle"th:text="${oferta.nombre}"></td>
+	  						<td  class="align-middle"th:text="${oferta.JornadaLaboral.displayName}"></td>
+	  						<td  class="align-middle"th:text="${oferta.contrato.displayName}"></td>
+							<td class="align-middle"  th:text="${oferta.ciudad}"></td>
+							<td   class="align-middle"th:text="${oferta.vacantes}"></td>
+							<td  class="align-middle"th:text="${oferta.salario}"></td>
+							<td  class="align-middle" th:text="${oferta.particulares.size()}"></td>
 							
 							<td> 
 							 <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="${oferta.id}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
