@@ -349,29 +349,39 @@ public class ControladorPrincipal {
 	@RequestMapping(value ="/buscar", method = RequestMethod.GET, params = {"texto"})
 	public ModelAndView buscar(@RequestParam("texto") String texto) {	
 		ModelAndView modelAndView = this.obtenerInstancia();
-		
-		Map<String, Object> modelo = modelAndView.getModel();
-		BindingAwareModelMap mod = (BindingAwareModelMap) modelo.get("modelo");
-		Particular par = (Particular)mod.get("particular");
-		
-		Particular particular = null;
-		if (par != null) {
-			particular = saParticular.buscarPorEmail(par.getEmail());
-		}
-		
-		if(particular != null) {
-			String nombreMayusPrim = texto.substring(1).toUpperCase() + texto.substring(2, texto.length());
-				
-			List<Oferta> listaOfertas = saOferta.buscarOfertasPorNombreYNombreMayus(texto, nombreMayusPrim);
-			
-			modelAndView = new ModelAndView();
-			modelAndView.addObject("listaOfertasBuscadas", listaOfertas);
 
-			modelAndView.setViewName("mostrarOfertas");
+		if(texto != null && texto != "") {
+			
+			Map<String, Object> modelo = modelAndView.getModel();
+			BindingAwareModelMap mod = (BindingAwareModelMap) modelo.get("modelo");
+			Particular par = (Particular)mod.get("particular");
+			
+			Particular particular = null;
+			if (par != null) {
+				particular = saParticular.buscarPorEmail(par.getEmail());
+			}
+			
+			if(particular != null) {//si se encuentra el particular
+				String letraMayus = texto.substring(0, 1).toUpperCase();
+				String nombreMayusPrim = letraMayus + texto.substring(1, texto.length());
+					
+				List<Oferta> listaOfertas = saOferta.buscarOfertasPorNombreYNombreMayus(texto, nombreMayusPrim);
+				
+				modelAndView = new ModelAndView();
+				modelAndView.addObject("listaOfertasBuscadas", listaOfertas);
+	
+				modelAndView.setViewName("mostrarOfertas");
+			}
+			else {
+				String msg = "¡Particular no encontrado!";
+				modelAndView.addObject("popup", msg);
+			}
 		}
-		else {
-			String msg = "¡Particular no encontrado!";
+		else {//si no ha introducido nada
+			/*
+			String msg = "Para buscar, introduzca caracteres";
 			modelAndView.addObject("popup", msg);
+			*/
 		}
 
 		return modelAndView;

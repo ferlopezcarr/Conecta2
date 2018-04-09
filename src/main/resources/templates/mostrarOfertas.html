@@ -213,17 +213,14 @@
 							<td class="text-center" th:text="${oferta.ciudad}"></td>
 							<td class="text-center" th:text="${oferta.vacantes}"></td>
 							<td class="text-center" th:text="${oferta.salario}"></td>
-							<td class="text-center" th:text="${oferta.particulares.size()}"></td>
+							<td class="text-center" th:text="${oferta.getParticulares().size()}"></td>
 							
-							
-							 
-							 
 							<td> 
 								<a class="btn botonAzul" th:href="'/verOferta?id=' +${oferta.id}">VerOferta</a>
 							</td>
 							<td>
 								<!-- th:if="${!(oferta.particulares.contains(par))}" -->
-								<form th:action="@{/inscribir}" method="POST">
+								<form th:if="${!(oferta.getParticulares().contains(par))}" th:action="@{/inscribir}" method="POST">
 									<input type="hidden" name="id_oferta" th:value="${oferta.id}"/>
 									<button type="submit" class="btn botonAzul">Inscribirme</button>
 								</form>
