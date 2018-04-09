@@ -350,17 +350,30 @@ public class ControladorPrincipal {
 	public ModelAndView buscar(@ModelAttribute("texto") String texto) {	
 		ModelAndView modelAndView = this.obtenerInstancia();
 		
-		String nombreMayusPrim = texto.substring(1).toUpperCase() + texto.substring(2, texto.length());
+		Map<String, Object> modelo = modelAndView.getModel();
+		BindingAwareModelMap mod = (BindingAwareModelMap) modelo.get("modelo");
+		Particular par = (Particular)mod.get("particular");
+		
+		Particular particular = null;
+		if (par != null) {
+			particular = saParticular.buscarPorEmail(par.getEmail());
+		}
+		
+		if(particular != null) {
+			String nombreMayusPrim = texto.substring(1).toUpperCase() + texto.substring(2, texto.length());
+				
+			List<Oferta> listaOfertas = saOferta.buscarOfertasPorNombreYNombreMayus(texto, nombreMayusPrim);
 			
-		List<Oferta> listaOfertas = saOferta.buscarOfertasPorNombreYNombreMayus(texto, nombreMayusPrim);
-		
-		modelAndView = new ModelAndView();
-		modelAndView.addObject("listaOfertasBuscadas", listaOfertas);
-		
-		//de momento renderizamos en mostrarOfertas
-		modelAndView.setViewName("mostrarOfertas");
+			modelAndView = new ModelAndView();
+			modelAndView.addObject("listaOfertasBuscadas", listaOfertas);
 
-		
+			modelAndView.setViewName("mostrarOfertas");
+		}
+		else {
+			String msg = "¡Particular no encontrado!";
+			modelAndView.addObject("popup", msg);
+		}
+
 		return modelAndView;
 	}
 	
@@ -516,24 +529,32 @@ public class ControladorPrincipal {
 			
 			if(oferta != null) {// si se encuentra la oferta
 				
-				//Inscribimos al particular
-				oferta.inscribirParticular(particular);
-				particular.anadirOferta(oferta);
-				//Guardamos la oferta
-				Oferta ofResModificar = saOferta.actualizarOferta(oferta);
-				Particular p = saParticular.actualizarParticular(particular);
-				if(ofResModificar != null) {//si se consigue modificar
+				if(oferta.getParticulares().contains(particular)) {//si ya está inscrito
 					modelAndView = new ModelAndView("redirect:/ofertas");
-					/*
-					String msg = "¡Te has inscrito en la oferta de "+oferta.getNombre()+'\n'
-							+"de la empresa "+oferta.getEmpresa().getNombreEmpresa()+"!";
+					String msg = "¡Ya estás inscrito!";
 					modelAndView.addObject("popup", msg);
-					*/
 				}
-				else {//si hay error en modificar
-					modelAndView = new ModelAndView("redirect:/ofertas");
-					String msg = "¡Error al modificar!";
-					modelAndView.addObject("popup", msg);
+				else {
+					//Inscribimos al particular
+					oferta.inscribirParticular(particular);
+					particular.anadirOferta(oferta);
+					
+					//Guardamos la oferta
+					Oferta ofResModificar = saOferta.actualizarOferta(oferta);
+					Particular p = saParticular.actualizarParticular(particular);
+					
+					if(ofResModificar != null && p != null) {//si se consiguen modificar
+						modelAndView = new ModelAndView("redirect:/ofertas");
+						String msg = "¡Te has inscrito en la oferta de "+oferta.getNombre()+'\n'
+								+"de la empresa "+oferta.getEmpresa().getNombreEmpresa()+"!";
+						modelAndView.addObject("popup", msg);
+						
+					}
+					else {//si hay error en modificar
+						modelAndView = new ModelAndView("redirect:/ofertas");
+						String msg = "¡Error al modificar!";
+						modelAndView.addObject("popup", msg);
+					}
 				}
 			}
 			else {//si no se encuentra la oferta
