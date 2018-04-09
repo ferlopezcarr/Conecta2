@@ -34,7 +34,6 @@ import conecta2.transfer.TransferEmpresa;
 import conecta2.transfer.TransferOferta;
 /**
  * Controlador de la aplicación, en él se mapean las diferentes peticiones (GET, POST...),
- * @author ferlo
  * Se redirige entre vistas y hace uso de los Servicios de Aplicación
  */
 @Controller

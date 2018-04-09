@@ -19,16 +19,16 @@ import conecta2.repositorio.RepositorioEmpresa;
 public class HU4VerPerfilEmpresaTest {
 
 	@Autowired
-	private RepositorioEmpresa daoEmpresa;
+	private RepositorioEmpresa repositorioEmpresa;
 	
 	@Test
 	public void testEmpresaFoundedByEmailYActivo() {
 		
 		Empresa empresa = new Empresa("empresaPruebaNombre", "A28599033", "123456789", "empresaPruebaEmail@empresaPruebaEmail.com", "Abc1111", true, 0, "");
 
-		daoEmpresa.save(empresa);
+		repositorioEmpresa.save(empresa);
 		
-		Empresa empresaBD = daoEmpresa.findByEmail(empresa.getEmail());
+		Empresa empresaBD = repositorioEmpresa.findByEmail(empresa.getEmail());
 		
 		boolean iguales = empresa.equals(empresaBD);
 		boolean activo = (empresaBD.getActivo() == empresa.getActivo()) == true;
@@ -41,9 +41,9 @@ public class HU4VerPerfilEmpresaTest {
 		
 		Empresa empresa = new Empresa("empresaPruebaNombre", "A28599033", "123456789", "empresaPruebaEmail@empresaPruebaEmail.com", "Abc1111", true, 0, "");
 		
-		daoEmpresa.save(empresa);
+		repositorioEmpresa.save(empresa);
 		
-		Empresa empresaBD = daoEmpresa.findByCif(empresa.getCif());
+		Empresa empresaBD = repositorioEmpresa.findByCif(empresa.getCif());
 		
 		boolean iguales = empresa.equals(empresaBD);
 		boolean activo = (empresaBD.getActivo() == empresa.getActivo()) == true;

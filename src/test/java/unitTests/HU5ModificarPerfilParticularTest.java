@@ -19,19 +19,19 @@ import conecta2.repositorio.RepositorioParticular;
 public class HU5ModificarPerfilParticularTest {
 	
 	@Autowired
-    private RepositorioParticular daoParticular;
+    private RepositorioParticular repositorioParticular;
 	
 	@Test
 	public void testModifyExistingParticular() {
 		
 		Particular particular = new Particular("nombre", "Apellido Apellido", "99999999Z", "123456789", "particularPruebaEmail@particularPruebaEmail.com", "Abc1111", true, 0, "descripcion");
 		
-		daoParticular.save(particular);
+		repositorioParticular.save(particular);
 		
 		particular.setNombre("nombreModificado");
 		particular.setEmail("otroEmail@particular.com");
 		
-		Particular particularGuardado = daoParticular.save(particular);
+		Particular particularGuardado = repositorioParticular.save(particular);
 		
 		assertEquals(particular, particularGuardado);
 	}

@@ -12,7 +12,6 @@ import conecta2.transfer.TransferParticular;
 
 /**
  * Clase que implementa las funciones de la interfaz SAParticular
- * @author ferlo
  * Clase que se desarrolla la funcionalidad de la entidad Particular
  */
 //Anotación de Servicio de Aplicación

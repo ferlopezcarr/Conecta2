@@ -12,7 +12,6 @@ import conecta2.transfer.TransferEmpresa;
 
 /**
  * Clase que implementa las funciones de la interfaz SAEmpresa
- * @author ferlo
  * Clase que se desarrolla la funcionalidad de la entidad Empresa
  */
 @Service //("SAEmpresa")

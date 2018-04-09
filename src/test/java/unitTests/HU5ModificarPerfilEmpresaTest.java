@@ -20,18 +20,18 @@ public class HU5ModificarPerfilEmpresaTest {
 
 	
 	@Autowired
-    private RepositorioEmpresa daoEmpresa;
+    private RepositorioEmpresa repositorioEmpresa;
 	
 	@Test
 	public void testModifyExistingCompany() {
 		Empresa empresa = new Empresa("empresaPruebaNombre", "A11223344", "123456789", "empresaPruebaEmail@empresaPruebaEmail.com", "Abc1111", true, 0, "");
 		
-		daoEmpresa.save(empresa);
+		repositorioEmpresa.save(empresa);
 		
 		empresa.setNombreEmpresa("empresaPruebaModificado");
 		empresa.setEmail("emailModificado@empresa.com");
 		
-		Empresa empresaGuardada = daoEmpresa.save(empresa);
+		Empresa empresaGuardada = repositorioEmpresa.save(empresa);
 		
 		assertEquals(empresa, empresaGuardada);
 	}

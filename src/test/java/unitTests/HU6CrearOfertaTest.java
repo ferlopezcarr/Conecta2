@@ -26,20 +26,20 @@ import conecta2.transfer.TransferOferta;
 public class HU6CrearOfertaTest {
 	
 	@Autowired
-	private RepositorioOferta repOferta;
+	private RepositorioOferta repositorioOferta;
 
 	@Test(expected = InvalidDataAccessApiUsageException.class)
 	public void testInsertNull() {
 		Oferta oferta = null;
 		
-		repOferta.save(oferta);
+		repositorioOferta.save(oferta);
 	}
 	
 	@Test
 	public void testInsertNotNull() {
 		Oferta oferta = new Oferta("oferta", JornadaLaboral.PorHoras, Contrato.Formación, 1, 200.0, "Madrid", "", true, false, null, null);
 		
-		Oferta ofertaGuardada = repOferta.save(oferta);
+		Oferta ofertaGuardada = repositorioOferta.save(oferta);
 		
 		assertEquals(oferta, ofertaGuardada);
 	}
@@ -48,7 +48,7 @@ public class HU6CrearOfertaTest {
 	public void testNotFounded() {
 		Oferta oferta = new Oferta("oferta", JornadaLaboral.PorHoras, Contrato.Formación, 1, 200.0, "Madrid", "", true, false, null, null);
 		
-		Oferta ofertaGuardada = repOferta.findById(oferta.getId());
+		Oferta ofertaGuardada = repositorioOferta.findById(oferta.getId());
 		
 		assertEquals(ofertaGuardada, null);
 	}
@@ -57,9 +57,9 @@ public class HU6CrearOfertaTest {
 	public void testInsertFoundedById() {
 		Oferta oferta = new Oferta("oferta", JornadaLaboral.PorHoras, Contrato.Formación, 1, 200.0, "Madrid", "", true, false, null, null);
 		
-		repOferta.save(oferta);
+		repositorioOferta.save(oferta);
 		
-		Oferta ofertaGuardada = repOferta.findById(oferta.getId());
+		Oferta ofertaGuardada = repositorioOferta.findById(oferta.getId());
 		
 		assertEquals(oferta, ofertaGuardada);
 	}

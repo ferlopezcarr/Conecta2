@@ -21,7 +21,6 @@ import org.springframework.data.annotation.Transient;
 @Table(name = "particulares")
 /**
  * Entidad / Objeto de Negocio de Particular
- * @author ferlo
  * Se utiliza para persistir la información del particular
  */
 public class Particular {

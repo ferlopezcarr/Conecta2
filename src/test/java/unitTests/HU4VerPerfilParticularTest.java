@@ -19,16 +19,16 @@ import conecta2.repositorio.RepositorioParticular;
 public class HU4VerPerfilParticularTest {
 
 	@Autowired
-	private RepositorioParticular daoParticular;
+	private RepositorioParticular repositorioParticular;
 	
 	@Test
 	public void testEmpresaFoundedByEmailYActivo() {
 		
 		Particular particular = new Particular("nombre", "Apellido Apellido", "99999999Z", "123456789", "particularPruebaEmail@particularPruebaEmail.com", "Abc1111", true, 0, "descripcion");
 
-		daoParticular.save(particular);
+		repositorioParticular.save(particular);
 		
-		Particular particularBD = daoParticular.findByEmail(particular.getEmail());
+		Particular particularBD = repositorioParticular.findByEmail(particular.getEmail());
 		
 		boolean iguales = particular.equals(particularBD);
 		boolean activo = (particularBD.getActivo() == particular.getActivo()) == true;
@@ -40,9 +40,9 @@ public class HU4VerPerfilParticularTest {
 	public void testEmpresaFoundedByCifYActivo() {
 		Particular particular = new Particular("nombre", "Apellido Apellido", "99999999Z", "123456789", "particularPruebaEmail@particularPruebaEmail.com", "Abc1111", true, 0, "descripcion");
 		
-		daoParticular.save(particular);
+		repositorioParticular.save(particular);
 		
-		Particular particularBD = daoParticular.findByDni(particular.getDni());
+		Particular particularBD = repositorioParticular.findByDni(particular.getDni());
 		
 		boolean iguales = particular.equals(particularBD);
 		boolean activo = (particularBD.getActivo() == particular.getActivo()) == true;
