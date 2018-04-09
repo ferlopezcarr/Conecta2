@@ -1,7 +1,6 @@
 package conecta2.controlador;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
@@ -367,21 +366,24 @@ public class ControladorPrincipal {
 					
 				List<Oferta> listaOfertas = saOferta.buscarOfertasPorNombreYNombreMayus(texto, nombreMayusPrim);
 				
+				boolean contains = listaOfertas.get(0).getParticulares().contains(par);
+				
 				modelAndView = new ModelAndView();
 				modelAndView.addObject("listaOfertasBuscadas", listaOfertas);
 	
 				modelAndView.setViewName("mostrarOfertas");
 			}
 			else {
+				modelAndView.setViewName("mostrarOfertas");
 				String msg = "¡Particular no encontrado!";
 				modelAndView.addObject("popup", msg);
 			}
 		}
 		else {//si no ha introducido nada
-			/*
+			modelAndView.setViewName("mostrarOfertas");
 			String msg = "Para buscar, introduzca caracteres";
 			modelAndView.addObject("popup", msg);
-			*/
+			
 		}
 
 		return modelAndView;
@@ -555,7 +557,7 @@ public class ControladorPrincipal {
 					
 					if(ofResModificar != null && p != null) {//si se consiguen modificar
 						modelAndView.setViewName("mostrarOfertas");;
-						String msg = "¡Te has inscrito en la oferta de "+oferta.getNombre()+'\n'
+						String msg = "¡Te has inscrito en la oferta '"+oferta.getNombre()+"'"+'\n'
 								+"de la empresa "+oferta.getEmpresa().getNombreEmpresa()+"!";
 						modelAndView.addObject("popup", msg);
 						

@@ -13,9 +13,13 @@
     <body>
 	  <div class="container">		
 		<nav class=" navbar navbar-light navbar-expand-lg fondoGris" th:fragment="navbar">
-		    <a class="navbar-brand" href="/ofertas">
-			  <img src="/images/logo.png" width="100" height="60" alt="Logo" />
-			  Conecta2
+			<a class="navbar-brand" th:if="${particular == null && empresa == null}" href="/">
+				<img src="/images/logo.png" width="100" height="60" alt="Logo" />
+			  	Conecta2
+			</a>
+		    <a class="navbar-brand" th:if="${particular != null || empresa != null}" href="/ofertas">
+				<img src="/images/logo.png" width="100" height="60" alt="Logo" />
+				Conecta2
 			</a>
 			<div class="collapse navbar-collapse" id="navbarSupportedContent" th:if="${particular} or ${empresa} != null">
 			 	<ul class="navbar-nav">
