@@ -3,6 +3,7 @@ package conecta2.modelo;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CollectionTable;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -13,13 +14,19 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.annotations.NamedQuery;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Table(name = "ofertas")
+@NamedQuery(
+    name = "Oferta.findOfertasParticularInscrito",
+    //query = "SELECT o FROM Oferta o INNER JOIN o.particulares parts WHERE parts."
+    query ="SELECT o FROM Oferta o WHERE ?1 MEMBER OF o.particulares"
+)
 public class Oferta {
-	
+
 	/**
 	 * Id que genera la base de datos automáticamente, no se debe asignar manualmente
 	 */
@@ -51,7 +58,7 @@ public class Oferta {
 	
 	private boolean finalizada;
 	
-	@ManyToMany(mappedBy="ofertas", fetch=FetchType.LAZY)
+	@ManyToMany(mappedBy="ofertas", fetch=FetchType.EAGER)
 	private List<Particular> particulares;
 
 	@ManyToOne (fetch=FetchType.EAGER)
@@ -202,8 +209,7 @@ public class Oferta {
 		
 		if(this.particulares == null)
 			this.particulares = new ArrayList<Particular>();
-
-		particulares.add(particular);
+		this.particulares.add(particular);
 	}
 
 	@Override

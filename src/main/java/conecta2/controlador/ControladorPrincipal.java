@@ -112,7 +112,6 @@ public class ControladorPrincipal {
 			modelAndView = new ModelAndView("crearCuenta", bindingResult.getModel());
 			modelAndView.addObject("transferEmpresa", transferEmpresa);
 			modelAndView.addObject("transferParticular", transferParticular);
-			
 		}		
 		else {
 			transferEmpresa.setActivo(true);
@@ -337,9 +336,7 @@ public class ControladorPrincipal {
 			modelAndView.addObject("listaOfertas", saOferta.buscarOfertasPorEmpresa(emp));
 		}
 		else if(par != null) {
-			//Habria que cambiarlo para que solo salgan las ofertas
-			//en las que se ha inscrito el particular
-			modelAndView.addObject("listaOfertas", saOferta.buscarTodas());
+			modelAndView.addObject("listaOfertas", saOferta.buscarOfertasParticularInscrito(par));
 			String text = "";
 			modelAndView.addObject("text", text);
 		}
@@ -496,6 +493,203 @@ public class ControladorPrincipal {
 		
 		return modelAndView;
 	}
+	
+	@RequestMapping(value="/inscribir", method = RequestMethod.POST)
+	public ModelAndView inscribirseEnOferta(@ModelAttribute("id_oferta") @Valid String id_oferta){
+		ModelAndView modelAndView = this.obtenerInstancia();
+	
+		int id = Integer.parseInt(id_oferta);
+			
+		Map<String, Object> modelo = modelAndView.getModel();
+		BindingAwareModelMap mod = (BindingAwareModelMap) modelo.get("modelo");
+		Particular par = (Particular)mod.get("particular");
+		
+		Particular particular = null;
+		
+		if(par != null) {
+			particular = saParticular.buscarPorEmail(par.getEmail());
+		}
+		
+		if(particular != null) {//si se encuentra el particular
+			//Busco la oferta
+			Oferta oferta = saOferta.buscarPorId(id);
+			
+			if(oferta != null) {// si se encuentra la oferta
+				
+				//Inscribimos al particular
+				oferta.inscribirParticular(particular);
+				
+				//Guardamos la oferta
+				Oferta ofResModificar = saOferta.actualizarOferta(oferta);
+				
+				if(ofResModificar != null) {//si se consigue modificar
+					modelAndView = new ModelAndView("redirect:/ofertas");
+					/*
+					String msg = "¡Te has inscrito en la oferta de "+oferta.getNombre()+'\n'
+							+"de la empresa "+oferta.getEmpresa().getNombreEmpresa()+"!";
+					modelAndView.addObject("popup", msg);
+					*/
+				}
+				else {//si hay error en modificar
+					modelAndView = new ModelAndView("redirect:/ofertas");
+					String msg = "¡Error al modificar!";
+					modelAndView.addObject("popup", msg);
+				}
+			}
+			else {//si no se encuentra la oferta
+				modelAndView = new ModelAndView("redirect:/ofertas");
+				String msg = "¡Oferta no encontrada!";
+				modelAndView.addObject("popup", msg);
+			}
+		}
+		else {//si no es particular
+			modelAndView = new ModelAndView("redirect:/ofertas");
+			String msg = "¡No puedes inscribirte en una oferta!";
+			modelAndView.addObject("popup", msg);
+		}
+
+		
+		return modelAndView;
+	}
+	
+	@RequestMapping(value ="/candidatos", method = RequestMethod.GET, params = {"id"})
+    public ModelAndView mostrarCandidatos(@RequestParam("id") int id) {		
+		
+		ModelAndView modelAndView = this.obtenerInstancia();
+	
+		Map<String, Object> modelo = modelAndView.getModel();
+		BindingAwareModelMap mod = (BindingAwareModelMap) modelo.get("modelo");
+		Empresa emp = (Empresa)mod.get("empresa");
+		
+		modelAndView = null;
+		Oferta oferta = null;
+		Empresa empresa = null;
+		
+		if(emp != null) {//si el objeto Empresa emp de la vista no esta vacio
+			empresa = saEmpresa.buscarPorEmail(emp.getEmail());
+		}
+		
+		if(empresa != null) {//si es empresa
+			oferta = saOferta.buscarPorId(id);
+			
+			//Si no se encuentra la oferta
+			if(oferta == null) {
+				modelAndView = new ModelAndView("redirect:/ofertas");
+				String msg = "¡Oferta no encontrada!";
+				modelAndView.addObject("popup", msg);
+			}
+			else {
+				//Si la oferta no es de la empresa de la sesion
+				if(!oferta.getEmpresa().equals(empresa)) {
+					modelAndView = new ModelAndView("redirect:/ofertas");
+					String msg = "¡No puedes acceder a las ofertas de otras empresas!";
+					modelAndView.addObject("popup", msg);
+					
+					oferta = null;
+				}
+			}
+		}
+		else {//si no es empresa
+			modelAndView = new ModelAndView("redirect:/ofertas");
+			String msg = "¡No puedes ver a los candidatos de la oferta!";
+			modelAndView.addObject("popup", msg);
+		}
+
+		//Si no hay errores
+		if(oferta != null) {
+			modelAndView = new ModelAndView();
+			modelAndView.addObject("listaCandidatos", oferta.getParticulares());
+			modelAndView.setViewName("mostrarCandidatos");
+		}
+		
+		return modelAndView;
+    }
+	
+	//localhost:8080/verCandidato?idOferta=1&idCandidato=1
+	@RequestMapping(value ="/verCandidato", method = RequestMethod.GET, params = {"idOferta", "idCandidato"})
+    public ModelAndView verDetallesCandidato(@RequestParam("idOferta") int idOferta, @RequestParam("idCandidato") int idCandidato) {		
+		
+		ModelAndView modelAndView = this.obtenerInstancia();
+	
+		Map<String, Object> modelo = modelAndView.getModel();
+		BindingAwareModelMap mod = (BindingAwareModelMap) modelo.get("modelo");
+		Empresa emp = (Empresa)mod.get("empresa");
+		
+		modelAndView = null;
+		Oferta oferta = null;
+		Empresa empresa = null;
+		
+		if(emp != null) {//si el objeto de la vista no esta vacio
+			empresa = saEmpresa.buscarPorEmail(emp.getEmail());
+		}
+
+		if(empresa != null) {//si es empresa
+			oferta = saOferta.buscarPorId(idOferta);
+			
+			//Si no se encuentra la oferta
+			if(oferta == null) {
+				modelAndView = new ModelAndView("redirect:/ofertas");
+				String msg = "¡Oferta no encontrada!";
+				modelAndView.addObject("popup", msg);
+			}
+			else {
+				//Si la oferta no es de la empresa de la sesion
+				if(!oferta.getEmpresa().equals(empresa)) {
+					modelAndView = new ModelAndView("redirect:/ofertas");
+					String msg = "¡No puedes acceder a las ofertas de otras empresas!";
+					modelAndView.addObject("popup", msg);
+					
+					oferta = null;
+				}
+				else {//Si la oferta es de la empresa de la sesion
+					
+					Particular candidato = saParticular.buscarPorId(idCandidato);
+					
+					if(candidato == null) {//Si no se encuentra al candidato
+						modelAndView = new ModelAndView("redirect:/ofertas");
+						String msg = "¡El candidato no existe!";
+						modelAndView.addObject("popup", msg);
+					}
+					else {
+						//Si se encuentra al candidato, comprobamos que el candidato
+						//está en la lista de particulares de la oferta
+						List<Particular> listaParticulares = oferta.getParticulares();
+						
+						if(listaParticulares.contains(candidato)) {//si se encuentra en la lista de ofertas
+							
+							TransferParticular transferParticular = new TransferParticular(
+									candidato.getNombre(),
+									candidato.getApellidos(),
+									candidato.getDni(),
+									candidato.getTelefono(),
+									candidato.getEmail(),
+									candidato.getPassword(),
+									candidato.getActivo(),
+									candidato.getPuntuacion(),
+									candidato.getDescripcion()
+								);
+							
+							modelAndView = new ModelAndView();
+							modelAndView.addObject("transferParticular", transferParticular);
+							modelAndView.setViewName("perfilParticular");
+						}
+						else {
+							modelAndView = new ModelAndView("redirect:/ofertas");
+							String msg = "¡El candidato introducido no pertenece a la oferta!";
+							modelAndView.addObject("popup", msg);
+						}
+					}
+				}
+			}
+		}
+		else {//si no es empresa
+			modelAndView = new ModelAndView("redirect:/ofertas");
+			String msg = "¡No puedes ver a los candidatos de la oferta!";
+			modelAndView.addObject("popup", msg);
+		}
+		
+		return modelAndView;
+    }
 	
 	
 	/**

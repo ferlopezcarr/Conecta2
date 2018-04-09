@@ -1,12 +1,12 @@
 package conecta2.dao;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+
 import org.springframework.stereotype.Repository;
 
-import conecta2.modelo.Contrato;
 import conecta2.modelo.Empresa;
-import conecta2.modelo.JornadaLaboral;
 import conecta2.modelo.Oferta;
+import conecta2.modelo.Particular;
 
 import java.util.List;
 
@@ -19,4 +19,6 @@ public interface RepositorioOferta extends JpaRepository<Oferta, Integer>{
 	List<Oferta> findByEmpresaAndActivoTrue(Empresa empresa);
 	
 	List<Oferta> findByNombreLike(String nombrePattern);
+	
+    List<Oferta> findOfertasParticularInscrito(Particular part);
 }

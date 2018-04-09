@@ -53,7 +53,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 						"/ofertas",
 						"/crear-oferta",
 						"/verOferta",
-						"/search"
+						"/search",
+						"/inscribir",
+						"/candidatos",
+						"/verCandidato"
 						).permitAll()
 				.antMatchers("/admin/**").hasAuthority("ADMINISTRADOR").anyRequest()
 				.authenticated().and().csrf().disable()

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import conecta2.dao.RepositorioOferta;
 import conecta2.modelo.Empresa;
 import conecta2.modelo.Oferta;
+import conecta2.modelo.Particular;
 import conecta2.transfer.TransferOferta;
 
 @Service
@@ -66,6 +67,10 @@ public class SAOfertaImp implements SAOferta {
 		return repoOferta.findByNombreLike(nombrePattern);
 	}
 	
+	@Override
+	public List<Oferta> buscarOfertasParticularInscrito(Particular part) {
+		return this.repoOferta.findOfertasParticularInscrito(part);
+	}
 	
 	@Override
 	public Oferta save(TransferOferta tOferta) {
@@ -88,9 +93,7 @@ public class SAOfertaImp implements SAOferta {
 	@Override
 	public Oferta actualizarOferta(Oferta oferta) {
 		
-		Oferta ofertaBD = buscarPorId(oferta.getId());
-		
-		if(ofertaBD != null) {//se encuentra la oferta en la BD
+		if(oferta != null) {//se encuentra la oferta en la BD
 			return this.repoOferta.save(oferta);
 		}
 		else {//no se encuentra la oferta
