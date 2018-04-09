@@ -80,10 +80,10 @@
 							 <div class="dropdown-menu" aria-labelledby="${oferta.id}">
 							 
 							  		  <a class="dropdown-item" th:href="'/verOferta?id=' +${oferta.id}" >Ver Oferta</a>
-  									  <a class="dropdown-item" th:href="'/modificar?id=' +${oferta.id}">Modificar</a>
-  									  <a class="dropdown-item" th:href="'/eliminarOferta?id=' +${oferta.id}">Eliminar</a>
+  									  <a class="dropdown-item disabled" th:href="'/modificar?id=' +${oferta.id}">Modificar</a>
+  									  <a class="dropdown-item disabled" th:href="'/eliminarOferta?id=' +${oferta.id}">Eliminar</a>
   									  <a class="dropdown-item" th:href="'/candidatos?id=' +${oferta.id}">Ver Candidatos</a>
- 									  <a class="dropdown-item" th:href="'/finalizarOferta?id=' +${oferta.id}">Finalizar</a>
+ 									  <a class="dropdown-item disabled" th:href="'/finalizarOferta?id=' +${oferta.id}">Finalizar</a>
  							 </div>
 							</td>
       					</tr>
