@@ -1,5 +1,6 @@
 package conecta2.servicioAplicacion;
 
+import conecta2.modelo.Oferta;
 import conecta2.modelo.Particular;
 import conecta2.transfer.TransferParticular;
 
@@ -14,5 +15,5 @@ public interface SAParticular {
 	public Particular buscarPorDni(String dni);
 	public Particular buscarPorId(int id);
 	public void save(TransferParticular transferParticular);
-
+	public Particular actualizarParticular(Particular par);
 }

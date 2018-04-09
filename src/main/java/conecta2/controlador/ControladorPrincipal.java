@@ -518,10 +518,10 @@ public class ControladorPrincipal {
 				
 				//Inscribimos al particular
 				oferta.inscribirParticular(particular);
-				
+				particular.anadirOferta(oferta);
 				//Guardamos la oferta
 				Oferta ofResModificar = saOferta.actualizarOferta(oferta);
-				
+				Particular p = saParticular.actualizarParticular(particular);
 				if(ofResModificar != null) {//si se consigue modificar
 					modelAndView = new ModelAndView("redirect:/ofertas");
 					/*

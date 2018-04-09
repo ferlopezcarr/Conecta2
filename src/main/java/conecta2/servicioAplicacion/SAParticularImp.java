@@ -7,6 +7,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import conecta2.dao.DAOParticular;
+import conecta2.modelo.Oferta;
 import conecta2.modelo.Particular;
 import conecta2.transfer.TransferParticular;
 
@@ -113,4 +114,15 @@ public class SAParticularImp implements SAParticular{
         
         daoParticular.save(particular);
 	}
+
+	@Override
+	public Particular actualizarParticular(Particular par) {
+		if(par != null) {//se encuentra la oferta en la BD
+			return this.daoParticular.save(par);
+		}
+		else {//no se encuentra la oferta
+			return null;
+		}
+	}
+
 }

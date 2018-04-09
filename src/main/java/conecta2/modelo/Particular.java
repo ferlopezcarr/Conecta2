@@ -197,6 +197,14 @@ public class Particular {
 		this.ofertas = ofertas;
 	}
 	
+	public void anadirOferta(Oferta oferta) {
+		
+		if(this.ofertas == null)
+			this.ofertas = new ArrayList<Oferta>();
+		this.ofertas.add(oferta);		
+		
+	}
+	
 	@Override
 	public boolean equals(Object o) {
 		if (o == null) return false;
