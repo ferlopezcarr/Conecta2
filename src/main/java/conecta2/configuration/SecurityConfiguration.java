@@ -53,7 +53,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 						"/ofertas",
 						"/crear-oferta",
 						"/verOferta",
-						"/search",
+						"/buscar",
 						"/inscribir",
 						"/candidatos",
 						"/verCandidato"

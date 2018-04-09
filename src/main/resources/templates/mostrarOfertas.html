@@ -21,20 +21,20 @@
   	
   	<div th:if="${popup == null}">
   	<div th:if="${emp != null}" class="row mt-5">
-  		<div class="col-2 rounded"></div>
-  		<div class="col-2 container-lista-oferta rounded"></div>
+  		<div class="col-1 rounded"></div>
+  		<div class="col-3 container-lista-oferta rounded"></div>
   		<div class="col-4  mx-auto letra-azul text-center rounded ">
   		  
   			<h1>Ofertas</h1>
   			
   		</div>
-  		<div class="col-2 container-lista-oferta rounded"></div>
-  		<div class="col-2 rounded"></div>
+  		<div class="col-3 container-lista-oferta rounded"></div>
+  		<div class="col-1 rounded"></div>
   	</div>
   	<div class="row mt-5">
   	
-  		<div th:if="${emp != null}" class="col-8 color-perfil mx-auto border border-dark rounded ">
-  			 	
+  		<div th:if="${emp != null}" class="col-10 color-perfil mx-auto border border-dark rounded ">
+  			
 	       <div class="row"> 
 	        	   <div class="col-10  mx-auto justify-content-between text-right"> 
 	        	   <label>
@@ -79,7 +79,7 @@
  							 </a>
 							 <div class="dropdown-menu" aria-labelledby="${oferta.id}">
 							 
-							  		  <a class="dropdown-item" th:href="'/verOferta?id=' +${oferta.id}" >Ver</a>
+							  		  <a class="dropdown-item" th:href="'/verOferta?id=' +${oferta.id}" >Ver Oferta</a>
   									  <a class="dropdown-item" th:href="'/modificar?id=' +${oferta.id}">Modificar</a>
   									  <a class="dropdown-item" th:href="'/eliminarOferta?id=' +${oferta.id}">Eliminar</a>
   									  <a class="dropdown-item" th:href="'/candidatos?id=' +${oferta.id}">Ver Candidatos</a>
@@ -105,19 +105,19 @@
   	    
   	    
   	  	<div th:if="${par != null}" class="row mt-5">
-  		<div class="col-2 rounded"></div>
-  		<div class="col-2 container-lista-oferta rounded"></div>
+  		<div class="col-1 rounded"></div>
+  		<div class="col-3 container-lista-oferta rounded"></div>
   		<div class="col-4  mx-auto letra-azul text-center rounded ">
   		  
   			<h1>Ofertas inscritas</h1>
   			
   		</div>
-  		<div class="col-2 container-lista-oferta rounded"></div>
-  		<div class="col-2 rounded"></div>
+  		<div class="col-3 container-lista-oferta rounded"></div>
+  		<div class="col-1 rounded"></div>
   	</div>
   	    
   	    <div class="row mt-5">
-  	    <div th:if="${par != null}" class="col-8 color-perfil mx-auto border border-dark rounded text-center ">
+  	    <div th:if="${par != null}" class="col-10 color-perfil mx-auto border border-dark rounded text-center ">
   	    <h4>... Estas son todas las ofertas en las que te has inscrito! ...</h4>
   	   
   	    <div class="row mt-5 ">
@@ -170,25 +170,25 @@
   	
   	<!-- BUSCADOR -->
   	<div th:if="${listaOfertasBuscadas != null}" class="row mt-5">
-  		<div class="col-2 rounded"></div>
-  		<div class="col-2 container-lista-oferta rounded"></div>
+  		<div class="col-1 rounded"></div>
+  		<div class="col-3 container-lista-oferta rounded"></div>
   		<div class="col-4  mx-auto letra-azul text-center rounded ">
   		  
   			<h1>Resultados de búsqueda</h1>
   			
   		</div>
-  		<div class="col-2 container-lista-oferta rounded"></div>
-  		<div class="col-2 rounded"></div>
+  		<div class="col-3 container-lista-oferta rounded"></div>
+  		<div class="col-1 rounded"></div>
   	</div>
   	    
   	    <div class="row mt-5">
-  	    <div th:if="${listaOfertasBuscadas != null}" class="col-auto color-perfil mx-auto border border-dark rounded text-center ">
+  	    <div th:if="${listaOfertasBuscadas != null}" class="col-10 color-perfil mx-auto border border-dark rounded text-center ">
   	   
   	    <h4 th:if="${listaOfertasBuscadas.size() &gt; 0}">... Estas son todas las ofertas disponibles ...</h4>
   	    <h4 th:if="${listaOfertasBuscadas.size() == 0}">... No hay ofertas disponibles ...</h4>
   	   
   	    <div th:if="${listaOfertasBuscadas.size() &gt; 0}" class="row mt-5 ">
-	              <div class="col-auto mx-auto  ">
+	              <div class="col-10 mx-auto  ">
  		          	 <table class="table table-hover table-responsive ">
  		          	 <thead>
  		          	 <tr>
@@ -199,6 +199,7 @@
 							<th class="text-center">Vacantes</th>
 							<th class="text-center">Salario</th>
 							<th class="text-center">Particulares inscritos</th>
+							
 					
 							<th class="text-center">&nbsp;</th>
 							<th class="text-center">&nbsp;</th>
@@ -214,7 +215,10 @@
 							<td class="text-center" th:text="${oferta.salario}"></td>
 							<td class="text-center" th:text="${oferta.particulares.size()}"></td>
 							
-							<td> 
+							
+							 
+							 
+							  		  <td> 
 								<a class="btn botonAzul" th:href="'/verOferta?id=' +${oferta.id}">VerOferta</a>
 							</td>
 							<td>
@@ -223,7 +227,11 @@
 									<input type="hidden" name="id_oferta" th:value="${oferta.id}"/>
 									<button type="submit" class="btn botonAzul">Inscribirme</button>
 								</form>
+  									  
+ 							
+								
 							</td>
+							
       					</tr>
       					
  		          	</tbody>
