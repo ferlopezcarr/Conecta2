@@ -346,8 +346,8 @@ public class ControladorPrincipal {
 		return modelAndView;
     }
 	
-	@RequestMapping(value ="/buscar", method = RequestMethod.POST)
-	public ModelAndView buscar(@ModelAttribute("texto") String texto) {	
+	@RequestMapping(value ="/buscar", method = RequestMethod.GET, params = {"texto"})
+	public ModelAndView buscar(@RequestParam("texto") String texto) {	
 		ModelAndView modelAndView = this.obtenerInstancia();
 		
 		Map<String, Object> modelo = modelAndView.getModel();
