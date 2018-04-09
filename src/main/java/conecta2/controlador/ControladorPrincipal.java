@@ -377,9 +377,11 @@ public class ControladorPrincipal {
 				modelAndView.addObject("popup", msg);
 			}
 		}
-		else {
-			String msg = "¡Particular no encontrado!";
+		else {//si no ha introducido nada
+			/*
+			String msg = "Para buscar, introduzca caracteres";
 			modelAndView.addObject("popup", msg);
+			*/
 		}
 
 		return modelAndView;
