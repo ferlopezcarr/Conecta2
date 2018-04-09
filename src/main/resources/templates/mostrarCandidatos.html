@@ -49,23 +49,19 @@
 							<th class="text-center">Opciones</th>
  		          	 </tr>
  		          	 </thead>
- 		          	 <tbody  >
+ 		          	 <tbody>
  		          	  	<tr th:each="particular : ${listaCandidatos}">
 	  						<td class="text-center" th:text="${particular.nombre}"></td>
 	  						<td class="text-center" th:text="${particular.apellidos}"></td>
 	  						<td class="text-center" th:text="${particular.email}"></td>
 							<td class="text-center" th:text="${particular.telefono}"></td>
 							
-							
-							
 							<td> 
 							 <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="${particular.id}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
    								Opciones
  							 </a>
 							 <div class="dropdown-menu" aria-labelledby="${particular.id}">
-							 
-							  		  <a class="dropdown-item" th:href="'/verCandidato' + ${particular.id} + ${oferta.id}" >Ver Perfil</a>
-  									  
+							 	<a class="dropdown-item" th:href="'/verCandidato?idOferta=' + ${oferta.id} + '&idCandidato=' + ${particular.id}" >Ver Perfil</a>
  							 </div>
 							</td>
       					</tr>

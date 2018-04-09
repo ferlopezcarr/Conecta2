@@ -598,7 +598,16 @@ public class ControladorPrincipal {
 		//Si no hay errores
 		if(oferta != null) {
 			modelAndView = new ModelAndView();
-			modelAndView.addObject("listaCandidatos", oferta.getParticulares());
+			
+			List<Particular> particulares = oferta.getParticulares();
+			List<Particular> listaCandidatos = new ArrayList<Particular>();
+			for(int i = 0; i < particulares.size(); i++) {
+				
+				listaCandidatos.add(particulares.get(i));
+			}
+			
+			modelAndView.addObject("listaCandidatos", listaCandidatos);
+			modelAndView.addObject("oferta", oferta);
 			modelAndView.setViewName("mostrarCandidatos");
 		}
 		
