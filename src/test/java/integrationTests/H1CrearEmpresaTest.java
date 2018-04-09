@@ -10,13 +10,13 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import conecta2.Application;
+import conecta2.C2Aplicacion;
 import conecta2.modelo.Empresa;
 import conecta2.servicioAplicacion.SAEmpresa;
 import conecta2.transfer.TransferEmpresa;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringBootTest(classes = Application.class)
+@SpringBootTest(classes = C2Aplicacion.class)
 @DataJpaTest
 @ComponentScan(basePackages ="conecta2")
 public class H1CrearEmpresaTest {

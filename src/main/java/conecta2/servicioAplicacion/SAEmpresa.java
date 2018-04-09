@@ -9,7 +9,6 @@ import conecta2.transfer.TransferEmpresa;
  * Interfaz que define los métodos o funciones que puede realizar la empresa
  */
 public interface SAEmpresa {
-	
 	public void crearEmpresa(TransferEmpresa transferEmpresa);
 	public Empresa buscarPorEmail(String email);
 	public Empresa buscarPorCif (String cif);

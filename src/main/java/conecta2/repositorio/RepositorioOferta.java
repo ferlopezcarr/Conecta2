@@ -1,4 +1,4 @@
-package conecta2.dao;
+package conecta2.repositorio;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -12,7 +12,6 @@ import java.util.List;
 
 @Repository("repositorioOferta")
 public interface RepositorioOferta extends JpaRepository<Oferta, Integer>{
-
 	Oferta findById(int id);
 	Oferta findByIdAndEmpresa(int id, Empresa empresa);
 	//Oferta findByNombreAndJornadaAndContratoAndEmpresa(String nombre, JornadaLaboral jornada, Contrato contrato, Empresa empresa);

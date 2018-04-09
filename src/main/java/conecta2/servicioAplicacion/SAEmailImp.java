@@ -10,10 +10,10 @@ import javax.transaction.Transactional;
 
 import org.apache.commons.lang.RandomStringUtils;
 
-import conecta2.dao.DAOActivacion;
 import conecta2.modelo.Activacion;
 import conecta2.modelo.Empresa;
 import conecta2.modelo.Particular;
+import conecta2.repositorio.RepositorioActivacion;
 import conecta2.transfer.TransferEmpresa;
 import conecta2.transfer.TransferParticular;
 
@@ -31,13 +31,11 @@ import org.springframework.stereotype.Service;
  */
 @Service //("saEmail")
 public class SAEmailImp  implements SAEmail {
-
-
 	/**
-	 * DAO que proporciona el acceso a la base de datos
+	 * Repositorio que proporciona el acceso a la base de datos
 	 */
 	@Autowired
-	private DAOActivacion miDao;
+	private RepositorioActivacion repositorioActivacion;
 	
 	/**
 	 * SA del particular utilizado para comprobar que existe
@@ -84,7 +82,6 @@ public class SAEmailImp  implements SAEmail {
 		Session sesion = Session.getInstance(props , new javax.mail.Authenticator() {
 			//Este metodo sobreEscribe el metodo de la clase principal con los datos de nuestro servidor
 			protected PasswordAuthentication getPasswordAuthentication() {
-				
 				return new PasswordAuthentication("Conecta2", pass);
 			}
 		});
@@ -101,11 +98,9 @@ public class SAEmailImp  implements SAEmail {
 	        transport.connect("smtp.gmail.com", origen, pass);
 	        transport.sendMessage(mensaje, mensaje.getAllRecipients());
 	        transport.close();
-	    
-
-		}catch(MessagingException e){
-				System.out.println(e);
-	
+		}
+		catch(MessagingException e){
+			System.out.println(e);
 		}
 		
 		Activacion miAct = new Activacion();
@@ -113,7 +108,7 @@ public class SAEmailImp  implements SAEmail {
 	    miAct.setActivacion(direccionRandom);
         miAct.setEmail(destino);
 
-	    	miDao.save(miAct);
+        repositorioActivacion.save(miAct);
 
 	}
     
@@ -122,11 +117,9 @@ public class SAEmailImp  implements SAEmail {
      */
 	@Override
 	public Object validaUsuario(String urlValida) {
+		Activacion aux = repositorioActivacion.findByActivacion(urlValida);
 		
-		Activacion aux = miDao.findByActivacion(urlValida);
-		
-		if(aux!=null) {
-			
+		if(aux != null) {	
 			Empresa empresa = saEmpresa.buscarPorEmail(aux.getEmail());
 			
 			if(empresa!=null){//Se comprueba que es una empresa
@@ -141,9 +134,8 @@ public class SAEmailImp  implements SAEmail {
 				saEmpresa.save(transEmpresa);
 				
 				return transEmpresa;
-				
-			} else {//No se encuentra la empresa
-				
+			}
+			else {//No se encuentra la empresa
 				Particular particular = saParticular.buscarPorEmail(aux.getEmail()); 
 				
 				if(particular!=null) {//Se comprueba que es particular
@@ -157,19 +149,17 @@ public class SAEmailImp  implements SAEmail {
 					transParticular.setPassword(particular.getPassword());
 					transParticular.setActivo(particular.getActivo());
 					transParticular.setTelefono(particular.getTelefono());
-
 					saParticular.save(transParticular);
 					
-					return transParticular;
-					
-				} else {//No se encuentra el particular
+					return transParticular;	
+				}
+				else {//No se encuentra el particular
 					return null;
 				}
 			}
-		} else {//aux == null
+		}
+		else {//aux == null
 			return null;
 		}
 	}//validaUsuario
-
-
 }

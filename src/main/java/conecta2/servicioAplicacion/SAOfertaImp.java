@@ -5,10 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import conecta2.dao.RepositorioOferta;
 import conecta2.modelo.Empresa;
 import conecta2.modelo.Oferta;
 import conecta2.modelo.Particular;
+import conecta2.repositorio.RepositorioOferta;
 import conecta2.transfer.TransferOferta;
 
 @Service

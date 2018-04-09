@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import conecta2.dao.DAOEmpresa;
 import conecta2.modelo.Empresa;
+import conecta2.repositorio.RepositorioEmpresa;
 import conecta2.transfer.TransferEmpresa;
 
 /**
@@ -19,10 +19,10 @@ import conecta2.transfer.TransferEmpresa;
 public class SAEmpresaImp implements SAEmpresa {
 	
 	/**
-	 * DAO que proporciona el acceso a la base de datos
+	 * Repositorio que proporciona el acceso a la base de datos
 	 */
 	@Autowired
-	private DAOEmpresa daoEmpresa;
+	private RepositorioEmpresa repositorioEmpresa;
 	
 	/**
 	 * Atributo que se utiliza para encriptar las contraseñas una vez el usuario se registra
@@ -43,7 +43,6 @@ public class SAEmpresaImp implements SAEmpresa {
     @Transactional
     @Override
 	public void crearEmpresa(TransferEmpresa transferEmpresa) {
-    	
     	 Empresa empresa = new Empresa();
     	 
          empresa.setCif(transferEmpresa.getCif());
@@ -55,7 +54,7 @@ public class SAEmpresaImp implements SAEmpresa {
 
          saEmail.enviarCorreo("Acceda al siguiente enlace para terminar el registro en Conecta2, ya casi está solo un paso más, ", "Alta cuenta en Conecta2", empresa.getEmail());;
         
-         daoEmpresa.save(empresa); //Hace el save al repositorio (función interna de JPARepository)
+         repositorioEmpresa.save(empresa); //Hace el save al repositorio (función interna de JPARepository)
          //Después de esto el usuario ya estaría guardado en la Base de Datos
 	}
 
@@ -64,7 +63,7 @@ public class SAEmpresaImp implements SAEmpresa {
      */
 	@Override
 	public Empresa buscarPorEmail(String email) {
-		return daoEmpresa.findByEmail(email);
+		return repositorioEmpresa.findByEmail(email);
 	}
 
     /**
@@ -72,7 +71,7 @@ public class SAEmpresaImp implements SAEmpresa {
      */
 	@Override
 	public Empresa buscarPorCif(String cif) {
-		return daoEmpresa.findByCif(cif);
+		return repositorioEmpresa.findByCif(cif);
 	}
 	
 	/**
@@ -80,7 +79,7 @@ public class SAEmpresaImp implements SAEmpresa {
      */
 	@Override
 	public Empresa buscarPorId(int id) {
-		return daoEmpresa.findById(id);
+		return repositorioEmpresa.findById(id);
 	}
 	
 	/**
@@ -89,8 +88,7 @@ public class SAEmpresaImp implements SAEmpresa {
 	@Transactional
 	@Override
 	public void save(TransferEmpresa transferEmpresa) {
-
-	 	 Empresa empresa = daoEmpresa.findByCif(transferEmpresa.getCif());
+	 	 Empresa empresa = repositorioEmpresa.findByCif(transferEmpresa.getCif());
 	 	 
 	 	 if(empresa == null) {
 	 		 empresa = new Empresa(
@@ -103,14 +101,12 @@ public class SAEmpresaImp implements SAEmpresa {
 	 				 transferEmpresa.getPuntuacion(),
 	 				 transferEmpresa.getDescripcion()
 	 			);
-	 	 }else {
+	 	 }
+	 	 else {
 	 		 empresa.setNombreEmpresa(transferEmpresa.getNombreEmpresa());
 	 		 empresa.setTelefono(transferEmpresa.getTelefono());
 	 		 empresa.setDescripcion(transferEmpresa.getDescripcion());
 	 	 }
-     
-         daoEmpresa.save(empresa); //Hace el save al repositorio (función interna de JPARepository)
+         repositorioEmpresa.save(empresa); //Hace el save al repositorio (función interna de JPARepository)
 	}
-	
-
 }

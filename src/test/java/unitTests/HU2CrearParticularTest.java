@@ -10,17 +10,17 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.dao.InvalidDataAccessApiUsageException;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import conecta2.Application;
-import conecta2.dao.DAOParticular;
+import conecta2.C2Aplicacion;
 import conecta2.modelo.Particular;
+import conecta2.repositorio.RepositorioParticular;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringBootTest(classes = Application.class)
+@SpringBootTest(classes = C2Aplicacion.class)
 @DataJpaTest
 public class HU2CrearParticularTest {
 	
 	@Autowired
-    private DAOParticular daoParticular;
+    private RepositorioParticular daoParticular;
 	
 	@Test(expected = InvalidDataAccessApiUsageException.class)
 	public void testInsertNull() {

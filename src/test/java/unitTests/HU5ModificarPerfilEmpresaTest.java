@@ -9,18 +9,18 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import conecta2.Application;
-import conecta2.dao.DAOEmpresa;
+import conecta2.C2Aplicacion;
 import conecta2.modelo.Empresa;
+import conecta2.repositorio.RepositorioEmpresa;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringBootTest(classes = Application.class)
+@SpringBootTest(classes = C2Aplicacion.class)
 @DataJpaTest
 public class HU5ModificarPerfilEmpresaTest {
 
 	
 	@Autowired
-    private DAOEmpresa daoEmpresa;
+    private RepositorioEmpresa daoEmpresa;
 	
 	@Test
 	public void testModifyExistingCompany() {

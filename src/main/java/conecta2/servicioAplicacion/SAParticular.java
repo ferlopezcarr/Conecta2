@@ -1,6 +1,5 @@
 package conecta2.servicioAplicacion;
 
-import conecta2.modelo.Oferta;
 import conecta2.modelo.Particular;
 import conecta2.transfer.TransferParticular;
 

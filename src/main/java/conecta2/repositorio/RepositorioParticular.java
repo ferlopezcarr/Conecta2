@@ -1,4 +1,4 @@
-package conecta2.dao;
+package conecta2.repositorio;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -12,8 +12,8 @@ import conecta2.modelo.Particular;
  * el par Particular, Integer
  */
 //Anotación para indicar un repositorio
-@Repository("daoParticular")
-public interface DAOParticular extends JpaRepository<Particular, Integer> {
+@Repository("repositorioParticular")
+public interface RepositorioParticular extends JpaRepository<Particular, Integer> {
 	 Particular findByEmail(String email); //Sólo con hacer un findBy'nombreDelAtributo'(Tipo nombre); te busca los usuarios con ese campo
 	 Particular findByDni(String dni);
 	 Particular findById(int id);
