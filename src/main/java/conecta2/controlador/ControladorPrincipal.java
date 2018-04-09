@@ -349,25 +349,33 @@ public class ControladorPrincipal {
 	@RequestMapping(value ="/buscar", method = RequestMethod.GET, params = {"texto"})
 	public ModelAndView buscar(@RequestParam("texto") String texto) {	
 		ModelAndView modelAndView = this.obtenerInstancia();
-		
-		Map<String, Object> modelo = modelAndView.getModel();
-		BindingAwareModelMap mod = (BindingAwareModelMap) modelo.get("modelo");
-		Particular par = (Particular)mod.get("particular");
-		
-		Particular particular = null;
-		if (par != null) {
-			particular = saParticular.buscarPorEmail(par.getEmail());
-		}
-		
-		if(particular != null) {
-			String nombreMayusPrim = texto.substring(1).toUpperCase() + texto.substring(2, texto.length());
-				
-			List<Oferta> listaOfertas = saOferta.buscarOfertasPorNombreYNombreMayus(texto, nombreMayusPrim);
-			
-			modelAndView = new ModelAndView();
-			modelAndView.addObject("listaOfertasBuscadas", listaOfertas);
 
-			modelAndView.setViewName("mostrarOfertas");
+		if(texto != null && texto != "") {
+			
+			Map<String, Object> modelo = modelAndView.getModel();
+			BindingAwareModelMap mod = (BindingAwareModelMap) modelo.get("modelo");
+			Particular par = (Particular)mod.get("particular");
+			
+			Particular particular = null;
+			if (par != null) {
+				particular = saParticular.buscarPorEmail(par.getEmail());
+			}
+			
+			if(particular != null) {//si se encuentra el particular
+				String letraMayus = texto.substring(0, 1).toUpperCase();
+				String nombreMayusPrim = letraMayus + texto.substring(1, texto.length());
+					
+				List<Oferta> listaOfertas = saOferta.buscarOfertasPorNombreYNombreMayus(texto, nombreMayusPrim);
+				
+				modelAndView = new ModelAndView();
+				modelAndView.addObject("listaOfertasBuscadas", listaOfertas);
+	
+				modelAndView.setViewName("mostrarOfertas");
+			}
+			else {
+				String msg = "¡Particular no encontrado!";
+				modelAndView.addObject("popup", msg);
+			}
 		}
 		else {
 			String msg = "¡Particular no encontrado!";
@@ -379,7 +387,7 @@ public class ControladorPrincipal {
 	
 	
 	@RequestMapping(value ="/verOferta", method = RequestMethod.GET, params = {"id"})
-    public ModelAndView mostrarOfertaEmpresa(@RequestParam("id") int id) {		
+    public ModelAndView mostrarOfertasEmpresa(@RequestParam("id") int id) {		
 		
 		ModelAndView modelAndView = this.obtenerInstancia();
 	
@@ -530,7 +538,7 @@ public class ControladorPrincipal {
 			if(oferta != null) {// si se encuentra la oferta
 				
 				if(oferta.getParticulares().contains(particular)) {//si ya está inscrito
-					modelAndView = new ModelAndView("redirect:/ofertas");
+					modelAndView.setViewName("mostrarOfertas");;
 					String msg = "¡Ya estás inscrito!";
 					modelAndView.addObject("popup", msg);
 				}
@@ -544,27 +552,27 @@ public class ControladorPrincipal {
 					Particular p = saParticular.actualizarParticular(particular);
 					
 					if(ofResModificar != null && p != null) {//si se consiguen modificar
-						modelAndView = new ModelAndView("redirect:/ofertas");
+						modelAndView.setViewName("mostrarOfertas");;
 						String msg = "¡Te has inscrito en la oferta de "+oferta.getNombre()+'\n'
 								+"de la empresa "+oferta.getEmpresa().getNombreEmpresa()+"!";
 						modelAndView.addObject("popup", msg);
 						
 					}
 					else {//si hay error en modificar
-						modelAndView = new ModelAndView("redirect:/ofertas");
+						modelAndView.setViewName("mostrarOfertas");;
 						String msg = "¡Error al modificar!";
 						modelAndView.addObject("popup", msg);
 					}
 				}
 			}
 			else {//si no se encuentra la oferta
-				modelAndView = new ModelAndView("redirect:/ofertas");
+				modelAndView.setViewName("mostrarOfertas");;
 				String msg = "¡Oferta no encontrada!";
 				modelAndView.addObject("popup", msg);
 			}
 		}
 		else {//si no es particular
-			modelAndView = new ModelAndView("redirect:/ofertas");
+			modelAndView.setViewName("mostrarOfertas");;
 			String msg = "¡No puedes inscribirte en una oferta!";
 			modelAndView.addObject("popup", msg);
 		}
@@ -582,7 +590,6 @@ public class ControladorPrincipal {
 		BindingAwareModelMap mod = (BindingAwareModelMap) modelo.get("modelo");
 		Empresa emp = (Empresa)mod.get("empresa");
 		
-		modelAndView = null;
 		Oferta oferta = null;
 		Empresa empresa = null;
 		
@@ -595,14 +602,14 @@ public class ControladorPrincipal {
 			
 			//Si no se encuentra la oferta
 			if(oferta == null) {
-				modelAndView = new ModelAndView("redirect:/ofertas");
+				modelAndView.setViewName("mostrarOfertas");;
 				String msg = "¡Oferta no encontrada!";
 				modelAndView.addObject("popup", msg);
 			}
 			else {
 				//Si la oferta no es de la empresa de la sesion
 				if(!oferta.getEmpresa().equals(empresa)) {
-					modelAndView = new ModelAndView("redirect:/ofertas");
+					modelAndView.setViewName("mostrarOfertas");
 					String msg = "¡No puedes acceder a las ofertas de otras empresas!";
 					modelAndView.addObject("popup", msg);
 					
@@ -611,7 +618,7 @@ public class ControladorPrincipal {
 			}
 		}
 		else {//si no es empresa
-			modelAndView = new ModelAndView("redirect:/ofertas");
+			modelAndView.setViewName("mostrarOfertas");;
 			String msg = "¡No puedes ver a los candidatos de la oferta!";
 			modelAndView.addObject("popup", msg);
 		}
@@ -645,7 +652,6 @@ public class ControladorPrincipal {
 		BindingAwareModelMap mod = (BindingAwareModelMap) modelo.get("modelo");
 		Empresa emp = (Empresa)mod.get("empresa");
 		
-		modelAndView = null;
 		Oferta oferta = null;
 		Empresa empresa = null;
 		
@@ -658,14 +664,14 @@ public class ControladorPrincipal {
 			
 			//Si no se encuentra la oferta
 			if(oferta == null) {
-				modelAndView = new ModelAndView("redirect:/ofertas");
+				modelAndView.setViewName("mostrarOfertas");;
 				String msg = "¡Oferta no encontrada!";
 				modelAndView.addObject("popup", msg);
 			}
 			else {
 				//Si la oferta no es de la empresa de la sesion
 				if(!oferta.getEmpresa().equals(empresa)) {
-					modelAndView = new ModelAndView("redirect:/ofertas");
+					modelAndView.setViewName("mostrarOfertas");;
 					String msg = "¡No puedes acceder a las ofertas de otras empresas!";
 					modelAndView.addObject("popup", msg);
 					
@@ -676,7 +682,7 @@ public class ControladorPrincipal {
 					Particular candidato = saParticular.buscarPorId(idCandidato);
 					
 					if(candidato == null) {//Si no se encuentra al candidato
-						modelAndView = new ModelAndView("redirect:/ofertas");
+						modelAndView.setViewName("mostrarOfertas");;
 						String msg = "¡El candidato no existe!";
 						modelAndView.addObject("popup", msg);
 					}
@@ -704,7 +710,7 @@ public class ControladorPrincipal {
 							modelAndView.setViewName("perfilParticular");
 						}
 						else {
-							modelAndView = new ModelAndView("redirect:/ofertas");
+							modelAndView.setViewName("mostrarOfertas");;
 							String msg = "¡El candidato introducido no pertenece a la oferta!";
 							modelAndView.addObject("popup", msg);
 						}
@@ -713,7 +719,7 @@ public class ControladorPrincipal {
 			}
 		}
 		else {//si no es empresa
-			modelAndView = new ModelAndView("redirect:/ofertas");
+			modelAndView.setViewName("mostrarOfertas");;
 			String msg = "¡No puedes ver a los candidatos de la oferta!";
 			modelAndView.addObject("popup", msg);
 		}
