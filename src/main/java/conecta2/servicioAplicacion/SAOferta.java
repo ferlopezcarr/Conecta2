@@ -18,7 +18,7 @@ public interface SAOferta {
 		public List<Oferta> buscarOfertasPorEmpresa(Empresa empresa);
 		public Oferta save(TransferOferta transferEmpresa);
 		public Oferta buscarPorIdYEmpresa(int id, Empresa empresa);
-		public List<Oferta> buscarOfertasPorNombreYPatron(String nombrePattern);
+		public List<Oferta> buscarOfertasPorNombreYNombreMayus(String nombre, String nombreMayusPrimero);
 		public Oferta actualizarOferta(Oferta oferta);
 		
 		public List<Oferta> buscarOfertasParticularInscrito(Particular part);

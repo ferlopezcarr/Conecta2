@@ -63,8 +63,8 @@ public class SAOfertaImp implements SAOferta {
 	}
 	
 	@Override
-	public List<Oferta> buscarOfertasPorNombreYPatron(String nombrePattern) {
-		return repoOferta.findByNombreLike(nombrePattern);
+	public List<Oferta> buscarOfertasPorNombreYNombreMayus(String nombre, String nombreMayusPrimero) {
+		return repoOferta.findByNombreContainingOrNombreContaining(nombre, nombreMayusPrimero);
 	}
 	
 	@Override

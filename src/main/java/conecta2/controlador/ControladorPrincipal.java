@@ -350,9 +350,9 @@ public class ControladorPrincipal {
 	public ModelAndView buscar(@ModelAttribute("texto") String texto) {	
 		ModelAndView modelAndView = this.obtenerInstancia();
 		
-		String pattern ="%"+texto+"%";
+		String nombreMayusPrim = texto.substring(1).toUpperCase() + texto.substring(2, texto.length());
 			
-		List<Oferta> listaOfertas = saOferta.buscarOfertasPorNombreYPatron(pattern);
+		List<Oferta> listaOfertas = saOferta.buscarOfertasPorNombreYNombreMayus(texto, nombreMayusPrim);
 		
 		modelAndView = new ModelAndView();
 		modelAndView.addObject("listaOfertasBuscadas", listaOfertas);
