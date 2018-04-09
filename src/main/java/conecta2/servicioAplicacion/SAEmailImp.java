@@ -26,7 +26,6 @@ import org.springframework.stereotype.Service;
 
 /**
  * Clase que implementa las funciones de la interfaz SAEmail
- * @author ferlo
  * Clase que se desarrolla la funcionalidad de la entidad Activacion
  */
 @Service //("saEmail")

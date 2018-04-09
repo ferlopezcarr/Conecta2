@@ -2,7 +2,6 @@ package conecta2.servicioAplicacion;
 
 /**
  * Interfaz que define los casos de uso
- * @author ferlo
  * Interfaz que define los métodos o funciones que se pueden realizar con el email
  */
 public interface SAEmail{

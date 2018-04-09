@@ -20,21 +20,21 @@ import conecta2.repositorio.RepositorioParticular;
 public class HU2CrearParticularTest {
 	
 	@Autowired
-    private RepositorioParticular daoParticular;
+    private RepositorioParticular repositorioParticular;
 	
 	@Test(expected = InvalidDataAccessApiUsageException.class)
 	public void testInsertNull() {
 		
 		Particular particular = null;
 		
-		daoParticular.save(particular);
+		repositorioParticular.save(particular);
 	}
 	
 	@Test
 	public void testInsertNotNull() {
 		Particular particular = new Particular("nombre", "Apellido Apellido", "99999999Z", "123456789", "particularPruebaEmail@particularPruebaEmail.com", "Abc1111", true, 0, "descripcion");
 
-		Particular particularGuardado = daoParticular.save(particular);
+		Particular particularGuardado = repositorioParticular.save(particular);
 		
 		assertEquals(particular, particularGuardado);
 	}
@@ -43,7 +43,7 @@ public class HU2CrearParticularTest {
 	public void testInsertNotFounded() {
 		Particular particular = new Particular("nombre", "Apellido Apellido", "99999999Z", "123456789", "particularPruebaEmail@particularPruebaEmail.com", "Abc1111", true, 0, "descripcion");
 
-		Particular particularGuardado = daoParticular.findByDni(particular.getDni());
+		Particular particularGuardado = repositorioParticular.findByDni(particular.getDni());
 		
 		assertEquals(particularGuardado, null);
 	}
@@ -53,9 +53,9 @@ public class HU2CrearParticularTest {
 		
 		Particular particular = new Particular("nombre", "Apellido Apellido", "99999999Z", "123456789", "particularPruebaEmail@particularPruebaEmail.com", "Abc1111", true, 0, "descripcion");
 
-		daoParticular.save(particular);
+		repositorioParticular.save(particular);
 		
-		Particular particularBD = daoParticular.findById(particular.getId());
+		Particular particularBD = repositorioParticular.findById(particular.getId());
 		
 		assertEquals(particular, particularBD);
 	}
@@ -65,9 +65,9 @@ public class HU2CrearParticularTest {
 		
 		Particular particular = new Particular("nombre", "Apellido Apellido", "99999999Z", "123456789", "particularPruebaEmail@particularPruebaEmail.com", "Abc1111", true, 0, "descripcion");
 
-		daoParticular.save(particular);
+		repositorioParticular.save(particular);
 		
-		Particular particularBD = daoParticular.findByEmail(particular.getEmail());
+		Particular particularBD = repositorioParticular.findByEmail(particular.getEmail());
 		
 		assertEquals(particular, particularBD);
 	}
@@ -76,9 +76,9 @@ public class HU2CrearParticularTest {
 	public void testInsertFoundedByDni() {
 		Particular particular = new Particular("nombre", "Apellido Apellido", "99999999Z", "123456789", "particularPruebaEmail@particularPruebaEmail.com", "Abc1111", true, 0, "descripcion");
 
-		daoParticular.save(particular);
+		repositorioParticular.save(particular);
 		
-		Particular particularBD = daoParticular.findByDni(particular.getDni());
+		Particular particularBD = repositorioParticular.findByDni(particular.getDni());
 		
 		assertEquals(particular, particularBD);
 	}

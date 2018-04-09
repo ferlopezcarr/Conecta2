@@ -22,7 +22,6 @@ import org.springframework.data.annotation.Transient;
 @Table(name = "empresas")
 /**
  * Entidad / Objeto de Negocio de Empresa
- * @author ferlo
  * Se utiliza para persistir la información de la empresa
  */
 public class Empresa {

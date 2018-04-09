@@ -21,20 +21,20 @@ import conecta2.repositorio.RepositorioEmpresa;
 public class HU1CrearEmpresaTest {
 
 	@Autowired
-    private RepositorioEmpresa daoEmpresa;
+    private RepositorioEmpresa repositorioEmpresa;
 	
 	@Test(expected = InvalidDataAccessApiUsageException.class)
 	public void testInsertNull() {
 		Empresa empresa = null;
 		
-		daoEmpresa.save(empresa);
+		repositorioEmpresa.save(empresa);
 	}
 	
 	@Test
 	public void testInsertNotNull() {
 		Empresa empresa = new Empresa("empresaPruebaNombre", "A28599033", "123456789", "empresaPruebaEmail@empresaPruebaEmail.com", "Abc1111", true, 0, "");
 		
-		Empresa empresaGuardada = daoEmpresa.save(empresa);
+		Empresa empresaGuardada = repositorioEmpresa.save(empresa);
 		
 		assertEquals(empresa, empresaGuardada);
 	}
@@ -43,7 +43,7 @@ public class HU1CrearEmpresaTest {
 	public void testNotFounded() {
 		Empresa empresa = new Empresa("empresaPruebaNombre", "A28599033", "123456789", "empresaPruebaEmail@empresaPruebaEmail.com", "Abc1111", true, 0, "");
 		
-		Empresa empresaBD = daoEmpresa.findByCif(empresa.getCif());
+		Empresa empresaBD = repositorioEmpresa.findByCif(empresa.getCif());
 		
 		assertEquals(empresaBD, null);
 	}
@@ -52,9 +52,9 @@ public class HU1CrearEmpresaTest {
 	public void testInsertFoundedById() {
 		Empresa empresa = new Empresa("empresaPruebaNombre", "A28599033", "123456789", "empresaPruebaEmail@empresaPruebaEmail.com", "Abc1111", true, 0, "");
 		
-		daoEmpresa.save(empresa);
+		repositorioEmpresa.save(empresa);
 		
-		Empresa empresaBD = daoEmpresa.findById(empresa.getId());
+		Empresa empresaBD = repositorioEmpresa.findById(empresa.getId());
 		
 		assertEquals(empresa, empresaBD);
 	}
@@ -63,9 +63,9 @@ public class HU1CrearEmpresaTest {
 	public void testInsertFoundedByEmail() {
 		Empresa empresa = new Empresa("empresaPruebaNombre", "A28599033", "123456789", "empresaPruebaEmail@empresaPruebaEmail.com", "Abc1111", true, 0, "");
 		
-		daoEmpresa.save(empresa);
+		repositorioEmpresa.save(empresa);
 		
-		Empresa empresaBD = daoEmpresa.findByEmail(empresa.getEmail());
+		Empresa empresaBD = repositorioEmpresa.findByEmail(empresa.getEmail());
 		
 		assertEquals(empresa, empresaBD);
 	}
@@ -74,9 +74,9 @@ public class HU1CrearEmpresaTest {
 	public void testInsertFoundedByCif() {
 		Empresa empresa = new Empresa("empresaPruebaNombre", "A28599033", "123456789", "empresaPruebaEmail@empresaPruebaEmail.com", "Abc1111", true, 0, "");
 		
-		daoEmpresa.save(empresa);
+		repositorioEmpresa.save(empresa);
 		
-		Empresa empresaBD = daoEmpresa.findByCif(empresa.getCif());
+		Empresa empresaBD = repositorioEmpresa.findByCif(empresa.getCif());
 		
 		assertEquals(empresa, empresaBD);
 	}

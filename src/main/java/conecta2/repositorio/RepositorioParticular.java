@@ -7,7 +7,6 @@ import conecta2.modelo.Particular;
 
 /**
  * Clase que proporciona el acceso  a la base de datos, implementado con JPA
- * @author ferlo
  * Para que sea implementado con JPA debe extender de JpaRepository, mapeado mediante
  * el par Particular, Integer
  */
