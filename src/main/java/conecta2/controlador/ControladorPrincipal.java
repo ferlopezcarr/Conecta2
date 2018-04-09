@@ -172,17 +172,24 @@ public class ControladorPrincipal {
 		ModelAndView modelAndView = obtenerInstancia();	
 
 		if(obj==null) {//error validacion
-			modelAndView = new ModelAndView("redirect:/login");
+			modelAndView = new ModelAndView("index");
 			String msg = "¡Código de confirmación incorrecto!";
 			modelAndView.addObject("popup", msg);
 		}
 		else{
-			modelAndView.setViewName("redirect:/login");
-			String msg = "¡Se ha verificado la cuenta!";
+			modelAndView.setViewName("index");
+			String msg = "¡Cuenta verificada!";
 			modelAndView.addObject("popup", msg);
 		}	
 		return modelAndView;
 	}
+	
+	
+	
+	// ------------ LOGUEADO ------------  //
+	
+	
+	// PERFIL EMPRESA
 	
 	/**
 	 * Método que captura la petición GET de /empresa/perfil
@@ -199,13 +206,23 @@ public class ControladorPrincipal {
 		BindingAwareModelMap mod = (BindingAwareModelMap) modelo.get("modelo");
 		Empresa  emp = (Empresa)mod.get("empresa");
 		
+		Empresa empresa = null;
+		if(emp != null) {
+			empresa = saEmpresa.buscarPorId(emp.getId());	
+		}
 		
-		Empresa empresa = saEmpresa.buscarPorId(emp.getId());	
-		TransferEmpresa transferEmpresa = new TransferEmpresa(empresa.getNombreEmpresa(), empresa.getCif(), empresa.getTelefono(), 
-				empresa.getEmail(), "0", "0", empresa.getDescripcion(), empresa.getActivo());
-		
-		modelAndView.addObject("transferEmpresa", transferEmpresa);
-		modelAndView.setViewName("perfilEmpresa");
+		if(empresa != null) {
+			TransferEmpresa transferEmpresa = new TransferEmpresa(empresa.getNombreEmpresa(), empresa.getCif(), empresa.getTelefono(), 
+					empresa.getEmail(), "0", "0", empresa.getDescripcion(), empresa.getActivo());
+			
+			modelAndView.addObject("transferEmpresa", transferEmpresa);
+			modelAndView.setViewName("perfilEmpresa");
+		}
+		else {//particular
+			String msg = "¡Su perfil es de particular!";
+			modelAndView.addObject("popup", msg);
+			modelAndView.setViewName("mostrarOfertas");
+		}
 		
 		return modelAndView;
     }
@@ -219,40 +236,69 @@ public class ControladorPrincipal {
 		BindingAwareModelMap mod = (BindingAwareModelMap) modelo.get("modelo");
 		Empresa  emp = (Empresa)mod.get("empresa");
 		
-		Empresa empresa = saEmpresa.buscarPorId(emp.getId());
+		Empresa empresa = null;
+		if(emp != null) {
+			empresa = saEmpresa.buscarPorId(emp.getId());	
+		}
 		
-		TransferEmpresa transferEmpresa = new TransferEmpresa(empresa.getNombreEmpresa(), empresa.getCif(), 
-				empresa.getTelefono(), empresa.getEmail(), "0", "0", empresa.getDescripcion(), empresa.getActivo());
-		
-		modelAndView.addObject("transferEmpresa", transferEmpresa);
-		modelAndView.setViewName("modificarEmpresa");
+		if(empresa != null) {
+			TransferEmpresa transferEmpresa = new TransferEmpresa(empresa.getNombreEmpresa(), empresa.getCif(), empresa.getTelefono(), 
+					empresa.getEmail(), "0", "0", empresa.getDescripcion(), empresa.getActivo());
+			
+			modelAndView.addObject("transferEmpresa", transferEmpresa);
+			modelAndView.setViewName("modificarEmpresa");
+		}
+		else {//particular
+			String msg = "¡Su perfil es de particular!";
+			modelAndView.addObject("popup", msg);
+			modelAndView.setViewName("mostrarOfertas");
+		}
 		
 		return modelAndView;
     }
 	
 	@RequestMapping(value = "/empresa/modificar", method = RequestMethod.POST)
 	public ModelAndView modificarPerfilEmpresa(@ModelAttribute("transferEmpresa") TransferEmpresa transferEmpresa,BindingResult bindingResult) {
-		ModelAndView modelAndView = null;
-		if(!transferEmpresa.getNombreEmpresa().matches("^(?!\\s*$).+")) { //Patron not empty
-			bindingResult.rejectValue("nombreEmpresa", "error.transferEmpresa", "* Introduzca un nombre");
-		}
-		if(!transferEmpresa.getTelefono().matches("^([0-9]{9})$")) {
-			bindingResult.rejectValue("telefono", "error.transferEmpresa", "* Introduzca un teléfono válido");
+
+		ModelAndView modelAndView = obtenerInstancia();
+		
+		Map<String, Object> modelo = modelAndView.getModel();
+		BindingAwareModelMap mod = (BindingAwareModelMap) modelo.get("modelo");
+		Empresa  emp = (Empresa)mod.get("empresa");
+		
+		Empresa empresa = null;
+		if(emp != null) {
+			empresa = saEmpresa.buscarPorId(emp.getId());	
 		}
 		
-		if (bindingResult.hasErrors()) {
-			modelAndView = new ModelAndView("modificarEmpresa", bindingResult.getModel());
-			modelAndView.addObject("transferEmpresa", transferEmpresa);
-		}else {
-			saEmpresa.save(transferEmpresa);
-			modelAndView = new ModelAndView("redirect:/empresa/perfil");
-
+		if(empresa != null) {
+			if(!transferEmpresa.getNombreEmpresa().matches("^(?!\\s*$).+")) { //Patron not empty
+				bindingResult.rejectValue("nombreEmpresa", "error.transferEmpresa", "* Introduzca un nombre");
+			}
+			if(!transferEmpresa.getTelefono().matches("^([0-9]{9})$")) {
+				bindingResult.rejectValue("telefono", "error.transferEmpresa", "* Introduzca un teléfono válido");
+			}
+			
+			if (bindingResult.hasErrors()) {
+				modelAndView = new ModelAndView("modificarEmpresa", bindingResult.getModel());
+				modelAndView.addObject("transferEmpresa", transferEmpresa);
+			}else {
+				saEmpresa.save(transferEmpresa);
+				modelAndView = new ModelAndView("redirect:/empresa/perfil");
+			}
+		}
+		else {//particular
+			String msg = "¡Su perfil es de particular!";
+			modelAndView.addObject("popup", msg);
+			modelAndView.setViewName("mostrarOfertas");
 		}
 
 		return modelAndView;
 	}
 	
 	
+	
+	// PERFIL PARTICULAR
 	
 	@RequestMapping(value ="/particular/perfil", method = RequestMethod.GET)
     public ModelAndView mostrarPerfilParticular() {		
@@ -263,11 +309,22 @@ public class ControladorPrincipal {
 		BindingAwareModelMap mod = (BindingAwareModelMap) modelo.get("modelo");
 		Particular par = (Particular)mod.get("particular");
 		
-		Particular particular = saParticular.buscarPorId(par.getId());				
-		TransferParticular tParticular = new TransferParticular(particular.getNombre(), particular.getApellidos(), particular.getDni(),
-				particular.getTelefono(), particular.getEmail(), "0", particular.getActivo(), particular.getPuntuacion(),particular.getDescripcion());
-		modelAndView.addObject("transferParticular", tParticular);
-		modelAndView.setViewName("perfilParticular");
+		Particular particular = null;
+		if(par != null) {
+			particular = saParticular.buscarPorId(par.getId());	
+		}
+		
+		if(particular != null) {
+			TransferParticular tParticular = new TransferParticular(particular.getNombre(), particular.getApellidos(), particular.getDni(),
+					particular.getTelefono(), particular.getEmail(), "0", particular.getActivo(), particular.getPuntuacion(),particular.getDescripcion());
+			modelAndView.addObject("transferParticular", tParticular);
+			modelAndView.setViewName("perfilParticular");
+		}
+		else {//empresa
+			String msg = "¡Su perfil es de empresa!";
+			modelAndView.addObject("popup", msg);
+			modelAndView.setViewName("mostrarOfertas");
+		}
 		
 		return modelAndView;
     }
@@ -280,36 +337,66 @@ public class ControladorPrincipal {
 		BindingAwareModelMap mod = (BindingAwareModelMap) modelo.get("modelo");
 		Particular par = (Particular)mod.get("particular");
 		
-		Particular particular = saParticular.buscarPorId(par.getId());	
-		TransferParticular tParticular = new TransferParticular(particular.getNombre(), particular.getApellidos(), particular.getDni(),
-				particular.getTelefono(), particular.getEmail(), "0", particular.getActivo(), particular.getPuntuacion(),particular.getDescripcion());
+		Particular particular = null;
+		if(par != null) {
+			particular = saParticular.buscarPorId(par.getId());	
+		}
 		
-		modelAndView.addObject("transferParticular", tParticular);
-		modelAndView.setViewName("modificarParticular"); //Cambiar a la vista de modificar particular
+		if(particular != null) {
+			TransferParticular tParticular = new TransferParticular(particular.getNombre(), particular.getApellidos(), particular.getDni(),
+					particular.getTelefono(), particular.getEmail(), "0", particular.getActivo(), particular.getPuntuacion(),particular.getDescripcion());
+			modelAndView.addObject("transferParticular", tParticular);
+			modelAndView.setViewName("modificarParticular");
+		}
+		else {//empresa
+			String msg = "¡Su perfil es de empresa!";
+			modelAndView.addObject("popup", msg);
+			modelAndView.setViewName("mostrarOfertas");
+		}
 		
 		return modelAndView;
     }
 	
 	@RequestMapping(value ="/particular/modificar", method = RequestMethod.POST)
     public ModelAndView modificarPerfilParticular(@ModelAttribute("transferParticular") TransferParticular transferParticular, BindingResult bindingResult) {
-		ModelAndView modelAndView = null;
-		if (!transferParticular.getNombre().matches("^[a-zA-ZáéíóúñÁÉÍÓÚÑ ]{1,}$")) {		
-			bindingResult.rejectValue("nombre", "error.transferParticular", "* Introduzca únicamente letras");
+		
+		ModelAndView modelAndView = obtenerInstancia();
+		
+		Map<String, Object> modelo = modelAndView.getModel();
+		BindingAwareModelMap mod = (BindingAwareModelMap) modelo.get("modelo");
+		Particular par = (Particular)mod.get("particular");
+		
+		Particular particular = null;
+		if(par != null) {
+			particular = saParticular.buscarPorId(par.getId());	
 		}
-		if (!transferParticular.getApellidos().matches("^[a-zA-ZáéíóúñÁÉÍÓÚÑ ]{1,}$")) {		
-			bindingResult.rejectValue("apellidos", "error.transferParticular", "* Introduzca únicamente letras");
+		
+		if(particular != null) {
+			if (!transferParticular.getNombre().matches("^[a-zA-ZáéíóúñÁÉÍÓÚÑ ]{1,}$")) {		
+				bindingResult.rejectValue("nombre", "error.transferParticular", "* Introduzca únicamente letras");
+			}
+			if (!transferParticular.getApellidos().matches("^[a-zA-ZáéíóúñÁÉÍÓÚÑ ]{1,}$")) {		
+				bindingResult.rejectValue("apellidos", "error.transferParticular", "* Introduzca únicamente letras");
+			}
+			if(!transferParticular.getTelefono().matches("^([0-9]{9})$")) {
+				bindingResult.rejectValue("telefono", "error.transferParticular", "* Introduzca un teléfono válido");
+			}
+			
+			if (bindingResult.hasErrors()) {//si hay errores
+				modelAndView = new ModelAndView("modificarParticular", bindingResult.getModel());
+				modelAndView.addObject("transferParticular", transferParticular);
+			}	
+			else {
+				saParticular.save(transferParticular);
+				modelAndView = new ModelAndView("redirect:/particular/perfil");
+			}
 		}
-		if(!transferParticular.getTelefono().matches("^([0-9]{9})$")) {
-			bindingResult.rejectValue("telefono", "error.transferParticular", "* Introduzca un teléfono válido");
+		else {//empresa
+			String msg = "¡Su perfil es de empresa!";
+			modelAndView.addObject("popup", msg);
+			modelAndView.setViewName("mostrarOfertas");
 		}
-		if (bindingResult.hasErrors()) {		
-			modelAndView = new ModelAndView("modificarParticular", bindingResult.getModel());
-			modelAndView.addObject("transferParticular", transferParticular);
-		}	
-		else {
-			saParticular.save(transferParticular);
-			modelAndView = new ModelAndView("redirect:/particular/perfil");
-		}		
+				
 		return modelAndView;
     }
 	
@@ -366,24 +453,21 @@ public class ControladorPrincipal {
 					
 				List<Oferta> listaOfertas = saOferta.buscarOfertasPorNombreYNombreMayus(texto, nombreMayusPrim);
 				
-				boolean contains = listaOfertas.get(0).getParticulares().contains(par);
-				
 				modelAndView = new ModelAndView();
 				modelAndView.addObject("listaOfertasBuscadas", listaOfertas);
 	
 				modelAndView.setViewName("mostrarOfertas");
 			}
 			else {
-				modelAndView.setViewName("mostrarOfertas");
 				String msg = "¡Particular no encontrado!";
 				modelAndView.addObject("popup", msg);
+				modelAndView.setViewName("mostrarOfertas");
 			}
 		}
 		else {//si no ha introducido nada
-			modelAndView.setViewName("mostrarOfertas");
 			String msg = "Para buscar, introduzca caracteres";
 			modelAndView.addObject("popup", msg);
-			
+			modelAndView.setViewName("mostrarOfertas");
 		}
 
 		return modelAndView;
@@ -401,12 +485,15 @@ public class ControladorPrincipal {
 		Particular par = (Particular)mod.get("particular");
 		
 		Empresa empresa = null;
+		Particular particular = null;
+		Oferta oferta = null;
 		
 		if (emp != null) {
 			empresa = saEmpresa.buscarPorEmail(emp.getEmail());
-		} 
-				
-		Oferta oferta = null;
+		}
+		else if(par != null) {
+			particular = saParticular.buscarPorEmail(par.getEmail());
+		}
 		
 		if(empresa != null) {//si es empresa
 			oferta = saOferta.buscarPorId(id);
@@ -415,34 +502,27 @@ public class ControladorPrincipal {
 			if(oferta == null) {
 				String msg = "¡Oferta no encontrada!";
 				modelAndView.addObject("popup", msg);
-				modelAndView.setViewName("mostrarOfertas");
-				
+				modelAndView.setViewName("mostrarOfertas");	
 			}
 			else {
 				//Si la oferta no es de la empresa de la sesion
 				if(!oferta.getEmpresa().equals(empresa)) {
-
 					String msg = "¡No puedes acceder a las ofertas de otras empresas!";
 					modelAndView.addObject("popup", msg);
 					modelAndView.setViewName("mostrarOfertas");
 					oferta = null;
 				}
 			}
-			
 		}
 		else {
-			Particular particular = saParticular.buscarPorEmail(par.getEmail());
-			
 			if(particular != null) {//si es particular
 				//Se deja acceder a cualquier oferta
 				oferta = saOferta.buscarPorId(id);
 				
 				if(oferta == null) {
-					
 					String msg = "¡Oferta no encontrada!";
 					modelAndView.addObject("popup", msg);
 					modelAndView.setViewName("mostrarOfertas");
-		
 				}
 			}
 		}
@@ -468,7 +548,10 @@ public class ControladorPrincipal {
 		BindingAwareModelMap mod = (BindingAwareModelMap) modelo.get("modelo");
 		Empresa emp = (Empresa)mod.get("empresa");
 		
-		Empresa empresa = saEmpresa.buscarPorEmail(emp.getEmail());
+		Empresa empresa = null;
+		if (emp != null) {
+			empresa = saEmpresa.buscarPorEmail(emp.getEmail());
+		}
 		
 		if(empresa == null) {//no es empresa
 			modelAndView = new ModelAndView("redirect:/ofertas");
@@ -492,7 +575,10 @@ public class ControladorPrincipal {
 		BindingAwareModelMap mod = (BindingAwareModelMap) modelo.get("modelo");
 		Empresa emp = (Empresa)mod.get("empresa");
 		
-		Empresa empresa = saEmpresa.buscarPorEmail(emp.getEmail());
+		Empresa empresa = null;
+		if (emp != null) {
+			empresa = saEmpresa.buscarPorEmail(emp.getEmail());
+		}
 		
 		if(transferOferta.getVacantes() != null) {
 			if(transferOferta.getVacantes() == 0) 
@@ -530,7 +616,6 @@ public class ControladorPrincipal {
 		Particular par = (Particular)mod.get("particular");
 		
 		Particular particular = null;
-		
 		if(par != null) {
 			particular = saParticular.buscarPorEmail(par.getEmail());
 		}
@@ -542,7 +627,7 @@ public class ControladorPrincipal {
 			if(oferta != null) {// si se encuentra la oferta
 				
 				if(oferta.getParticulares().contains(particular)) {//si ya está inscrito
-					modelAndView.setViewName("mostrarOfertas");;
+					modelAndView.setViewName("mostrarOfertas");
 					String msg = "¡Ya estás inscrito!";
 					modelAndView.addObject("popup", msg);
 				}
@@ -556,27 +641,27 @@ public class ControladorPrincipal {
 					Particular p = saParticular.actualizarParticular(particular);
 					
 					if(ofResModificar != null && p != null) {//si se consiguen modificar
-						modelAndView.setViewName("mostrarOfertas");;
+						modelAndView.setViewName("mostrarOfertas");
 						String msg = "¡Te has inscrito en la oferta '"+oferta.getNombre()+"'"+'\n'
 								+"de la empresa "+oferta.getEmpresa().getNombreEmpresa()+"!";
 						modelAndView.addObject("popup", msg);
 						
 					}
 					else {//si hay error en modificar
-						modelAndView.setViewName("mostrarOfertas");;
+						modelAndView.setViewName("mostrarOfertas");
 						String msg = "¡Error al modificar!";
 						modelAndView.addObject("popup", msg);
 					}
 				}
 			}
 			else {//si no se encuentra la oferta
-				modelAndView.setViewName("mostrarOfertas");;
+				modelAndView.setViewName("mostrarOfertas");
 				String msg = "¡Oferta no encontrada!";
 				modelAndView.addObject("popup", msg);
 			}
 		}
 		else {//si no es particular
-			modelAndView.setViewName("mostrarOfertas");;
+			modelAndView.setViewName("mostrarOfertas");
 			String msg = "¡No puedes inscribirte en una oferta!";
 			modelAndView.addObject("popup", msg);
 		}
@@ -606,7 +691,7 @@ public class ControladorPrincipal {
 			
 			//Si no se encuentra la oferta
 			if(oferta == null) {
-				modelAndView.setViewName("mostrarOfertas");;
+				modelAndView.setViewName("mostrarOfertas");
 				String msg = "¡Oferta no encontrada!";
 				modelAndView.addObject("popup", msg);
 			}
@@ -622,7 +707,7 @@ public class ControladorPrincipal {
 			}
 		}
 		else {//si no es empresa
-			modelAndView.setViewName("mostrarOfertas");;
+			modelAndView.setViewName("mostrarOfertas");
 			String msg = "¡No puedes ver a los candidatos de la oferta!";
 			modelAndView.addObject("popup", msg);
 		}
@@ -668,14 +753,14 @@ public class ControladorPrincipal {
 			
 			//Si no se encuentra la oferta
 			if(oferta == null) {
-				modelAndView.setViewName("mostrarOfertas");;
+				modelAndView.setViewName("mostrarOfertas");
 				String msg = "¡Oferta no encontrada!";
 				modelAndView.addObject("popup", msg);
 			}
 			else {
 				//Si la oferta no es de la empresa de la sesion
 				if(!oferta.getEmpresa().equals(empresa)) {
-					modelAndView.setViewName("mostrarOfertas");;
+					modelAndView.setViewName("mostrarOfertas");
 					String msg = "¡No puedes acceder a las ofertas de otras empresas!";
 					modelAndView.addObject("popup", msg);
 					
@@ -686,7 +771,7 @@ public class ControladorPrincipal {
 					Particular candidato = saParticular.buscarPorId(idCandidato);
 					
 					if(candidato == null) {//Si no se encuentra al candidato
-						modelAndView.setViewName("mostrarOfertas");;
+						modelAndView.setViewName("mostrarOfertas");
 						String msg = "¡El candidato no existe!";
 						modelAndView.addObject("popup", msg);
 					}
@@ -714,7 +799,7 @@ public class ControladorPrincipal {
 							modelAndView.setViewName("perfilParticular");
 						}
 						else {
-							modelAndView.setViewName("mostrarOfertas");;
+							modelAndView.setViewName("mostrarOfertas");
 							String msg = "¡El candidato introducido no pertenece a la oferta!";
 							modelAndView.addObject("popup", msg);
 						}
@@ -723,14 +808,14 @@ public class ControladorPrincipal {
 			}
 		}
 		else {//si no es empresa
-			modelAndView.setViewName("mostrarOfertas");;
+			modelAndView.setViewName("mostrarOfertas");
 			String msg = "¡No puedes ver a los candidatos de la oferta!";
 			modelAndView.addObject("popup", msg);
 		}
 		
 		return modelAndView;
     }
-	
+
 	
 	/**
 	 * Método que añade al particular como variable permanente para el modelo

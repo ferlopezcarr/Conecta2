@@ -183,6 +183,10 @@ public class Oferta {
 		this.finalizada = finalizada;
 	}
 
+	public boolean containsParticular(Particular p) {
+		return this.getParticulares().contains(p);
+	}
+	
 	public boolean containsJornada(String text) {
 		
 	    for (JornadaLaboral j : JornadaLaboral.values()) {

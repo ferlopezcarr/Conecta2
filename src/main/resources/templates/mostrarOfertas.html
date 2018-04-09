@@ -220,7 +220,7 @@
 							</td>
 							<td>
 								<!-- th:if="${!(oferta.particulares.contains(par))}" -->
-								<form th:if="${!(oferta.getParticulares().contains(par))}" th:action="@{/inscribir}" method="POST">
+								<form th:action="@{/inscribir}" method="POST">
 									<input type="hidden" name="id_oferta" th:value="${oferta.id}"/>
 									<button type="submit" class="btn botonAzul">Inscribirme</button>
 								</form>

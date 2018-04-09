@@ -8,19 +8,23 @@ import conecta2.modelo.Particular;
 import conecta2.transfer.TransferOferta;
 
 public interface SAOferta {
+	
 		public void crearOferta(TransferOferta transferOferta);
-		public List<Oferta> buscarTodas();
-		public Oferta buscarPorId (int id);
-		/*
-		public Oferta buscarPorNombreAndJornadaAndContratoAndEmpresa(String nombre, JornadaLaboral jornada, Contrato contrato,
-				Empresa empresa);
-				*/
-		public List<Oferta> buscarOfertasPorEmpresa(Empresa empresa);
-		public Oferta save(TransferOferta transferEmpresa);
-		public Oferta buscarPorIdYEmpresa(int id, Empresa empresa);
-		public List<Oferta> buscarOfertasPorNombreYNombreMayus(String nombre, String nombreMayusPrimero);
+		
 		public Oferta actualizarOferta(Oferta oferta);
 		
+		public Oferta save(TransferOferta transferEmpresa);
+		
+		public Oferta buscarPorId (int id);
+		
+		public Oferta buscarPorIdYEmpresa(int id, Empresa empresa);
+		
+		public List<Oferta> buscarOfertasPorEmpresa(Empresa empresa);
+		
 		public List<Oferta> buscarOfertasParticularInscrito(Particular part);
+		
+		public List<Oferta> buscarOfertasPorNombreYNombreMayus(String nombre, String nombreMayusPrimero);
+		
+		public List<Oferta> buscarTodas();
 		
 }
