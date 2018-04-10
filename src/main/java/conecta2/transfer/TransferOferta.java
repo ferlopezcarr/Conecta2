@@ -59,6 +59,10 @@ public class TransferOferta {
 	@ManyToOne (fetch=FetchType.EAGER)
 	private Empresa empresa;
 	
+	
+	/*Variables Auxiliares para el parseo de los campos númericos porque los int
+	 * o doubles no admiten patrones
+	 */
 	@Pattern(regexp="^([0-9]{1,}(\\.[0-9]{1,}){0,1})*$", message= "* No puede introducir letras ni números negativos")
 	private String auxSalario;
 	
@@ -183,6 +187,12 @@ public class TransferOferta {
 		return auxSalario;
 	}
 
+	/**
+	 * Funcion que cambia la variable auxSalario por la enviada como parámetro y si es posible
+	 * parsea el número para dar valor a la variable Salario del transfer, si no es posible o
+	 * es un número negativo toma el valor null
+	 * @param auxSalario
+	 */
 	public void setAuxSalario(String auxSalario) {
 		this.auxSalario = auxSalario;
 		try {
@@ -198,6 +208,12 @@ public class TransferOferta {
 		return auxVacantes;
 	}
 
+	/**
+	 * Funcion que cambia la variable auxVacantes por la enviada como parámetro y si es posible
+	 * parsea el número para dar valor a la variable Vacantes del transfer, si no es posible o
+	 * es un número negativo toma el valor null
+	 * @param auxVacantes
+	 */
 	public void setAuxVacantes(String auxVacantes) {
 		this.auxVacantes = auxVacantes;
 		try {
