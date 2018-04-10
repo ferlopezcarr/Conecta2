@@ -60,12 +60,16 @@ public class TransferOferta {
 	private Empresa empresa;
 	
 	
-	/*Variables Auxiliares para el parseo de los campos númericos porque los int
-	 * o doubles no admiten patrones
+	/**
+	 * Variables Auxiliares para el parseo de los campos númericos porque los doubles 
+	 * no admiten patrones ni etiquetas de decimales como @DecimalMin
 	 */
 	@Pattern(regexp="^([0-9]{1,}(\\.[0-9]{1,}){0,1})*$", message= "* No puede introducir letras ni números negativos")
 	private String auxSalario;
 	
+	/**
+	 * Variables Auxiliares para el parseo de los campos númericos porque los int no admiten patrones
+	 */
 	@NotEmpty(message ="* Por favor, introduzca un número")
 	@Pattern(regexp="^([0-9])*$", message= "* No puede introducir letras ni números negativos")
 	private String auxVacantes;

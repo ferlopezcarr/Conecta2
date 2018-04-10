@@ -83,14 +83,15 @@ public class SAParticularImp implements SAParticular{
 	}
 	
 	/**
-	 * Método que recibe un TransferParticular y lo guarda en la base de datos
+	 * Método que recibe un TransferParticular y lo guarda en la base de datos,
+	 * si ya existe lo modifica
 	 */
 	@Override
 	public void save(TransferParticular transferParticular) {
 
 		Particular particular = repositorioParticular.findByDni(transferParticular.getDni());
 		
-		if(particular == null) {
+		if(particular == null) {//CREAR PARTICULAR
 			particular = new Particular(
 					transferParticular.getNombre(),
 					transferParticular.getApellidos(),
@@ -103,7 +104,7 @@ public class SAParticularImp implements SAParticular{
 					transferParticular.getDescripcion()
 				);
 		}
-		else {
+		else {//MODIFICAR PARTICULAR
 			particular.setNombre(transferParticular.getNombre());
 			particular.setApellidos(transferParticular.getApellidos());
 			particular.setTelefono(transferParticular.getTelefono());
@@ -113,6 +114,10 @@ public class SAParticularImp implements SAParticular{
         repositorioParticular.save(particular);
 	}
 
+	/**
+	 * Metodo que actualiza un particular y lo devuelve, se usa para actualizar
+	 * la lista de ofertas al inscribirse
+	 */
 	@Override
 	public Particular actualizarParticular(Particular par) {
 		if(par != null) {//se encuentra la oferta en la BD

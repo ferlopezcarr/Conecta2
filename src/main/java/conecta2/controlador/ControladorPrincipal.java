@@ -256,6 +256,15 @@ public class ControladorPrincipal {
 		return modelAndView;
     }
 	
+	/**
+	 * Método que captura la petición web de modificar perfil empresa, recibe en un transfer 
+	 * los datos de la empresa, comprueba que cumplan las condiciones dadas por los patrones
+	 * (no se usan los del transfer porque la contraseña no se envía) 
+	 * y si las cumplen se modifican los datos de la empresa y se guardan en la BD
+	 * @param transferParticular
+	 * @param bindingResult
+	 * @return
+	 */
 	@RequestMapping(value = "/empresa/modificar", method = RequestMethod.POST)
 	public ModelAndView modificarPerfilEmpresa(@ModelAttribute("transferEmpresa") TransferEmpresa transferEmpresa,BindingResult bindingResult) {
 
@@ -356,6 +365,15 @@ public class ControladorPrincipal {
 		return modelAndView;
     }
 	
+	/**
+	 * Método que captura la petición web de modificar perfil particular, recibe en un transfer 
+	 * los datos del particular, comprueba que cumplan las condiciones dadas por los patrones
+	 * (no se usan los del transfer porque la contraseña no se envía) 
+	 * y si las cumplen se modifican los datos del particular y se guardan en la BD
+	 * @param transferParticular
+	 * @param bindingResult
+	 * @return
+	 */
 	@RequestMapping(value ="/particular/modificar", method = RequestMethod.POST)
     public ModelAndView modificarPerfilParticular(@ModelAttribute("transferParticular") TransferParticular transferParticular, BindingResult bindingResult) {
 		
@@ -563,7 +581,13 @@ public class ControladorPrincipal {
 		}
 		return modelAndView;
 	}
-	
+	/**
+	 * Método que captura la petición web de crear oferta, recibe en un transfer los datos
+	 * de la oferta, comprueba que sean correctos y si lo son la inserta en la BD
+	 * @param transferOferta
+	 * @param bindingResult
+	 * @return
+	 */
 	@RequestMapping(value="/crear-oferta", method = RequestMethod.POST)
 	public ModelAndView crearOfertaPost(@ModelAttribute("transferOferta") @Valid TransferOferta transferOferta, BindingResult bindingResult){
 		ModelAndView modelAndView = this.obtenerInstancia();
@@ -578,7 +602,8 @@ public class ControladorPrincipal {
 		if (emp != null) {
 			empresa = saEmpresa.buscarPorEmail(emp.getEmail());
 		}
-		
+		/*Vacantes es null si no ha podido parsearse en el set de auxVacantes o si es un número
+		negativo*/
 		if(transferOferta.getVacantes() != null) {
 			if(transferOferta.getVacantes() == 0) 
 				bindingResult.rejectValue("auxVacantes", "error.transferOferta", "* Por favor, debe haber al menos una vacante");

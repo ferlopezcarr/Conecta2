@@ -90,6 +90,10 @@ public class SAOfertaImp implements SAOferta {
 		return repoOferta.save(oferta);
 	}
 
+	/**
+	 * Metodo que actualiza una oferta y la devuelve, se usa para actualizar
+	 * la lista de de candidatos al inscribirse un particular
+	 */
 	@Override
 	public Oferta actualizarOferta(Oferta oferta) {
 		

@@ -82,14 +82,15 @@ public class SAEmpresaImp implements SAEmpresa {
 	}
 	
 	/**
-	 * Método que recibe un TransferEmpresa y lo guarda en la base de datos
+	 * Método que recibe un TransferEmpresa y si no existe lo guarda en la base de datos
+	 * en caso contrario lo modifica
 	 */
 	@Transactional
 	@Override
 	public void save(TransferEmpresa transferEmpresa) {
 	 	 Empresa empresa = repositorioEmpresa.findByCif(transferEmpresa.getCif());
 	 	 
-	 	 if(empresa == null) {
+	 	 if(empresa == null) {//CREAR EMPRESA
 	 		 empresa = new Empresa(
 	 				 transferEmpresa.getNombreEmpresa(),
 	 				 transferEmpresa.getCif(),
@@ -101,7 +102,7 @@ public class SAEmpresaImp implements SAEmpresa {
 	 				 transferEmpresa.getDescripcion()
 	 			);
 	 	 }
-	 	 else {
+	 	 else {//MODIFICAR EMPRESA
 	 		 empresa.setNombreEmpresa(transferEmpresa.getNombreEmpresa());
 	 		 empresa.setTelefono(transferEmpresa.getTelefono());
 	 		 empresa.setDescripcion(transferEmpresa.getDescripcion());
