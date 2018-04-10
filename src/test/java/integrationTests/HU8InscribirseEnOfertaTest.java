@@ -56,11 +56,15 @@ public class HU8InscribirseEnOfertaTest {
 		
 		Oferta oferta = saOferta.save(transferOferta);
 		
+		int contP1 = oferta.getParticulares().size();
+		
 		TransferParticular tParticular = new TransferParticular("nombre", "Apellido Apellido", "99999919Z", "123456789", "particularPruebaHU8@particularPruebaEmail.com", "Abc1111", true, 0, "ejemplo");
 		
 		saParticular.save(tParticular);
 		
 		Particular particular = saParticular.buscarPorEmail(tParticular.getEmail());
+		
+		int contO1 = particular.getOfertas().size();
 		
 		oferta.inscribirParticular(particular);
 		particular.anadirOferta(oferta);
@@ -69,15 +73,15 @@ public class HU8InscribirseEnOfertaTest {
 		saOferta.actualizarOferta(oferta);
 		saParticular.actualizarParticular(particular);
 		
-		List<Particular> particulares = oferta.getParticulares();
+		int contP2 = oferta.getParticulares().size();
 		
-		List<Oferta> ofertas = particular.getOfertas();
+		int contO2 = particular.getOfertas().size();
 		
 		boolean eq1 = false;
 		boolean eq2 = false;
 		
-		if(particulares.get(0).equals(particular)) eq1 = true;
-		if(ofertas.get(0).equals(oferta)) eq2 = true;
+		if(contP1 == 0 && contP2 == 1) eq1 = true;
+		if(contO1 == 0 && contO2 == 1) eq2 = true;
 		
 		assertEquals(eq1 && eq2, true);
 
