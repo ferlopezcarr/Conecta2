@@ -19,7 +19,7 @@ import conecta2.transfer.TransferParticular;
 @SpringBootTest(classes = C2Aplicacion.class)
 @DataJpaTest
 @ComponentScan(basePackages ="conecta2")
-public class HU5ModificarPerfilParticularTest {
+public class HU6ModificarPerfilParticularTest {
 
 	@Autowired
 	public SAParticular saParticular;

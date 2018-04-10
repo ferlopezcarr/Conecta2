@@ -19,7 +19,7 @@ import conecta2.transfer.TransferEmpresa;
 @SpringBootTest(classes = C2Aplicacion.class)
 @DataJpaTest
 @ComponentScan(basePackages ="conecta2")
-public class HU5ModificarPerfilEmpresaTest {
+public class HU6ModificarPerfilEmpresaTest {
 
 	@Autowired
 	public SAEmpresa saEmpresa;

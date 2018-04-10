@@ -16,7 +16,7 @@ import conecta2.repositorio.RepositorioEmpresa;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = C2Aplicacion.class)
 @DataJpaTest
-public class HU5ModificarPerfilEmpresaTest {
+public class HU6ModificarPerfilEmpresaTest {
 
 	
 	@Autowired

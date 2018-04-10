@@ -25,7 +25,7 @@ import conecta2.transfer.TransferOferta;
 @SpringBootTest(classes = C2Aplicacion.class)
 @DataJpaTest
 @ComponentScan(basePackages ="conecta2")
-public class HU6CrearOfertaTest {
+public class HU7CrearOfertaTest {
 
 	@Autowired
 	private SAOferta saOferta;

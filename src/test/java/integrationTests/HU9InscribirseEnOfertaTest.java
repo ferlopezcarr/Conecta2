@@ -29,7 +29,7 @@ import conecta2.transfer.TransferParticular;
 @SpringBootTest(classes = C2Aplicacion.class)
 @DataJpaTest
 @ComponentScan(basePackages ="conecta2")
-public class HU8InscribirseEnOfertaTest {
+public class HU9InscribirseEnOfertaTest {
 	
 	@Autowired
 	private SAOferta saOferta;

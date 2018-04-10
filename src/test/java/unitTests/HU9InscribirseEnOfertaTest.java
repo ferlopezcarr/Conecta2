@@ -23,7 +23,7 @@ import conecta2.repositorio.RepositorioParticular;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = C2Aplicacion.class)
 @DataJpaTest
-public class HU8InscribirseEnOfertaTest {
+public class HU9InscribirseEnOfertaTest {
 	
 	@Autowired
 	private RepositorioOferta repOferta;

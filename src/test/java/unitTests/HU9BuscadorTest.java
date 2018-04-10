@@ -26,7 +26,7 @@ import conecta2.transfer.TransferOferta;
 @SpringBootTest(classes = C2Aplicacion.class)
 @DataJpaTest
 @ComponentScan(basePackages ="conecta2")
-public class HU8BuscadorTest {
+public class HU9BuscadorTest {
 	
 
 	
