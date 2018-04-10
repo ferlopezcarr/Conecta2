@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 	<meta content="text/html; charset=UTF-8" http-equiv="content-type" />
-	<title>5. Ver perfil</title>
+	<title>5. Ver perfil y cerrar sesión</title>
 </head>
 <body>
 <table cellpadding="1" cellspacing="1" border="1">
@@ -24,6 +24,14 @@
 <tr><td>click</td><td>//button[@type='submit']<datalist><option>//button[@type='submit']</option><option>//button</option><option>css=button.btn.btn-grey</option></datalist></td><td></td>
 </tr>
 <tr><td>click</td><td>link=Perfil<datalist><option>link=Perfil</option><option>//a[contains(text(),'Perfil')]</option><option>//div[@id='navbarSupportedContent']/ul/li/a</option><option>//a[contains(@href, '/particular/perfil?id=1')]</option><option>//li/a</option><option>css=a.nav-link</option></datalist></td><td></td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Cerrar sesión Particular</td></tr>
+</thead>
+<tbody>
+<tr><td>open</td><td>http://localhost:8080/particular/perfil<datalist><option>http://localhost:8080/particular/perfil</option></datalist></td><td></td>
 </tr>
 <tr><td>click</td><td>link=Desconectar<datalist><option>link=Desconectar</option><option>//a[contains(text(),'Desconectar')]</option><option>//div[@id='navbarSupportedContent']/ul/li[3]/a</option><option>//a[contains(@href, '/logout')]</option><option>//li[3]/a</option></datalist></td><td></td>
 </tr>
@@ -46,6 +54,14 @@
 <tr><td>click</td><td>//button[@type='submit']<datalist><option>//button[@type='submit']</option><option>//button</option><option>css=button.btn.btn-grey</option></datalist></td><td></td>
 </tr>
 <tr><td>click</td><td>link=Perfil<datalist><option>link=Perfil</option><option>//a[contains(text(),'Perfil')]</option><option>//div[@id='navbarSupportedContent']/ul/li/a</option><option>//a[contains(@href, '/empresa/perfil?id=1')]</option><option>//li/a</option><option>css=a.nav-link</option></datalist></td><td></td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Cerrar sesión Empresa</td></tr>
+</thead>
+<tbody>
+<tr><td>open</td><td>http://localhost:8080/empresa/perfil<datalist><option>http://localhost:8080/empresa/perfil</option></datalist></td><td></td>
 </tr>
 <tr><td>click</td><td>link=Desconectar<datalist><option>link=Desconectar</option><option>//a[contains(text(),'Desconectar')]</option><option>//div[@id='navbarSupportedContent']/ul/li[3]/a</option><option>//a[contains(@href, '/logout')]</option><option>//li[3]/a</option></datalist></td><td></td>
 </tr>
