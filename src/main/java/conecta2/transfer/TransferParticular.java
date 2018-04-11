@@ -5,33 +5,53 @@ import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+/**
+ * Transfer de Particular
+ * Se utiliza para enviar y recibir datos de las vistas
+ */
 public class TransferParticular {
 	//Anotaciones para cuando los campos del formulario son incorrectos	
 	
+	/**
+	 * Filtro para evitar que se introduzcan nombres erróneos
+	 */
 	@NotEmpty(message = "* Por favor, introduzca su nombre")
 	@Pattern(regexp="^([a-zA-ZáéíóúñÁÉÍÓÚÑ ])*$", message="* Introduzca únicamente letras")
 	private String nombre;	
 	
+	/**
+	 * Filtro para evitar que se introduzcan apellidos erróneos
+	 */
 	@NotEmpty(message = "* Por favor, introduzca su apellido")
 	@Pattern(regexp="^([a-zA-ZáéíóúñÁÉÍÓÚÑ ])*$", message="* Introduzca únicamente letras")
 	private String apellidos;	
 	
+	/**
+	 * Filtro para evitar que se introduzcan DNI erróneos
+	 */
 	@NotEmpty(message ="* Por favor, introduzca el DNI")
 	@Pattern(regexp="^([0-9]{8}[A-Z]{1})*$", message= "* El DNI debe contener 8 dígitos y una letra mayúscula")
 	private String dni;
 	
+	/**
+	 * Filtro para evitar que se introduzcan teléfonos erróneos
+	 */
 	@NotEmpty(message ="* Por favor, introduzca el teléfono")
 	@Pattern(regexp="^([0-9]{9})*$", message= "* Introduzca un teléfono válido")
 	private String telefono;
 	
+	/**
+	 * Filtro para evitar que se introduzcan emails erróneos
+	 */
 	@NotEmpty(message="* Por favor, introduzca un email")
-	//@Email
 	@Pattern(regexp="^([^@]+@[^@]+\\.[a-zA-Z]{2,})*$", message="* Por favor, introduzca un correo electrónico válido")
 	private String email;
 	
+	/**
+	 * Filtro para evitar que se introduzcan contraseñas erróneas
+	 */
 	@NotEmpty(message = "* Por favor, introduzca una contraseña")	
 	@Pattern(regexp="^((?=\\w*\\d)(?=\\w*[A-Z])\\S{5,})*$", message="* La contraseña debe tener al menos un número y una mayúscula, y al menos 5 caracteres")
-	//@Length(min = 5, message="")
 	private String password;		
 	
 	@NotEmpty(message = "* Por favor, introduzca de nuevo su contraseña")

@@ -5,24 +5,40 @@ import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+/**
+ * Transfer de Empresa
+ * Se utiliza para enviar y recibir datos de las vistas
+ */
 public class TransferEmpresa {
 	//Anotaciones para cuando los campos del formulario son incorrectos
 	
 	@NotEmpty(message = "* Por favor, introduzca el nombre de la empresa")
 	private String nombreEmpresa;
-				
+	
+	/**
+	 * Filtro para evitar que se introduzcan CIFs erróneos
+	 */	
 	@NotEmpty (message ="* Por favor, introduzca el CIF")
 	@Pattern(regexp="^([ABCDEFGHJKLMNPQRSUVW]{1}[0-9]{7}([0-9]|[ABCDEFGHJKLMNPQRSUVW]){1})*$", message="* Por favor, introduzca un CIF válido (1 letra en mayúscula, 7 dígitos y 1 número o letra en mayúscula)")
 	private String cif;
 	
+	/**
+	 * Filtro para evitar que se introduzcan telefonos erróneos
+	 */
 	@NotEmpty(message ="* Por favor, introduzca el teléfono")
 	@Pattern(regexp="^([0-9]{9})*$", message= "* Introduzca un teléfono válido")
 	private String telefono;
-				
+	
+	/**
+	 * Filtro para evitar que se introduzcan emails erróneos
+	 */
 	@NotEmpty(message ="* Por favor, introduzca un email")
 	@Pattern(regexp="^([^@]+@[^@]+\\.[a-zA-Z]{2,})*$", message="* Por favor, introduzca un correo electrónico válido")
 	private String email;		
-		
+	
+	/**
+	 * Filtro para evitar que se introduzcan contraseñas erróneas
+	 */
 	@NotEmpty(message = "* Por favor, introduzca una contraseña")	
 	@Pattern(regexp="^((?=\\w*\\d)(?=\\w*[A-Z])\\S{5,})*$", message="* La contraseña debe tener al menos un numero y una mayúscula y al menos 5 caracteres")
 	private String password;	

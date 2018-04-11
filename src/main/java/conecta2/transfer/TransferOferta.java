@@ -20,6 +20,10 @@ import conecta2.modelo.Empresa;
 import conecta2.modelo.JornadaLaboral;
 import conecta2.modelo.Particular;
 
+/**
+ * Transfer de Oferta
+ * Se utiliza para enviar y recibir datos de las vistas
+ */
 public class TransferOferta {
 	
 	/**
@@ -29,6 +33,9 @@ public class TransferOferta {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
+	/**
+	 * Filtro para evitar que se introduzcan nombres erróneos
+	 */
 	@NotEmpty(message = "* Por favor, introduzca el nombre de la oferta")
 	@Length(max = 50, message = "* Por favor, el nombre no debe superar los 50 caracteres")
 	private String nombre;
@@ -43,6 +50,9 @@ public class TransferOferta {
 	
 	private Double salario;
 
+	/**
+	 * Filtro para evitar que se introduzcan ciudades erróneas
+	 */
 	@Pattern(regexp="^([a-zA-ZáéíóúñÁÉÍÓÚÑ ])*$", message="* Introduzca únicamente letras")
 	private String ciudad;
 	

@@ -24,6 +24,10 @@ import org.hibernate.validator.constraints.NotEmpty;
     //query = "SELECT o FROM Oferta o INNER JOIN o.particulares parts WHERE parts."
     query ="SELECT o FROM Oferta o WHERE ?1 MEMBER OF o.particulares"
 )
+/**
+ * Entidad / Objeto de Negocio de Oferta
+ * Se utiliza para persistir la información de la oferta
+ */
 public class Oferta {
 
 	/**
