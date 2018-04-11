@@ -115,7 +115,7 @@ public class SAParticularImp implements SAParticular{
 	}
 
 	/**
-	 * Metodo que actualiza un particular y lo devuelve, se usa para actualizar
+	 * Método que actualiza un particular y lo devuelve, se usa para actualizar
 	 * la lista de ofertas al inscribirse
 	 */
 	@Override

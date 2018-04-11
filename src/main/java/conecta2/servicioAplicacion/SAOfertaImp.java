@@ -11,9 +11,16 @@ import conecta2.modelo.Particular;
 import conecta2.repositorio.RepositorioOferta;
 import conecta2.transfer.TransferOferta;
 
+/**
+ * Clase que implementa las funciones de la interfaz SAOferta
+ * Clase que se desarrolla la funcionalidad de la entidad Oferta
+ */
 @Service
 public class SAOfertaImp implements SAOferta {
 
+	/**
+	 * Repositorio que proporciona el acceso a la base de datos
+	 */
 	@Autowired
 	private RepositorioOferta repoOferta;
 	

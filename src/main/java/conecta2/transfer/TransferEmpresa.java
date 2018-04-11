@@ -20,12 +20,10 @@ public class TransferEmpresa {
 	private String telefono;
 				
 	@NotEmpty(message ="* Por favor, introduzca un email")
-	//@Email
 	@Pattern(regexp="^([^@]+@[^@]+\\.[a-zA-Z]{2,})*$", message="* Por favor, introduzca un correo electrónico válido")
 	private String email;		
 		
 	@NotEmpty(message = "* Por favor, introduzca una contraseña")	
-	//@Length(min = 5, message="")
 	@Pattern(regexp="^((?=\\w*\\d)(?=\\w*[A-Z])\\S{5,})*$", message="* La contraseña debe tener al menos un numero y una mayúscula y al menos 5 caracteres")
 	private String password;	
 		
