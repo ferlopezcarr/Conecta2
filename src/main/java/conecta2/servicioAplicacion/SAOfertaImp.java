@@ -17,31 +17,18 @@ public class SAOfertaImp implements SAOferta {
 	@Autowired
 	private RepositorioOferta repoOferta;
 	
-	@Override
-	public void crearOferta(TransferOferta transferOferta) {
-		
-		Oferta oferta = new Oferta(
-				transferOferta.getNombre(),
-				transferOferta.getJornada(),
-				transferOferta.getContrato(),
-				transferOferta.getVacantes(),
-				transferOferta.getSalario(),
-				transferOferta.getCiudad(),
-				transferOferta.getDescripcion(),
-				transferOferta.getActivo(),
-				transferOferta.getFinalizada(),
-				transferOferta.getEmpresa(),
-				transferOferta.getParticulares()
-				);
-		
-		repoOferta.save(oferta);
-	}
 
+	/**
+	 * Metodo que devuelve una lista con todas las ofertas
+	 */
 	@Override
 	public List<Oferta> buscarTodas() {
 		return repoOferta.findAll();
 	}
 
+	/**
+	 * Metodo que dado el id de la oferta, la busca en la BD y la devuelve
+	 */
 	@Override
 	public Oferta buscarPorId(int id) {
 		return repoOferta.findById(id);
@@ -72,6 +59,9 @@ public class SAOfertaImp implements SAOferta {
 		return this.repoOferta.findOfertasParticularInscrito(part);
 	}
 	
+	/**
+	 * Metodo que crea una oferta con los datos del transfer y lo guarda en la BD
+	 */
 	@Override
 	public Oferta save(TransferOferta tOferta) {
 		Oferta oferta = new Oferta();

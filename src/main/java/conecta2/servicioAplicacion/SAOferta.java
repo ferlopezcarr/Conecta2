@@ -9,7 +9,6 @@ import conecta2.transfer.TransferOferta;
 
 public interface SAOferta {
 	
-		public void crearOferta(TransferOferta transferOferta);
 		
 		public Oferta actualizarOferta(Oferta oferta);
 		
