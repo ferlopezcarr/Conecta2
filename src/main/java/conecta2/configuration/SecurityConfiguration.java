@@ -13,6 +13,10 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+/**
+ * Configuaración de Spring Security, donde se definen todos los aspectos
+ * de seguridad de la aplicación web. *
+ */
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
@@ -28,7 +32,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Value("${spring.queries.roles-query}")
 	private String rolesQuery;
-
+	
+	/**
+	 * Método encargado de la configuración básica de usuarios, roles, contraseñas, base de datos, etc.
+	 */
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth)	throws Exception {
 		auth.
@@ -38,7 +45,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.dataSource(dataSource)
 				.passwordEncoder(bCryptPasswordEncoder);
 	}
-
+	
+	/**
+	 * Método usado para definir las urls válidas, las direcciones de inicio de sesion, cerrar sesión, páginas de errores, etc.
+	 */
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
@@ -72,6 +82,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.accessDeniedPage("/access-denied");
 	}
 	
+	/**
+	 * Método que establece las direcciones estáticas de las vistas
+	 */
 	@Override
 	public void configure(WebSecurity web) throws Exception {
 	    web
