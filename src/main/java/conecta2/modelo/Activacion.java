@@ -9,9 +9,15 @@ import javax.persistence.UniqueConstraint;
 
 @Entity
 @Table(name = "activacion",  uniqueConstraints= @UniqueConstraint(columnNames= {"Email", "Activacion"}) )
+/**
+ * Entidad / Objeto de Negocio de Activación
+ * Se utiliza para persistir la información de la activación de la cuenta
+ */
 public class Activacion {
 	
-	
+	/**
+	 * Id que genera la base de datos automáticamente, no se debe asignar manualmente
+	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
