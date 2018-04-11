@@ -19,7 +19,7 @@ public class SAOfertaImp implements SAOferta {
 	
 
 	/**
-	 * Metodo que devuelve una lista con todas las ofertas
+	 * Método que devuelve una lista con todas las ofertas
 	 */
 	@Override
 	public List<Oferta> buscarTodas() {
@@ -27,13 +27,16 @@ public class SAOfertaImp implements SAOferta {
 	}
 
 	/**
-	 * Metodo que dado el id de la oferta, la busca en la BD y la devuelve
+	 * Método que dado el id de la oferta, la busca en la BD y la devuelve
 	 */
 	@Override
 	public Oferta buscarPorId(int id) {
 		return repoOferta.findById(id);
 	}
 	
+	/**
+	 * Método que dado el id y la empresa, la busca en la BD y la devuelve
+	 */
 	@Override
 	public Oferta buscarPorIdYEmpresa(int id, Empresa empresa) {
 		return repoOferta.findByIdAndEmpresa(id, empresa);
@@ -44,23 +47,32 @@ public class SAOfertaImp implements SAOferta {
 		return repoOferta.findByNombreAndJornadaAndContratoAndEmpresa(nombre, jornada, contrato, empresa);
 	}
 	*/
+	/**
+	 * Método que devuelve la lista de ofertas de una empresa
+	 */
 	@Override
 	public List<Oferta> buscarOfertasPorEmpresa(Empresa empresa) {
 		return repoOferta.findByEmpresaAndActivoTrue(empresa);
 	}
 	
+	/**
+	 * Método que busca una oferta por su nombre y devuelve todas las que coincidan
+	 */
 	@Override
 	public List<Oferta> buscarOfertasPorNombreYNombreMayus(String nombre, String nombreMayusPrimero) {
 		return repoOferta.findByNombreContainingOrNombreContaining(nombre, nombreMayusPrimero);
 	}
 	
+	/**
+	 * Método que devuelve una lista con las ofertas en las que está inscrito un particular
+	 */
 	@Override
 	public List<Oferta> buscarOfertasParticularInscrito(Particular part) {
 		return this.repoOferta.findOfertasParticularInscrito(part);
 	}
 	
 	/**
-	 * Metodo que crea una oferta con los datos del transfer y lo guarda en la BD
+	 * Método que crea una oferta con los datos del transfer y lo guarda en la BD
 	 */
 	@Override
 	public Oferta save(TransferOferta tOferta) {
@@ -81,7 +93,7 @@ public class SAOfertaImp implements SAOferta {
 	}
 
 	/**
-	 * Metodo que actualiza una oferta y la devuelve, se usa para actualizar
+	 * Método que actualiza una oferta y la devuelve, se usa para actualizar
 	 * la lista de de candidatos al inscribirse un particular
 	 */
 	@Override
