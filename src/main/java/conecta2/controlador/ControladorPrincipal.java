@@ -60,7 +60,7 @@ public class ControladorPrincipal {
 	}
 	
 	/**
-	 * Método que captura las peticiones GET de /login
+	 * Método que captura las peticiones GET de /login y /
 	 * @return devuelve la vista de Inicio de sesion
 	 */
 	@RequestMapping(value={"/", "/login"}, method = RequestMethod.GET)
@@ -122,7 +122,7 @@ public class ControladorPrincipal {
 	
 	/**
 	 * Método que captura las peticiones POST de /crear-particular
-	 * @param transferParticular que recibe para insertar el particular con los datos
+	 * @param transferParticular objeto que recibe para insertar el particular con los datos
 	 * @param bindingResult clase para controlar los errores producidos al introducir los datos
 	 * @return redirige a inicio si no ha habido fallos, en caso contrario notifica sin cambiar de pagina
 	 */
@@ -192,9 +192,8 @@ public class ControladorPrincipal {
 	
 	/**
 	 * Método que captura la petición GET de /empresa/perfil
-	 * @param val usuario que se autentica
-	 * @return redirige a la página que muestra el perfil si no ha habido fallos,
-	 *  en caso contrario redirige al login y notifica
+	 * @return En caso de que la petición sea de un particular notifica el error y redirige a la vista mostrarOfertas,
+	 * si todo ha sido correcto, muestra la vista de perfilEmpresa
 	 */
 	@RequestMapping(value ="/empresa/perfil", method = RequestMethod.GET)
     public ModelAndView mostrarPerfilEmpresa() {		
@@ -226,6 +225,14 @@ public class ControladorPrincipal {
 		return modelAndView;
     }
 	
+	
+	
+	/**
+	 * Método que captura la petición GET de /empresa/modificar
+	 *  
+	 * @return redirige a la vista modificarEmpresa, que muestra los atributos editables de la empresa en modo edición,
+	 * en caso de que la petición la haga un particular, redirige a la vista mostrarOfertas y lo notifica
+	 */
 	@RequestMapping(value ="/empresa/modificar", method = RequestMethod.GET)
     public ModelAndView modificarPerfilEmpresa() {		
 				
@@ -257,13 +264,11 @@ public class ControladorPrincipal {
     }
 	
 	/**
-	 * Método que captura la petición web de modificar perfil empresa, recibe en un transfer 
-	 * los datos de la empresa, comprueba que cumplan las condiciones dadas por los patrones
-	 * (no se usan los del transfer porque la contraseña no se envía) 
-	 * y si las cumplen se modifican los datos de la empresa y se guardan en la BD
-	 * @param transferParticular
-	 * @param bindingResult
-	 * @return
+	 * Método que captura la petición POST de /empresa/modificar
+	 * @param transferEmpresa Objeto que recibe los datos de la empresa
+	 * @param bindingResult clase para controlar los errores producidos al introducir los datos
+	 * @return si hay algún error al introducir los datos para modificar el perfil de empresa se notifica según corresponda 
+	 * en caso de que todo sea correcto, se guardan en la base de datos los cambios realizados y se redirige al perfil de empresa
 	 */
 	@RequestMapping(value = "/empresa/modificar", method = RequestMethod.POST)
 	public ModelAndView modificarPerfilEmpresa(@ModelAttribute("transferEmpresa") TransferEmpresa transferEmpresa,BindingResult bindingResult) {
@@ -308,6 +313,11 @@ public class ControladorPrincipal {
 	
 	// PERFIL PARTICULAR
 	
+	/**
+	 * Método que captura la petición GET de /particular/perfil
+	 * @return En caso de que sea una empresa la que haga la petición se notifica el error y se redirige a mostrarOfertas
+	 * En caso de que todo sea correcto, se redirige a la vista perfilParticular
+	 */
 	@RequestMapping(value ="/particular/perfil", method = RequestMethod.GET)
     public ModelAndView mostrarPerfilParticular() {		
 		
@@ -337,6 +347,12 @@ public class ControladorPrincipal {
 		return modelAndView;
     }
 	
+	
+	/**
+	 * Método que captura la petición GET de /particular/modificar
+	 * @return En caso de que sea una empresa la que haga la petición se notifica el error y se redirige a mostrarOfertas
+	 * En caso de que todo sea correcto, se redirige a la vista modificarParticular
+	 */
 	@RequestMapping(value ="/particular/modificar", method = RequestMethod.GET)
     public ModelAndView modificarPerfilParticular() {		
 		ModelAndView modelAndView = obtenerInstancia();
@@ -366,13 +382,11 @@ public class ControladorPrincipal {
     }
 	
 	/**
-	 * Método que captura la petición web de modificar perfil particular, recibe en un transfer 
-	 * los datos del particular, comprueba que cumplan las condiciones dadas por los patrones
-	 * (no se usan los del transfer porque la contraseña no se envía) 
-	 * y si las cumplen se modifican los datos del particular y se guardan en la BD
-	 * @param transferParticular
-	 * @param bindingResult
-	 * @return
+	 * Método que captura la petición POST de /particular/modificar
+	 * @param transferParticular Objeto que recibe los datos del particular
+	 * @param bindingResult clase para controlar los errores producidos al introducir los datos
+	 * @return si hay algún error al introducir los datos para modificar el perfil de particular se notifica según corresponda 
+	 * en caso de que todo sea correcto, se guardan en la base de datos los cambios realizados y se redirige al perfil de particular
 	 */
 	@RequestMapping(value ="/particular/modificar", method = RequestMethod.POST)
     public ModelAndView modificarPerfilParticular(@ModelAttribute("transferParticular") TransferParticular transferParticular, BindingResult bindingResult) {
@@ -423,6 +437,12 @@ public class ControladorPrincipal {
 	
 	// ------------- OFERTAS ------------- //
 	
+	
+	/**
+	 * Método que controla la petición GET de /ofertas
+	 * @return se redirige a la vista mostrarOfertas, con todas las ofertas en la que uno está inscrito en caso de que el que 
+	 * haya hecho la petición sea un particular
+	 */
 	@RequestMapping(value ="/ofertas", method = RequestMethod.GET)
     public ModelAndView mostrarOfertas() {			
 		ModelAndView modelAndView = obtenerInstancia();		
@@ -449,6 +469,13 @@ public class ControladorPrincipal {
 		return modelAndView;
     }
 	
+	
+	/**
+	 * Método que controla la petición GET de /buscar
+	 * @param texto, título de la oferta introducido en el buscador, y que se desea buscar
+	 * @return si hay algún error se notifica según corresponda y se redirige a la vista mostrarOfertas, en caso de que todo sea correcto,
+	 * se muestra la lista de ofertas encontradas que coincidan con el texto introducido
+	 */
 	@RequestMapping(value ="/buscar", method = RequestMethod.GET, params = {"texto"})
 	public ModelAndView buscar(@RequestParam("texto") String texto) {	
 		ModelAndView modelAndView = this.obtenerInstancia();
@@ -490,7 +517,12 @@ public class ControladorPrincipal {
 		return modelAndView;
 	}
 	
-	
+	/**
+	 * Método que captura la petición GET de /verOferta
+	 * @param id, id de la oferta a la que se quiere acceder
+	 * @return si hay algún error se notifica según corresponda y se redirige a la vista mostrarOfertas, en caso de que
+	 * todo sea correcto, se permite acceder a los detalles de la oferta mediante la redirección a la vista /verOferta
+	 */
 	@RequestMapping(value ="/verOferta", method = RequestMethod.GET, params = {"id"})
     public ModelAndView mostrarOfertasEmpresa(@RequestParam("id") int id) {		
 		
@@ -557,6 +589,13 @@ public class ControladorPrincipal {
 		return modelAndView;
     }
 	
+	
+	/**
+	 * Método que captura la petición GET de crear-oferta
+	 * 
+	 * @return si el que ha hehco la petición no es una empresa, se redirige a la lista de ofertas,
+	 * si todo es correcto, se redirige a la vista crearOferta
+	 */
 	@RequestMapping(value="/crear-oferta", method = RequestMethod.GET)
 	public ModelAndView crearOferta(){
 		ModelAndView modelAndView = this.obtenerInstancia();
@@ -582,11 +621,11 @@ public class ControladorPrincipal {
 		return modelAndView;
 	}
 	/**
-	 * Método que captura la petición web de crear oferta, recibe en un transfer los datos
-	 * de la oferta, comprueba que sean correctos y si lo son la inserta en la BD
-	 * @param transferOferta
-	 * @param bindingResult
-	 * @return
+	 * Método que captura la petición POST de /crear-oferta
+	 * @param transferOferta objeto que va a recoger los datos del formulario para guardarlo en la base de datos
+	 * @param bindingResult clase para controlar los errores producidos al introducir los datos
+	 * @return si hay algún error no se crea la oferta, si todo es correcto, guarda la oferta en la base de datos y se redirige
+	 * a la vista ofertas
 	 */
 	@RequestMapping(value="/crear-oferta", method = RequestMethod.POST)
 	public ModelAndView crearOfertaPost(@ModelAttribute("transferOferta") @Valid TransferOferta transferOferta, BindingResult bindingResult){
@@ -629,6 +668,13 @@ public class ControladorPrincipal {
 		return modelAndView;
 	}
 	
+	/**
+	 * Método que captura la peticion POST de /inscribir
+	 * @param id_oferta id de la oferta a la que un particular se desea inscribir
+	 * @return si hay algún error se notifica según corresponda y se redirige a mostrarOfertas
+	 * si todo es correcto, se inscribe al particular en la oferta, se actualiza esta y se informa al usuario
+	 * que el proceso de inscripción se ha llevado a cabo correctamente
+	 */
 	@RequestMapping(value="/inscribir", method = RequestMethod.POST)
 	public ModelAndView inscribirseEnOferta(@ModelAttribute("id_oferta") @Valid String id_oferta){
 		ModelAndView modelAndView = this.obtenerInstancia();
@@ -694,6 +740,13 @@ public class ControladorPrincipal {
 		return modelAndView;
 	}
 	
+	
+	/**
+	 * Método que captura la petición GET de /candidatos
+	 * @param id de la oferta en la que se quiere mostrar la lista de particulares inscritos
+	 * @return si hay algún error se notifica según corresponda y se redirige a mostrarOfertas
+	 * si todo es correcto, se muestra la lista de candidatos de dicha oferta, redirigiendo a mostrarCandidatos
+	 */
 	@RequestMapping(value ="/candidatos", method = RequestMethod.GET, params = {"id"})
     public ModelAndView mostrarCandidatos(@RequestParam("id") int id) {		
 		
@@ -756,6 +809,14 @@ public class ControladorPrincipal {
     }
 	
 	//localhost:8080/verCandidato?idOferta=1&idCandidato=1
+	/**
+	 * Método que captura la petición GET de /verCandidato
+	 * @param idOferta id de la oferta en la que está el particular cuyo perfil se quiere ver
+	 * @param idCandidato id del particular cuyo perfil se quiere ver
+	 * 
+	 * @return Si todas las comprobaciones son correctas muestra el perfil del particular, en caso contrario notifica el error
+	 * correspondiente y redirige a mostrarOfertas
+	 */
 	@RequestMapping(value ="/verCandidato", method = RequestMethod.GET, params = {"idOferta", "idCandidato"})
     public ModelAndView verDetallesCandidato(@RequestParam("idOferta") int idOferta, @RequestParam("idCandidato") int idCandidato) {		
 		
