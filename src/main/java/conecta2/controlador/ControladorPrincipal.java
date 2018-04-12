@@ -49,6 +49,11 @@ public class ControladorPrincipal {
 	
 	private ModelAndView modeloyVista;
 	
+	
+	/**
+	* Metodo que implementa el patron singleton para el atributo que maneja el modelo y la vista de la aplicacion
+	* @return devuelve una nueva instancia en caso de que no haya una previamente instanciada
+	**/
 	public  ModelAndView obtenerInstancia() {
 
 		if (modeloyVista == null) {
@@ -903,8 +908,9 @@ public class ControladorPrincipal {
 
 	
 	/**
-	 * Método que añade al particular como variable permanente para el modelo
-	 * @param model modelo al que se le inserta el particular
+	 * Método que añade al particular o empresa como variable permanente para el modelo
+	 * para despues instanciar un nuevo ModelAndView que contiene el modelo  y asi poder acceder a los datos del usuario que esta navegando en la aplicacion
+	 * @param model modelo al que se le inserta el particular o empresa
 	 */
 	//Esta anotación nos permite establecer variables permanentes para el modelo
 	@ModelAttribute
