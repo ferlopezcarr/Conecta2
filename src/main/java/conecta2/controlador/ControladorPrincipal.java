@@ -99,6 +99,7 @@ public class ControladorPrincipal {
 		ModelAndView modelAndView = null;
 		Empresa empresa = saEmpresa.buscarPorEmail(transferEmpresa.getEmail());
 		Empresa cif = saEmpresa.buscarPorCif(transferEmpresa.getCif());
+		Particular particular = saParticular.buscarPorEmail(transferEmpresa.getEmail());
 		
 		TransferParticular transferParticular = new TransferParticular();
 		
@@ -107,7 +108,8 @@ public class ControladorPrincipal {
 		}
 		if (empresa != null)
 			bindingResult.rejectValue("email", "error.transferEmpresa", "* Ya existe una empresa con este e-mail");	
-		
+		if (particular != null)
+			bindingResult.rejectValue("email", "error.transferEmpresa", "* Ya existe un particular con este e-mail");
 		if (cif != null)
 			bindingResult.rejectValue("cif", "error.transferEmpresa", "* Ya existe una empresa con este CIF");
 		
@@ -136,13 +138,17 @@ public class ControladorPrincipal {
 		ModelAndView modelAndView = null;
 		Particular particular = saParticular.buscarPorEmail(transferParticular.getEmail());
 		Particular DNI = saParticular.buscarPorDni(transferParticular.getDni());
+		Empresa empresa = saEmpresa.buscarPorEmail(transferParticular.getEmail());
+		
 		TransferEmpresa transferEmpresa = new TransferEmpresa();
 		
 		if (!transferParticular.getPassword().equals(transferParticular.getPasswordConfirmacion())) {
 			bindingResult.rejectValue("password", "error.transferParticular", "* Las contraseñas no coinciden");
 		}
 		if (particular != null)
-			bindingResult.rejectValue("email", "error.dtoUsuario", "* Ya existe un particular con este e-mail");		
+			bindingResult.rejectValue("email", "error.dtoUsuario", "* Ya existe un particular con este e-mail");
+		if (empresa != null)
+			bindingResult.rejectValue("email", "error.dtoUsuario", "* Ya existe una empresa con este e-mail");
 		if(DNI != null)
 			bindingResult.rejectValue("dni", "error.dtoUsuario", "* Ya existe un particular con este DNI");
 		if (bindingResult.hasErrors()) {
