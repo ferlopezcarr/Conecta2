@@ -17,17 +17,10 @@
   </head>
   <body>
   	<nav th:replace="fragments/navbar :: navbar"></nav>
-  	
-  	
-  	
-  	
-  	
-  	
+	<div th:replace="fragments/cabecera :: cabecera(titulo='Mi perfil')"></div>
+	
   	<div class="row mt-5">
-  	
-  	
   		<div class="col-10 color-perfil  mx-auto border border-dark rounded container-perfil">
-  			
 	         	<div class="row">
 	        		<div class="col-4 margenes-foto"> 
 	        			 <img src="/images/avatar.png" class=" img-thumbnail img-fluid rounded-circle" height="200px" width="200px" alt="foto perfil">
@@ -35,7 +28,7 @@
 	        	    	<div class="col-1  margen-boton-modificar"> 
 	        	    	
   	              <a th:href="'/particular/modificar'" th:if="${particular != null}"> 
-  	               	<button type="submit" class="mt-4 btn boton  border-Azul rounded-circle "  name="botonModificar"><i class="material-icons">border_color</i></button>
+  	               	<button type="submit" class="mt-4 btn boton  border-Azul rounded-circle "  name="botonModificar"><i class="material-icons">edit</i></button>
   	               	</a>
 	        	    	</div>	 
 	        	</div> 
@@ -56,8 +49,6 @@
 			  		  <span class="form-control-plaintext " th:text=${transferParticular.apellidos}></span>
 			  			<!-- <input class="form-control" id="cif"> -->			  			
 			  		 </div>
-			  		 
-			  		 
 			  		  <div class="form-group row">
 			  		<label class="perfilTitulo letra-azul col-form-label col-3 margen-datos" for="Nombre"><u>DNI:</u> </label>					  		  		
 			  		  <span class="form-control-plaintext " th:text=${transferParticular.dni}></span>
@@ -75,9 +66,7 @@
 			  		  <span class="form-control-plaintext " th:text=${transferParticular.email}></span>
 			  			<!-- <input class="form-control" id="cif"> -->			  			
 			  		 </div>
-			  	    
 			  		</form>
-			  		
 			  	</div>
   		     <div class="col-6  sep-vertical text-center">
  		     <h3>Información Adicional</h3>
@@ -86,22 +75,14 @@
   		     	<label for="descripcion" class="perfilTitulo letra-azul"><u>Descripción:</u></label>
   		     	<textarea  th:text=${transferParticular.descripcion} class="form-control " rows="5" id="descripcion" readonly></textarea>
   		        </div>
-  		     
-  		     
+
   		     </div>
-  		    
-  		    
+
   		   </div><!-- final row -->
   	    </div>
-  	
   	</div>
 
 
-
-
-
-  	
-	
 	<!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="/js/jquery-3.2.1.slim.min.js"></script>

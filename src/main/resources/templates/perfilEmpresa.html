@@ -17,23 +17,20 @@
   </head>
   <body>
   	<nav th:replace="fragments/navbar :: navbar"></nav>
-  	
+  	<div th:replace="fragments/cabecera :: cabecera(titulo='Mi perfil')"></div>
   	
   	<div class="row mt-5">
-  	
   		<div class="col-10 color-perfil mx-auto border border-dark rounded container-perfilEmpresa">
-  			
-	        	<div class="row">
-	        		<div class="col-4 margenes-foto"> 
-	        			 <img src="/images/avatar.png" class=" img-thumbnail img-fluid rounded-circle" height="200px" width="200px" alt="foto perfil">
-	        	    </div>    
-	        	    	<div class="col-1  margen-boton-modificar"> 
-	        	    	
+        	<div class="row">
+        		<div class="col-4 margenes-foto"> 
+        			 <img src="/images/avatar.png" class=" img-thumbnail img-fluid rounded-circle" height="200px" width="200px" alt="foto perfil">
+        	    </div>    
+        	    <div class="col-1  margen-boton-modificar"> 
   	              <a th:href="'/empresa/modificar'" th:if="${empresa != null}">
-  	               	<button type="submit" class="mt-4 btn boton  border-Azul rounded-circle "  name="botonModificar"><i class="material-icons">border_color</i></button>
-  	               	</a>
-	        	    	</div>	 
-	        	</div> 
+  	               	<button type="submit" class="mt-4 btn boton  border-Azul rounded-circle" name="botonModificar"><i class="material-icons">edit</i></button>
+ 	               	  </a>
+        	    </div>	 
+        	</div> 
 
   		   <div class="row">
   		     <div class="col-6  ml-auto text-center">
@@ -70,17 +67,11 @@
   		     	<label for="descripcion" class="letra-azul perfilTitulo "><u>Descripción:</u></label>
   		     	<textarea class="form-control " th:text=${transferEmpresa.descripcion} rows="5" id="descripcion" readonly></textarea>
   		        </div>
-  		     
-  		     
   		     </div>
-  		     
   		   </div><!-- final row -->
   	    </div>
-  	
   	</div>
 
-  	
-	
 	<!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="/js/jquery-3.2.1.slim.min.js" ></script>

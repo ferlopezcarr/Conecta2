@@ -17,12 +17,10 @@
   </head>
   <body>
   	<nav th:replace="fragments/navbar :: navbar"></nav>
+  	<div th:replace="fragments/cabecera :: cabecera(titulo='Modificar perfil')"></div>  	
   	
-  	
-  	<div class="row mt-5">
-  	
-  		<div class="col-10 color-perfil mx-auto border border-dark rounded container-perfilEmpresa">
-  			
+  	<div class="row mt-5">  	
+  		<div class="col-10 color-perfil mx-auto border border-dark rounded container-perfilEmpresa">  			
 	        	<div class="row">
 	        		<div class="col-4 margenes-foto"> 
 	        			 <img src="/images/avatar.png" class=" img-thumbnail img-fluid rounded-circle" height="200px" width="200px" alt="foto perfil">
