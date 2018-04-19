@@ -76,6 +76,9 @@ public class Empresa {
 	@OneToMany(mappedBy = "empresa",fetch=FetchType.LAZY)
 	private List<Oferta> ofertas;
 	
+	@OneToMany(mappedBy = "empresa",fetch=FetchType.LAZY)
+	private List<Notificacion> notificaciones;
+	
 	/**
 	 * Constructora sin argumentos necesaria para JPA
 	 */
@@ -102,6 +105,7 @@ public class Empresa {
 		this.puntuacion = puntuacion;
 		this.descripcion = descripcion;
 		this.ofertas = new ArrayList<Oferta>();
+		this.notificaciones = new ArrayList<Notificacion>();
 	}
 
 	public int getId() {
@@ -184,6 +188,15 @@ public class Empresa {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
+	
+	public List<Notificacion> getNotificaciones() {
+		return notificaciones;
+	}
+
+	public void setNotificaciones(List<Notificacion> notificaciones) {
+		this.notificaciones = notificaciones;
+	}
+	
 	/*
 	@Override
 	public boolean equals(Object o) {

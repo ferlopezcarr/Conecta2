@@ -5,10 +5,12 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Pattern;
 
@@ -77,6 +79,9 @@ public class Particular {
 	
 	@ManyToMany
 	private List<Oferta> ofertas;
+	
+	@OneToMany(mappedBy = "particular",fetch=FetchType.LAZY)
+	private List<Notificacion> notificaciones;
 
 	private String descripcion;
 	/**
@@ -105,6 +110,7 @@ public class Particular {
 		this.puntuacion = puntuacion;
 		this.descripcion = descripcion;
 		this.ofertas = new ArrayList<Oferta>();
+		this.notificaciones = new ArrayList<Notificacion>();
 	}
 	
 	public int getId() {
@@ -203,6 +209,14 @@ public class Particular {
 		
 	}
 	
+	public List<Notificacion> getNotificaciones() {
+		return notificaciones;
+	}
+
+	public void setNotificaciones(List<Notificacion> notificaciones) {
+		this.notificaciones = notificaciones;
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (o == null) return false;
