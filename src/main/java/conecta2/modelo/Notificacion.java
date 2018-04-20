@@ -27,8 +27,12 @@ public class Notificacion {
 	@ManyToOne (fetch=FetchType.EAGER)
 	private Empresa particular;
 	
-	public Notificacion() {
-		// TODO Auto-generated constructor stub
+	public Notificacion(String descripcion, boolean leida, Empresa empresa, Empresa particular) {
+		
+		this.descripcion = descripcion;
+		this.leida = leida;
+		this.empresa = empresa;
+		this.particular = particular;
 	}
 
 	public String getDescripcion() {
