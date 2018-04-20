@@ -283,3 +283,23 @@ a.navbar-brand{
 .margen-col-uno{
 	margion-left:40%;
 }
+
+.reflejo{
+-moz-transform: scaleX(-1);
+-o-transform: scaleX(-1);
+-webkit-transform: scaleX(-1);
+transform: scaleX(-1);
+-ms-filter: "FlipH";
+filter: FlipH;
+}
+
+@media (max-width: 767px) {
+    .table-responsive {
+        position: static !important;
+    }
+}
+@media (min-width: 768px) {
+    .table-responsive {
+        overflow: visible;
+    }
+}

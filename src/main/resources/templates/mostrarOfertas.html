@@ -27,12 +27,12 @@
 	       <div class="row"> 
 	        	   <div class="col-11  mx-auto justify-content-between text-right"> 
 	 	            <a href="/crear-oferta">              
-	  	               	<button type="submit" class="mt-4 btn boton  border-Azul rounded-circle" name="botonCrearOferta"><i class="material-icons">add</i></button>
+	  	             <i class="material-icons btn btn-grey border-Azul rounded-circle">add</i></button>
 	  	             </a>
   	            </div>
 	        </div>
 	        <div class="row mt-5">
-	        	<div class="col-12 mx-auto" style="overflow-x: scroll;">
+	        	<div class="col-12 mx-auto table-responsive">
  		          	 <table class="table table-hover">
  		          	 <thead>
  		          	 	<tr>
@@ -56,7 +56,7 @@
 							<td class="text-center" th:text="${oferta.salario}"></td>
 							<td class="text-center" th:text="${oferta.particulares.size()}"></td>
 							<td class="text-center"> 
-							 <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="${oferta.id}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							 <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="${oferta.id}" data-toggle="dropdown" aria-haspopup="flase" aria-expanded="true">
    								Opciones
  							 </a>
 							 <div class="dropdown-menu" aria-labelledby="${oferta.id}">
