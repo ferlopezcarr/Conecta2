@@ -5,12 +5,14 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import conecta2.modelo.Empresa;
 import conecta2.modelo.Notificacion;
 import conecta2.modelo.Particular;
 import conecta2.repositorio.RepositorioNotificacion;
 
+@Service
 public class SANotificacionImp implements SANotificacion {
 
 	
@@ -37,7 +39,7 @@ public class SANotificacionImp implements SANotificacion {
 	@Override
 	public List<Notificacion> buscarPorParticular(Particular par) {
 		// TODO Auto-generated method stub
-		return this.repoNotificacion.findAllParticular(par);
+		return this.repoNotificacion.findByParticular(par);
 	}
 
 	/**
@@ -47,7 +49,7 @@ public class SANotificacionImp implements SANotificacion {
 	@Override
 	public List<Notificacion> buscarPorEmpresa(Empresa emp) {
 		// TODO Auto-generated method stub
-		return this.repoNotificacion.findAllEmpresa(emp);
+		return this.repoNotificacion.findByEmpresa(emp);
 	}
 
 }

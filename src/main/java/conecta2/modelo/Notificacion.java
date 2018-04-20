@@ -25,9 +25,11 @@ public class Notificacion {
 	private Empresa empresa;
 	
 	@ManyToOne (fetch=FetchType.EAGER)
-	private Empresa particular;
+	private Particular particular;
 	
-	public Notificacion(String descripcion, boolean leida, Empresa empresa, Empresa particular) {
+	public Notificacion() {}
+	
+	public Notificacion(String descripcion, boolean leida, Empresa empresa, Particular particular) {
 		
 		this.descripcion = descripcion;
 		this.leida = leida;
