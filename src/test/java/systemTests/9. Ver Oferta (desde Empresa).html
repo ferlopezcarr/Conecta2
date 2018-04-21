@@ -31,7 +31,7 @@
 <tbody>
 <tr><td>open</td><td>http://localhost:8080/ofertas<datalist><option>http://localhost:8080/ofertas</option></datalist></td><td></td>
 </tr>
-<tr><td>click</td><td>name=botonCrearOferta<datalist><option>name=botonCrearOferta</option><option>//button[@name='botonCrearOferta']</option><option>//a/button</option><option>css=button[name="botonCrearOferta"]</option></datalist></td><td></td>
+<tr><td>click</td><td>//div/a/i<datalist><option>//div/a/i</option><option>css=i.material-icons.btn.btn-grey.border-Azul.rounded-circle</option></datalist></td><td></td>
 </tr>
 <tr><td>click</td><td>id=nombre<datalist><option>id=nombre</option><option>name=nombre</option><option>//input[@id='nombre']</option><option>//div/input</option><option>css=#nombre</option></datalist></td><td></td>
 </tr>
@@ -67,7 +67,7 @@
 </tr>
 <tr><td>type</td><td>id=descripcion<datalist><option>id=descripcion</option><option>name=descripcion</option><option>//textarea[@id='descripcion']</option><option>//textarea</option><option>css=#descripcion</option></datalist></td><td>Prueba</td>
 </tr>
-<tr><td>click</td><td>//button[@type='submit']<datalist><option>//button[@type='submit']</option><option>//button</option></datalist></td><td></td>
+<tr><td>click</td><td>//div[5]/button<datalist><option>//div[5]/button</option><option>css=button.btn-lg.btn.btn-grey</option></datalist></td><td></td>
 </tr>
 </tbody></table>
 <table cellpadding="1" cellspacing="1" border="1">
@@ -87,11 +87,9 @@
 <tr><td rowspan="1" colspan="3">Ver candidatos de una oferta</td></tr>
 </thead>
 <tbody>
-<tr><td>open</td><td>http://localhost:8080/verOferta?id=1<datalist><option>http://localhost:8080/verOferta?id=1</option></datalist></td><td></td>
+<tr><td>open</td><td>http://localhost:8080/ofertas<datalist><option>http://localhost:8080/ofertas</option></datalist></td><td></td>
 </tr>
-<tr><td>click</td><td>link=Ofertas<datalist><option>link=Ofertas</option><option>//a[contains(text(),'Ofertas')]</option><option>//div[@id='navbarSupportedContent']/ul/li[2]/a</option><option>xpath=(//a[contains(@href, '/ofertas')])[2]</option><option>//li[2]/a</option></datalist></td><td></td>
-</tr>
-<tr><td>click</td><td>id=${oferta.id}<datalist><option>id=${oferta.id}</option><option>link=Opciones</option><option>//a[contains(text(),'Opciones')]</option><option>//a[@id='${oferta.id}']</option><option>//a[contains(@href, '#')]</option><option>//td[8]/a</option></datalist></td><td></td>
+<tr><td>click</td><td>id=${oferta.id}<datalist><option>id=${oferta.id}</option><option>link=Opciones</option><option>//a[contains(text(),'Opciones')]</option><option>//a[@id='${oferta.id}']</option><option>xpath=(//a[contains(@href, '#')])[2]</option><option>//td[8]/a</option></datalist></td><td></td>
 </tr>
 <tr><td>click</td><td>link=Ver Candidatos<datalist><option>link=Ver Candidatos</option><option>//a[contains(text(),'Ver Candidatos')]</option><option>//a[contains(@href, '/candidatos?id=1')]</option><option>//a[4]</option></datalist></td><td></td>
 </tr>
