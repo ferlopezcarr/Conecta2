@@ -8,6 +8,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import conecta2.C2Aplicacion;
@@ -22,13 +23,14 @@ import conecta2.transfer.TransferOferta;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = C2Aplicacion.class)
 @DataJpaTest
+@ComponentScan(basePackages ="conecta2")
 public class HU11FinalizarOferta {
 
 	@Autowired
 	private SAOferta saOferta;
 	
 	@Test
-	public void testModifyExistingCompany() {
+	public void testFinalizarOferta() {
 
 		TransferOferta transferOferta = new TransferOferta(
 				"oferta", 
@@ -43,15 +45,15 @@ public class HU11FinalizarOferta {
 				null,
 				new ArrayList<Particular>()
 			);
-		
+
 		Oferta ofertaNoFinalizada = saOferta.save(transferOferta);
 		
 		Oferta oferta = ofertaNoFinalizada;
 		 		
 		oferta.setFinalizada(true);
 		 
-		oferta = saOferta.actualizarOferta(oferta);
+		ofertaNoFinalizada = saOferta.actualizarOferta(oferta);
 				
-		assertNotEquals(oferta.getFinalizada(), ofertaNoFinalizada.getFinalizada());
+		assertEquals(oferta.getFinalizada(), ofertaNoFinalizada.getFinalizada());
 	}
 }
