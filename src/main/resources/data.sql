@@ -6,7 +6,7 @@ INSERT INTO `particulares`(`dni`, `nombre`, `apellidos`, `telefono`, `activo`, `
 
 
 INSERT INTO `ofertas` (`id`, `activo`, `ciudad`, `contrato`, `descripcion`, `finalizada`, `jornada`, `nombre`, `salario`, `vacantes`, `empresa_id`) VALUES
-(1, b'1', 'Talavera de la Reina', 0, '', b'0', 0, 'Java ', 1200, 24, 1);
+(1, '1', 'Talavera de la Reina', 0, '', '0', 0, 'Java ', 1200, 24, 1);
 
 
 INSERT INTO `particulares_ofertas` (`particulares_id`, `ofertas_id`) VALUES ('1', '1'), ('2', '1');
