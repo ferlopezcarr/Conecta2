@@ -107,6 +107,24 @@ public class TransferOferta {
 			this.particulares = particulares;
 	}
 	
+	public TransferOferta(String nombre, JornadaLaboral jornada, Contrato contrato, String auxVacantes, String auxSalario, String ciudad, String descripcion, boolean activo, boolean finalizada, Empresa empresa, List<Particular> particulares) {
+		this.nombre = nombre;
+		this.jornada = jornada;
+		this.contrato = contrato;
+		this.auxVacantes = auxVacantes;
+		this.auxSalario = auxSalario;
+		this.ciudad = ciudad;
+		this.descripcion = descripcion;
+		this.activo = activo;
+		this.finalizada = finalizada;
+		this.empresa = empresa;
+		
+		if(particulares == null)
+			this.particulares = new ArrayList<Particular>();
+		else
+			this.particulares = particulares;
+	}
+	
 	public int getId() {
 		return id;
 	}

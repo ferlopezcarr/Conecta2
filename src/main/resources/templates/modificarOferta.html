@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+  <head th:fragment="head">
+    <title>Conecta2</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous" />
+    
+    <!-- Style CSS -->
+    <link href="../css/style.css" rel="stylesheet" />
+    
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  </head>
+  <body>
+
+  	<nav th:replace="fragments/navbar :: navbar"></nav>
+  	
+  	<div class="row mt-5">
+  		<div class="col-2 rounded"></div>
+  		<div class="col-2 container-crear-oferta rounded"></div>
+  		<div class="col-4  mx-auto letra-azul text-center rounded">
+  		  
+  			<h1>Modifica tu oferta</h1>
+  			
+  		</div>
+  		<div class="col-2 container-crear-oferta rounded"></div>
+  		<div class="col-2 rounded"></div>
+  	</div>
+  		
+  	
+  	
+  	
+  	
+  	
+  	
+  	
+  	<div class="row mt-5">
+  	
+		<div class="col-8  mx-auto border border-dark text-center rounded color-perfil ">
+			
+			<div class="row">
+				<div class="col-2"></div>
+				<div class="col-8">
+			 	<form th:action="@{/modificar-oferta}" th:object="${transferOferta}" method="POST">
+					  <div class="form-group ">
+					    <label for="nombre" class="letra-azul letra-negrita-sub alinear-icono">Título oferta</label>
+						<input th:value=${transferOferta.nombre} type="text" class="form-control" th:field="*{nombre}" id="nombre" placeholder="Título oferta">
+						<label th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}" class="validation-message error"></label>
+					  </div>
+					  <div class="form-row mt-4">
+					     <div class="form-row align-items-center col-6">
+							    <div class="col-auto my-1">
+							    
+							      <label class="mr-sm-2 letra-azul letra-negrita-sub alinear-icono" for="jornada">Tipo jornada</label>
+							      <select class="custom-select mr-sm-2" id="jornada" th:field="*{jornada}" th:value="${transferOferta.jornada}">
+							        <option selected th:each="jornada : ${jornadaValues}" th:value="${jornada}" th:text="${jornada.displayName}"></option>
+							      </select>
+							      <label th:if="${#fields.hasErrors('jornada')}" th:errors="*{jornada}" class="validation-message error"></label>
+							    </div>
+					     </div>
+					    
+					     <div class="form-row align-items-center col-6">
+						    <div class="col-auto my-1">
+						      <label class="mr-sm-2 letra-azul letra-negrita-sub  alinear-icono ml-4" for="Contrato">Tipo contrato</label>
+						      <select class="custom-select mr-sm-2" id="Contrato" th:field="*{contrato}"  th:value="${transferOferta.contrato}">
+						      	<option selected th:each="c : ${contratoValues}" th:value="${c}" th:text="${c.displayName}"></option>
+						      </select>
+						      <label th:if="${#fields.hasErrors('contrato')}" th:errors="*{contrato}" class="validation-message error"></label>
+						    </div>
+					     </div>
+					  </div>
+					  <div class="form-row mt-4">
+					    <div class="form-group col-4">
+					    	<label for="ciudad" class ="letra-azul letra-negrita-sub alinear-icono">Ciudad</label>
+					   		<input type="text" class="form-control" th:field="*{ciudad}" id="ciudad" placeholder="Ciudad"  th:value="${transferOferta.ciudad}">
+					   		<label th:if="${#fields.hasErrors('ciudad')}" th:errors="*{ciudad}" class="validation-message error"></label>
+					    </div>
+					   
+					    <div class="form-group col-4">
+						    <label for="salario" class="letra-azul letra-negrita-sub alinear-icono">Vacantes</label>
+						   	<input type="text" class="form-control" th:field="*{auxVacantes}" id="vacantes" placeholder="Vacantes"  th:value="${transferOferta.auxVacantes}">
+						   	<label th:if="${#fields.hasErrors('auxVacantes')}" th:errors="*{auxVacantes}" class="validation-message error"></label>
+					 	</div>
+					 	
+					 	<div class="form-group col-4">
+						    <label for="salario" class="letra-azul letra-negrita-sub alinear-icono">Salario</label>
+						   	<input type="text" class="form-control" th:field="*{auxSalario}" id="salario" placeholder="Salario"  th:value="${transferOferta.auxSalario}">
+						   	<label th:if="${#fields.hasErrors('auxSalario')}" th:errors="*{auxSalario}" class="validation-message error"></label>
+					 	</div>
+					 	
+					  
+					  </div>
+					  <div class="form-row mt-4">
+						  <label for="descripcion" class= "letra-azul letra-negrita-sub alinear-icono">Descripcion</label>
+						  <textarea class="form-control " rows="5" th:field="*{descripcion}" id="descripcion"  th:value="${transferOferta.descripcion}" placeholder="Añade aquí los detalles de la oferta..."></textarea>
+						  <label th:if="${#fields.hasErrors('descripcion')}" th:errors="*{descripcion}" ></label>
+					  </div>
+					  
+					  <div  class=" text-center  margen-botones">
+					 
+				<button type="submit" class=" btn-lg btn botonAzul" data-toggle="modal" data-target="#modalModificarParticular">Modificar Oferta</button>
+				
+				
+				<!-- Modal -->
+									  <!-- <div class="modal fade" id="modalModificarParticular" role="dialog">
+									    <div class="modal-dialog">
+									    
+									      <!-- Modal content-->
+									      <!-- <div class="modal-content">
+									        <div class="modal-header">
+									          <button type="button" class="close" data-dismiss="modal">&times;</button>
+									          <!--  <h4 class="modal-title">Modal Header</h4> -->
+									       <!-- </div>
+									        <div class="modal-body">
+									          <p>Oferta modificada correctamente</p>
+									        </div>
+									        <div class="modal-footer">
+									          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+									        </div>
+									      </div>
+									      
+									    </div>
+									  </div>-->
+				 <a th:href="'/ofertas'">
+				     <input type="button" class="btn-lg btn btn-grey" value="Cancelar"></input>							              
+				</a>
+				  
+			</div>
+				</form>
+				</div>
+			</div>
+		</div>
+  	</div>
+  		
+  		
+  	
+  	
+  	
+  	
+  	
+  	
+  	
+  		
+	
+	<!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="/js/jquery-3.2.1.slim.min.js"></script>
+    <script src="/js/popper.js/1.12.3/umd/popper.min.js"></script>
+    <script src="/js/bootstrap.min.js" ></script>
+     
+ 
+  </body>
+</html>
