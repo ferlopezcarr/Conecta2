@@ -61,7 +61,15 @@ public class SAOfertaImp implements SAOferta {
 	 */
 	@Override
 	public List<Oferta> buscarOfertasPorEmpresa(Empresa empresa) {
-		return repoOferta.findByEmpresaAndActivoTrue(empresa);
+		return repoOferta.findByEmpresaAndActivoTrueAndFinalizadaFalse(empresa);
+	}
+	
+	/**
+	 * Método que devuelve la lista de ofertas finalizadas de una empresa
+	 */
+	@Override
+	public List<Oferta> buscarOfertasFinalizadas(Empresa empresa) {
+		return repoOferta.findByEmpresaAndFinalizadaTrue(empresa);
 	}
 	
 	/**
@@ -128,5 +136,7 @@ public class SAOfertaImp implements SAOferta {
 			return null;
 		}
 	}
+
+
 	
 }

@@ -20,6 +20,8 @@ public interface SAOferta {
 		
 		public List<Oferta> buscarOfertasPorEmpresa(Empresa empresa);
 		
+		public List<Oferta> buscarOfertasFinalizadas(Empresa empresa);
+		
 		public List<Oferta> buscarOfertasParticularInscrito(Particular part);
 		
 		public List<Oferta> buscarOfertasPorNombreYNombreMayus(String nombre, String nombreMayusPrimero);
