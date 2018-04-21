@@ -810,7 +810,6 @@ public class ControladorPrincipal {
 				
 				listaCandidatos.add(particulares.get(i));
 			}
-			
 			modelAndView.addObject("listaCandidatos", listaCandidatos);
 			modelAndView.addObject("oferta", oferta);
 			modelAndView.setViewName("mostrarCandidatos");
@@ -912,6 +911,23 @@ public class ControladorPrincipal {
 		return modelAndView;
     }
 
+	
+	@RequestMapping(value ="/guardar-Contratados", method = RequestMethod.POST)
+    public ModelAndView guardarContratados(@ModelAttribute("idOferta") int idOferta, @ModelAttribute("lista") ArrayList<String> idCandidato) {
+		
+		ModelAndView modelAndView = this.obtenerInstancia();
+		
+		Map<String, Object> modelo = modelAndView.getModel();
+		BindingAwareModelMap mod = (BindingAwareModelMap) modelo.get("modelo");
+		Oferta oferta = (Oferta)mod.get("idOferta");
+		
+		
+		
+		return modeloyVista;		
+	}
+	
+	
+	
 	
 	/**
 	 * Método que añade al particular o empresa como variable permanente para el modelo
