@@ -5,7 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import conecta2.modelo.Contrato;
 import conecta2.modelo.Empresa;
+import conecta2.modelo.JornadaLaboral;
 import conecta2.modelo.Oferta;
 import conecta2.modelo.Particular;
 import conecta2.repositorio.RepositorioOferta;
@@ -83,18 +85,31 @@ public class SAOfertaImp implements SAOferta {
 	 */
 	@Override
 	public Oferta save(TransferOferta tOferta) {
-		Oferta oferta = new Oferta();
+		Oferta oferta = repoOferta.findById(tOferta.getId());
 		
-		oferta.setNombre(tOferta.getNombre());
-		oferta.setJornadaLaboral(tOferta.getJornada());
-		oferta.setContrato(tOferta.getContrato());
-		oferta.setVacantes(tOferta.getVacantes());
-		oferta.setSalario(tOferta.getSalario());
-		oferta.setCiudad(tOferta.getCiudad());
-		oferta.setDescripcion(tOferta.getDescripcion());
-		oferta.setActivo(tOferta.getActivo());
-		oferta.setEmpresa(tOferta.getEmpresa());
-		oferta.setParticulares(tOferta.getParticulares());
+		if(oferta == null) {
+			oferta = new Oferta(
+				tOferta.getNombre(),
+				tOferta.getJornada(),
+				tOferta.getContrato(),
+				tOferta.getVacantes(),
+				tOferta.getSalario(),
+				tOferta.getCiudad(),
+				tOferta.getDescripcion(),
+				true,
+				false,
+				tOferta.getEmpresa(),
+				tOferta.getParticulares());
+		}
+		else {//ACTUALIZACIÓN
+			oferta.setNombre(tOferta.getNombre());
+			oferta.setJornadaLaboral(tOferta.getJornada());
+			oferta.setContrato(tOferta.getContrato());
+			oferta.setVacantes(tOferta.getVacantes());
+			oferta.setSalario(tOferta.getSalario());
+			oferta.setCiudad(tOferta.getCiudad());
+			oferta.setDescripcion(tOferta.getDescripcion());
+		}	
 		
 		return repoOferta.save(oferta);
 	}

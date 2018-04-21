@@ -668,16 +668,130 @@ public class ControladorPrincipal {
 		}			
 		else {
 			transferOferta.setEmpresa(empresa);
-			transferOferta.setActivo(true);
-			transferOferta.setFinalizada(false);
+			saOferta.save(transferOferta);
+			modelAndView = new ModelAndView("redirect:/ofertas");
+		}
+
+		return modelAndView;
+	}
+		
+	/**
+	 * Método que captura la petición GET de modificar-oferta
+	 * 
+	 * @return si el que ha hecho la petición no es la empresa que creó la oferta o es un particular, se redirige a la lista de ofertas,
+	 * si todo es correcto, se redirige a la vista modificarOferta
+	 */
+	@RequestMapping(value="/modificar-oferta", method = RequestMethod.GET, params = {"id"})
+	public ModelAndView modificarOferta(@RequestParam("id") int id){
+		
+	
+	    ModelAndView modelAndView = this.obtenerInstancia();
+	
+		Map<String, Object> modelo = modelAndView.getModel();
+		BindingAwareModelMap mod = (BindingAwareModelMap) modelo.get("modelo");
+		Empresa emp = (Empresa)mod.get("empresa");
+		Particular par = (Particular)mod.get("particular");
+		
+		Empresa empresa = null;
+		Particular particular = null;
+		Oferta oferta = null;
+		
+		if (emp != null) {
+			empresa = saEmpresa.buscarPorEmail(emp.getEmail());
+		}
+		else if(par != null) {
+			particular = saParticular.buscarPorEmail(par.getEmail());
+		}
+		
+		if(empresa != null) {//si es empresa
+			oferta = saOferta.buscarPorId(id);
+			
+			//Si no se encuentra la oferta
+			if(oferta == null) {
+				String msg = "¡Oferta no encontrada!";
+				modelAndView.addObject("popup", msg);
+				modelAndView.setViewName("mostrarOfertas");	
+			}
+			else {
+				//Si la oferta no es de la empresa de la sesion
+				if(!oferta.getEmpresa().equals(empresa)) {
+					String msg = "¡No puedes acceder a las ofertas de otras empresas!";
+					modelAndView.addObject("popup", msg);
+					modelAndView.setViewName("mostrarOfertas");
+					oferta = null;
+				}
+				else if(!oferta.getActivo()) {
+					String msg = "¡No puedes modificar una oferta desactivada!";
+					modelAndView.addObject("popup", msg);
+					modelAndView.setViewName("mostrarOfertas");
+					oferta = null;
+				}
+				else if(oferta.getFinalizada()) {
+					String msg = "¡No puedes modificar una oferta finalizada!";
+					modelAndView.addObject("popup", msg);
+					modelAndView.setViewName("mostrarOfertas");
+					oferta = null;
+				}
+			}
+		}
+		else {
+			if(particular != null) {//si es particular
+					String msg = "¡No puedes modificar las ofertas!";
+					modelAndView.addObject("popup", msg);
+					modelAndView.setViewName("mostrarOfertas");
+					oferta = null;
+			}
+		}
+		
+		//Si no hay errores
+		if(oferta != null) {
+			modelAndView = new ModelAndView();
+			TransferOferta tOferta = new TransferOferta(oferta.getId(),oferta.getNombre(),oferta.getJornadaLaboral(), oferta.getContrato(), oferta.getVacantes().toString(), oferta.getSalario().toString(), oferta.getCiudad(), oferta.getDescripcion(),
+					oferta.getActivo(), oferta.getFinalizada(), oferta.getEmpresa(), oferta.getParticulares());		
+			modelAndView.addObject("transferOferta", tOferta);
+			modelAndView.addObject("jornadaValues", JornadaLaboral.values());
+			modelAndView.addObject("contratoValues", Contrato.values());
+			modelAndView.setViewName("modificarOferta");
+		}
+		
+		return modelAndView;
+	}
+	
+	/**
+	 * Método que captura la petición POST de /crear-oferta
+	 * @param transferOferta objeto que va a recoger los datos del formulario para guardarlo en la base de datos
+	 * @param bindingResult clase para controlar los errores producidos al introducir los datos
+	 * @return si hay algún error no se crea la oferta, si todo es correcto, guarda la oferta en la base de datos y se redirige
+	 * a la vista ofertas
+	 */
+	@RequestMapping(value="/modificar-oferta", method = RequestMethod.POST)
+	public ModelAndView modificarOfertaPost(@ModelAttribute("transferOferta") @Valid TransferOferta transferOferta, BindingResult bindingResult){
+		ModelAndView modelAndView = this.obtenerInstancia();
+		modelAndView.addObject("transferOferta", new TransferOferta());
+		modelAndView.setViewName("modificarOferta");
+
+		/*Vacantes es null si no ha podido parsearse en el set de auxVacantes o si es un número
+		negativo*/
+		if(transferOferta.getVacantes() != null) {
+			if(transferOferta.getVacantes() == 0) 
+				bindingResult.rejectValue("auxVacantes", "error.transferOferta", "* Por favor, debe haber al menos una vacante");
+			if(transferOferta.getVacantes() > 999)
+				bindingResult.rejectValue("auxVacantes", "error.transferOferta", "* Por favor, sólo puede haber como máximo 999 vacantes");
+		}		
+		if (bindingResult.hasErrors()) {
+			modelAndView = new ModelAndView("modificarOferta", bindingResult.getModel());
+			modelAndView.addObject("jornadaValues", JornadaLaboral.values());
+			modelAndView.addObject("contratoValues", Contrato.values());
+			modelAndView.addObject("transferOferta", transferOferta);
+		}			
+		else {
 			saOferta.save(transferOferta);
 			modelAndView = new ModelAndView("redirect:/ofertas");
 		}
 		
-		//modelAndView.addObject("roles", Rol.values());
-		
 		return modelAndView;
 	}
+	
 	
 	/**
 	 * Método que captura la peticion POST de /inscribir

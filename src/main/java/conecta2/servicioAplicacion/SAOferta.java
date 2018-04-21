@@ -12,7 +12,7 @@ public interface SAOferta {
 		
 		public Oferta actualizarOferta(Oferta oferta);
 		
-		public Oferta save(TransferOferta transferEmpresa);
+		public Oferta save(TransferOferta transferOferta);
 		
 		public Oferta buscarPorId (int id);
 		

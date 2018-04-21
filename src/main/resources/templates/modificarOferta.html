@@ -47,6 +47,7 @@
 				<div class="col-8">
 			 	<form th:action="@{/modificar-oferta}" th:object="${transferOferta}" method="POST">
 					  <div class="form-group ">
+					    <input type="hidden" th:value="${transferOferta.id}" th:field="*{id}" />
 					    <label for="nombre" class="letra-azul letra-negrita-sub alinear-icono">Título oferta</label>
 						<input th:value=${transferOferta.nombre} type="text" class="form-control" th:field="*{nombre}" id="nombre" placeholder="Título oferta">
 						<label th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}" class="validation-message error"></label>
