@@ -308,7 +308,9 @@ public class ControladorPrincipal {
 				modelAndView.addObject("transferEmpresa", transferEmpresa);
 			}else {
 				saEmpresa.save(transferEmpresa);
-				modelAndView = new ModelAndView("redirect:/empresa/perfil");
+				String msg = "¡Perfil Actualizado!";
+				modelAndView.addObject("popup", msg);
+				modelAndView.setViewName("perfilEmpresa");
 			}
 		}
 		else {//particular
@@ -430,7 +432,9 @@ public class ControladorPrincipal {
 			}	
 			else {
 				saParticular.save(transferParticular);
-				modelAndView = new ModelAndView("redirect:/particular/perfil");
+				String msg = "¡Perfil Actualizado!";
+				modelAndView.addObject("popup", msg);
+				modelAndView.setViewName("perfilParticular");
 			}
 		}
 		else {//empresa
@@ -621,7 +625,9 @@ public class ControladorPrincipal {
 		}
 		
 		if(empresa == null) {//no es empresa
-			modelAndView = new ModelAndView("redirect:/ofertas");
+			String msg = "¡Un particular no puede crear ofertas!";
+			modelAndView.addObject("popup", msg);
+			modelAndView.setViewName("mostrarOfertas");
 		}
 		else {//es empresa
 			modelAndView.addObject("transferOferta", new TransferOferta());
@@ -669,7 +675,9 @@ public class ControladorPrincipal {
 		else {
 			transferOferta.setEmpresa(empresa);
 			saOferta.save(transferOferta);
-			modelAndView = new ModelAndView("redirect:/ofertas");
+			String msg = "¡Oferta creada!";
+			modelAndView.addObject("popup", msg);
+			modelAndView.setViewName("mostrarOfertas");
 		}
 
 		return modelAndView;
@@ -786,7 +794,9 @@ public class ControladorPrincipal {
 		}			
 		else {
 			saOferta.save(transferOferta);
-			modelAndView = new ModelAndView("redirect:/ofertas");
+			String msg = "¡Oferta actualizada!";
+			modelAndView.addObject("popup", msg);
+			modelAndView.setViewName("mostrarOfertas");
 		}
 		
 		return modelAndView;

@@ -17,6 +17,7 @@
   </head>
   <body>
   	<nav th:replace="fragments/navbar :: navbar"></nav>
+  	<div th:if="${popup == null}">
   	<div th:replace="fragments/cabecera :: cabecera(titulo='Mi perfil')"></div>
   	
   	<div class="row mt-5">
@@ -71,7 +72,23 @@
   		   </div><!-- final row -->
   	    </div>
   	</div>
-
+	</div>
+      	    <!-- Si hay un error -->
+	<div th:if="${popup != null}">	
+		<div class="modal-dialog">
+									    
+			 <!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-body">
+					<label th:text="${popup}"></label>
+				</div>
+				<div class="modal-footer">
+					<a href="/empresa/perfil" class="btn">Ir atras</a> 
+			 	</div>
+			</div>
+									      
+		</div>	
+	</div>
 	<!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="/js/jquery-3.2.1.slim.min.js" ></script>
