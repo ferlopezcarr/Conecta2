@@ -16,7 +16,7 @@ import conecta2.repositorio.RepositorioParticular;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = C2Aplicacion.class)
 @DataJpaTest
-public class HU4VerPerfilParticularTest {
+public class HU04VerPerfilParticularTest {
 
 	@Autowired
 	private RepositorioParticular repositorioParticular;
@@ -24,7 +24,7 @@ public class HU4VerPerfilParticularTest {
 	@Test
 	public void testEmpresaFoundedByEmailYActivo() {
 		
-		Particular particular = new Particular("nombre", "Apellido Apellido", "99999999Z", "123456789", "particularPruebaEmail@particularPruebaEmail.com", "Abc1111", true, 0, "descripcion");
+		Particular particular = new Particular("particularPruebaNombre", "Apellido Apellido", "99999999Z", "123456789", "particularPruebaEmail@particularPruebaEmail.com", "Abc1111", "", 0, true, null, null);
 
 		repositorioParticular.save(particular);
 		
@@ -38,7 +38,8 @@ public class HU4VerPerfilParticularTest {
 	
 	@Test
 	public void testEmpresaFoundedByCifYActivo() {
-		Particular particular = new Particular("nombre", "Apellido Apellido", "99999999Z", "123456789", "particularPruebaEmail@particularPruebaEmail.com", "Abc1111", true, 0, "descripcion");
+		
+		Particular particular = new Particular("particularPruebaNombre", "Apellido Apellido", "99999999Z", "123456789", "particularPruebaEmail@particularPruebaEmail.com", "Abc1111", "", 0, true, null, null);
 		
 		repositorioParticular.save(particular);
 		

@@ -18,6 +18,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 import conecta2.modelo.Contrato;
 import conecta2.modelo.Empresa;
 import conecta2.modelo.JornadaLaboral;
+import conecta2.modelo.Oferta;
 import conecta2.modelo.Particular;
 
 /**
@@ -63,13 +64,13 @@ public class TransferOferta {
 	
 	private boolean finalizada;
 	
-	@ManyToMany(mappedBy="ofertas", fetch=FetchType.LAZY)
-	private List<Particular> particulares;
-	
 	@ManyToOne (fetch=FetchType.EAGER)
 	private Empresa empresa;
 	
+	@ManyToMany(mappedBy="ofertas", fetch=FetchType.LAZY)
+	private List<Particular> particulares;
 	
+	//Variables auxiliares
 	/**
 	 * Variables Auxiliares para el parseo de los campos númericos porque los doubles 
 	 * no admiten patrones ni etiquetas de decimales como @DecimalMin
@@ -84,10 +85,30 @@ public class TransferOferta {
 	@Pattern(regexp="^([0-9])*$", message= "* No puede introducir letras ni números negativos")
 	private String auxVacantes;
 	
+	//Métodos
 	/**
 	 * Constructora sin argumentos necesaria para JPA
 	 */
 	public TransferOferta() {}
+	
+	public TransferOferta(int id, String nombre, JornadaLaboral jornada, Contrato contrato, Integer vacantes, Double salario, String ciudad, String descripcion, boolean activo, boolean finalizada, Empresa empresa, List<Particular> particulares) {
+		this.id = id;
+		this.nombre = nombre;
+		this.jornada = jornada;
+		this.contrato = contrato;
+		this.vacantes = vacantes;
+		this.salario = salario;
+		this.ciudad = ciudad;
+		this.descripcion = descripcion;
+		this.activo = activo;
+		this.finalizada = finalizada;
+		this.empresa = empresa;
+		
+		if(this.particulares == null || particulares == null) 
+			this.particulares = new ArrayList<Particular>();
+		else
+			this.particulares = particulares;
+	}
 	
 	public TransferOferta(String nombre, JornadaLaboral jornada, Contrato contrato, Integer vacantes, Double salario, String ciudad, String descripcion, boolean activo, boolean finalizada, Empresa empresa, List<Particular> particulares) {
 		this.nombre = nombre;
@@ -101,14 +122,13 @@ public class TransferOferta {
 		this.finalizada = finalizada;
 		this.empresa = empresa;
 		
-		if(particulares == null)
+		if(this.particulares == null || particulares == null) 
 			this.particulares = new ArrayList<Particular>();
 		else
 			this.particulares = particulares;
 	}
 	
-	public TransferOferta(int id, String nombre, JornadaLaboral jornada, Contrato contrato, String auxVacantes, String auxSalario, String ciudad, String descripcion, boolean activo, boolean finalizada, Empresa empresa, List<Particular> particulares) {
-		this.id = id;
+	public TransferOferta(String nombre, JornadaLaboral jornada, Contrato contrato, String auxVacantes, String auxSalario, String ciudad, String descripcion, boolean activo, boolean finalizada, Empresa empresa, List<Particular> particulares) {
 		this.nombre = nombre;
 		this.jornada = jornada;
 		this.contrato = contrato;
@@ -120,10 +140,26 @@ public class TransferOferta {
 		this.finalizada = finalizada;
 		this.empresa = empresa;
 		
-		if(particulares == null)
+		if(this.particulares == null || particulares == null) 
 			this.particulares = new ArrayList<Particular>();
 		else
 			this.particulares = particulares;
+	}
+	
+	public static TransferOferta EntityToTransfer(Oferta oferta) {
+		return new TransferOferta(
+				oferta.getNombre(),
+				oferta.getJornadaLaboral(),
+				oferta.getContrato(),
+				oferta.getVacantes(),
+				oferta.getSalario(),
+				oferta.getCiudad(),
+				oferta.getDescripcion(),
+				oferta.getActivo(),
+				oferta.getFinalizada(),
+				oferta.getEmpresa(),
+				oferta.getParticulares()
+				);
 	}
 	
 	public int getId() {
@@ -286,6 +322,94 @@ public class TransferOferta {
 	    }
 
 	    return false;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (activo ? 1231 : 1237);
+		result = prime * result + ((auxSalario == null) ? 0 : auxSalario.hashCode());
+		result = prime * result + ((auxVacantes == null) ? 0 : auxVacantes.hashCode());
+		result = prime * result + ((ciudad == null) ? 0 : ciudad.hashCode());
+		result = prime * result + ((contrato == null) ? 0 : contrato.hashCode());
+		result = prime * result + ((descripcion == null) ? 0 : descripcion.hashCode());
+		result = prime * result + ((empresa == null) ? 0 : empresa.hashCode());
+		result = prime * result + (finalizada ? 1231 : 1237);
+		result = prime * result + id;
+		result = prime * result + ((jornada == null) ? 0 : jornada.hashCode());
+		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
+		result = prime * result + ((particulares == null) ? 0 : particulares.hashCode());
+		result = prime * result + ((salario == null) ? 0 : salario.hashCode());
+		result = prime * result + ((vacantes == null) ? 0 : vacantes.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		TransferOferta other = (TransferOferta) obj;
+		if (activo != other.activo)
+			return false;
+		if (auxSalario == null) {
+			if (other.auxSalario != null)
+				return false;
+		} else if (!auxSalario.equals(other.auxSalario))
+			return false;
+		if (auxVacantes == null) {
+			if (other.auxVacantes != null)
+				return false;
+		} else if (!auxVacantes.equals(other.auxVacantes))
+			return false;
+		if (ciudad == null) {
+			if (other.ciudad != null)
+				return false;
+		} else if (!ciudad.equals(other.ciudad))
+			return false;
+		if (contrato != other.contrato)
+			return false;
+		if (descripcion == null) {
+			if (other.descripcion != null)
+				return false;
+		} else if (!descripcion.equals(other.descripcion))
+			return false;
+		if (empresa == null) {
+			if (other.empresa != null)
+				return false;
+		} else if (!empresa.equals(other.empresa))
+			return false;
+		if (finalizada != other.finalizada)
+			return false;
+		if (id != other.id)
+			return false;
+		if (jornada != other.jornada)
+			return false;
+		if (nombre == null) {
+			if (other.nombre != null)
+				return false;
+		} else if (!nombre.equals(other.nombre))
+			return false;
+		if (particulares == null) {
+			if (other.particulares != null)
+				return false;
+		} else if (!particulares.equals(other.particulares))
+			return false;
+		if (salario == null) {
+			if (other.salario != null)
+				return false;
+		} else if (!salario.equals(other.salario))
+			return false;
+		if (vacantes == null) {
+			if (other.vacantes != null)
+				return false;
+		} else if (!vacantes.equals(other.vacantes))
+			return false;
+		return true;
 	}
 	
 }

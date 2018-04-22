@@ -17,6 +17,8 @@ import org.hibernate.annotations.NamedQuery;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
+import conecta2.transfer.TransferOferta;
+
 @Entity
 @Table(name = "ofertas")
 @NamedQuery(
@@ -84,10 +86,44 @@ public class Oferta {
 		this.finalizada = finalizada;
 		this.empresa = empresa;
 		
-		if(particulares == null)
+		if(this.particulares == null || particulares == null) 
 			this.particulares = new ArrayList<Particular>();
 		else
 			this.particulares = particulares;
+	}
+	
+	public static Oferta TranferToEntity(TransferOferta transferOferta, int idOferta) {
+		Oferta oferta = new Oferta(
+				transferOferta.getNombre(),
+				transferOferta.getJornada(),
+				transferOferta.getContrato(),
+				transferOferta.getVacantes(),
+				transferOferta.getSalario(),
+				transferOferta.getCiudad(),
+				transferOferta.getDescripcion(),
+				transferOferta.getActivo(),
+				transferOferta.getFinalizada(),
+				transferOferta.getEmpresa(),
+				transferOferta.getParticulares()
+				);
+		oferta.setId(idOferta);
+		return oferta;
+	}
+	
+	public static Oferta TranferToEntity(TransferOferta transferOferta) {
+		return new Oferta(
+				transferOferta.getNombre(),
+				transferOferta.getJornada(),
+				transferOferta.getContrato(),
+				transferOferta.getVacantes(),
+				transferOferta.getSalario(),
+				transferOferta.getCiudad(),
+				transferOferta.getDescripcion(),
+				transferOferta.getActivo(),
+				transferOferta.getFinalizada(),
+				transferOferta.getEmpresa(),
+				transferOferta.getParticulares()
+				);
 	}
 	
 	public int getId() {
@@ -162,14 +198,14 @@ public class Oferta {
 		this.activo = activo;
 	}
 	
-	public List<Particular> getParticulares() {
-		return particulares;
+	public boolean getFinalizada() {
+		return finalizada;
 	}
 
-	public void setParticulares(List<Particular> particulares) {
-		this.particulares = particulares;
+	public void setFinalizada(boolean finalizada) {
+		this.finalizada = finalizada;
 	}
-
+	
 	public Empresa getEmpresa() {
 		return empresa;
 	}
@@ -178,13 +214,15 @@ public class Oferta {
 		this.empresa = empresa;
 	}
 	
-	public boolean getFinalizada() {
-		return finalizada;
+	public List<Particular> getParticulares() {
+		return particulares;
 	}
 
-	public void setFinalizada(boolean finalizada) {
-		this.finalizada = finalizada;
+	public void setParticulares(List<Particular> particulares) {
+		this.particulares = particulares;
 	}
+
+
 
 	public boolean containsParticular(Particular p) {
 		return this.getParticulares().contains(p);

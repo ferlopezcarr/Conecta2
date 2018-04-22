@@ -17,16 +17,12 @@ import conecta2.modelo.Contrato;
 import conecta2.modelo.JornadaLaboral;
 import conecta2.modelo.Oferta;
 import conecta2.servicioAplicacion.SAOferta;
-import conecta2.transfer.TransferOferta;
-
-
-
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = C2Aplicacion.class)
 @DataJpaTest
 @ComponentScan(basePackages ="conecta2")
-public class HU9BuscadorTest {
+public class HU09BuscadorTest {
 	
 
 	
@@ -36,18 +32,8 @@ public class HU9BuscadorTest {
 	@Test
 	public void testCorrectSearch() {
 		Oferta oferta = new Oferta("oferta", JornadaLaboral.PorHoras, Contrato.Formación, 1, 200.0, "Madrid", "", true, false, null, null);
-		TransferOferta transferOferta = new TransferOferta(oferta.getNombre(),
-				oferta.getJornadaLaboral(),
-				oferta.getContrato(),
-				oferta.getVacantes(),
-				oferta.getSalario(),
-				oferta.getCiudad(),
-				oferta.getDescripcion(),
-				oferta.getActivo(),
-				oferta.getFinalizada(),
-				oferta.getEmpresa(),
-				oferta.getParticulares());
-		saOferta.save(transferOferta);
+
+		oferta = saOferta.save(oferta);
 		
 		String letraMayus = oferta.getNombre().substring(0, 1).toUpperCase();
 		String nombreMayusPrim = letraMayus + oferta.getNombre().substring(1, oferta.getNombre().length());

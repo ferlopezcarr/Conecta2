@@ -18,6 +18,8 @@ import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.data.annotation.Transient;
 
+import conecta2.transfer.TransferEmpresa;
+
 @Entity
 @Table(name = "empresas")
 /**
@@ -65,13 +67,12 @@ public class Empresa {
 	@NotEmpty
 	@Transient
 	private String password;
-
 	
-	private boolean activo;
+	private String descripcion;
 	
 	private int puntuacion;
 	
-	private String descripcion;
+	private boolean activo;
 	
 	@OneToMany(mappedBy = "empresa",fetch=FetchType.LAZY)
 	private List<Oferta> ofertas;
@@ -95,19 +96,59 @@ public class Empresa {
 	 * @param puntuacion
 	 * @param descripcion
 	 */
-	public Empresa(String nombreEmpresa, String cif, String telefono, String email, String password, boolean activo, int puntuacion, String descripcion) {
+	public Empresa(String nombreEmpresa, String cif, String telefono, String email, String password, String descripcion, int puntuacion, boolean activo, List<Oferta> ofertas, List<Notificacion> notificaciones) {
 		this.nombreEmpresa = nombreEmpresa;
 		this.cif = cif;
 		this.telefono = telefono;
 		this.email = email;
 		this.password = password;
-		this.activo = activo;
-		this.puntuacion = puntuacion;
 		this.descripcion = descripcion;
-		this.ofertas = new ArrayList<Oferta>();
-		this.notificaciones = new ArrayList<Notificacion>();
+		this.puntuacion = puntuacion;
+		this.activo = activo;
+		
+		if(this.ofertas == null || ofertas == null) 
+			this.ofertas = new ArrayList<Oferta>();
+		else
+			this.ofertas = ofertas;
+		
+		if(this.notificaciones == null || notificaciones == null) 
+			this.notificaciones = new ArrayList<Notificacion>();
+		else
+			this.notificaciones = notificaciones;
 	}
 
+	public static Empresa TranferToEntity(TransferEmpresa transferEmpresa, int idEmpresa) {
+		Empresa empresa = new Empresa(
+				transferEmpresa.getNombreEmpresa(),
+				transferEmpresa.getCif(),
+				transferEmpresa.getTelefono(),
+				transferEmpresa.getEmail(),
+				transferEmpresa.getPassword(),
+				transferEmpresa.getDescripcion(),
+				transferEmpresa.getPuntuacion(),
+				transferEmpresa.getActivo(),
+				transferEmpresa.getOfertas(),
+				transferEmpresa.getNotificaciones()
+				);
+		empresa.setId(idEmpresa);
+		return empresa;
+	}
+	
+	public static Empresa TranferToEntity(TransferEmpresa transferEmpresa) {
+		return new Empresa(
+				transferEmpresa.getNombreEmpresa(),
+				transferEmpresa.getCif(),
+				transferEmpresa.getTelefono(),
+				transferEmpresa.getEmail(),
+				transferEmpresa.getPassword(),
+				transferEmpresa.getDescripcion(),
+				transferEmpresa.getPuntuacion(),
+				transferEmpresa.getActivo(),
+				transferEmpresa.getOfertas(),
+				transferEmpresa.getNotificaciones()
+				);
+	}
+	
 	public int getId() {
 		return id;
 	}
@@ -172,6 +213,13 @@ public class Empresa {
 		this.puntuacion = puntuacion;
 	}
 	
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
 	
 	public List<Oferta> getOfertas() {
 		return ofertas;
@@ -179,14 +227,6 @@ public class Empresa {
 
 	public void setOfertas(List<Oferta> ofertas) {
 		this.ofertas = ofertas;
-	}
-
-	public String getDescripcion() {
-		return descripcion;
-	}
-
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
 	}
 	
 	public List<Notificacion> getNotificaciones() {
@@ -196,101 +236,5 @@ public class Empresa {
 	public void setNotificaciones(List<Notificacion> notificaciones) {
 		this.notificaciones = notificaciones;
 	}
-	
-	/*
-	@Override
-	public boolean equals(Object o) {
-		if (o == null) return false;
-	    if (o == this) return true;
-	    if (!(o instanceof Empresa))return false;
-		
-	    Empresa empObj = (Empresa)o;
-	    
-	    return !(
-	    		(this.id != empObj.id) ||
-	    		(this.nombreEmpresa != empObj.nombreEmpresa) ||
-	    		(this.cif != empObj.cif) ||
-	    		(this.telefono != empObj.telefono) ||
-	    		(this.email != empObj.email) ||
-	    		(this.password != empObj.password) ||
-	    		(this.activo != empObj.activo) ||
-	    		(this.puntuacion != empObj.puntuacion)
-	    		);
-	}
-	*/
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + (activo ? 1231 : 1237);
-		result = prime * result + ((cif == null) ? 0 : cif.hashCode());
-		result = prime * result + ((descripcion == null) ? 0 : descripcion.hashCode());
-		result = prime * result + ((email == null) ? 0 : email.hashCode());
-		result = prime * result + id;
-		result = prime * result + ((nombreEmpresa == null) ? 0 : nombreEmpresa.hashCode());
-		result = prime * result + ((ofertas == null) ? 0 : ofertas.hashCode());
-		result = prime * result + ((password == null) ? 0 : password.hashCode());
-		result = prime * result + puntuacion;
-		result = prime * result + ((telefono == null) ? 0 : telefono.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Empresa other = (Empresa) obj;
-		if (activo != other.activo)
-			return false;
-		if (cif == null) {
-			if (other.cif != null)
-				return false;
-		} else if (!cif.equals(other.cif))
-			return false;
-		if (descripcion == null) {
-			if (other.descripcion != null)
-				return false;
-		} else if (!descripcion.equals(other.descripcion))
-			return false;
-		if (email == null) {
-			if (other.email != null)
-				return false;
-		} else if (!email.equals(other.email))
-			return false;
-		if (id != other.id)
-			return false;
-		if (nombreEmpresa == null) {
-			if (other.nombreEmpresa != null)
-				return false;
-		} else if (!nombreEmpresa.equals(other.nombreEmpresa))
-			return false;
-		if (ofertas == null) {
-			if (other.ofertas != null)
-				return false;
-		} else if (!ofertas.equals(other.ofertas))
-			return false;
-		if (password == null) {
-			if (other.password != null)
-				return false;
-		} else if (!password.equals(other.password))
-			return false;
-		if (puntuacion != other.puntuacion)
-			return false;
-		if (telefono == null) {
-			if (other.telefono != null)
-				return false;
-		} else if (!telefono.equals(other.telefono))
-			return false;
-		return true;
-	}
-	
-	public String toString() {
-		
-		return nombreEmpresa;
-	}
 }

@@ -26,7 +26,7 @@ import conecta2.servicioAplicacion.SAParticular;
 @SpringBootTest(classes = C2Aplicacion.class)
 @DataJpaTest
 @ComponentScan(basePackages ="conecta2")
-public class HU10VerDetallesCandidatoTest {
+public class HU09InscribirseEnOfertaTest {
 	
 	@Autowired
 	private SAOferta saOferta;
@@ -37,24 +37,24 @@ public class HU10VerDetallesCandidatoTest {
 	@Test
 	public void testInscribirse() {
 		
-		//Creamos las entidades
+		//Crear oferta
 		Oferta oferta = new Oferta("oferta2", JornadaLaboral.PorHoras, Contrato.Formación, 1, 230.0, "Barcelona", "prueba", true, false, null, new ArrayList<Particular>());
 		oferta = saOferta.save(oferta);
 		
+		//Crear particular
 		Particular particular = new Particular("particularPruebaNombre", "Apellido Apellido", "99999999Z", "123456789", "particularPruebaEmail@particularPruebaEmail.com", "Abc1111", "", 0, true, null, null);
 		particular = saParticular.save(particular);
 		
-		//Asignamos el particular a la oferta y viceversa
+		//Inscribir
 		oferta.inscribirParticular(particular);
-		
 		particular.anadirOferta(oferta);
 		
 		//Guardamos la oferta
 		oferta = saOferta.save(oferta);
-		
 		particular = saParticular.save(particular);
 		
-		assertEquals(true, oferta.getParticulares().contains(particular));
-
+		boolean contains = (oferta.getParticulares().contains(particular)) && (particular.getOfertas().contains(oferta));
+		
+		assertEquals(true, contains);
 	}
 }

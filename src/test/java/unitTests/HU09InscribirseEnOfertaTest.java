@@ -23,7 +23,7 @@ import conecta2.repositorio.RepositorioParticular;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = C2Aplicacion.class)
 @DataJpaTest
-public class HU9InscribirseEnOfertaTest {
+public class HU09InscribirseEnOfertaTest {
 	
 	@Autowired
 	private RepositorioOferta repOferta;
@@ -43,7 +43,7 @@ public class HU9InscribirseEnOfertaTest {
 	
 	@Test
 	public void test0Inscritos() {
-		Particular particular = new Particular("nombre", "Apellido Apellido", "99999999A", "123456789", "particularPrueHU8@particularPruebaEmail.com", "Abc1111", true, 0, "descripcion");
+		Particular particular = new Particular("particularPruebaNombre", "Apellido Apellido", "99999999Z", "123456789", "particularPruebaEmail@particularPruebaEmail.com", "Abc1111", "", 0, true, null, null);
 
 		repParticular.save(particular);
 		List<Oferta> ofertas = particular.getOfertas();

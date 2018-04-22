@@ -123,34 +123,18 @@ public class SAEmailImp  implements SAEmail {
 			
 			if(empresa!=null){//Se comprueba que es una empresa
 				empresa.setActivo(true);
-				TransferEmpresa transEmpresa = new TransferEmpresa();
-				transEmpresa.setCif(empresa.getCif());
-				transEmpresa.setEmail(empresa.getEmail());
-				transEmpresa.setNombreEmpresa(empresa.getNombreEmpresa());
-				transEmpresa.setPassword(empresa.getPassword());
-				transEmpresa.setActivo(empresa.getActivo());
-				transEmpresa.setTelefono(empresa.getTelefono());
-				saEmpresa.save(transEmpresa);
+				saEmpresa.save(empresa);
 				
-				return transEmpresa;
+				return TransferEmpresa.EntityToTransfer(empresa);
 			}
 			else {//No se encuentra la empresa
 				Particular particular = saParticular.buscarPorEmail(aux.getEmail()); 
 				
 				if(particular!=null) {//Se comprueba que es particular
 					particular.setActivo(true);
-			
-					TransferParticular transParticular = new TransferParticular();
-					transParticular.setNombre(particular.getNombre());
-					transParticular.setApellidos(particular.getApellidos());
-					transParticular.setDni(particular.getDni());
-					transParticular.setEmail(particular.getEmail());
-					transParticular.setPassword(particular.getPassword());
-					transParticular.setActivo(particular.getActivo());
-					transParticular.setTelefono(particular.getTelefono());
-					saParticular.save(transParticular);
+					saParticular.save(particular);
 					
-					return transParticular;	
+					return TransferParticular.EntityToTransfer(particular);
 				}
 				else {//No se encuentra el particular
 					return null;

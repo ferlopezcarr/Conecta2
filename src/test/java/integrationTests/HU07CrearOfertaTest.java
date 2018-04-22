@@ -19,13 +19,12 @@ import conecta2.modelo.Oferta;
 import conecta2.modelo.Particular;
 
 import conecta2.servicioAplicacion.SAOferta;
-import conecta2.transfer.TransferOferta;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = C2Aplicacion.class)
 @DataJpaTest
 @ComponentScan(basePackages ="conecta2")
-public class HU7CrearOfertaTest {
+public class HU07CrearOfertaTest {
 
 	@Autowired
 	private SAOferta saOferta;
@@ -33,38 +32,13 @@ public class HU7CrearOfertaTest {
 	@Test
 	public void testBuscarPorId() {
 		
-		TransferOferta transferOferta = new TransferOferta(
-				"oferta", 
-				JornadaLaboral.PorHoras,
-				Contrato.Formación,
-				1,
-				200.0,
-				"Madrid",
-				"hola",
-				true,
-				false,
-				null,
-				new ArrayList<Particular>()
-			);
+		Oferta oferta = new Oferta("oferta2", JornadaLaboral.PorHoras, Contrato.Formación, 1, 230.0, "Barcelona", "prueba", true, false, null, new ArrayList<Particular>());
 		
-		Oferta ofertaGuardada = saOferta.save(transferOferta);
+		oferta = saOferta.save(oferta);
+
+		Oferta ofertaBD = saOferta.buscarPorId(oferta.getId());
 		
-		Oferta oferta = new Oferta(
-				transferOferta.getNombre(), 
-				transferOferta.getJornada(),
-				transferOferta.getContrato(),
-				transferOferta.getVacantes(),
-				transferOferta.getSalario(),
-				transferOferta.getCiudad(),
-				transferOferta.getDescripcion(),
-				transferOferta.getActivo(),
-				transferOferta.getFinalizada(),
-				transferOferta.getEmpresa(),
-				transferOferta.getParticulares()
-			);
-		oferta.setId(ofertaGuardada.getId());
-		
-		assertEquals(oferta, ofertaGuardada);
+		assertEquals(oferta, ofertaBD);
 	}
 
 }

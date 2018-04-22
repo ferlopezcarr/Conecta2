@@ -17,7 +17,7 @@
   </head>
   <body>
   	<nav th:replace="fragments/navbar :: navbar"></nav>
-	
+  		
 	<div th:if="${popup == null}">
 	<div th:replace="fragments/cabecera :: cabecera(titulo='Mi perfil')"></div>
 	
@@ -83,9 +83,9 @@
   		   </div><!-- final row -->
   	    </div>
   	</div>
-	</div>
+  	</div>
 
-	  	    <!-- Si hay un error -->
+			<!-- Si hay un error -->
 	<div th:if="${popup != null}">	
 		<div class="modal-dialog">
 									    

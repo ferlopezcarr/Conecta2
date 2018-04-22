@@ -17,8 +17,6 @@ import conecta2.modelo.JornadaLaboral;
 import conecta2.modelo.Oferta;
 import conecta2.modelo.Particular;
 import conecta2.servicioAplicacion.SAOferta;
-import conecta2.transfer.TransferOferta;
-
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = C2Aplicacion.class)
@@ -32,28 +30,15 @@ public class HU11FinalizarOferta {
 	@Test
 	public void testFinalizarOferta() {
 
-		TransferOferta transferOferta = new TransferOferta(
-				"oferta", 
-				JornadaLaboral.PorHoras,
-				Contrato.Formación,
-				1,
-				230.0,
-				"Madrid",
-				"prueba",
-				true,
-				false,
-				null,
-				new ArrayList<Particular>()
-			);
-
-		Oferta ofertaNoFinalizada = saOferta.save(transferOferta);
+		//Creamos las entidades
+		Oferta ofertaNoFinalizada = new Oferta("oferta2", JornadaLaboral.PorHoras, Contrato.Formación, 1, 230.0, "Barcelona", "prueba", true, false, null, new ArrayList<Particular>());
 		
-		Oferta oferta = ofertaNoFinalizada;
-		 		
+		Oferta oferta = saOferta.save(ofertaNoFinalizada);
+		
 		oferta.setFinalizada(true);
 		 
-		ofertaNoFinalizada = saOferta.actualizarOferta(oferta);
+		oferta = saOferta.save(oferta);
 				
-		assertEquals(oferta.getFinalizada(), ofertaNoFinalizada.getFinalizada());
+		assertEquals(oferta.getFinalizada(), oferta.getFinalizada());
 	}
 }

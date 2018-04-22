@@ -23,7 +23,7 @@ import conecta2.transfer.TransferOferta;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = C2Aplicacion.class)
 @DataJpaTest
-public class HU7CrearOfertaTest {
+public class HU07CrearOfertaTest {
 	
 	@Autowired
 	private RepositorioOferta repositorioOferta;

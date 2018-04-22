@@ -8,10 +8,15 @@ import conecta2.transfer.TransferParticular;
  * Interfaz que define los métodos o funciones que puede realizar el particular
  */
 public interface SAParticular {
+	
 	public void crearParticular(TransferParticular dtoUsuario);
+	
 	public Particular buscarPorEmail(String email);
+	
 	public Particular buscarPorDni(String dni);
+	
 	public Particular buscarPorId(int id);
-	public void save(TransferParticular transferParticular);
-	public Particular actualizarParticular(Particular par);
+	
+	public Particular save(Particular particular);
+	
 }

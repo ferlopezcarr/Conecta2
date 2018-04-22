@@ -16,7 +16,7 @@ import conecta2.repositorio.RepositorioEmpresa;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = C2Aplicacion.class)
 @DataJpaTest
-public class HU4VerPerfilEmpresaTest {
+public class HU04VerPerfilEmpresaTest {
 
 	@Autowired
 	private RepositorioEmpresa repositorioEmpresa;
@@ -24,7 +24,7 @@ public class HU4VerPerfilEmpresaTest {
 	@Test
 	public void testEmpresaFoundedByEmailYActivo() {
 		
-		Empresa empresa = new Empresa("empresaPruebaNombre", "A28599033", "123456789", "empresaPruebaEmail@empresaPruebaEmail.com", "Abc1111", true, 0, "");
+		Empresa empresa = new Empresa("empresaPruebaNombre", "A28599033", "123456789", "empresaPruebaEmail@empresaPruebaEmail.com", "Abc1111", "", 0, true, null, null);
 
 		repositorioEmpresa.save(empresa);
 		
@@ -39,7 +39,7 @@ public class HU4VerPerfilEmpresaTest {
 	@Test
 	public void testEmpresaFoundedByCifYActivo() {
 		
-		Empresa empresa = new Empresa("empresaPruebaNombre", "A28599033", "123456789", "empresaPruebaEmail@empresaPruebaEmail.com", "Abc1111", true, 0, "");
+		Empresa empresa = new Empresa("empresaPruebaNombre", "A28599033", "123456789", "empresaPruebaEmail@empresaPruebaEmail.com", "Abc1111", "", 0, true, null, null);
 		
 		repositorioEmpresa.save(empresa);
 		

@@ -19,6 +19,8 @@ import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.data.annotation.Transient;
 
+import conecta2.transfer.TransferParticular;
+
 @Entity
 @Table(name = "particulares")
 /**
@@ -70,12 +72,13 @@ public class Particular {
 	@NotEmpty
 	@Transient
 	private String password;
-
-
-	private boolean activo;
 	
+	private String descripcion;
 	
 	private int puntuacion;
+	
+	private boolean activo;
+	
 	
 	@ManyToMany
 	private List<Oferta> ofertas;
@@ -83,7 +86,6 @@ public class Particular {
 	@OneToMany(mappedBy = "particular",fetch=FetchType.LAZY)
 	private List<Notificacion> notificaciones;
 
-	private String descripcion;
 	/**
 	 * Constructora sin argumentos necesaria para JPA
 	 */
@@ -99,18 +101,60 @@ public class Particular {
 	 * @param activo
 	 * @param puntuacion
 	 */
-	public Particular(String nombre, String apellidos, String dni, String telefono, String email, String password, boolean activo, int puntuacion, String descripcion) {
+	public Particular(String nombre, String apellidos, String dni, String telefono, String email, String password, String descripcion, int puntuacion, boolean activo, List<Oferta> ofertas, List<Notificacion> notificaciones) {
 		this.nombre = nombre;
 		this.apellidos = apellidos;
 		this.dni = dni;
 		this.telefono = telefono;
 		this.email = email;
 		this.password = password;
-		this.activo = activo;
-		this.puntuacion = puntuacion;
 		this.descripcion = descripcion;
-		this.ofertas = new ArrayList<Oferta>();
-		this.notificaciones = new ArrayList<Notificacion>();
+		this.puntuacion = puntuacion;
+		this.activo = activo;
+		
+		if(this.ofertas == null || ofertas == null) 
+			this.ofertas = new ArrayList<Oferta>();
+		else
+			this.ofertas = ofertas;
+		
+		if(this.notificaciones == null || notificaciones == null) 
+			this.notificaciones = new ArrayList<Notificacion>();
+		else
+			this.notificaciones = notificaciones;
+	}
+	
+	public static Particular TranferToEntity(TransferParticular transferParticular, int idParticular) {
+		Particular particular = new Particular(
+				transferParticular.getNombre(),
+				transferParticular.getApellidos(),
+				transferParticular.getDni(),
+				transferParticular.getTelefono(),
+				transferParticular.getEmail(),
+				transferParticular.getPassword(),
+				transferParticular.getDescripcion(),
+				transferParticular.getPuntuacion(),
+				transferParticular.getActivo(),
+				transferParticular.getOfertas(),
+				transferParticular.getNotificaciones()
+				);
+		particular.setId(idParticular);
+		return particular;
+	}
+	
+	public static Particular TranferToEntity(TransferParticular transferParticular) {
+		return new Particular(
+				transferParticular.getNombre(),
+				transferParticular.getApellidos(),
+				transferParticular.getDni(),
+				transferParticular.getTelefono(),
+				transferParticular.getEmail(),
+				transferParticular.getPassword(),
+				transferParticular.getDescripcion(),
+				transferParticular.getPuntuacion(),
+				transferParticular.getActivo(),
+				transferParticular.getOfertas(),
+				transferParticular.getNotificaciones()
+				);
 	}
 	
 	public int getId() {
@@ -217,25 +261,5 @@ public class Particular {
 		this.notificaciones = notificaciones;
 	}
 
-	@Override
-	public boolean equals(Object o) {
-		if (o == null) return false;
-	    if (o == this) return true;
-	    if (!(o instanceof Particular))return false;
-		
-	    Particular partObj = (Particular)o;
-	    
-	    return !(
-	    		(this.id != partObj.id) ||
-	    		(this.nombre != partObj.nombre) ||
-	    		(this.apellidos != partObj.apellidos) ||
-	    		(this.dni != partObj.dni) ||
-	    		(this.telefono != partObj.telefono) ||
-	    		(this.email != partObj.email) ||
-	    		(this.password != partObj.password) ||
-	    		(this.activo != partObj.activo) ||
-	    		(this.puntuacion != partObj.puntuacion) ||
-	    		(this.descripcion != partObj.descripcion)
-	    		);
-	}
+
 }

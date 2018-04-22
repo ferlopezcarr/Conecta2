@@ -44,15 +44,10 @@ public class SAParticularImp implements SAParticular{
     //Convierte el dtoUsuario a Usuario
     public void crearParticular(TransferParticular transferParticular) {
     	
-        Particular particular = new Particular();
-        
-        particular.setDni(transferParticular.getDni());
-        particular.setNombre(transferParticular.getNombre());
-        particular.setApellidos(transferParticular.getApellidos());
-        particular.setTelefono(transferParticular.getTelefono());
-        particular.setEmail(transferParticular.getEmail());
+        Particular particular = Particular.TranferToEntity(transferParticular);
         particular.setPassword(bCryptPasswordEncoder.encode(transferParticular.getPassword()));
         particular.setActivo(false);
+        
         repositorioParticular.save(particular); //Hace el save al repositorio (función interna de JPARepository)
         //Después de esto el usuario ya estaría guardado en la Base de Datos
         saEmail.enviarCorreo("Acceda al siguiente enlace para terminar el registro en Conecta2, ya casi está solo un paso más, ", "Alta cuenta en Conecta2", particular.getEmail());;
@@ -87,45 +82,12 @@ public class SAParticularImp implements SAParticular{
 	 * si ya existe lo modifica
 	 */
 	@Override
-	public void save(TransferParticular transferParticular) {
+	public Particular save(Particular particular) {
 
-		Particular particular = repositorioParticular.findByDni(transferParticular.getDni());
-		
-		if(particular == null) {//CREAR PARTICULAR
-			particular = new Particular(
-					transferParticular.getNombre(),
-					transferParticular.getApellidos(),
-					transferParticular.getDni(),
-					transferParticular.getTelefono(),
-					transferParticular.getEmail(),
-					transferParticular.getPassword(),
-					transferParticular.getActivo(),
-					transferParticular.getPuntuacion(),
-					transferParticular.getDescripcion()
-				);
-		}
-		else {//MODIFICAR PARTICULAR
-			particular.setNombre(transferParticular.getNombre());
-			particular.setApellidos(transferParticular.getApellidos());
-			particular.setTelefono(transferParticular.getTelefono());
-			particular.setDescripcion(transferParticular.getDescripcion());
-		}
+        if(particular != null)
+        	particular = repositorioParticular.save(particular);
         
-        repositorioParticular.save(particular);
-	}
-
-	/**
-	 * Método que actualiza un particular y lo devuelve, se usa para actualizar
-	 * la lista de ofertas al inscribirse
-	 */
-	@Override
-	public Particular actualizarParticular(Particular par) {
-		if(par != null) {//se encuentra la oferta en la BD
-			return this.repositorioParticular.save(par);
-		}
-		else {//no se encuentra la oferta
-			return null;
-		}
+        return particular;
 	}
 
 }

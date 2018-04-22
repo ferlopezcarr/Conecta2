@@ -42,12 +42,8 @@ public class SAEmpresaImp implements SAEmpresa {
     @Transactional
     @Override
 	public void crearEmpresa(TransferEmpresa transferEmpresa) {
-    	 Empresa empresa = new Empresa();
     	 
-         empresa.setCif(transferEmpresa.getCif());
-         empresa.setNombreEmpresa(transferEmpresa.getNombreEmpresa());
-         empresa.setTelefono(transferEmpresa.getTelefono());
-         empresa.setEmail(transferEmpresa.getEmail());
+    	 Empresa empresa = Empresa.TranferToEntity(transferEmpresa);
          empresa.setPassword(bCryptPasswordEncoder.encode(transferEmpresa.getPassword()));
          empresa.setActivo(false);
 
@@ -87,26 +83,11 @@ public class SAEmpresaImp implements SAEmpresa {
 	 */
 	@Transactional
 	@Override
-	public void save(TransferEmpresa transferEmpresa) {
-	 	 Empresa empresa = repositorioEmpresa.findByCif(transferEmpresa.getCif());
-	 	 
-	 	 if(empresa == null) {//CREAR EMPRESA
-	 		 empresa = new Empresa(
-	 				 transferEmpresa.getNombreEmpresa(),
-	 				 transferEmpresa.getCif(),
-	 				 transferEmpresa.getTelefono(),
-	 				 transferEmpresa.getEmail(),
-	 				 transferEmpresa.getPassword(),
-	 				 transferEmpresa.getActivo(),
-	 				 transferEmpresa.getPuntuacion(),
-	 				 transferEmpresa.getDescripcion()
-	 			);
-	 	 }
-	 	 else {//MODIFICAR EMPRESA
-	 		 empresa.setNombreEmpresa(transferEmpresa.getNombreEmpresa());
-	 		 empresa.setTelefono(transferEmpresa.getTelefono());
-	 		 empresa.setDescripcion(transferEmpresa.getDescripcion());
-	 	 }
-         repositorioEmpresa.save(empresa); //Hace el save al repositorio (función interna de JPARepository)
+	public Empresa save(Empresa empresa) {
+
+		if(empresa != null)
+			empresa = repositorioEmpresa.save(empresa); //Hace el save al repositorio (función interna de JPARepository)
+         
+         return empresa;
 	}
 }

@@ -16,7 +16,7 @@ import conecta2.repositorio.RepositorioEmpresa;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = C2Aplicacion.class)
 @DataJpaTest
-public class HU6ModificarPerfilEmpresaTest {
+public class HU06ModificarPerfilEmpresaTest {
 
 	
 	@Autowired
@@ -24,7 +24,7 @@ public class HU6ModificarPerfilEmpresaTest {
 	
 	@Test
 	public void testModifyExistingCompany() {
-		Empresa empresa = new Empresa("empresaPruebaNombre", "A11223344", "123456789", "empresaPruebaEmail@empresaPruebaEmail.com", "Abc1111", true, 0, "");
+		Empresa empresa = new Empresa("empresaPruebaNombre", "A28599033", "123456789", "empresaPruebaEmail@empresaPruebaEmail.com", "Abc1111", "", 0, true, null, null);
 		
 		repositorioEmpresa.save(empresa);
 		

@@ -5,13 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import conecta2.modelo.Contrato;
 import conecta2.modelo.Empresa;
-import conecta2.modelo.JornadaLaboral;
 import conecta2.modelo.Oferta;
 import conecta2.modelo.Particular;
 import conecta2.repositorio.RepositorioOferta;
-import conecta2.transfer.TransferOferta;
 
 /**
  * Clase que implementa las funciones de la interfaz SAOferta
@@ -50,12 +47,7 @@ public class SAOfertaImp implements SAOferta {
 	public Oferta buscarPorIdYEmpresa(int id, Empresa empresa) {
 		return repoOferta.findByIdAndEmpresa(id, empresa);
 	}
-	/*
-	@Override
-	public Oferta buscarPorNombreAndJornadaAndContratoAndEmpresa(String nombre, JornadaLaboral jornada, Contrato contrato, Empresa empresa) {
-		return repoOferta.findByNombreAndJornadaAndContratoAndEmpresa(nombre, jornada, contrato, empresa);
-	}
-	*/
+
 	/**
 	 * Método que devuelve la lista de ofertas de una empresa
 	 */
@@ -92,51 +84,12 @@ public class SAOfertaImp implements SAOferta {
 	 * Método que crea una oferta con los datos del transfer y lo guarda en la BD
 	 */
 	@Override
-	public Oferta save(TransferOferta tOferta) {
-		Oferta oferta = repoOferta.findById(tOferta.getId());
+	public Oferta save(Oferta oferta) {
 		
-		if(oferta == null) {
-			oferta = new Oferta(
-				tOferta.getNombre(),
-				tOferta.getJornada(),
-				tOferta.getContrato(),
-				tOferta.getVacantes(),
-				tOferta.getSalario(),
-				tOferta.getCiudad(),
-				tOferta.getDescripcion(),
-				true,
-				false,
-				tOferta.getEmpresa(),
-				tOferta.getParticulares());
-		}
-		else {//ACTUALIZACIÓN
-			oferta.setNombre(tOferta.getNombre());
-			oferta.setJornadaLaboral(tOferta.getJornada());
-			oferta.setContrato(tOferta.getContrato());
-			oferta.setVacantes(tOferta.getVacantes());
-			oferta.setSalario(tOferta.getSalario());
-			oferta.setCiudad(tOferta.getCiudad());
-			oferta.setDescripcion(tOferta.getDescripcion());
-		}	
+		if(oferta != null)
+			oferta = repoOferta.save(oferta);
 		
-		return repoOferta.save(oferta);
+		return oferta;
 	}
-
-	/**
-	 * Método que actualiza una oferta y la devuelve, se usa para actualizar
-	 * la lista de de candidatos al inscribirse un particular
-	 */
-	@Override
-	public Oferta actualizarOferta(Oferta oferta) {
-		
-		if(oferta != null) {//se encuentra la oferta en la BD
-			return this.repoOferta.save(oferta);
-		}
-		else {//no se encuentra la oferta
-			return null;
-		}
-	}
-
-
 	
 }

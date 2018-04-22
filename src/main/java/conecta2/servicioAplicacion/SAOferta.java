@@ -5,15 +5,9 @@ import java.util.List;
 import conecta2.modelo.Empresa;
 import conecta2.modelo.Oferta;
 import conecta2.modelo.Particular;
-import conecta2.transfer.TransferOferta;
 
 public interface SAOferta {
 	
-		
-		public Oferta actualizarOferta(Oferta oferta);
-		
-		public Oferta save(TransferOferta transferOferta);
-		
 		public Oferta buscarPorId (int id);
 		
 		public Oferta buscarPorIdYEmpresa(int id, Empresa empresa);
@@ -27,5 +21,7 @@ public interface SAOferta {
 		public List<Oferta> buscarOfertasPorNombreYNombreMayus(String nombre, String nombreMayusPrimero);
 		
 		public List<Oferta> buscarTodas();
+		
+		public Oferta save(Oferta oferta);
 		
 }
