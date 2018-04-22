@@ -109,7 +109,7 @@
 									<th class="text-center">Vacantes</th>
 									<th class="text-center">Salario</th>
 									<th class="text-center">Inscripciones</th>
-									
+									<th class="text-center" colspan="2">Opciones</th>
 		 		          	 	</tr>
 		 		          	 </thead>
 	 		          	     <tbody  >
@@ -121,7 +121,17 @@
 									<td class="text-center" th:text="${oferta.vacantes}"></td>
 									<td class="text-center" th:text="${oferta.salario}"></td>
 									<td class="text-center" th:text="${oferta.particulares.size()}"></td>
-									
+									<td class="text-center"> 
+									 <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="${oferta.id}" data-toggle="dropdown" aria-haspopup="flase" aria-expanded="true">
+		   								Opciones
+		 							 </a>
+									 <div class="dropdown-menu" aria-labelledby="${oferta.id}">
+									 
+									  		  <a class="dropdown-item" th:href="'/verOferta?id=' +${oferta.id}" >Ver Oferta</a>
+		  									  <a class="dropdown-item" th:href="'/candidatos?id=' +${oferta.id}">Ver Candidatos</a>
+		 									
+		 							 </div>
+									</td>
 	      						</tr>
 	 		             	</tbody>
  		          	   </table>
