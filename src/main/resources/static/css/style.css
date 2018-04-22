@@ -196,7 +196,11 @@ a.navbar-brand{
 	background-repeat:no-repeat;
 }
 
-
+.container-fondoGris{
+	background-image: url(../images/fondoGris.png);
+	background-size: 200% 30%;
+	background-repeat:no-repeat;
+}
 
 .margen-texto-inicio{
 	margin-top: 2%;
