@@ -296,6 +296,16 @@ transform: scaleX(-1);
 -ms-filter: "FlipH";
 filter: FlipH;
 }
+ 
+
+.nav-link{
+	color: #10b8c5;
+}
+ 
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    color: #fff;
+    background-color: #10b8c5;
+}
 
 @media (max-width: 767px) {
     .table-responsive {
