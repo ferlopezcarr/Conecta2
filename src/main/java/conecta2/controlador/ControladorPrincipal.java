@@ -688,9 +688,8 @@ public class ControladorPrincipal {
 	
 	/**
 	 * Método que captura la petición GET de modificar-oferta
-	 * 
-	 * @return si el que ha hecho la petición no es la empresa que creó la oferta o es un particular, se redirige a la lista de ofertas,
-	 * si todo es correcto, se redirige a la vista modificarOferta
+	 * @return si el que ha hecho la petición no es la empresa que creó la oferta o es un particular,
+	 * se redirige a la lista de ofertas, si todo es correcto, se redirige a la vista modificarOferta
 	 */
 	@RequestMapping(value="/modificar-oferta", method = RequestMethod.GET, params = {"id"})
 	public ModelAndView modificarOferta(@RequestParam("id") int id){
@@ -1052,12 +1051,7 @@ public class ControladorPrincipal {
 		return modelAndView;
     }
 
-	/**
-	 * Método que captura la petición GET de modificar-oferta
-	 * 
-	 * @return si el que ha hecho la petición no es la empresa que creó la oferta o es un particular, se redirige a la lista de ofertas,
-	 * si todo es correcto, se redirige a la vista modificarOferta
-	 */
+
 	@RequestMapping(value="/finalizar-oferta", method = RequestMethod.GET, params = {"id"})
 	public ModelAndView finalizarOferta(@RequestParam("id") int id){
 		
