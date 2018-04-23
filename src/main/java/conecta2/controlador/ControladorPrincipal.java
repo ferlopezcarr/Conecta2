@@ -630,7 +630,6 @@ public class ControladorPrincipal {
 			modelAndView.setViewName("mostrarOfertas");
 		}
 		else {//es empresa
-			saEmpresa.save(emp);
 			modelAndView.addObject("transferOferta", new TransferOferta());
 			modelAndView.addObject("jornadaValues", JornadaLaboral.values());
 			modelAndView.addObject("contratoValues", Contrato.values());
@@ -675,7 +674,9 @@ public class ControladorPrincipal {
 		}			
 		else {
 			transferOferta.setEmpresa(empresa);
-			saOferta.save(Oferta.TranferToEntity(transferOferta));
+			Oferta oferta = Oferta.TranferToEntity(transferOferta);
+			oferta.setActivo(true);
+			saOferta.save(oferta);
 			String msg = "¡Oferta creada!";
 			modelAndView.addObject("popup", msg);
 			modelAndView.setViewName("mostrarOfertas");
