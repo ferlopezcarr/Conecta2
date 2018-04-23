@@ -819,6 +819,19 @@ public class ControladorPrincipal {
 		return modelAndView;
 	}
 	
+	
+	@RequestMapping(value="/eliminarOferta", method = RequestMethod.GET, params = {"id"})
+	public ModelAndView eliminarOferta(@RequestParam("id") int id){
+		ModelAndView modelAndView = this.obtenerInstancia();
+		String msg = "¡Oferta eliminada!";
+		modelAndView.addObject("popup", msg);
+		modelAndView.setViewName("mostrarOfertas");
+		
+		
+		
+		return modelAndView;
+	}
+	
 	/**
 	 * Método que captura la peticion POST de /inscribir
 	 * @param id_oferta id de la oferta a la que un particular se desea inscribir
