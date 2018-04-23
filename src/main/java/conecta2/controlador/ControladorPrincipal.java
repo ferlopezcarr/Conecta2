@@ -630,6 +630,7 @@ public class ControladorPrincipal {
 			modelAndView.setViewName("mostrarOfertas");
 		}
 		else {//es empresa
+			saEmpresa.save(emp);
 			modelAndView.addObject("transferOferta", new TransferOferta());
 			modelAndView.addObject("jornadaValues", JornadaLaboral.values());
 			modelAndView.addObject("contratoValues", Contrato.values());
