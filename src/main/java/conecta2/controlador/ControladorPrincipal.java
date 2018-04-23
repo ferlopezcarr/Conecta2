@@ -756,7 +756,11 @@ public class ControladorPrincipal {
 		//Si no hay errores
 		if(oferta != null) {
 			modelAndView = new ModelAndView();
-			modelAndView.addObject("transferOferta", TransferOferta.EntityToTransfer(oferta));
+			TransferOferta tOferta = TransferOferta.EntityToTransfer(oferta);
+			tOferta.setId(id); //Pasarle el id
+			tOferta.setAuxSalario(tOferta.getSalario().toString()); //Convertir Salario a string (si no se hace no se puede mostrar en la vista)
+			tOferta.setAuxVacantes(tOferta.getVacantes().toString()); //Convertir Vacantes a string (si no se hace no se puede mostrar en la vista)
+			modelAndView.addObject("transferOferta", tOferta);
 			modelAndView.addObject("jornadaValues", JornadaLaboral.values());
 			modelAndView.addObject("contratoValues", Contrato.values());
 			modelAndView.setViewName("modificarOferta");
