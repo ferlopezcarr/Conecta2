@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Pattern;
@@ -85,6 +86,9 @@ public class Particular {
 	
 	@OneToMany(mappedBy = "particular",fetch=FetchType.LAZY)
 	private List<Notificacion> notificaciones;
+	
+	@ManyToOne (fetch=FetchType.EAGER)
+	private Empresa empresa;
 
 	/**
 	 * Constructora sin argumentos necesaria para JPA
@@ -287,5 +291,13 @@ public class Particular {
 		this.notificaciones = notificaciones;
 	}
 
+	public Empresa getEmpresa() {
+		return empresa;
+	}
 
+	public void setEmpresa(Empresa empresa) {
+		this.empresa = empresa;
+	}
+
+    
 }
