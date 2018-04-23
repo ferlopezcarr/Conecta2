@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta content="text/html; charset=UTF-8" http-equiv="content-type" />
+	<title>14. Modificar Oferta</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Modificar oferta campos vacios</td></tr>
+</thead>
+<tbody>
+<tr><td>open</td><td>http://localhost:8080/ofertas<datalist><option>http://localhost:8080/ofertas</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>xpath=(//a[contains(text(),'Opciones')])[2]<datalist><option>xpath=(//a[contains(text(),'Opciones')])[2]</option><option>xpath=(//a[@id='${oferta.id}'])[2]</option><option>//div[@id='pills-profile']/table/tbody/tr[2]/td[8]/a</option><option>xpath=(//a[contains(@href, '#')])[5]</option><option>//tr[2]/td[8]/a</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>xpath=(//a[contains(text(),'Modificar')])[2]<datalist><option>xpath=(//a[contains(text(),'Modificar')])[2]</option><option>//div[@id='pills-profile']/table/tbody/tr[2]/td[8]/div/a[2]</option><option>//a[contains(@href, '/modificar-oferta?id=2')]</option><option>//tr[2]/td[8]/div/a[2]</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=nombre<datalist><option>id=nombre</option><option>name=nombre</option><option>//input[@id='nombre']</option><option>//label/input</option><option>css=#nombre</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=ciudad<datalist><option>id=ciudad</option><option>name=ciudad</option><option>//input[@id='ciudad']</option><option>//div[3]/div/input</option><option>css=#ciudad</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=vacantes<datalist><option>id=vacantes</option><option>name=auxVacantes</option><option>//input[@id='vacantes']</option><option>//div[2]/input</option><option>css=#vacantes</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=salario<datalist><option>id=salario</option><option>name=auxSalario</option><option>//input[@id='salario']</option><option>//div[3]/input</option><option>css=#salario</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>//button[@type='submit']<datalist><option>//button[@type='submit']</option><option>//button</option></datalist></td><td></td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Modificar oferta campos erróneos</td></tr>
+</thead>
+<tbody>
+<tr><td>open</td><td>http://localhost:8080/ofertas<datalist><option>http://localhost:8080/ofertas</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>xpath=(//a[contains(text(),'Opciones')])[2]<datalist><option>xpath=(//a[contains(text(),'Opciones')])[2]</option><option>xpath=(//a[@id='${oferta.id}'])[2]</option><option>//div[@id='pills-profile']/table/tbody/tr[2]/td[8]/a</option><option>xpath=(//a[contains(@href, '#')])[5]</option><option>//tr[2]/td[8]/a</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>xpath=(//a[contains(text(),'Modificar')])[2]<datalist><option>xpath=(//a[contains(text(),'Modificar')])[2]</option><option>//div[@id='pills-profile']/table/tbody/tr[2]/td[8]/div/a[2]</option><option>//a[contains(@href, '/modificar-oferta?id=2')]</option><option>//tr[2]/td[8]/div/a[2]</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=ciudad<datalist><option>id=ciudad</option><option>name=ciudad</option><option>//input[@id='ciudad']</option><option>//div[3]/div/input</option><option>css=#ciudad</option></datalist></td><td>9</td>
+</tr>
+<tr><td>type</td><td>id=vacantes<datalist><option>id=vacantes</option><option>name=auxVacantes</option><option>//input[@id='vacantes']</option><option>//div[2]/input</option><option>css=#vacantes</option></datalist></td><td>a</td>
+</tr>
+<tr><td>type</td><td>id=salario<datalist><option>id=salario</option><option>name=auxSalario</option><option>//input[@id='salario']</option><option>//div[3]/input</option><option>css=#salario</option></datalist></td><td>b</td>
+</tr>
+<tr><td>click</td><td>//button[@type='submit']<datalist><option>//button[@type='submit']</option><option>//button</option></datalist></td><td></td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Modificar oferta correcto</td></tr>
+</thead>
+<tbody>
+<tr><td>open</td><td>http://localhost:8080/ofertas<datalist><option>http://localhost:8080/ofertas</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>xpath=(//a[contains(text(),'Opciones')])[2]<datalist><option>xpath=(//a[contains(text(),'Opciones')])[2]</option><option>xpath=(//a[@id='${oferta.id}'])[2]</option><option>//div[@id='pills-profile']/table/tbody/tr[2]/td[8]/a</option><option>xpath=(//a[contains(@href, '#')])[5]</option><option>//tr[2]/td[8]/a</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>xpath=(//a[contains(text(),'Modificar')])[2]<datalist><option>xpath=(//a[contains(text(),'Modificar')])[2]</option><option>//div[@id='pills-profile']/table/tbody/tr[2]/td[8]/div/a[2]</option><option>//a[contains(@href, '/modificar-oferta?id=2')]</option><option>//tr[2]/td[8]/div/a[2]</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=nombre<datalist><option>id=nombre</option><option>name=nombre</option><option>//input[@id='nombre']</option><option>//label/input</option><option>css=#nombre</option></datalist></td><td>Modificado</td>
+</tr>
+<tr><td>type</td><td>id=ciudad<datalist><option>id=ciudad</option><option>name=ciudad</option><option>//input[@id='ciudad']</option><option>//div[3]/div/input</option><option>css=#ciudad</option></datalist></td><td>Sevilla</td>
+</tr>
+<tr><td>click</td><td>id=vacantes<datalist><option>id=vacantes</option><option>name=auxVacantes</option><option>//input[@id='vacantes']</option><option>//div[2]/input</option><option>css=#vacantes</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=vacantes<datalist><option>id=vacantes</option><option>name=auxVacantes</option><option>//input[@id='vacantes']</option><option>//div[2]/input</option><option>css=#vacantes</option></datalist></td><td>30</td>
+</tr>
+<tr><td>type</td><td>id=salario<datalist><option>id=salario</option><option>name=auxSalario</option><option>//input[@id='salario']</option><option>//div[3]/input</option><option>css=#salario</option></datalist></td><td>900</td>
+</tr>
+<tr><td>click</td><td>id=descripcion<datalist><option>id=descripcion</option><option>name=descripcion</option><option>//textarea[@id='descripcion']</option><option>//textarea</option><option>css=#descripcion</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=descripcion<datalist><option>id=descripcion</option><option>name=descripcion</option><option>//textarea[@id='descripcion']</option><option>//textarea</option><option>css=#descripcion</option></datalist></td><td>Modificado</td>
+</tr>
+<tr><td>click</td><td>id=jornada<datalist><option>id=jornada</option><option>name=jornada</option><option>//select[@id='jornada']</option><option>//select</option><option>css=#jornada</option></datalist></td><td></td>
+</tr>
+<tr><td>select</td><td>id=jornada<datalist><option>id=jornada</option><option>name=jornada</option><option>//select[@id='jornada']</option><option>//select</option><option>css=#jornada</option></datalist></td><td>label=Tiempo Parcial</td>
+</tr>
+<tr><td>click</td><td>id=jornada<datalist><option>id=jornada</option><option>name=jornada</option><option>//select[@id='jornada']</option><option>//select</option><option>css=#jornada</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>id=Contrato<datalist><option>id=Contrato</option><option>name=contrato</option><option>//select[@id='Contrato']</option><option>//div[2]/div/select</option><option>css=#Contrato</option></datalist></td><td></td>
+</tr>
+<tr><td>select</td><td>id=Contrato<datalist><option>id=Contrato</option><option>name=contrato</option><option>//select[@id='Contrato']</option><option>//div[2]/div/select</option><option>css=#Contrato</option></datalist></td><td>label=Formación</td>
+</tr>
+<tr><td>click</td><td>id=Contrato<datalist><option>id=Contrato</option><option>name=contrato</option><option>//select[@id='Contrato']</option><option>//div[2]/div/select</option><option>css=#Contrato</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>//button[@type='submit']<datalist><option>//button[@type='submit']</option><option>//button</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>link=Ir atras<datalist><option>link=Ir atras</option><option>//a[contains(text(),'Ir atras')]</option><option>xpath=(//a[contains(@href, '/ofertas')])[3]</option><option>//div[2]/a</option><option>css=a.btn</option></datalist></td><td></td>
+</tr>
+</tbody></table>
+</body>
+</html>
