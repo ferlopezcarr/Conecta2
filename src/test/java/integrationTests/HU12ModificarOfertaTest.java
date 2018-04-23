@@ -1,4 +1,5 @@
 package integrationTests;
+
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
@@ -13,32 +14,36 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import conecta2.C2Aplicacion;
 import conecta2.modelo.Contrato;
+import conecta2.modelo.Empresa;
 import conecta2.modelo.JornadaLaboral;
 import conecta2.modelo.Oferta;
 import conecta2.modelo.Particular;
+import conecta2.servicioAplicacion.SAEmpresa;
 import conecta2.servicioAplicacion.SAOferta;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = C2Aplicacion.class)
 @DataJpaTest
 @ComponentScan(basePackages ="conecta2")
-public class HU11FinalizarOferta {
+public class HU12ModificarOfertaTest {
 
 	@Autowired
-	private SAOferta saOferta;
+	public SAOferta saOferta;
 	
 	@Test
-	public void testFinalizarOferta() {
-
-		//Creamos las entidades
-		Oferta ofertaNoFinalizada = new Oferta("oferta2", JornadaLaboral.PorHoras, Contrato.Formación, 1, 230.0, "Barcelona", "prueba", true, false, null, new ArrayList<Particular>());
+	public void testModificarOferta() {
 		
-		Oferta oferta = saOferta.save(ofertaNoFinalizada);
+		Oferta oferta = new Oferta("oferta2", JornadaLaboral.PorHoras, Contrato.Formación, 1, 230.0, "Barcelona", "prueba", true, false, null, new ArrayList<Particular>());
 		
-		oferta.setFinalizada(true);
-		 
 		oferta = saOferta.save(oferta);
-				
-		assertEquals(oferta.getFinalizada(), oferta.getFinalizada());
+		
+		Oferta ofertaGuardada = new Oferta(oferta);
+		
+		oferta.setNombre("ofertaModificada");;
+		
+		oferta = saOferta.save(oferta);
+		
+		assertNotEquals(oferta,ofertaGuardada);
 	}
+
 }

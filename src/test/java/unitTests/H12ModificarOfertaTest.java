@@ -20,23 +20,23 @@ import conecta2.repositorio.RepositorioOferta;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = C2Aplicacion.class)
 @DataJpaTest
-public class H11FinalizarOferta {
+public class H12ModificarOfertaTest {
 
 	@Autowired
     private RepositorioOferta repositorioOferta;
 	
 	@Test
-	public void testModifyExistingCompany() {
+	public void testModificarOferta() {
 		Oferta oferta = new Oferta("ofertaNoFinalizada", JornadaLaboral.PorHoras, Contrato.Formación, 1, 200.0, "Madrid", "", true, false, null, null);
 		
 		repositorioOferta.save(oferta);
-		 
-		oferta.setNombre("ofertaFinalizada");
 		
-		oferta.setFinalizada(true);
-		 
-		 Oferta ofertaGuardada = repositorioOferta.save(oferta);
+		Oferta ofertaNoModificada = new Oferta(oferta);
 		
-		assertEquals(oferta, ofertaGuardada);
+		oferta.setNombre("OfertaModificada");
+		 
+		Oferta ofertaModificada = repositorioOferta.save(oferta);
+		
+		assertNotEquals(ofertaNoModificada, ofertaModificada);
 	}
 }

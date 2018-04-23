@@ -92,6 +92,21 @@ public class Oferta {
 			this.particulares = particulares;
 	}
 	
+	public Oferta(Oferta oferta) {
+		this.nombre = oferta.getNombre();
+		this.jornada = oferta.getJornadaLaboral();
+		this.contrato = oferta.getContrato();
+		this.vacantes = oferta.getVacantes();
+		this.salario = oferta.getSalario();
+		this.ciudad = oferta.getCiudad();
+		this.descripcion = oferta.getDescripcion();
+		this.activo = oferta.getActivo();
+		this.id = oferta.getId();
+		this.finalizada = oferta.getFinalizada();
+		this.empresa = oferta.getEmpresa();
+		this.particulares= oferta.getParticulares();
+	}
+
 	public static Oferta TranferToEntity(TransferOferta transferOferta, int idOferta) {
 		Oferta oferta = new Oferta(
 				transferOferta.getNombre(),
