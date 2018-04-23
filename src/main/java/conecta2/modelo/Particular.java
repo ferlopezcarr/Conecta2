@@ -123,6 +123,32 @@ public class Particular {
 			this.notificaciones = notificaciones;
 	}
 	
+	/**
+	 * Constructor por copia
+	 * @param particular
+	 */
+	public Particular(Particular particular) {
+		this.nombre = particular.nombre;
+		this.apellidos = particular.apellidos;
+		this.dni = particular.dni;
+		this.telefono = particular.telefono;
+		this.email = particular.email;
+		this.password = particular.password;
+		this.descripcion = particular.descripcion;
+		this.puntuacion = particular.puntuacion;
+		this.activo = particular.activo;
+		
+		if(this.ofertas == null || particular.ofertas == null) 
+			this.ofertas = new ArrayList<Oferta>();
+		else
+			this.ofertas = particular.ofertas;
+		
+		if(this.notificaciones == null || particular.notificaciones == null) 
+			this.notificaciones = new ArrayList<Notificacion>();
+		else
+			this.notificaciones = particular.notificaciones;
+	}
+	
 	public static Particular TranferToEntity(TransferParticular transferParticular, int idParticular) {
 		Particular particular = new Particular(
 				transferParticular.getNombre(),

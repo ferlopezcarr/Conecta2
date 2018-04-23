@@ -116,6 +116,31 @@ public class Empresa {
 		else
 			this.notificaciones = notificaciones;
 	}
+	
+	/**
+	 * Constructor por copia
+	 * @param empresa
+	 */
+	public Empresa(Empresa empresa) {
+		this.nombreEmpresa = empresa.nombreEmpresa;
+		this.cif = empresa.cif;
+		this.telefono = empresa.telefono;
+		this.email = empresa.email;
+		this.password = empresa.password;
+		this.descripcion = empresa.descripcion;
+		this.puntuacion = empresa.puntuacion;
+		this.activo = empresa.activo;
+		
+		if(this.ofertas == null || empresa.ofertas == null) 
+			this.ofertas = new ArrayList<Oferta>();
+		else
+			this.ofertas = empresa.ofertas;
+		
+		if(this.notificaciones == null || empresa.notificaciones == null) 
+			this.notificaciones = new ArrayList<Notificacion>();
+		else
+			this.notificaciones = empresa.notificaciones;
+	}
 
 	public static Empresa TranferToEntity(TransferEmpresa transferEmpresa, int idEmpresa) {
 		Empresa empresa = new Empresa(

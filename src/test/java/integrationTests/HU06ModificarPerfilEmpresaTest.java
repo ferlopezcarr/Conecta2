@@ -28,7 +28,9 @@ public class HU06ModificarPerfilEmpresaTest {
 		
 		Empresa empresa = new Empresa("empresaPruebaNombre", "A28599033", "123456789", "empresaPruebaEmail@empresaPruebaEmail.com", "Abc1111", "", 0, true, null, null);
 		
-		Empresa empresaGuardada = saEmpresa.save(empresa);
+		empresa = saEmpresa.save(empresa);
+		
+		Empresa empresaGuardada = new Empresa(empresa);
 		
 		empresa.setNombreEmpresa("empresaPruebaModificado");
 		

@@ -30,11 +30,13 @@ public class HU06ModificarPerfilParticularTest {
 		
 		particular = saParticular.save(particular);
 		
-		Particular particularBD = saParticular.buscarPorId(particular.getId());
+		Particular particularGuardado = new Particular(particular);
 		
 		particular.setNombre("otroNombre");
 		
-		assertNotEquals(particular, particularBD);
+		particular = saParticular.save(particular);
+		
+		assertNotEquals(particular, particularGuardado);
 	}
 
 }
