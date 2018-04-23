@@ -472,6 +472,7 @@ public class ControladorPrincipal {
 		
 		if(emp != null) {// si es empresa
 			modelAndView.addObject("listaOfertas", saOferta.buscarOfertasPorEmpresa(emp));
+			modelAndView.addObject("listaOfertasFinalizadas", saOferta.buscarOfertasFinalizadas(emp));
 		}
 		else if(par != null) {
 			modelAndView.addObject("listaOfertas", saOferta.buscarOfertasParticularInscrito(par));
