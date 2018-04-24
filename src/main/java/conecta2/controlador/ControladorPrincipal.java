@@ -971,6 +971,7 @@ public class ControladorPrincipal {
 	@RequestMapping(value ="/candidatos", method = RequestMethod.GET, params = {"id"})
     public ModelAndView mostrarCandidatos(@RequestParam("id") int id) {		
 		
+
 		ModelAndView modelAndView = this.obtenerInstancia();
 	
 		Map<String, Object> modelo = modelAndView.getModel();
@@ -1014,13 +1015,18 @@ public class ControladorPrincipal {
 		if(oferta != null) {
 			modelAndView = new ModelAndView();
 			
-			List<Particular> particulares = oferta.getParticularesInscritos();
-			List<Particular> listaCandidatos = new ArrayList<Particular>();
+			List<Particular> particulares = oferta.getParticularesSeleccionados();
+			List<Particular> listasSeleccionados = new ArrayList<Particular>();
+			
 			for(int i = 0; i < particulares.size(); i++) {
 				
-				listaCandidatos.add(particulares.get(i));
+				listasSeleccionados.add(particulares.get(i));
 			}
-			modelAndView.addObject("listaCandidatos", listaCandidatos);
+			particulares= oferta.getParticularesInscritos();
+		
+			
+			modelAndView.addObject("listaCandidatos", particulares);
+			modelAndView.addObject("listaSeleccionados", listasSeleccionados);
 			modelAndView.addObject("oferta", oferta);
 			modelAndView.setViewName("mostrarCandidatos");
 		}

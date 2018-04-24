@@ -47,7 +47,9 @@
 								<tbody>
 									<tr th:each="particular : ${listaCandidatos}">
 										<td class="text-center">
-											<input type="checkbox" name="lista" th:value=${particular.id}>
+											<div th:if= "${#lists.contains(listaSeleccionados,particular)} ">
+												<i class="material-icons btn botonAzul rounded-circle">done</i>
+											</div>
 										</td>
 										<td class="text-center" th:text="${particular.nombre}"></td>
 										<td class="text-center" th:text="${particular.apellidos}"></td>
