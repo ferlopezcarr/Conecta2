@@ -596,7 +596,7 @@ public class ControladorPrincipal {
 		if(oferta != null) {
 			modelAndView = new ModelAndView();
 			TransferOferta tOferta = new TransferOferta(oferta.getNombre(),oferta.getJornadaLaboral(), oferta.getContrato(), oferta.getVacantes(), oferta.getSalario(), oferta.getCiudad(), oferta.getDescripcion(),
-					oferta.getActivo(), oferta.getFinalizada(), oferta.getEmpresa(), oferta.getParticulares());
+					oferta.getActivo(), oferta.getFinalizada(), oferta.getEmpresa(), oferta.getParticularesInscritos());
 			
 			modelAndView.addObject("transferOferta", tOferta);
 			modelAndView.setViewName("verOferta");
@@ -864,7 +864,7 @@ public class ControladorPrincipal {
 			
 			if(oferta != null) {// si se encuentra la oferta
 				
-				if(oferta.getParticulares().contains(particular)) {//si ya está inscrito
+				if(oferta.getParticularesInscritos().contains(particular)) {//si ya está inscrito
 					modelAndView.setViewName("mostrarOfertas");
 					String msg = "¡Ya estás inscrito!";
 					modelAndView.addObject("popup", msg);
@@ -961,7 +961,7 @@ public class ControladorPrincipal {
 		if(oferta != null) {
 			modelAndView = new ModelAndView();
 			
-			List<Particular> particulares = oferta.getParticulares();
+			List<Particular> particulares = oferta.getParticularesInscritos();
 			List<Particular> listaCandidatos = new ArrayList<Particular>();
 			for(int i = 0; i < particulares.size(); i++) {
 				
@@ -1030,7 +1030,7 @@ public class ControladorPrincipal {
 					else {
 						//Si se encuentra al candidato, comprobamos que el candidato
 						//está en la lista de particulares de la oferta
-						List<Particular> listaParticulares = oferta.getParticulares();
+						List<Particular> listaParticulares = oferta.getParticularesInscritos();
 						
 						if(listaParticulares.contains(candidato)) {//si se encuentra en la lista de ofertas
 							modelAndView = new ModelAndView();

@@ -80,8 +80,6 @@ public class Empresa {
 	@OneToMany(mappedBy = "empresa",fetch=FetchType.LAZY)
 	private List<Notificacion> notificaciones;
 	
-	@OneToMany(mappedBy = "empresa",fetch=FetchType.LAZY)
-	private List<Particular> particulares;
 	
 	/**
 	 * Constructora sin argumentos necesaria para JPA
@@ -121,7 +119,7 @@ public class Empresa {
 			this.notificaciones = notificaciones;
 		}
 		
-		this.particulares = new ArrayList<Particular>();
+		
 	}
 	
 	/**
@@ -269,14 +267,5 @@ public class Empresa {
 		this.notificaciones = notificaciones;
 	}
 
-	public List<Particular> getParticulares() {
-		return particulares;
-	}
-
-	public void setParticulares(List<Particular> particulares) {
-		this.particulares = particulares;
-	}
-	
-	
 
 }

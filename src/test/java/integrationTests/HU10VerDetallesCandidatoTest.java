@@ -54,7 +54,7 @@ public class HU10VerDetallesCandidatoTest {
 		
 		particular = saParticular.save(particular);
 		
-		assertEquals(true, oferta.getParticulares().contains(particular));
+		assertEquals(true, oferta.getParticularesInscritos().contains(particular));
 
 	}
 }

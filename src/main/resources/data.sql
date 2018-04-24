@@ -9,7 +9,7 @@ INSERT INTO `ofertas` (`id`, `activo`, `ciudad`, `contrato`, `descripcion`, `fin
 (1, 1, 'Talavera de la Reina', 0, '', 0, 0, 'Java ', 1200, 24, 1);
 
 
-INSERT INTO `particulares_ofertas` (`particulares_id`, `ofertas_id`) VALUES ('1', '1'), ('2', '1');
+INSERT INTO `particulares_ofertas_inscritos` (`particulares_inscritos_id`, `ofertas_inscritos_id`) VALUES ('1', '1'), ('2', '1');
 
 INSERT INTO `ofertas` (`id`, `activo`, `ciudad`, `contrato`, `descripcion`, `finalizada`, `jornada`, `nombre`, `salario`, `vacantes`, `empresa_id`) VALUES
 (2, 1, 'Madrid', 0, '', 0, 0, 'HTML y CSS ', 1500, 50, 1);

@@ -53,7 +53,7 @@ public class HU09InscribirseEnOfertaTest {
 		oferta = saOferta.save(oferta);
 		particular = saParticular.save(particular);
 		
-		boolean contains = (oferta.getParticulares().contains(particular)) && (particular.getOfertas().contains(oferta));
+		boolean contains = (oferta.getParticularesInscritos().contains(particular)) && (particular.getOfertas().contains(oferta));
 		
 		assertEquals(true, contains);
 	}

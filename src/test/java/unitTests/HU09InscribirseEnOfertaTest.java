@@ -36,7 +36,7 @@ public class HU09InscribirseEnOfertaTest {
 		
 		repOferta.save(oferta);
 		
-		List<Particular> particulares = oferta.getParticulares();
+		List<Particular> particulares = oferta.getParticularesInscritos();
 		
 		assertEquals(particulares.isEmpty(), true);
 	}

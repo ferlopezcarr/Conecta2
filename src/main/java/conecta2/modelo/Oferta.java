@@ -24,7 +24,7 @@ import conecta2.transfer.TransferOferta;
 @NamedQuery(
     name = "Oferta.findOfertasParticularInscrito",
     //query = "SELECT o FROM Oferta o INNER JOIN o.particulares parts WHERE parts."
-    query ="SELECT o FROM Oferta o WHERE ?1 MEMBER OF o.particulares"
+    query ="SELECT o FROM Oferta o WHERE ?1 MEMBER OF o.particularesInscritos"
 )
 /**
  * Entidad / Objeto de Negocio de Oferta
@@ -63,9 +63,12 @@ public class Oferta {
 	
 	private boolean finalizada;
 	
-	@ManyToMany(mappedBy="ofertas", fetch=FetchType.EAGER)
-	private List<Particular> particulares;
+	@ManyToMany(mappedBy="ofertasInscritos", fetch=FetchType.EAGER)
+	private List<Particular> particularesInscritos;
 
+	@ManyToMany(mappedBy="ofertasSeleccionados")
+	private List<Particular> particularesSeleccionados;
+	
 	@ManyToOne (fetch=FetchType.EAGER)
 	private Empresa empresa;
 
@@ -86,10 +89,12 @@ public class Oferta {
 		this.finalizada = finalizada;
 		this.empresa = empresa;
 		
-		if(this.particulares == null || particulares == null) 
-			this.particulares = new ArrayList<Particular>();
+		this.particularesSeleccionados = new ArrayList<Particular>();
+		
+		if(this.particularesInscritos == null || particulares == null) 
+			this.particularesInscritos = new ArrayList<Particular>();
 		else
-			this.particulares = particulares;
+			this.particularesInscritos = particulares;
 	}
 	
 	public Oferta(Oferta oferta) {
@@ -104,7 +109,7 @@ public class Oferta {
 		this.id = oferta.getId();
 		this.finalizada = oferta.getFinalizada();
 		this.empresa = oferta.getEmpresa();
-		this.particulares= oferta.getParticulares();
+		this.particularesInscritos= oferta.getParticularesInscritos();
 	}
 
 	public static Oferta TranferToEntity(TransferOferta transferOferta, int idOferta) {
@@ -229,18 +234,25 @@ public class Oferta {
 		this.empresa = empresa;
 	}
 	
-	public List<Particular> getParticulares() {
-		return particulares;
+
+	public List<Particular> getParticularesInscritos() {
+		return particularesInscritos;
 	}
 
-	public void setParticulares(List<Particular> particulares) {
-		this.particulares = particulares;
+	public void setParticularesInscritos(List<Particular> particularesInscritos) {
+		this.particularesInscritos = particularesInscritos;
 	}
 
+	public List<Particular> getParticularesSeleccionados() {
+		return particularesSeleccionados;
+	}
 
+	public void setParticularesSeleccionados(List<Particular> particularesSeleccionados) {
+		this.particularesSeleccionados = particularesSeleccionados;
+	}
 
 	public boolean containsParticular(Particular p) {
-		return this.getParticulares().contains(p);
+		return this.getParticularesInscritos().contains(p);
 	}
 	
 	public boolean containsJornada(String text) {
@@ -267,9 +279,9 @@ public class Oferta {
 	
 	public void inscribirParticular(Particular particular) {
 		
-		if(this.particulares == null)
-			this.particulares = new ArrayList<Particular>();
-		this.particulares.add(particular);
+		if(this.particularesInscritos == null)
+			this.particularesInscritos = new ArrayList<Particular>();
+		this.particularesInscritos.add(particular);
 	}
 
 	@Override
@@ -285,7 +297,7 @@ public class Oferta {
 		result = prime * result + id;
 		result = prime * result + ((jornada == null) ? 0 : jornada.hashCode());
 		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
-		result = prime * result + ((particulares == null) ? 0 : particulares.hashCode());
+		result = prime * result + ((particularesInscritos == null) ? 0 : particularesInscritos.hashCode());
 		result = prime * result + ((salario == null) ? 0 : salario.hashCode());
 		result = prime * result + ((vacantes == null) ? 0 : vacantes.hashCode());
 		return result;
@@ -330,10 +342,10 @@ public class Oferta {
 				return false;
 		} else if (!nombre.equals(other.nombre))
 			return false;
-		if (particulares == null) {
-			if (other.particulares != null)
+		if (particularesInscritos == null) {
+			if (other.particularesInscritos != null)
 				return false;
-		} else if (!particulares.equals(other.particulares))
+		} else if (!particularesInscritos.equals(other.particularesInscritos))
 			return false;
 		if (salario == null) {
 			if (other.salario != null)
@@ -347,4 +359,6 @@ public class Oferta {
 			return false;
 		return true;
 	}
+	
+	
 }

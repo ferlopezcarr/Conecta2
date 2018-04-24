@@ -3,6 +3,7 @@ package conecta2.modelo;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,7 +11,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Pattern;
@@ -81,14 +81,16 @@ public class Particular {
 	private boolean activo;
 	
 	
-	@ManyToMany
-	private List<Oferta> ofertas;
+	@ManyToMany(cascade=CascadeType.ALL)
+	private List<Oferta> ofertasInscritos;
+	
+	@ManyToMany(cascade=CascadeType.ALL)
+	private List<Oferta> ofertasSeleccionados;
+	
 	
 	@OneToMany(mappedBy = "particular",fetch=FetchType.LAZY)
 	private List<Notificacion> notificaciones;
 	
-	@ManyToOne (fetch=FetchType.EAGER)
-	private Empresa empresa;
 
 	/**
 	 * Constructora sin argumentos necesaria para JPA
@@ -105,7 +107,7 @@ public class Particular {
 	 * @param activo
 	 * @param puntuacion
 	 */
-	public Particular(String nombre, String apellidos, String dni, String telefono, String email, String password, String descripcion, int puntuacion, boolean activo, List<Oferta> ofertas, List<Notificacion> notificaciones) {
+	public Particular(String nombre, String apellidos, String dni, String telefono, String email, String password, String descripcion, int puntuacion, boolean activo, List<Oferta> ofertasInscritos, List<Notificacion> notificaciones) {
 		this.nombre = nombre;
 		this.apellidos = apellidos;
 		this.dni = dni;
@@ -116,10 +118,12 @@ public class Particular {
 		this.puntuacion = puntuacion;
 		this.activo = activo;
 		
-		if(this.ofertas == null || ofertas == null) 
-			this.ofertas = new ArrayList<Oferta>();
+		this.ofertasSeleccionados = new ArrayList<Oferta>(); 
+		
+		if(this.ofertasInscritos == null || ofertasInscritos == null) 
+			this.ofertasInscritos = new ArrayList<Oferta>();
 		else
-			this.ofertas = ofertas;
+			this.ofertasInscritos = ofertasInscritos;
 		
 		if(this.notificaciones == null || notificaciones == null) 
 			this.notificaciones = new ArrayList<Notificacion>();
@@ -142,10 +146,10 @@ public class Particular {
 		this.puntuacion = particular.puntuacion;
 		this.activo = particular.activo;
 		
-		if(this.ofertas == null || particular.ofertas == null) 
-			this.ofertas = new ArrayList<Oferta>();
+		if(this.ofertasInscritos == null || particular.ofertasInscritos == null) 
+			this.ofertasInscritos = new ArrayList<Oferta>();
 		else
-			this.ofertas = particular.ofertas;
+			this.ofertasInscritos = particular.ofertasInscritos;
 		
 		if(this.notificaciones == null || particular.notificaciones == null) 
 			this.notificaciones = new ArrayList<Notificacion>();
@@ -268,18 +272,18 @@ public class Particular {
 	}
 	
 	public List<Oferta> getOfertas() {
-		return ofertas;
+		return ofertasInscritos;
 	}
 
 	public void setOfertas(List<Oferta> ofertas) {
-		this.ofertas = ofertas;
+		this.ofertasInscritos = ofertas;
 	}
 	
 	public void anadirOferta(Oferta oferta) {
 		
-		if(this.ofertas == null)
-			this.ofertas = new ArrayList<Oferta>();
-		this.ofertas.add(oferta);		
+		if(this.ofertasInscritos == null)
+			this.ofertasInscritos = new ArrayList<Oferta>();
+		this.ofertasInscritos.add(oferta);		
 		
 	}
 	
@@ -291,13 +295,14 @@ public class Particular {
 		this.notificaciones = notificaciones;
 	}
 
-	public Empresa getEmpresa() {
-		return empresa;
+	public List<Oferta> getOfertasSeleccionados() {
+		return ofertasSeleccionados;
 	}
 
-	public void setEmpresa(Empresa empresa) {
-		this.empresa = empresa;
+	public void setOfertasSeleccionados(List<Oferta> ofertasSeleccionados) {
+		this.ofertasSeleccionados = ofertasSeleccionados;
 	}
+
 
     
 }

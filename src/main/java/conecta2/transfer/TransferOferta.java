@@ -158,7 +158,7 @@ public class TransferOferta {
 				oferta.getActivo(),
 				oferta.getFinalizada(),
 				oferta.getEmpresa(),
-				oferta.getParticulares()
+				oferta.getParticularesInscritos()
 				);
 	}
 	
