@@ -827,11 +827,64 @@ public class ControladorPrincipal {
 	@RequestMapping(value="/eliminarOferta", method = RequestMethod.GET, params = {"id"})
 	public ModelAndView eliminarOferta(@RequestParam("id") int id){
 		ModelAndView modelAndView = this.obtenerInstancia();
-		String msg = "¡Oferta eliminada!";
-		modelAndView.addObject("popup", msg);
-		modelAndView.setViewName("mostrarOfertas");
 		
+		Map<String, Object> modelo = modelAndView.getModel();
+		BindingAwareModelMap mod = (BindingAwareModelMap) modelo.get("modelo");
+		Empresa emp = (Empresa)mod.get("empresa");
+		Particular par = (Particular)mod.get("particular");
 		
+		Empresa empresa = null;
+		Particular particular = null;
+		Oferta oferta = null;
+		
+		if (emp != null) {
+			empresa = saEmpresa.buscarPorEmail(emp.getEmail());
+		}
+		else if(par != null) {
+			particular = saParticular.buscarPorEmail(par.getEmail());
+		}
+		
+		if(empresa != null) {//si es empresa
+			oferta = saOferta.buscarPorId(id);
+			
+			//Si no se encuentra la oferta
+			if(oferta == null) {
+				String msg = "¡Oferta no encontrada!";
+				modelAndView.addObject("popup", msg);
+				modelAndView.setViewName("mostrarOfertas");	
+			}
+			else {
+				//Si la oferta no es de la empresa de la sesion
+				if(!oferta.getEmpresa().equals(empresa)) {
+					String msg = "¡No puedes acceder a las ofertas de otras empresas!";
+					modelAndView.addObject("popup", msg);
+					modelAndView.setViewName("mostrarOfertas");
+					oferta = null;
+				} //Si la oferta ya está eliminada
+				else if(!oferta.getActivo()) {
+					String msg = "¡No puedes eliminar una oferta ya desactivada!";
+					modelAndView.addObject("popup", msg);
+					modelAndView.setViewName("mostrarOfertas");
+					oferta = null;
+				}
+			}
+		}
+		else {
+			if(particular != null) {//si es particular
+					String msg = "¡No puedes eliminar las ofertas!";
+					modelAndView.addObject("popup", msg);
+					modelAndView.setViewName("mostrarOfertas");
+					oferta = null;
+			}
+		}
+		
+		//Si no hay errores
+		if(oferta != null) {
+			saOferta.eliminarOferta(id);
+			String msg = "¡Oferta eliminada!";
+			modelAndView.addObject("popup", msg);
+			modelAndView.setViewName("mostrarOfertas");
+		}		
 		
 		return modelAndView;
 	}
