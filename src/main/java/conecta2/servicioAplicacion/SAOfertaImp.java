@@ -91,5 +91,12 @@ public class SAOfertaImp implements SAOferta {
 		
 		return oferta;
 	}
+
+	@Override
+	public void eliminarOferta(int id) {
+		Oferta oferta = repoOferta.findById(id);
+		oferta.setActivo(false);
+		repoOferta.save(oferta);		
+	}
 	
 }

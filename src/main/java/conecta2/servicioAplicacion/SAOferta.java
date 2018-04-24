@@ -22,6 +22,8 @@ public interface SAOferta {
 		
 		public List<Oferta> buscarTodas();
 		
+		public void eliminarOferta(int id);
+		
 		public Oferta save(Oferta oferta);
 		
 }
