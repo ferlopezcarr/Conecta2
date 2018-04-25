@@ -48,7 +48,7 @@
 									<tr th:each="particular : ${listaCandidatos}">
 										<td class="text-center">
 											<div th:if= "${#lists.contains(listaSeleccionados,particular)} ">
-												<i class="material-icons btn botonAzul rounded-circle">done</i>
+												<i class="material-icons ">done</i>
 											</div>
 										</td>
 										<td class="text-center" th:text="${particular.nombre}"></td>
@@ -64,7 +64,7 @@
 													th:href="'/verCandidato?idOferta=' + ${oferta.id} + '&idCandidato=' + ${particular.id}">Ver
 													Perfil</a>
 													<div th:if="${particular}">
-														<a th:if= "${!#lists.contains(listaSeleccionados,particular)} " class="dropdown-item" th:href="'/Contratar-Candidato?idOferta=' + ${oferta.id} + '&idCandidato=' + ${particular.id}">Contratar</a>														
+														<a th:if= "${!#lists.contains(listaSeleccionados,particular)} " class="dropdown-item" th:href="'/Seleccionar-Candidato?idOferta=' + ${oferta.id} + '&idCandidato=' + ${particular.id}">Seleccionar</a>														
 													</div>
 											</div></td>
 									</tr>

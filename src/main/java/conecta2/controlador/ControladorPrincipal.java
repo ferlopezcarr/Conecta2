@@ -1188,7 +1188,7 @@ public class ControladorPrincipal {
 		return modelAndView;
 	}
 	
-	@RequestMapping(value ="/Contratar-Candidato", method = RequestMethod.GET, params = {"idOferta", "idCandidato"})
+	@RequestMapping(value ="/Seleccionar-Candidato", method = RequestMethod.GET, params = {"idOferta", "idCandidato"})
     public ModelAndView guardarContratados(@RequestParam("idOferta") int idOferta, @RequestParam("idCandidato") int idCandidato) {
 		
 		ModelAndView modelAndView = this.obtenerInstancia();
@@ -1243,15 +1243,8 @@ public class ControladorPrincipal {
 						List<Particular> listaParticulares = oferta.getParticularesInscritos();
 						
 						if(listaParticulares.contains(candidato)) {//si se encuentra en la lista de ofertas
-							List<Particular> particulares = oferta.getParticularesSeleccionados();
-							List<Particular> listasSeleccionados = new ArrayList<Particular>();
-							
-							for(int i = 0; i < particulares.size(); i++) {
-								
-								listasSeleccionados.add(particulares.get(i));
-							}
-							particulares= oferta.getParticularesInscritos();
-						
+							List<Particular> particulares =  oferta.getParticularesInscritos();;
+							List<Particular> listasSeleccionados = oferta.getParticularesSeleccionados();
 							
 							modelAndView.addObject("listaCandidatos", particulares);
 							modelAndView.addObject("listaSeleccionados", listasSeleccionados);
