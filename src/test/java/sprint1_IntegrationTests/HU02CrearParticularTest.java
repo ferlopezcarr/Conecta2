@@ -18,7 +18,7 @@ import conecta2.servicioAplicacion.SAParticular;
 @SpringBootTest(classes = C2Aplicacion.class)
 @DataJpaTest
 @ComponentScan(basePackages ="conecta2")
-public class H02CrearParticularTest {
+public class HU02CrearParticularTest {
 	
 	@Autowired
 	public SAParticular saParticular;
