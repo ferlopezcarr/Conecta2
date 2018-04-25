@@ -1,7 +1,8 @@
-package integrationTests;
+package sprint1_UnitTests;
+
 import static org.junit.Assert.*;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,32 +16,31 @@ import conecta2.C2Aplicacion;
 import conecta2.modelo.Contrato;
 import conecta2.modelo.JornadaLaboral;
 import conecta2.modelo.Oferta;
-import conecta2.modelo.Particular;
 import conecta2.servicioAplicacion.SAOferta;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = C2Aplicacion.class)
 @DataJpaTest
 @ComponentScan(basePackages ="conecta2")
-public class HU13EliminarOfertaTest {
+public class HU09BuscadorTest {
+	
 
+	
 	@Autowired
 	private SAOferta saOferta;
 	
 	@Test
-	public void testEliminarOferta() {
+	public void testCorrectSearch() {
+		Oferta oferta = new Oferta("oferta", JornadaLaboral.PorHoras, Contrato.Formación, 1, 200.0, "Madrid", "", true, false, null, null);
 
-		//Creamos las entidades
-		Oferta oferta = new Oferta("oferta2", JornadaLaboral.PorHoras, Contrato.Formación, 1, 230.0, "Barcelona", "prueba", true, false, null, new ArrayList<Particular>());
-		
 		oferta = saOferta.save(oferta);
 		
-		Oferta ofertaNoEliminada = new Oferta(oferta);
+		String letraMayus = oferta.getNombre().substring(0, 1).toUpperCase();
+		String nombreMayusPrim = letraMayus + oferta.getNombre().substring(1, oferta.getNombre().length());
+		List<Oferta> listaOfertas = saOferta.buscarOfertasPorNombreYNombreMayus(oferta.getNombre(), nombreMayusPrim);
 		
-		oferta.setActivo(false);
-		 
-		Oferta ofertaEliminada = saOferta.save(oferta);
-				
-		assertNotEquals(ofertaEliminada.getActivo(), ofertaNoEliminada.getActivo());
+		assertEquals(listaOfertas.get(0).getNombre(), oferta.getNombre());
+		
 	}
+
 }

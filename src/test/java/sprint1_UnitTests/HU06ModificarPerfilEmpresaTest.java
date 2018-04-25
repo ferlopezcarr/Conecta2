@@ -1,4 +1,4 @@
-package unitTests;
+package sprint1_UnitTests;
 
 import static org.junit.Assert.*;
 

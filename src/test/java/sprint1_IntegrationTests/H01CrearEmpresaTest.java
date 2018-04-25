@@ -1,6 +1,6 @@
-package integrationTests;
+package sprint1_IntegrationTests;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,34 +18,51 @@ import conecta2.servicioAplicacion.SAEmpresa;
 @SpringBootTest(classes = C2Aplicacion.class)
 @DataJpaTest
 @ComponentScan(basePackages ="conecta2")
-public class HU04VerPerfilEmpresaTest {
-
+public class H01CrearEmpresaTest {
+	
 	@Autowired
 	public SAEmpresa saEmpresa;
 	
 	
 	@Test
-	public void testEmpresaFoundedByEmailYActivo() {
+	public void testBuscarPorEmail() {
+		boolean ok = false;
 		
 		Empresa empresa = new Empresa("empresaPruebaNombre", "A28599033", "123456789", "empresaPruebaEmail@empresaPruebaEmail.com", "Abc1111", "", 0, true, null, null);
 		
-		empresa = saEmpresa.save(empresa);
+		Empresa empresaGuardada = saEmpresa.save(empresa);
 		
 		Empresa empresaBD = saEmpresa.buscarPorEmail(empresa.getEmail());
 		
-		assertEquals(empresa, empresaBD);
+		//Comprobamos si son las tres iguales
+		boolean equals = (empresa.equals(empresaGuardada));
+		
+		if(equals)
+			ok = empresa.equals(empresaBD);
+		
+		assertEquals(true, ok);
 	}
 	
 	@Test
-	public void testEmpresaFoundedByCifYActivo() {
+	public void testBuscarPorCif() {
+		boolean ok = false;
 		
 		Empresa empresa = new Empresa("empresaPruebaNombre", "A28599033", "123456789", "empresaPruebaEmail@empresaPruebaEmail.com", "Abc1111", "", 0, true, null, null);
 		
-		empresa = saEmpresa.save(empresa);
+		Empresa empresaGuardada = saEmpresa.save(empresa);
 		
 		Empresa empresaBD = saEmpresa.buscarPorCif(empresa.getCif());
 		
-		assertEquals(empresa, empresaBD);
+		//Comprobamos si son las tres iguales
+		boolean equals = (empresa.equals(empresaGuardada));
+		
+		if(equals)
+			ok = empresa.equals(empresaBD);
+		
+		assertEquals(true, ok);
 	}
+	
+	
+	
 
 }

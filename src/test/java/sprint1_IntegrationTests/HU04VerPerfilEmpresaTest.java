@@ -1,4 +1,4 @@
-package integrationTests;
+package sprint1_IntegrationTests;
 
 import static org.junit.Assert.*;
 
@@ -18,25 +18,34 @@ import conecta2.servicioAplicacion.SAEmpresa;
 @SpringBootTest(classes = C2Aplicacion.class)
 @DataJpaTest
 @ComponentScan(basePackages ="conecta2")
-public class HU06ModificarPerfilEmpresaTest {
+public class HU04VerPerfilEmpresaTest {
 
 	@Autowired
 	public SAEmpresa saEmpresa;
 	
+	
 	@Test
-	public void testEmpresaModifyName() {
+	public void testEmpresaFoundedByEmailYActivo() {
 		
 		Empresa empresa = new Empresa("empresaPruebaNombre", "A28599033", "123456789", "empresaPruebaEmail@empresaPruebaEmail.com", "Abc1111", "", 0, true, null, null);
 		
 		empresa = saEmpresa.save(empresa);
 		
-		Empresa empresaGuardada = new Empresa(empresa);
+		Empresa empresaBD = saEmpresa.buscarPorEmail(empresa.getEmail());
 		
-		empresa.setNombreEmpresa("empresaPruebaModificado");
+		assertEquals(empresa, empresaBD);
+	}
+	
+	@Test
+	public void testEmpresaFoundedByCifYActivo() {
+		
+		Empresa empresa = new Empresa("empresaPruebaNombre", "A28599033", "123456789", "empresaPruebaEmail@empresaPruebaEmail.com", "Abc1111", "", 0, true, null, null);
 		
 		empresa = saEmpresa.save(empresa);
 		
-		assertNotEquals(empresa, empresaGuardada);
+		Empresa empresaBD = saEmpresa.buscarPorCif(empresa.getCif());
+		
+		assertEquals(empresa, empresaBD);
 	}
 
 }

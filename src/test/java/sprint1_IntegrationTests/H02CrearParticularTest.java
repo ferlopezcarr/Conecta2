@@ -1,4 +1,4 @@
-package integrationTests;
+package sprint1_IntegrationTests;
 
 import static org.junit.Assert.assertEquals;
 

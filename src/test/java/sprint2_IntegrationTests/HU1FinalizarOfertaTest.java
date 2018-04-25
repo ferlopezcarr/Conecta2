@@ -1,5 +1,4 @@
-package integrationTests;
-
+package sprint2_IntegrationTests;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
@@ -17,28 +16,31 @@ import conecta2.modelo.Contrato;
 import conecta2.modelo.JornadaLaboral;
 import conecta2.modelo.Oferta;
 import conecta2.modelo.Particular;
-
 import conecta2.servicioAplicacion.SAOferta;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = C2Aplicacion.class)
 @DataJpaTest
 @ComponentScan(basePackages ="conecta2")
-public class HU07CrearOfertaTest {
+public class HU1FinalizarOfertaTest {
 
 	@Autowired
 	private SAOferta saOferta;
 	
 	@Test
-	public void testBuscarPorId() {
-		
+	public void testFinalizarOferta() {
+
+		//Creamos las entidades
 		Oferta oferta = new Oferta("oferta2", JornadaLaboral.PorHoras, Contrato.Formación, 1, 230.0, "Barcelona", "prueba", true, false, null, new ArrayList<Particular>());
 		
 		oferta = saOferta.save(oferta);
-
-		Oferta ofertaBD = saOferta.buscarPorId(oferta.getId());
 		
-		assertEquals(oferta, ofertaBD);
+		Oferta ofertaNoFinalizada = new Oferta(oferta);
+		
+		oferta.setFinalizada(true);
+		 
+		Oferta ofertaFinalizada = saOferta.save(oferta);
+				
+		assertNotEquals(ofertaFinalizada.getFinalizada(), ofertaNoFinalizada.getFinalizada());
 	}
-
 }

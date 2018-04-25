@@ -1,4 +1,4 @@
-package unitTests;
+package sprint1_IntegrationTests;
 
 import static org.junit.Assert.*;
 
@@ -7,48 +7,45 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import conecta2.C2Aplicacion;
 import conecta2.modelo.Particular;
-import conecta2.repositorio.RepositorioParticular;
+import conecta2.servicioAplicacion.SAParticular;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = C2Aplicacion.class)
 @DataJpaTest
+@ComponentScan(basePackages ="conecta2")
 public class HU04VerPerfilParticularTest {
 
 	@Autowired
-	private RepositorioParticular repositorioParticular;
+	public SAParticular saParticular;
+	
 	
 	@Test
-	public void testEmpresaFoundedByEmailYActivo() {
+	public void testParticularFoundedByEmailYActivo() {
 		
 		Particular particular = new Particular("particularPruebaNombre", "Apellido Apellido", "99999999Z", "123456789", "particularPruebaEmail@particularPruebaEmail.com", "Abc1111", "", 0, true, null, null);
-
-		repositorioParticular.save(particular);
 		
-		Particular particularBD = repositorioParticular.findByEmail(particular.getEmail());
+		particular = saParticular.save(particular);
 		
-		boolean iguales = particular.equals(particularBD);
-		boolean activo = (particularBD.getActivo() == particular.getActivo()) == true;
+		Particular particularBD = saParticular.buscarPorEmail(particular.getEmail());
 		
-		assertEquals(true, iguales && activo);
+		assertEquals(particular, particularBD);
 	}
 	
 	@Test
-	public void testEmpresaFoundedByCifYActivo() {
+	public void testParticularFoundedByDniYActivo() {
 		
 		Particular particular = new Particular("particularPruebaNombre", "Apellido Apellido", "99999999Z", "123456789", "particularPruebaEmail@particularPruebaEmail.com", "Abc1111", "", 0, true, null, null);
 		
-		repositorioParticular.save(particular);
+		particular = saParticular.save(particular);
 		
-		Particular particularBD = repositorioParticular.findByDni(particular.getDni());
+		Particular particularBD = saParticular.buscarPorDni(particular.getDni());
 		
-		boolean iguales = particular.equals(particularBD);
-		boolean activo = (particularBD.getActivo() == particular.getActivo()) == true;
-		
-		assertEquals(true, iguales && activo);
+		assertEquals(particular, particularBD);
 	}
 
 }

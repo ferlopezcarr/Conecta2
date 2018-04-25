@@ -1,8 +1,8 @@
-package unitTests;
+package sprint2_IntegrationTests;
 
 import static org.junit.Assert.*;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,31 +16,32 @@ import conecta2.C2Aplicacion;
 import conecta2.modelo.Contrato;
 import conecta2.modelo.JornadaLaboral;
 import conecta2.modelo.Oferta;
+import conecta2.modelo.Particular;
 import conecta2.servicioAplicacion.SAOferta;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = C2Aplicacion.class)
 @DataJpaTest
 @ComponentScan(basePackages ="conecta2")
-public class HU09BuscadorTest {
-	
+public class HU2ModificarOfertaTest {
 
-	
 	@Autowired
-	private SAOferta saOferta;
+	public SAOferta saOferta;
 	
 	@Test
-	public void testCorrectSearch() {
-		Oferta oferta = new Oferta("oferta", JornadaLaboral.PorHoras, Contrato.Formación, 1, 200.0, "Madrid", "", true, false, null, null);
-
+	public void testModificarOferta() {
+		
+		Oferta oferta = new Oferta("oferta2", JornadaLaboral.PorHoras, Contrato.Formación, 1, 230.0, "Barcelona", "prueba", true, false, null, new ArrayList<Particular>());
+		
 		oferta = saOferta.save(oferta);
 		
-		String letraMayus = oferta.getNombre().substring(0, 1).toUpperCase();
-		String nombreMayusPrim = letraMayus + oferta.getNombre().substring(1, oferta.getNombre().length());
-		List<Oferta> listaOfertas = saOferta.buscarOfertasPorNombreYNombreMayus(oferta.getNombre(), nombreMayusPrim);
+		Oferta ofertaGuardada = new Oferta(oferta);
 		
-		assertEquals(listaOfertas.get(0).getNombre(), oferta.getNombre());
+		oferta.setNombre("ofertaModificada");;
 		
+		oferta = saOferta.save(oferta);
+		
+		assertNotEquals(oferta,ofertaGuardada);
 	}
 
 }
