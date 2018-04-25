@@ -1188,18 +1188,93 @@ public class ControladorPrincipal {
 		return modelAndView;
 	}
 	
-	@RequestMapping(value ="/guardar-Contratados", method = RequestMethod.POST)
-    public ModelAndView guardarContratados(@ModelAttribute("idOferta") int idOferta, @ModelAttribute("lista") ArrayList<String> idCandidato) {
+	@RequestMapping(value ="/Contratar-Candidato", method = RequestMethod.GET, params = {"idOferta", "idCandidato"})
+    public ModelAndView guardarContratados(@RequestParam("idOferta") int idOferta, @RequestParam("idCandidato") int idCandidato) {
 		
 		ModelAndView modelAndView = this.obtenerInstancia();
 		
 		Map<String, Object> modelo = modelAndView.getModel();
 		BindingAwareModelMap mod = (BindingAwareModelMap) modelo.get("modelo");
-		Oferta oferta = (Oferta)mod.get("idOferta");
+		Empresa emp = (Empresa)mod.get("empresa");
+		
+		Oferta oferta = null;
+		Empresa empresa = null;
+		
+		if(emp != null) {//si el objeto de la vista no esta vacio
+			empresa = saEmpresa.buscarPorEmail(emp.getEmail());
+		}
+
+		if(empresa != null) {//si es empresa
+			oferta = saOferta.buscarPorId(idOferta);
+			
+			//Si no se encuentra la oferta
+			if(oferta == null) {
+				modelAndView.setViewName("mostrarOfertas");
+				String msg = "¡Oferta no encontrada!";
+				modelAndView.addObject("popup", msg);
+			}
+			else {
+				//Si la oferta no es de la empresa de la sesion
+				if(!oferta.getEmpresa().equals(empresa)) {
+					modelAndView.setViewName("mostrarOfertas");
+					String msg = "¡No puedes acceder a las ofertas de otras empresas!";
+					modelAndView.addObject("popup", msg);
+					
+					oferta = null;
+				}
+				else {//Si la oferta es de la empresa de la sesion
+					
+					Particular candidato = saParticular.buscarPorId(idCandidato);
+					
+					if(candidato == null) {//Si no se encuentra al candidato
+						modelAndView.setViewName("mostrarOfertas");
+						String msg = "¡El candidato no existe!";
+						modelAndView.addObject("popup", msg);
+					}
+					else {
+						
+						oferta.getParticularesSeleccionados().add(candidato);
+						candidato.getOfertasSeleccionados().add(oferta);
+						saOferta.save(oferta);
+						saParticular.save(candidato);
+						
+						//Si se encuentra al candidato, comprobamos que el candidato
+						//está en la lista de particulares de la oferta
+						List<Particular> listaParticulares = oferta.getParticularesInscritos();
+						
+						if(listaParticulares.contains(candidato)) {//si se encuentra en la lista de ofertas
+							List<Particular> particulares = oferta.getParticularesSeleccionados();
+							List<Particular> listasSeleccionados = new ArrayList<Particular>();
+							
+							for(int i = 0; i < particulares.size(); i++) {
+								
+								listasSeleccionados.add(particulares.get(i));
+							}
+							particulares= oferta.getParticularesInscritos();
+						
+							
+							modelAndView.addObject("listaCandidatos", particulares);
+							modelAndView.addObject("listaSeleccionados", listasSeleccionados);
+							modelAndView.addObject("oferta", oferta);
+							modelAndView.setViewName("mostrarCandidatos");
+						}
+						else {
+							modelAndView.setViewName("mostrarOfertas");
+							String msg = "¡El candidato introducido no pertenece a la oferta!";
+							modelAndView.addObject("popup", msg);
+						}
+					}
+				}
+			}
+		}
+		else {//si no es empresa
+			modelAndView.setViewName("mostrarOfertas");
+			String msg = "¡No puedes ver a los candidatos de la oferta!";
+			modelAndView.addObject("popup", msg);
+		}
 		
 		
-		
-		return modeloyVista;		
+		return modelAndView;		
 	}
 	
 	
