@@ -24,7 +24,7 @@
   	<!--  EMPRESA -->
   	<div th:if="${popup == null}">
   	<div th:if="${emp != null}">
-  		<div th:replace="fragments/cabecera :: cabecera(titulo='Tus Ofertas')"></div>
+  		<div th:replace="fragments/cabecera :: cabecera(titulo='Ofertas')"></div>
   	</div>
   	
   	
@@ -129,7 +129,7 @@
 									 
 									  		  <a class="dropdown-item" th:href="'/verOferta?id=' +${oferta.id}" >Ver Oferta</a>
 		  									  <a class="dropdown-item" th:href="'/candidatos?id=' +${oferta.id}">Ver Candidatos</a>
-		 									
+		 									 <a class="dropdown-item" th:href="'/eliminarOferta?id=' +${oferta.id}">Eliminar</a>
 		 							 </div>
 									</td>
 	      						</tr>
@@ -148,7 +148,7 @@
   	    <!-- PARTICULARES -->
   	    
   	  	<div th:if="${par != null}">
-  	  		<div th:replace="fragments/cabecera :: cabecera(titulo='Ofertas inscritas')"></div>
+  	  		<div th:replace="fragments/cabecera :: cabecera(titulo='Ofertas Inscritas')"></div>
 
   	    <div class="row mt-5">
   	    <div class="col-10 color-perfil mx-auto border border-dark rounded text-center container-fondoGris">
