@@ -32,7 +32,7 @@
   	
   	<div class="row mt-5">
   	
-		<div class="col-8  mx-auto border border-dark text-center rounded color-perfil ">
+		<div class="col-8  mx-auto  text-center rounded color-perfil ">
 			
 			<div class="row">
 				<div class="col-2"></div>
@@ -42,13 +42,13 @@
 					  <div class="form-group row align-items-center">
 					    <input type="hidden" th:value="${transferOferta.id}" th:field="*{id}" />
 					    <label for="nombre" class="letra-azul letra-negrita-sub ">Título de la oferta:	</label>	
-					     <div class="col-sm-10">	    
+					     <div class="col-sm-9">	    
 						<input th:value=${transferOferta.nombre} type="text" class="form-control" th:field="*{nombre}" id="nombre" placeholder="Título oferta">
 						<label th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}" class="validation-message error"></label>
 						</div>
 					  </div>
 					  
-					  <div class="form-row mt-5 align-items-center">
+					  <div class="form-group row mt-5 align-items-center">
 					     <div class="form-row col-6">
 							    <div  class="col-auto my-1">
 							    
@@ -71,6 +71,7 @@
 					     </div>
 					  </div>
 					  
+					 
 					  
 					  <div class="form-row mt-5 align-items-center">
 					    <div class="form-group col-4">
@@ -93,7 +94,7 @@
 					 	
 					  
 					  </div>
-					  <div class="form-row mt-5">
+					  <div class="form-row mt-4">
 						  <label for="descripcion" class= "letra-azul letra-negrita-sub ">Descripción:</label>
 						  <textarea class="form-control " rows="5" th:field="*{descripcion}" id="descripcion"  th:value="${transferOferta.descripcion}" placeholder="Añade aquí los detalles de la oferta..."></textarea>
 						  <label th:if="${#fields.hasErrors('descripcion')}" th:errors="*{descripcion}" ></label>

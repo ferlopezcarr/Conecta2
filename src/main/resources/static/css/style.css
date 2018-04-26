@@ -191,7 +191,7 @@ a.navbar-brand{
 }
 
 .container-verOferta{
-	background-image: url(../images/verOferta.png);
+	background-image: url(../images/azul.png);
 	background-size: 100% 10%;
 	background-repeat:no-repeat;
 }
@@ -214,6 +214,8 @@ a.navbar-brand{
 .letra-azul{
 	color:#10b8c5;
 }
+
+
 
 .margen-campos-form{
 	margin-left: 30%;
