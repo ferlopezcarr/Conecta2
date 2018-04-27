@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta content="text/html; charset=UTF-8" http-equiv="content-type" />
+	<title>11. Ver información Candidatos</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Iniciar Sesión como Empresa(cerrar sesión si ya tienes otra iniciada)</td></tr>
+</thead>
+<tbody>
+<tr><td>open</td><td>http://localhost:8080/<datalist><option>http://localhost:8080/</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>id=email<datalist><option>id=email</option><option>name=email</option><option>//input[@id='email']</option><option>//input</option><option>css=#email</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=email<datalist><option>id=email</option><option>name=email</option><option>//input[@id='email']</option><option>//input</option><option>css=#email</option></datalist></td><td>endesa@gmail.es</td>
+</tr>
+<tr><td>click</td><td>id=password<datalist><option>id=password</option><option>name=password</option><option>//input[@id='password']</option><option>//div[2]/input</option><option>css=#password</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=password<datalist><option>id=password</option><option>name=password</option><option>//input[@id='password']</option><option>//div[2]/input</option><option>css=#password</option></datalist></td><td>123456</td>
+</tr>
+<tr><td>click</td><td>//button[@type='submit']<datalist><option>//button[@type='submit']</option><option>//button</option><option>css=button.btn.btn-grey</option></datalist></td><td></td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Ver detalles candidatos</td></tr>
+</thead>
+<tbody>
+<tr><td>open</td><td>http://localhost:8080/ofertas<datalist><option>http://localhost:8080/ofertas</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>id=${oferta.id}<datalist><option>id=${oferta.id}</option><option>link=Opciones</option><option>//a[contains(text(),'Opciones')]</option><option>//a[@id='${oferta.id}']</option><option>//a[contains(@href, '#')]</option><option>//td[8]/a</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>link=Ver Candidatos<datalist><option>link=Ver Candidatos</option><option>//a[contains(text(),'Ver Candidatos')]</option><option>//a[contains(@href, '/candidatos?id=1')]</option><option>//a[4]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>id=${particular.id}<datalist><option>id=${particular.id}</option><option>link=Opciones</option><option>//a[contains(text(),'Opciones')]</option><option>//a[@id='${particular.id}']</option><option>//a[contains(@href, '#')]</option><option>//td[5]/a</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>link=VerPerfil<datalist><option>link=Ver
+													Perfil</option><option>//a[contains(text(),'Ver
+													Perfil')]</option><option>//a[contains(@href, '/verCandidato?idOferta=1&amp;idCandidato=1')]</option><option>//td[6]/div/a</option><option>css=a.dropdown-item</option></datalist></td><td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

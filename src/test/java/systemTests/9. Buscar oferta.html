@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta content="text/html; charset=UTF-8" http-equiv="content-type" />
+	<title>9. Buscar oferta</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Iniciar sesión para hacer pruebas(si no has iniciado sesión, mismo usuario que test inicio de sesiónParticular)</td></tr>
+</thead>
+<tbody>
+<tr><td>open</td><td>http://localhost:8080/<datalist><option>http://localhost:8080/</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>id=email<datalist><option>id=email</option><option>name=email</option><option>//input[@id='email']</option><option>//input</option><option>css=#email</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=email<datalist><option>id=email</option><option>name=email</option><option>//input[@id='email']</option><option>//input</option><option>css=#email</option></datalist></td><td>luis@gmail.es</td>
+</tr>
+<tr><td>click</td><td>id=password<datalist><option>id=password</option><option>name=password</option><option>//input[@id='password']</option><option>//div[2]/input</option><option>css=#password</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=password<datalist><option>id=password</option><option>name=password</option><option>//input[@id='password']</option><option>//div[2]/input</option><option>css=#password</option></datalist></td><td>123456</td>
+</tr>
+<tr><td>click</td><td>//button[@type='submit']<datalist><option>//button[@type='submit']</option><option>//button</option></datalist></td><td></td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Buscar oferta existente</td></tr>
+</thead>
+<tbody>
+<tr><td>open</td><td>http://localhost:8080/ofertas<datalist><option>http://localhost:8080/ofertas</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>name=texto<datalist><option>name=texto</option><option>//input[@name='texto']</option><option>//input</option><option>css=input[name="texto"]</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>name=texto<datalist><option>name=texto</option><option>//input[@name='texto']</option><option>//input</option><option>css=input[name="texto"]</option></datalist></td><td>j</td>
+</tr>
+<tr><td>click</td><td>//button[@type='submit']<datalist><option>//button[@type='submit']</option><option>//button</option><option>css=button.btn.btn-std.my-2.my-sm-0</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>link=Mis Ofertas<datalist><option>link=Ofertas</option><option>//a[contains(text(),'Ofertas')]</option><option>//div[@id='navbarSupportedContent']/ul/li[2]/a</option><option>xpath=(//a[contains(@href, '/ofertas')])[2]</option><option>//li[2]/a</option><option>link=MisOfertas</option><option>link=Mis Ofertas</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>name=texto<datalist><option>name=texto</option><option>//input[@name='texto']</option><option>//input</option><option>css=input[name="texto"]</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>name=texto<datalist><option>name=texto</option><option>//input[@name='texto']</option><option>//input</option><option>css=input[name="texto"]</option></datalist></td><td>JAVA</td>
+</tr>
+<tr><td>click</td><td>//button[@type='submit']<datalist><option>//button[@type='submit']</option><option>//button</option><option>css=button.btn.btn-std.my-2.my-sm-0</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>name=texto<datalist><option>name=texto</option><option>//input[@name='texto']</option><option>//input</option><option>css=input[name="texto"]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>link=Mis Ofertas<datalist><option>link=Mis Ofertas</option><option>link=Ofertas</option><option>//a[contains(text(),'Ofertas')]</option><option>//div[@id='navbarSupportedContent']/ul/li[2]/a</option><option>xpath=(//a[contains(@href, '/ofertas')])[2]</option><option>//li[2]/a</option><option>link=MisOfertas</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>name=texto<datalist><option>name=texto</option><option>//input[@name='texto']</option><option>//input</option><option>css=input[name="texto"]</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>name=texto<datalist><option>name=texto</option><option>//input[@name='texto']</option><option>//input</option><option>css=input[name="texto"]</option></datalist></td><td>java</td>
+</tr>
+<tr><td>click</td><td>//button[@type='submit']<datalist><option>//button[@type='submit']</option><option>//button</option><option>css=button.btn.btn-std.my-2.my-sm-0</option></datalist></td><td></td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Buscar oferta no existente</td></tr>
+</thead>
+<tbody>
+<tr><td>open</td><td>http://localhost:8080/ofertas<datalist><option>http://localhost:8080/ofertas</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>name=texto<datalist><option>name=texto</option><option>//input[@name='texto']</option><option>//input</option><option>css=input[name="texto"]</option></datalist></td><td>g</td>
+</tr>
+<tr><td>click</td><td>//button[@type='submit']<datalist><option>//button[@type='submit']</option><option>//button</option><option>css=button.btn.btn-std.my-2.my-sm-0</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>name=texto<datalist><option>name=texto</option><option>//input[@name='texto']</option><option>//input</option><option>css=input[name="texto"]</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>name=texto<datalist><option>name=texto</option><option>//input[@name='texto']</option><option>//input</option><option>css=input[name="texto"]</option></datalist></td><td>89</td>
+</tr>
+<tr><td>click</td><td>//button[@type='submit']<datalist><option>//button[@type='submit']</option><option>//button</option><option>css=button.btn.btn-std.my-2.my-sm-0</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>name=texto<datalist><option>name=texto</option><option>//input[@name='texto']</option><option>//input</option><option>css=input[name="texto"]</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>name=texto<datalist><option>name=texto</option><option>//input[@name='texto']</option><option>//input</option><option>css=input[name="texto"]</option></datalist></td><td>sfjsfhwsjags</td>
+</tr>
+<tr><td>click</td><td>//button[@type='submit']<datalist><option>//button[@type='submit']</option><option>//button</option><option>css=button.btn.btn-std.my-2.my-sm-0</option></datalist></td><td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

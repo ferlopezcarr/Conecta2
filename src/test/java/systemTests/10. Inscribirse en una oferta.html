@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta content="text/html; charset=UTF-8" http-equiv="content-type" />
+	<title>10. Inscribirse en una oferta</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Inscribirte en una oferta</td></tr>
+</thead>
+<tbody>
+<tr><td>click</td><td>link=Mis Ofertas<datalist><option>link=Mis Ofertas</option><option>link=Ofertas</option><option>//a[contains(text(),'Ofertas')]</option><option>//div[@id='navbarSupportedContent']/ul/li[2]/a</option><option>xpath=(//a[contains(@href, '/ofertas')])[2]</option><option>//li[2]/a</option><option>link=MisOfertas</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>name=texto<datalist><option>name=texto</option><option>//input[@name='texto']</option><option>//input</option><option>css=input[name="texto"]</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>name=texto<datalist><option>name=texto</option><option>//input[@name='texto']</option><option>//input</option><option>css=input[name="texto"]</option></datalist></td><td>html</td>
+</tr>
+<tr><td>click</td><td>//button[@type='submit']<datalist><option>//button[@type='submit']</option><option>//button</option><option>css=button.btn.btn-std.my-2.my-sm-0</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>id=${oferta.id}<datalist><option>id=${oferta.id}</option><option>link=Opciones</option><option>//a[contains(text(),'Opciones')]</option><option>//a[@id='${oferta.id}']</option><option>xpath=(//a[contains(@href, '#')])[2]</option><option>//td[8]/a</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>link=Inscribirme<datalist><option>link=Inscribirme</option><option>//a[contains(text(),'Inscribirme')]</option><option>//a[@onclick='this.parentNode.submit();']</option><option>xpath=(//a[contains(@href, '#')])[3]</option><option>//form/a</option><option>css=form &gt; a.dropdown-item</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>//button[@type='button']<datalist><option>//button[@type='button']</option><option>//a/button</option><option>css=button.btn.botonAzul</option></datalist></td><td></td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Buscar oferta en la que ya te has inscrito</td></tr>
+</thead>
+<tbody>
+<tr><td>click</td><td>link=Mis Ofertas<datalist><option>link=Mis Ofertas</option><option>link=Ofertas</option><option>//a[contains(text(),'Ofertas')]</option><option>//div[@id='navbarSupportedContent']/ul/li[2]/a</option><option>xpath=(//a[contains(@href, '/ofertas')])[2]</option><option>//li[2]/a</option><option>link=MisOfertas</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>name=texto<datalist><option>name=texto</option><option>//input[@name='texto']</option><option>//input</option><option>css=input[name="texto"]</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>name=texto<datalist><option>name=texto</option><option>//input[@name='texto']</option><option>//input</option><option>css=input[name="texto"]</option></datalist></td><td>html</td>
+</tr>
+<tr><td>click</td><td>//button[@type='submit']<datalist><option>//button[@type='submit']</option><option>//button</option><option>css=button.btn.btn-std.my-2.my-sm-0</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>id=${oferta.id}<datalist><option>id=${oferta.id}</option><option>link=Opciones</option><option>//a[contains(text(),'Opciones')]</option><option>//a[@id='${oferta.id}']</option><option>xpath=(//a[contains(@href, '#')])[2]</option><option>//td[8]/a</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>link=Inscribirme<datalist><option>link=Inscribirme</option><option>//a[contains(text(),'Inscribirme')]</option><option>//a[@onclick='this.parentNode.submit();']</option><option>xpath=(//a[contains(@href, '#')])[3]</option><option>//form/a</option><option>css=form &gt; a.dropdown-item</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>//button[@type='button']<datalist><option>//button[@type='button']</option><option>//a/button</option><option>css=button.btn.botonAzul</option></datalist></td><td></td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Ver oferta en la que te has inscrito</td></tr>
+</thead>
+<tbody>
+<tr><td>open</td><td>http://localhost:8080/ofertas<datalist><option>http://localhost:8080/ofertas</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>//input[@value='Ver oferta']<datalist><option>//input[@value='Ver oferta']</option><option>//a/input</option></datalist></td><td></td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Cerrar sesión</td></tr>
+</thead>
+<tbody>
+<tr><td>open</td><td>http://localhost:8080/ofertas<datalist><option>http://localhost:8080/ofertas</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>link=Desconectar<datalist><option>link=Desconectar</option><option>//a[contains(text(),'Desconectar')]</option><option>//div[@id='navbarSupportedContent']/ul/li[4]/a</option><option>//a[contains(@href, '/logout')]</option><option>//li[4]/a</option></datalist></td><td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

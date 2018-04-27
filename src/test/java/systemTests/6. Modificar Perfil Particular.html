@@ -3,27 +3,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 	<meta content="text/html; charset=UTF-8" http-equiv="content-type" />
-	<title>7. Modificar Perfil Particular</title>
+	<title>6. Modificar Perfil Particular</title>
 </head>
 <body>
-<table cellpadding="1" cellspacing="1" border="1">
-<thead>
-<tr><td rowspan="1" colspan="3">Iniciar sesión para hacer pruebas(si no has iniciado sesión, mismo usuario que test inicio de sesiónParticular)</td></tr>
-</thead>
-<tbody>
-<tr><td>open</td><td>http://localhost:8080/<datalist><option>http://localhost:8080/</option></datalist></td><td></td>
-</tr>
-<tr><td>click</td><td>id=email<datalist><option>id=email</option><option>name=email</option><option>//input[@id='email']</option><option>//input</option><option>css=#email</option></datalist></td><td></td>
-</tr>
-<tr><td>type</td><td>id=email<datalist><option>id=email</option><option>name=email</option><option>//input[@id='email']</option><option>//input</option><option>css=#email</option></datalist></td><td>luis@gmail.es</td>
-</tr>
-<tr><td>click</td><td>id=password<datalist><option>id=password</option><option>name=password</option><option>//input[@id='password']</option><option>//div[2]/input</option><option>css=#password</option></datalist></td><td></td>
-</tr>
-<tr><td>type</td><td>id=password<datalist><option>id=password</option><option>name=password</option><option>//input[@id='password']</option><option>//div[2]/input</option><option>css=#password</option></datalist></td><td>123456</td>
-</tr>
-<tr><td>click</td><td>//button[@type='submit']<datalist><option>//button[@type='submit']</option><option>//button</option></datalist></td><td></td>
-</tr>
-</tbody></table>
 <table cellpadding="1" cellspacing="1" border="1">
 <thead>
 <tr><td rowspan="1" colspan="3">Campos de texto vacios</td></tr>
@@ -90,6 +72,18 @@
 <tr><td>type</td><td>id=descripcion<datalist><option>id=descripcion</option><option>name=descripcion</option><option>//textarea[@id='descripcion']</option><option>//textarea</option><option>css=#descripcion</option></datalist></td><td>prueba</td>
 </tr>
 <tr><td>click</td><td>xpath=(//button[@type='submit'])[2]<datalist><option>xpath=(//button[@type='submit'])[2]</option><option>//div[2]/button</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>xpath=(//button[@type='submit'])[2]<datalist><option>xpath=(//button[@type='submit'])[2]</option><option>//a/button</option><option>css=button.btn.botonAzul</option></datalist></td><td></td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Cerrar sesión Particular</td></tr>
+</thead>
+<tbody>
+<tr><td>open</td><td>http://localhost:8080/ofertas<datalist><option>http://localhost:8080/ofertas</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>link=Desconectar<datalist><option>link=Desconectar</option><option>//a[contains(text(),'Desconectar')]</option><option>//div[@id='navbarSupportedContent']/ul/li[4]/a</option><option>//a[contains(@href, '/logout')]</option><option>//li[4]/a</option></datalist></td><td></td>
 </tr>
 </tbody></table>
 </body>
