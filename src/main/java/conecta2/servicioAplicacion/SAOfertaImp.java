@@ -61,7 +61,7 @@ public class SAOfertaImp implements SAOferta {
 	 */
 	@Override
 	public List<Oferta> buscarOfertasFinalizadas(Empresa empresa) {
-		return repoOferta.findByEmpresaAndFinalizadaTrue(empresa);
+		return repoOferta.findByEmpresaAndFinalizadaTrueAndActivoTrue(empresa);
 	}
 	
 	/**
