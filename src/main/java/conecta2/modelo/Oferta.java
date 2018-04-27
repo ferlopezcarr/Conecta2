@@ -357,6 +357,12 @@ public class Oferta {
 				return false;
 		} else if (!vacantes.equals(other.vacantes))
 			return false;
+		if(particularesSeleccionados == null) {
+			if(other.particularesSeleccionados != null)
+				return false;
+		}
+		else if(!particularesSeleccionados.equals(other.particularesSeleccionados))
+			return false;
 		return true;
 	}
 	
