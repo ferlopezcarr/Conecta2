@@ -33,7 +33,12 @@
 			      	<li class="nav-item my-auto">
 			        	<a class="nav-link" th:if="${particular == null && empresa == null && notificaciones == null}" href="#"><i class="material-icons">notifications_none</i></a>
 			      		<div class="col-auto">
-				      		<a class="rounded" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="material-icons notification-active rounded" style="color: white;">notifications_active</i></a>
+			      			<div>
+			      				<a class="rounded" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="material-icons notification-active rounded" style="color: white;">notifications_active</i></a>
+			      				<span id="" class="notification-number">99</span>
+			      			</div>
+				      		
+				      		
 				      		<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 							    <div th:each="notificacion : ${listaNotificacionesEmp}" th:if="${!notificacion.leida and empresa != null}" class="dropdown-item drop-menu-item d-flex flex-row">
 							    	<span th:text="${notificacion.descripcion}" class="my-auto"></span>

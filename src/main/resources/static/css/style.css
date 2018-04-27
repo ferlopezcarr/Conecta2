@@ -127,6 +127,12 @@ a.navbar-brand{
 	left: 50%;
 	transform: translatex(-50%);
 }
+
+.perfil-img {
+	height: 200px;
+	width: 200px;
+}
+
 .separador-gris{
 	background-color:#89898C;
 }
@@ -233,10 +239,6 @@ a.navbar-brand{
 	margin-bottom:5%;
 }
 
-.margen-boton-modificar{
-	margin-left:15%;
-}
-
 .margen-datos{
 	margin-left:30%;
 }
@@ -257,8 +259,6 @@ a.navbar-brand{
 	
 	
 }
-
-
 
 .btn-finalizar{
 	background-color: #ff6340;
@@ -334,6 +334,13 @@ filter: FlipH;
 .nav-logout:hover {
 	color: #FFFFFF;
 	opacity: 0.5;
+}
+ 
+.notification-number {
+	margin: 0px 0px 0px -18px;
+	padding: 1px 6px;
+	border-radius: 8000px;
+	background-color: #008f9b;
 }
  
 .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
