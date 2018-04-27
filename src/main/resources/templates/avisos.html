@@ -29,8 +29,10 @@
 					<label th:text="${avisoEliminar}"></label>
 				</div>
 				<div class="modal-footer">
-				<a th:href="'/eliminarOferta?id=' +${id}" class="btn">Aceptar</a> 
-					<a href="/ofertas" class="btn">Cancelar</a> 
+				<a th:href="'/eliminarOferta?id=' +${id}">
+				<button type="submit"  class="btn botonAzul">Eliminar Oferta</button> 
+				</a>
+					<a href="/ofertas" class="btn btn-grey">Cancelar</a> 
 			 	</div>
 			</div>
 									      
@@ -46,8 +48,10 @@
 					<label th:text="${avisoFinalizar}"></label>
 				</div>
 				<div class="modal-footer">
-				<a th:href="'/finalizar-oferta?id=' +${id}" class="btn">Aceptar</a> 
-					<a href="/ofertas" class="btn">Cancelar</a> 
+					<a th:href="'/finalizar-oferta?id=' +${id}">
+					<button type="submit"  class="btn botonAzul">Finalizar Oferta</button> 
+					</a>
+				    <a href="/ofertas" class="btn btn-grey">Cancelar</a> 				
 			 	</div>
 			</div>
 									      
