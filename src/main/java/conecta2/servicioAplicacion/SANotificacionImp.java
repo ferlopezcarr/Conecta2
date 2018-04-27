@@ -39,7 +39,7 @@ public class SANotificacionImp implements SANotificacion {
 	@Override
 	public List<Notificacion> buscarPorParticular(Particular par) {
 		// TODO Auto-generated method stub
-		return this.repoNotificacion.findByParticular(par);
+		return this.repoNotificacion.findByParticularAndLeidaFalse(par);
 	}
 
 	/**
@@ -49,7 +49,7 @@ public class SANotificacionImp implements SANotificacion {
 	@Override
 	public List<Notificacion> buscarPorEmpresa(Empresa emp) {
 		// TODO Auto-generated method stub
-		return this.repoNotificacion.findByEmpresa(emp);
+		return this.repoNotificacion.findByEmpresaAndLeidaFalse(emp);
 	}
 
 }

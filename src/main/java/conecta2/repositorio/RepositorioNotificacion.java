@@ -14,7 +14,7 @@ public interface RepositorioNotificacion extends JpaRepository<Notificacion, Int
 
 
 	 Notificacion findById(int id);
-	 List<Notificacion> findByParticular(Particular par);
-	 List<Notificacion> findByEmpresa(Empresa emp);
+	 List<Notificacion> findByParticularAndLeidaFalse(Particular par);
+	 List<Notificacion> findByEmpresaAndLeidaFalse(Empresa emp);
 	 
 }

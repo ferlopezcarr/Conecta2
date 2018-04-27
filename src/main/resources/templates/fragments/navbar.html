@@ -33,18 +33,18 @@
 			      	<li class="nav-item my-auto">
 			        	<a class="nav-link" th:if="${particular == null && empresa == null && notificaciones == null}" href="#"><i class="material-icons">notifications_none</i></a>
 			      		<div class="col-auto">
-			      			<div>
+			      		
 			      				<a class="rounded" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="material-icons notification-active rounded" style="color: white;">notifications_active</i></a>
-			      				<span id="" class="notification-number">99</span>
-			      			</div>
+			      				<span th:if="${empresa != null and listaNotificacionesEmp.size() &gt; 0}" th:text="${listaNotificacionesEmp.size()}" id="" class="notification-number"></span>
+			      				<span th:if="${particular != null and listaNotificacionesPar.size() &gt; 0}" th:text="${listaNotificacionesPar.size()}" id="" class="notification-number"></span>
 				      		
 				      		
 				      		<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-							    <div th:each="notificacion : ${listaNotificacionesEmp}" th:if="${!notificacion.leida and empresa != null}" class="dropdown-item drop-menu-item d-flex flex-row">
+							    <div th:each="notificacion : ${listaNotificacionesEmp}" th:if="${empresa != null}" class="dropdown-item drop-menu-item d-flex flex-row">
 							    	<span th:text="${notificacion.descripcion}" class="my-auto"></span>
 							    	<a class="my-auto ml-auto" th:href="'/notificacionLeida?id=' + ${notificacion.id}"><i class="material-icons rounded-circle">clear</i></a>
 							    </div>
-							       <div th:each="notificacion : ${listaNotificacionesPar}" th:if="${!notificacion.leida and particular != null}" class="dropdown-item drop-menu-item d-flex flex-row">
+							       <div th:each="notificacion : ${listaNotificacionesPar}" th:if="${particular != null}" class="dropdown-item drop-menu-item d-flex flex-row">
 							    	<span th:text="${notificacion.descripcion}" class="my-auto"></span>
 							    	<a class="my-auto ml-auto" th:href="'/notificacionLeida?id=' + ${notificacion.id}"><i class="material-icons rounded-circle">clear</i></a>
 							    </div>

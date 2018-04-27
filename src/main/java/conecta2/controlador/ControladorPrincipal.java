@@ -1,5 +1,7 @@
 package conecta2.controlador;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -1324,7 +1326,7 @@ public class ControladorPrincipal {
 	    
 	    saNotificacion.crearNotificacion(not);
 	    
-	    mostrarOfertas();
+	    modelAndView.setViewName("redirect:/ofertas");
 
 		return modelAndView;
 	}
