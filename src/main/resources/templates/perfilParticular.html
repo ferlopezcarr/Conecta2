@@ -23,14 +23,14 @@
 	
   	<div class="row mt-5">
   		<div class="col-10 color-perfil  mx-auto border border-dark rounded container-perfil">
-        	<div class="row justify-content-between">
+        	<div class="row mb-3 justify-content-between">
         		<div class="col-4"></div>
-       			<div class="col-4 mb-3"> 
-        			 <img src="/images/avatar.png" class="perfil-img text-center img-thumbnail img-fluid rounded-circle" alt="foto perfil">
+       			<div class="col-4 text-center"> 
+        			 <img src="/images/avatar.png" class="perfil-img img-thumbnail img-fluid rounded-circle" alt="foto perfil">
         	    </div>    
-        	    <div class="col-4 margen-boton-modificar"> 	
+        	    <div class="col-4"> 	
 	 	            <a th:href="'/particular/modificar'" th:if="${particular != null}"> 
-	 	            	<button type="submit" class="mt-4 btn boton  border-Azul rounded-circle "  name="botonModificar"><i class="material-icons">edit</i></button>
+	 	            	<button type="submit" class="mt-5 mr-5 btn boton border-Azul rounded-circle float-right"  name="botonModificar"><i class="material-icons">edit</i></button>
 	 	            </a>
         	    </div>	 
        		</div> 

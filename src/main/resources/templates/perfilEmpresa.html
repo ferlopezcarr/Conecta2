@@ -22,13 +22,14 @@
   	
   	<div class="row mt-5">
   		<div class="col-10 color-perfil mx-auto border border-dark rounded container-perfilEmpresa">
-        	<div class="row">
-        		<div class="col-4 ml-auto mb-3"> 
+        	<div class="row mb-3 justify-content-between">
+        		<div class="col-4"></div>
+        		<div class="col-4 text-center"> 
         			 <img src="/images/maleta.png" class="perfil-img img-thumbnail img-fluid rounded-circle" alt="foto perfil">
         	    </div>    
-        	    <div class="col-1  margen-boton-modificar"> 
+        	    <div class="col-4"> 
   	              <a th:href="'/empresa/modificar'" th:if="${empresa != null}">
-  	               	<button type="submit" class="mt-4 btn boton  border-Azul rounded-circle" name="botonModificar"><i class="material-icons">edit</i></button>
+  	               	<button type="submit" class="mt-5 mr-5 btn boton border-Azul rounded-circle float-right" name="botonModificar"><i class="material-icons">edit</i></button>
  	               	  </a>
         	    </div>	 
         	</div> 
