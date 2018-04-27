@@ -1270,8 +1270,27 @@ public class ControladorPrincipal {
 		return modelAndView;		
 	}
 	
+	// ------------- AVISOS ------------- //
 	
-	
+	@RequestMapping(value="/avisos", method = RequestMethod.GET, params = {"id", "tipo"})
+	public ModelAndView aviso(@RequestParam("id") int id, @RequestParam("tipo") String tipo){
+		
+	    ModelAndView modelAndView = this.obtenerInstancia();
+	    if (tipo.equals("eliminar")) {
+			modelAndView.setViewName("avisos");
+			String msg = "¿Está seguro de que quiere eliminar la oferta? Esta acción no se puede deshacer";
+			modelAndView.addObject("avisoEliminar", msg);
+			modelAndView.addObject("id", id);
+	    }
+	    else if (tipo.equals("finalizar")) {
+			modelAndView.setViewName("avisos");
+			String msg = "¿Está seguro de que quiere finalizar la oferta? No podrá seleccionar más candidatos para esta oferta";
+			modelAndView.addObject("avisoFinalizar", msg);
+			modelAndView.addObject("id", id);
+	    }
+
+		return modelAndView;
+	}
 	
 	/**
 	 * Método que añade al particular o empresa como variable permanente para el modelo

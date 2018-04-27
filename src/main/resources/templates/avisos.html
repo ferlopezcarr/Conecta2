@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+  <head th:fragment="head">
+    <title>Conecta2</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous" />
+    
+    <!-- Style CSS -->
+    <link href="../css/style.css" rel="stylesheet" />
+    
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  </head>
+  <body>
+  	<nav th:replace="fragments/navbar :: navbar"></nav>
+  	
+	
+  	    <!-- Si hay un error -->
+	<div th:if="${avisoEliminar != null}">	
+		<div class="modal-dialog">
+									    
+			 <!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-body">
+					<label th:text="${avisoEliminar}"></label>
+				</div>
+				<div class="modal-footer">
+				<a th:href="'/eliminarOferta?id=' +${id}" class="btn">Aceptar</a> 
+					<a href="/ofertas" class="btn">Cancelar</a> 
+			 	</div>
+			</div>
+									      
+		</div>	
+	</div>
+	
+		<div th:if="${avisoFinalizar != null}">	
+		<div class="modal-dialog">
+									    
+			 <!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-body">
+					<label th:text="${avisoFinalizar}"></label>
+				</div>
+				<div class="modal-footer">
+				<a th:href="'/finalizar-oferta?id=' +${id}" class="btn">Aceptar</a> 
+					<a href="/ofertas" class="btn">Cancelar</a> 
+			 	</div>
+			</div>
+									      
+		</div>	
+	</div>
+	
+	
+	<!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="/js/jquery-3.2.1.slim.min.js" ></script>
+    <script src="/js/popper.min.js"></script>
+    <script src="/js/bootstrap.min.js" ></script>    
+
+  </body>
+</html>
