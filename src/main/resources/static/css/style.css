@@ -303,6 +303,41 @@ filter: FlipH;
 .nav-link{
 	color: #10b8c5;
 }
+
+.notification-active {
+	padding: 6px;
+	color: white;
+	background-color: #10b8c5;
+}
+
+.drop-menu-link {
+	padding: 0px;	
+}
+
+.drop-menu-item {
+	font-size: 15px;
+}
+
+.drop-menu-item i {
+	color: #89898C;
+	font-size: 12px;
+}
+
+.drop-menu-item i:hover {
+	color: white;
+	background-color: #10b8c5;
+	font-size: 12px;
+	cursor:pointer;
+}
+
+.nav-logout {
+	color: #FFFFFF;
+}
+
+.nav-logout:hover {
+	color: #FFFFFF;
+	opacity: 0.5;
+}
  
 .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
     color: #fff;

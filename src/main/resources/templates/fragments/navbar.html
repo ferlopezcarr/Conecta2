@@ -30,18 +30,31 @@
 			      	<li class="nav-item">
 			        	<a class="nav-link" href="/ofertas">Mis Ofertas</a>
 			      	</li>
-			      	<li class="nav-item">
-			        	<a class="nav-link" href="#"><i class="material-icons">notifications_none</i></a>
+			      	<li class="nav-item my-auto">
+			        	<a class="nav-link" th:if="${particular == null && empresa == null && notificaciones == null}" href="#"><i class="material-icons">notifications_none</i></a>
+			      		<div class="col-auto">
+				      		<a class="nav-link drop-menu-link rounded" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="material-icons notification-active rounded" style="color: white;">notifications_active</i></a>
+				      		<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+							    <div class="dropdown-item drop-menu-item d-flex flex-row">
+							    	<span class="my-auto">Action</span>
+							    	<a class="my-auto ml-auto"><i class="material-icons rounded-circle">clear</i></a>
+							    </div>
+							    <div class="dropdown-item drop-menu-item d-flex flex-row">
+							    	<span class="my-auto">Another action</span>
+							    	<a class="my-auto ml-auto pl-3"><i class="material-icons rounded-circle">clear</i></a>
+							    </div>
+							  </div>
+						</div>
 			      	</li>
-					<li class="nav-item">
-		        		<a class="nav-link" href="/logout">Desconectar</a>
-		      		</li>
 			     </ul>
 			</div>
 			<form class="form-inline  my-2 my-lg-0" th:if="${particular} != null" th:action="@{/buscar}" method="GET">
 				<input class="form-control mr-sm-2" type="search" name="texto" aria-label="Buscar">
 				<button class="btn btn-std my-2 my-sm-0" type="submit">Buscar</button>
-			</form>			
+			</form>
+			<div class="nav-item float-right">
+				<a class="nav-link nav-logout navbar-light mx-3" th:if="${particular} or ${empresa} != null" href="/logout">Desconectar</a>
+			</div>
 		</nav>
 		
 		<!-- Optional JavaScript -->
