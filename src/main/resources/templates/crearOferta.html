@@ -78,8 +78,13 @@
 						   	<label th:if="${#fields.hasErrors('auxSalario')}" th:errors="*{auxSalario}" class="validation-message error"></label>
 					 	</div>
 					 	
-					  
 					  </div>
+					  
+					  <div class="form-row mt-4">
+						    <label for="tecnologia" class="sr-only">Tecnologías:</label>
+						<!--  	<input type="text" class="form-control" th:field="*{tecnologia}" id="tecnologia" placeholder="Tecnologías">
+							<label th:if="${#fields.hasErrors('tecnologia')}" th:errors="*{tecnologia}" class="validation-message error"></label> -->
+					  	</div>
 					  <div class="form-row mt-4">
 						  <label for="descripcion" class= "letra-azul">Descripcion:</label>
 						  <textarea class="form-control " rows="5" th:field="*{descripcion}" id="descripcion" placeholder="Añade aquí los detalles de la oferta..."></textarea>

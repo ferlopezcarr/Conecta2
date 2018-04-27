@@ -41,7 +41,7 @@
 			 		
 					  <div class="form-group row align-items-center">
 					    <input type="hidden" th:value="${transferOferta.id}" th:field="*{id}" />
-					    <label for="nombre" class="letra-azul letra-negrita-sub ">Título de la oferta:	</label>	
+					    <label for="nombre" class="letra-azul">Título de la oferta:	</label>	
 					     <div class="col-sm-9">	    
 						<input th:value=${transferOferta.nombre} type="text" class="form-control" th:field="*{nombre}" id="nombre" placeholder="Título oferta">
 						<label th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}" class="validation-message error"></label>
@@ -52,7 +52,7 @@
 					     <div class="form-row col-6">
 							    <div  class="col-auto my-1">
 							    
-							      <label class="mr-sm-2 letra-azul letra-negrita-sub " for="jornada">Tipo jornada:</label>
+							      <label class="mr-sm-2 letra-azul" for="jornada">Tipo jornada:</label>
 							      <select class="custom-select mr-sm-2" id="jornada" th:field="*{jornada}" th:value="${transferOferta.jornada}">
 							        <option selected th:each="jornada : ${jornadaValues}" th:value="${jornada}" th:text="${jornada.displayName}"></option>
 							      </select>
@@ -62,7 +62,7 @@
 					    
 					     <div class="form-row col-6">
 						    <div class="col-auto my-1">
-						      <label class="mr-sm-2 letra-azul letra-negrita-sub ml-4" for="Contrato">Tipo contrato:</label>
+						      <label class="mr-sm-2 letra-azul ml-4" for="Contrato">Tipo contrato:</label>
 						      <select class="custom-select mr-sm-2" id="Contrato" th:field="*{contrato}"  th:value="${transferOferta.contrato}">
 						      	<option selected th:each="c : ${contratoValues}" th:value="${c}" th:text="${c.displayName}"></option>
 						      </select>
@@ -75,19 +75,19 @@
 					  
 					  <div class="form-row mt-5 align-items-center">
 					    <div class="form-group col-4">
-					    	<label for="ciudad" class ="letra-azul letra-negrita-sub ">Ciudad</label>
+					    	<label for="ciudad" class ="letra-azul">Ciudad</label>
 					   		<input type="text" class="form-control" th:field="*{ciudad}" id="ciudad" placeholder="Ciudad"  th:value="${transferOferta.ciudad}">
 					   		<label th:if="${#fields.hasErrors('ciudad')}" th:errors="*{ciudad}" class="validation-message error"></label>
 					    </div>
 					   
 					    <div class="form-group col-4">
-						    <label for="salario" class="letra-azul letra-negrita-sub ">Vacantes</label>
+						    <label for="salario" class="letra-azul">Vacantes</label>
 						   	<input type="text" class="form-control" th:field="*{auxVacantes}" id="vacantes" placeholder="Vacantes"  th:value="${transferOferta.auxVacantes}">
 						   	<label th:if="${#fields.hasErrors('auxVacantes')}" th:errors="*{auxVacantes}" class="validation-message error"></label>
 					 	</div>
 					 	
 					 	<div class="form-group col-4">
-						    <label for="salario" class="letra-azul letra-negrita-sub">Salario</label>
+						    <label for="salario" class="letra-azul">Salario</label>
 						   	<input type="text" class="form-control" th:field="*{auxSalario}" id="salario" placeholder="Salario"  th:value="${transferOferta.auxSalario}">
 						   	<label th:if="${#fields.hasErrors('auxSalario')}" th:errors="*{auxSalario}" class="validation-message error"></label>
 					 	</div>
@@ -95,7 +95,7 @@
 					  
 					  </div>
 					  <div class="form-row mt-4">
-						  <label for="descripcion" class= "letra-azul letra-negrita-sub ">Descripción:</label>
+						  <label for="descripcion" class= "letra-azul">Descripción:</label>
 						  <textarea class="form-control " rows="5" th:field="*{descripcion}" id="descripcion"  th:value="${transferOferta.descripcion}" placeholder="Añade aquí los detalles de la oferta..."></textarea>
 						  <label th:if="${#fields.hasErrors('descripcion')}" th:errors="*{descripcion}" ></label>
 					  </div>
