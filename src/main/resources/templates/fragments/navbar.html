@@ -33,7 +33,7 @@
 			      	<li class="nav-item my-auto">
 			        	<a class="nav-link" th:if="${particular == null && empresa == null && notificaciones == null}" href="#"><i class="material-icons">notifications_none</i></a>
 			      		<div class="col-auto">
-				      		<a class="nav-link drop-menu-link rounded" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="material-icons notification-active rounded" style="color: white;">notifications_active</i></a>
+				      		<a class="rounded" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="material-icons notification-active rounded" style="color: white;">notifications_active</i></a>
 				      		<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 							    <div class="dropdown-item drop-menu-item d-flex flex-row">
 							    	<span class="my-auto">Action</span>
@@ -49,11 +49,13 @@
 			     </ul>
 			</div>
 			<form class="form-inline  my-2 my-lg-0" th:if="${particular} != null" th:action="@{/buscar}" method="GET">
-				<input class="form-control mr-sm-2" type="search" name="texto" aria-label="Buscar">
-				<button class="btn btn-std my-2 my-sm-0" type="submit">Buscar</button>
-			</form>
-			<div class="nav-item float-right">
-				<a class="nav-link nav-logout navbar-light mx-3" th:if="${particular} or ${empresa} != null" href="/logout">Desconectar</a>
+							<input class="form-control mr-sm-2" type="search" name="texto" aria-label="Buscar">
+							<button class="btn btn-std my-2 my-sm-0" type="submit">Buscar</button>
+						</form>
+			<div class="d-flex flex-row float-right" th:if="${particular} or ${empresa} != null">
+				<span class="nav-link nav-email" th:if="${empresa} != null" th:text="${empresa.email}"></span>
+				<span class="nav-link nav-email" th:if="${particular} != null" th:text="${particular.email}"></span>
+				<a class="nav-link nav-logout navbar-light my-auto mr-3 ml-2" href="/logout">Desconectar</a>
 			</div>
 		</nav>
 		
