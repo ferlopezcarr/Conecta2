@@ -69,7 +69,7 @@
 													th:href="'/verCandidato?idOferta=' + ${oferta.id} + '&idCandidato=' + ${particular.id}">Ver
 													Perfil</a>
 													<div th:if="${particular}">
-														<a th:if= "${!#lists.contains(listaSeleccionados,particular)} " class="dropdown-item" th:href="'/Seleccionar-Candidato?idOferta=' + ${oferta.id} + '&idCandidato=' + ${particular.id}">Seleccionar</a>														
+														<a th:if= "${!#lists.contains(listaSeleccionados,particular) and !oferta.finalizada} " class="dropdown-item" th:href="'/Seleccionar-Candidato?idOferta=' + ${oferta.id} + '&idCandidato=' + ${particular.id}">Seleccionar</a>														
 													</div>
 											</div></td>
 									</tr>
