@@ -1278,13 +1278,13 @@ public class ControladorPrincipal {
 	    ModelAndView modelAndView = this.obtenerInstancia();
 	    if (tipo.equals("eliminar")) {
 			modelAndView.setViewName("avisos");
-			String msg = "¿Está seguro que quiere eliminar la oferta? Esta acción no se podrá deshacer posteriormente";
+			String msg = "¿Está seguro de que quiere eliminar la oferta? Esta acción no se podrá deshacer posteriormente";
 			modelAndView.addObject("avisoEliminar", msg);
 			modelAndView.addObject("id", id);
 	    }
 	    else if (tipo.equals("finalizar")) {
 			modelAndView.setViewName("avisos");
-			String msg = "¿Está seguro que quiere finalizar la oferta? No podrá seleccionar más candidatos para esta oferta";
+			String msg = "¿Está seguro de que quiere finalizar la oferta? No podrá seleccionar más candidatos para esta oferta";
 			modelAndView.addObject("avisoFinalizar", msg);
 			modelAndView.addObject("id", id);
 	    }
