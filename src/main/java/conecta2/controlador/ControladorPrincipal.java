@@ -22,11 +22,13 @@ import org.springframework.web.servlet.ModelAndView;
 import conecta2.modelo.Contrato;
 import conecta2.modelo.Empresa;
 import conecta2.modelo.JornadaLaboral;
+import conecta2.modelo.Notificacion;
 import conecta2.modelo.Oferta;
 import conecta2.modelo.Particular;
 import conecta2.modelo.Rol;
 import conecta2.servicioAplicacion.SAEmail;
 import conecta2.servicioAplicacion.SAEmpresa;
+import conecta2.servicioAplicacion.SANotificacion;
 import conecta2.servicioAplicacion.SAOferta;
 import conecta2.servicioAplicacion.SAParticular;
 import conecta2.transfer.TransferParticular;
@@ -38,17 +40,23 @@ import conecta2.transfer.TransferOferta;
  */
 @Controller
 public class ControladorPrincipal {	
+	
 	@Autowired	
 	private SAParticular saParticular;
+	
 	@Autowired
 	private SAEmpresa saEmpresa;
+	
 	@Autowired
 	private SAEmail saEmail;
+	
 	@Autowired
 	private SAOferta saOferta;
 	
-	private ModelAndView modeloyVista;
+	@Autowired
+	private SANotificacion saNotificacion;
 	
+	private ModelAndView modeloyVista;
 	
 	/**
 	* Metodo que implementa el patron singleton para el atributo que maneja el modelo y la vista de la aplicacion
@@ -218,7 +226,12 @@ public class ControladorPrincipal {
 		if(emp != null) {
 			empresa = saEmpresa.buscarPorId(emp.getId());	
 		}
-		
+		///////////////////////////Apaño para testear las notificaciones///////////////////////////////
+		Notificacion not = new Notificacion();
+		not.setDescripcion("Notificacion de prueba Para empresa");
+		not.setEmpresa(empresa);
+		saNotificacion.crearNotificacion(not);
+		//////////////////////////////////////////////////////////////////////////////////////////////
 		if(empresa != null) {
 			modelAndView.addObject("transferEmpresa", TransferEmpresa.EntityToTransfer(empresa));
 			modelAndView.setViewName("perfilEmpresa");
@@ -342,6 +355,13 @@ public class ControladorPrincipal {
 		if(par != null) {
 			particular = saParticular.buscarPorId(par.getId());	
 		}
+		
+			///////////////////////////Apaño para testear las notificaciones///////////////////////////////
+			Notificacion not = new Notificacion();
+			not.setDescripcion("Notificacion de prueba para particular");
+			not.setParticular(particular);
+			saNotificacion.crearNotificacion(not);
+			//////////////////////////////////////////////////////////////////////////////////////////////
 		
 		if(particular != null) {
 			modelAndView.addObject("transferParticular", TransferParticular.EntityToTransfer(particular));
@@ -1292,6 +1312,24 @@ public class ControladorPrincipal {
 		return modelAndView;
 	}
 	
+	
+	@RequestMapping(value="/notificacionLeida", method = RequestMethod.GET, params = {"id"})
+	public ModelAndView notificacionLeida(@RequestParam("id") int id){
+		
+	    ModelAndView modelAndView = this.obtenerInstancia();
+	    
+	    Notificacion not = saNotificacion.buscarPorId(id);
+	    
+	    not.setLeida(true);
+	    
+	    saNotificacion.crearNotificacion(not);
+	    
+	    mostrarOfertas();
+
+		return modelAndView;
+	}
+	
+	
 	/**
 	 * Método que añade al particular o empresa como variable permanente para el modelo
 	 * para despues instanciar un nuevo ModelAndView que contiene el modelo  y asi poder acceder a los datos del usuario que esta navegando en la aplicacion
@@ -1305,7 +1343,17 @@ public class ControladorPrincipal {
 		Empresa empresa = saEmpresa.buscarPorEmail(auth.getName());
 		
 		model.addAttribute("particular", particular);
-		model.addAttribute("empresa", empresa);//En este caso el objeto usuario estará permanentemente en todas las vistas por el @ModelAttribute 
+		model.addAttribute("empresa", empresa);//En este caso el objeto usuario estará permanentemente en todas las vistas por el @ModelAttribute
+		
+		if (empresa != null) {
+			model.addAttribute("listaNotificacionesEmp", saNotificacion.buscarPorEmpresa(empresa));
+		}
+		
+		if (particular != null) {
+			model.addAttribute("listaNotificacionesPar", saNotificacion.buscarPorParticular(particular));
+		}
+		
+		
 		this.modeloyVista = new ModelAndView("/ofertas","modelo", model);
 	}
 	

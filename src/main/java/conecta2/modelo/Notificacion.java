@@ -27,7 +27,10 @@ public class Notificacion {
 	@ManyToOne (fetch=FetchType.EAGER)
 	private Particular particular;
 	
-	public Notificacion() {}
+	public Notificacion() {
+		
+		this.leida = false;
+	}
 	
 	public Notificacion(String descripcion, boolean leida, Empresa empresa, Particular particular) {
 		
@@ -52,5 +55,31 @@ public class Notificacion {
 	public void setLeida(boolean leida) {
 		this.leida = leida;
 	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public Empresa getEmpresa() {
+		return empresa;
+	}
+
+	public void setEmpresa(Empresa empresa) {
+		this.empresa = empresa;
+	}
+
+	public Particular getParticular() {
+		return particular;
+	}
+
+	public void setParticular(Particular particular) {
+		this.particular = particular;
+	}
+	
+	
 	
 }

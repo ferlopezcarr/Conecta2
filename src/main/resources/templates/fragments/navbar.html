@@ -35,13 +35,13 @@
 			      		<div class="col-auto">
 				      		<a class="rounded" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="material-icons notification-active rounded" style="color: white;">notifications_active</i></a>
 				      		<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-							    <div class="dropdown-item drop-menu-item d-flex flex-row">
-							    	<span class="my-auto">Action</span>
-							    	<a class="my-auto ml-auto"><i class="material-icons rounded-circle">clear</i></a>
+							    <div th:each="notificacion : ${listaNotificacionesEmp}" th:if="${!notificacion.leida and empresa != null}" class="dropdown-item drop-menu-item d-flex flex-row">
+							    	<span th:text="${notificacion.descripcion}" class="my-auto"></span>
+							    	<a class="my-auto ml-auto" th:href="'/notificacionLeida?id=' + ${notificacion.id}"><i class="material-icons rounded-circle">clear</i></a>
 							    </div>
-							    <div class="dropdown-item drop-menu-item d-flex flex-row">
-							    	<span class="my-auto">Another action</span>
-							    	<a class="my-auto ml-auto pl-3"><i class="material-icons rounded-circle">clear</i></a>
+							       <div th:each="notificacion : ${listaNotificacionesPar}" th:if="${!notificacion.leida and particular != null}" class="dropdown-item drop-menu-item d-flex flex-row">
+							    	<span th:text="${notificacion.descripcion}" class="my-auto"></span>
+							    	<a class="my-auto ml-auto" th:href="'/notificacionLeida?id=' + ${notificacion.id}"><i class="material-icons rounded-circle">clear</i></a>
 							    </div>
 							  </div>
 						</div>
