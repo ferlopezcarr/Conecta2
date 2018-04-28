@@ -35,12 +35,10 @@ public class HU1FinalizarOfertaTest {
 		
 		oferta = saOferta.save(oferta);
 		
-		Oferta ofertaNoFinalizada = new Oferta(oferta);
+		saOferta.eliminarOferta(oferta.getId());
 		
-		oferta.setFinalizada(true);
-		 
-		Oferta ofertaFinalizada = saOferta.save(oferta);
+		Oferta ofertaFinalizada = saOferta.buscarPorId(oferta.getId());
 				
-		assertNotEquals(ofertaFinalizada.getFinalizada(), ofertaNoFinalizada.getFinalizada());
+		assertEquals(ofertaFinalizada.getFinalizada(), true);
 	}
 }
