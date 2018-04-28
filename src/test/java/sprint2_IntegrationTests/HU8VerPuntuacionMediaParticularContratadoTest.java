@@ -11,7 +11,9 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import conecta2.C2Aplicacion;
+import conecta2.modelo.Empresa;
 import conecta2.modelo.Particular;
+import conecta2.modelo.Puntuacion;
 import conecta2.servicioAplicacion.SAParticular;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -27,9 +29,12 @@ public class HU8VerPuntuacionMediaParticularContratadoTest {
 	public void testParticularContratadoFoundedAndValoracionCorrect() {
 		
 		double puntuacion = 3.5;
-		int numValoraciones = 1;
 		
-		Particular particular = new Particular("particularPruebaNombre", "Apellido Apellido", "99999999Z", "123456789", "particularPruebaEmail@particularPruebaEmail.com", "Abc1111", "", puntuacion, numValoraciones, true, null, null);
+		Empresa empresa = new Empresa("empresaPrueba1", "A28599031", "123456789", "empresaPruebaEmail1@empresaPruebaEmail.com", "Abc1111", "", 0, true, null, null);
+		
+		Particular particular = new Particular("particularPruebaNombre", "Apellido Apellido", "99999999Z", "123456789", "particularPruebaEmail@particularPruebaEmail.com", "Abc1111", "", true, null, null);
+		
+		particular.aniadirPuntuacion(new Puntuacion(puntuacion, empresa));
 		
 		particular = saParticular.save(particular);
 		
@@ -37,7 +42,7 @@ public class HU8VerPuntuacionMediaParticularContratadoTest {
 		
 		boolean equals = particular.equals(particularBD);
 		
-		assertEquals(true, equals && (particular.getPuntuacion() == puntuacion) && (particular.getNumValoraciones() == numValoraciones));
+		assertEquals(true, equals && (particular.getPuntuaciones().get(0).getPuntuacion() == puntuacion) && (particular.getPuntuaciones().size() == 1));
 	}
 
 }

@@ -11,7 +11,9 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import conecta2.C2Aplicacion;
+import conecta2.modelo.Empresa;
 import conecta2.modelo.Particular;
+import conecta2.modelo.Puntuacion;
 import conecta2.servicioAplicacion.SAParticular;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -26,12 +28,19 @@ public class HU7PuntuarParticularContratadoTest {
 	@Test
 	public void testParticularFoundedByEmailYActivo() {
 		
-		Particular particular = new Particular("particularPruebaNombre", "Apellido Apellido", "99999999Z", "123456789", "particularPruebaEmail@particularPruebaEmail.com", "Abc1111", "", 3.5, 1, true, null, null);
+		Empresa empresa1 = new Empresa("empresaPrueba1", "A28599031", "123456789", "empresaPruebaEmail1@empresaPruebaEmail.com", "Abc1111", "", 0, true, null, null);
+		
+		Empresa empresa2 = new Empresa("empresaPrueba2", "A28599032", "123456789", "empresaPruebaEmail2@empresaPruebaEmail.com", "Abc1111", "", 0, true, null, null);
+		
+		Empresa empresa3 = new Empresa("empresaPrueba3", "A28599033", "123456789", "empresaPruebaEmail3@empresaPruebaEmail.com", "Abc1111", "", 0, true, null, null);
+		
+		Particular particular = new Particular("particularPruebaNombre", "Apellido Apellido", "99999999Z", "123456789", "particularPruebaEmail@particularPruebaEmail.com", "Abc1111", "", true, null, null);
+		
+		particular.aniadirPuntuacion(new Puntuacion(3.5, empresa1));
+		particular.aniadirPuntuacion(new Puntuacion(2.5, empresa2));
+		particular.aniadirPuntuacion(new Puntuacion(1.5, empresa3));
 		
 		particular = saParticular.save(particular);
-		
-		saParticular.addValoracion(particular, 2.5);
-		saParticular.addValoracion(particular, 1.5);
 		
 		//(3.5 + 2.5 + 1.5) / 3 = 2.5
 		
@@ -39,7 +48,9 @@ public class HU7PuntuarParticularContratadoTest {
 		
 		boolean equals = particular.equals(particularBD);
 		
-		assertEquals(true, equals && (particular.getPuntuacion() == 2.5) && (particular.getNumValoraciones() == 3));
+		double puntuacionMedia = particular.getPuntuacionMedia();
+		
+		assertEquals(true, equals && (puntuacionMedia == 2.5) && (particular.getPuntuaciones().size() == 3));
 	}
 
 }

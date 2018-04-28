@@ -24,7 +24,7 @@ public class HU04VerPerfilParticularTest {
 	@Test
 	public void testEmpresaFoundedByEmailYActivo() {
 		
-		Particular particular = new Particular("particularPruebaNombre", "Apellido Apellido", "99999999Z", "123456789", "particularPruebaEmail@particularPruebaEmail.com", "Abc1111", "", 0.0, 0, true, null, null);
+		Particular particular = new Particular("particularPruebaNombre", "Apellido Apellido", "99999999Z", "123456789", "particularPruebaEmail@particularPruebaEmail.com", "Abc1111", "", true, null, null);
 
 		repositorioParticular.save(particular);
 		
@@ -39,7 +39,7 @@ public class HU04VerPerfilParticularTest {
 	@Test
 	public void testEmpresaFoundedByCifYActivo() {
 		
-		Particular particular = new Particular("particularPruebaNombre", "Apellido Apellido", "99999999Z", "123456789", "particularPruebaEmail@particularPruebaEmail.com", "Abc1111", "", 0.0, 0, true, null, null);
+		Particular particular = new Particular("particularPruebaNombre", "Apellido Apellido", "99999999Z", "123456789", "particularPruebaEmail@particularPruebaEmail.com", "Abc1111", "", true, null, null);
 		
 		repositorioParticular.save(particular);
 		

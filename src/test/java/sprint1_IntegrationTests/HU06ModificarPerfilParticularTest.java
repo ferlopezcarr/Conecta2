@@ -26,7 +26,7 @@ public class HU06ModificarPerfilParticularTest {
 	@Test
 	public void testEmpresaModifyName() {
 		
-		Particular particular = new Particular("particularPruebaNombre", "Apellido Apellido", "99999999Z", "123456789", "particularPruebaEmail@particularPruebaEmail.com", "Abc1111", "", 0.0, 0, true, null, null);
+		Particular particular = new Particular("particularPruebaNombre", "Apellido Apellido", "99999999Z", "123456789", "particularPruebaEmail@particularPruebaEmail.com", "Abc1111", "", true, null, null);
 		
 		particular = saParticular.save(particular);
 		
