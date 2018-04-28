@@ -99,19 +99,19 @@ public class SAParticularImp implements SAParticular{
 		if(numValoraciones != 0) {//si ya ha sido valorado anteriormente
 		
 			double puntosTotalesAntes = (numValoraciones * contratado.getPuntuacion());
-			
-			contratado.setNumValoraciones(++numValoraciones);
-			
-			puntuacionActual = (puntosTotalesAntes + valoracion) / numValoraciones;
+
+			puntuacionActual = (puntosTotalesAntes + valoracion) / (numValoraciones+1);
 		}
 		else {
-			puntuacionActual = valoracion;
+			puntuacionActual = valoracion;			
 		}
 		
 		//para redondear y quedarse solo con los decimas, tantos 0s como decimales
 		puntuacionActual = Math.rint(puntuacionActual*100)/100;
+		numValoraciones++;
 		
 		contratado.setPuntuacion(puntuacionActual);
+		contratado.setNumValoraciones(numValoraciones);
 		
 		contratado = save(contratado);
 		

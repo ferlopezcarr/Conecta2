@@ -1369,7 +1369,7 @@ public class ControladorPrincipal {
 	}
 	
 	@RequestMapping(value="/Puntuar-Contratado", method = RequestMethod.POST)
-	public ModelAndView puntuarContratadoPost(@ModelAttribute String id_oferta, String id_contratado, String puntuacion){
+	public ModelAndView puntuarContratadoPost(@ModelAttribute String aux, String id_oferta, String id_contratado, String puntuacion){
 		ModelAndView modelAndView = this.obtenerInstancia();
 	
 		int idOferta = Integer.parseInt(id_oferta);
