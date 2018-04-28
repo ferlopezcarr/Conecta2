@@ -1,4 +1,4 @@
-package sprint2_IntegrationTests;
+	package sprint2_IntegrationTests;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
@@ -35,12 +35,10 @@ public class HU1FinalizarOfertaTest {
 		
 		oferta = saOferta.save(oferta);
 		
-		Oferta ofertaNoFinalizada = new Oferta(oferta);
+		saOferta.eliminarOferta(oferta.getId());
 		
-		oferta.setFinalizada(true);
+		Oferta ofertaFinalizada = saOferta.buscarPorId(oferta.getId());
 		 
-		Oferta ofertaFinalizada = saOferta.save(oferta);
-				
-		assertNotEquals(ofertaFinalizada.getFinalizada(), ofertaNoFinalizada.getFinalizada());
+		assertEquals(ofertaFinalizada.getFinalizada(), true);
 	}
 }
