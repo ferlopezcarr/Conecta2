@@ -76,7 +76,9 @@ public class Particular {
 	
 	private String descripcion;
 	
-	private int puntuacion;
+	private double puntuacion;
+	
+	private int numValoraciones;
 	
 	private boolean activo;
 	
@@ -107,7 +109,7 @@ public class Particular {
 	 * @param activo
 	 * @param puntuacion
 	 */
-	public Particular(String nombre, String apellidos, String dni, String telefono, String email, String password, String descripcion, int puntuacion, boolean activo, List<Oferta> ofertasInscritos, List<Notificacion> notificaciones) {
+	public Particular(String nombre, String apellidos, String dni, String telefono, String email, String password, String descripcion, double puntuacion, int numValoraciones, boolean activo, List<Oferta> ofertasInscritos, List<Notificacion> notificaciones) {
 		this.nombre = nombre;
 		this.apellidos = apellidos;
 		this.dni = dni;
@@ -116,6 +118,7 @@ public class Particular {
 		this.password = password;
 		this.descripcion = descripcion;
 		this.puntuacion = puntuacion;
+		this.numValoraciones = numValoraciones;
 		this.activo = activo;
 		
 		this.ofertasSeleccionados = new ArrayList<Oferta>(); 
@@ -167,6 +170,7 @@ public class Particular {
 				transferParticular.getPassword(),
 				transferParticular.getDescripcion(),
 				transferParticular.getPuntuacion(),
+				transferParticular.getNumValoraciones(),
 				transferParticular.getActivo(),
 				transferParticular.getOfertas(),
 				transferParticular.getNotificaciones()
@@ -185,6 +189,7 @@ public class Particular {
 				transferParticular.getPassword(),
 				transferParticular.getDescripcion(),
 				transferParticular.getPuntuacion(),
+				transferParticular.getNumValoraciones(),
 				transferParticular.getActivo(),
 				transferParticular.getOfertas(),
 				transferParticular.getNotificaciones()
@@ -255,12 +260,20 @@ public class Particular {
 		this.activo = activo;
 	}
 
-	public int getPuntuacion() {
+	public double getPuntuacion() {
 		return puntuacion;
 	}
 
-	public void setPuntuacion(int puntuacion) {
+	public void setPuntuacion(double puntuacion) {
 		this.puntuacion = puntuacion;
+	}
+	
+	public int getNumValoraciones() {
+		return numValoraciones;
+	}
+
+	public void setNumValoraciones(int numValoraciones) {
+		this.numValoraciones = numValoraciones;
 	}
 	
 	public String getDescripcion() {
@@ -301,6 +314,14 @@ public class Particular {
 
 	public void setOfertasSeleccionados(List<Oferta> ofertasSeleccionados) {
 		this.ofertasSeleccionados = ofertasSeleccionados;
+	}
+
+	public List<Oferta> getOfertasInscritos() {
+		return ofertasInscritos;
+	}
+
+	public void setOfertasInscritos(List<Oferta> ofertasInscritos) {
+		this.ofertasInscritos = ofertasInscritos;
 	}
 
 

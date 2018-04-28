@@ -1292,6 +1292,178 @@ public class ControladorPrincipal {
 		return modelAndView;		
 	}
 	
+	@RequestMapping(value ="/Puntuar-Contratado", method = RequestMethod.GET, params = {"idOferta", "idCandidato"})
+    public ModelAndView puntuarContratado(@RequestParam("idOferta") int idOferta, @RequestParam("idCandidato") int idCandidato) {
+		
+		ModelAndView modelAndView = this.obtenerInstancia();
+		
+		Map<String, Object> modelo = modelAndView.getModel();
+		BindingAwareModelMap mod = (BindingAwareModelMap) modelo.get("modelo");
+		Empresa emp = (Empresa)mod.get("empresa");
+		
+		Oferta oferta = null;
+		Empresa empresa = null;
+		
+		if(emp != null) {//si el objeto de la vista no esta vacio
+			empresa = saEmpresa.buscarPorEmail(emp.getEmail());
+		}
+
+		if(empresa != null) {//si es empresa
+			oferta = saOferta.buscarPorId(idOferta);
+			
+			//Si no se encuentra la oferta
+			if(oferta == null) {
+				modelAndView.setViewName("mostrarOfertas");
+				String msg = "¡Oferta no encontrada!";
+				modelAndView.addObject("popup", msg);
+			}
+			else {
+				//Si la oferta no es de la empresa de la sesion
+				if(!oferta.getEmpresa().equals(empresa)) {
+					modelAndView.setViewName("mostrarOfertas");
+					String msg = "¡No puedes acceder a las ofertas de otras empresas!";
+					modelAndView.addObject("popup", msg);
+					
+					oferta = null;
+				}
+				else {//Si la oferta es de la empresa de la sesion
+					
+					Particular contratado = saParticular.buscarPorId(idCandidato);
+					
+					if(contratado == null) {//Si no se encuentra al candidato
+						modelAndView.setViewName("mostrarOfertas");
+						String msg = "¡El candidato no existe!";
+						modelAndView.addObject("popup", msg);
+					}
+					else {//el candidato existe en la bd
+						if(!oferta.getParticularesInscritos().contains(contratado)) {//si el candidato no esta inscrito
+							modelAndView.setViewName("mostrarOfertas");
+							String msg = "¡El candidato introducido no pertenece a la oferta!";
+							modelAndView.addObject("popup", msg);
+						}
+						else {//inscrito
+							if(!oferta.getParticularesSeleccionados().contains(contratado)) {//Si no contiene al candidato contratado
+								modelAndView.setViewName("mostrarOfertas");
+								String msg = "¡El candidato no ha sido contratado todavía!";
+								modelAndView.addObject("popup", msg);
+							}
+							else {//contratado
+								modelAndView.addObject("transferParticular", TransferParticular.EntityToTransfer(contratado));
+								modelAndView.addObject("oferta", oferta);
+								modelAndView.addObject("idParticular", (Integer)contratado.getId());
+								modelAndView.setViewName("perfilParticular");
+							}
+						}
+					}
+				}
+			}
+		}
+		else {//si no es empresa
+			modelAndView.setViewName("mostrarOfertas");
+			String msg = "¡No puedes ver a los candidatos de la oferta!";
+			modelAndView.addObject("popup", msg);
+		}
+		
+		
+		return modelAndView;		
+	}
+	
+	@RequestMapping(value="/Puntuar-Contratado", method = RequestMethod.POST)
+	public ModelAndView puntuarContratadoPost(@ModelAttribute String id_oferta, String id_contratado, String puntuacion){
+		ModelAndView modelAndView = this.obtenerInstancia();
+	
+		int idOferta = Integer.parseInt(id_oferta);
+		int idContratado = Integer.parseInt(id_contratado);
+		double puntosContratado = Double.parseDouble(puntuacion);
+			
+
+		Map<String, Object> modelo = modelAndView.getModel();
+		BindingAwareModelMap mod = (BindingAwareModelMap) modelo.get("modelo");
+		Empresa emp = (Empresa)mod.get("empresa");
+		
+		Oferta oferta = null;
+		Empresa empresa = null;
+		
+		if(emp != null) {//si el objeto de la vista no esta vacio
+			empresa = saEmpresa.buscarPorEmail(emp.getEmail());
+		}
+
+		if(empresa != null) {//si es empresa
+			oferta = saOferta.buscarPorId(idOferta);
+			
+			//Si no se encuentra la oferta
+			if(oferta == null) {
+				modelAndView.setViewName("mostrarOfertas");
+				String msg = "¡Oferta no encontrada!";
+				modelAndView.addObject("popup", msg);
+			}
+			else {
+				//Si la oferta no es de la empresa de la sesion
+				if(!oferta.getEmpresa().equals(empresa)) {
+					modelAndView.setViewName("mostrarOfertas");
+					String msg = "¡No puedes acceder a las ofertas de otras empresas!";
+					modelAndView.addObject("popup", msg);
+					
+					oferta = null;
+				}
+				else {//Si la oferta es de la empresa de la sesion
+					
+					Particular contratado = saParticular.buscarPorId(idContratado);
+					
+					if(contratado == null) {//Si no se encuentra al candidato
+						modelAndView.setViewName("mostrarOfertas");
+						String msg = "¡El candidato no existe!";
+						modelAndView.addObject("popup", msg);
+					}
+					else {//el candidato existe en la bd
+						if(!oferta.getParticularesInscritos().contains(contratado)) {//si el candidato no esta inscrito
+							modelAndView.setViewName("mostrarOfertas");
+							String msg = "¡El candidato introducido no pertenece a la oferta!";
+							modelAndView.addObject("popup", msg);
+						}
+						else {//inscrito
+							if(!oferta.getParticularesSeleccionados().contains(contratado)) {//Si no contiene al candidato contratado
+								modelAndView.setViewName("mostrarOfertas");
+								String msg = "¡El candidato no ha sido contratado todavía!";
+								modelAndView.addObject("popup", msg);
+							}
+							else {//contratado
+								
+								double puntuacionActual;
+								int numValoraciones = contratado.getNumValoraciones();
+																
+								if(numValoraciones != 0) {//si ya ha sido valorado anteriormente
+								
+									double puntosTotalesAntes = (numValoraciones * contratado.getPuntuacion());
+									
+									contratado.setNumValoraciones(++numValoraciones);
+									
+									puntuacionActual = (puntosTotalesAntes + puntosContratado) / numValoraciones;
+								}
+								else {
+									puntuacionActual = puntosContratado;
+								}
+								
+								contratado.setPuntuacion(puntuacionActual);
+										
+								modelAndView.addObject("transferParticular", TransferParticular.EntityToTransfer(contratado));
+								modelAndView.addObject("oferta", oferta);
+								modelAndView.setViewName("perfilParticular");
+							}
+						}
+					}
+				}
+			}
+		}
+		else {//si no es empresa
+			modelAndView.setViewName("mostrarOfertas");
+			String msg = "¡No puedes ver a los candidatos de la oferta!";
+			modelAndView.addObject("popup", msg);
+		}
+
+		return modelAndView;
+	}
+	
 	// ------------- AVISOS ------------- //
 	
 	@RequestMapping(value="/avisos", method = RequestMethod.GET, params = {"id", "tipo"})

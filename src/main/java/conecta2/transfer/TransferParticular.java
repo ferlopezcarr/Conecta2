@@ -68,7 +68,9 @@ public class TransferParticular {
 	
 	private String descripcion;
 	
-	private int puntuacion;
+	private double puntuacion;
+	
+	private int numValoraciones;
 	
 	private boolean activo;
 	
@@ -80,7 +82,7 @@ public class TransferParticular {
 	
 	public TransferParticular() {}
 	
-	public TransferParticular(String nombre, String apellidos, String dni, String telefono, String email, String password, String passwordConfirmacion, String descripcion, int puntuacion, boolean activo, List<Oferta> ofertas, List<Notificacion> notificaciones) {
+	public TransferParticular(String nombre, String apellidos, String dni, String telefono, String email, String password, String passwordConfirmacion, String descripcion, double puntuacion, int numValoraciones, boolean activo, List<Oferta> ofertas, List<Notificacion> notificaciones) {
 		this.nombre = nombre;
 		this.apellidos = apellidos;
 		this.dni = dni;
@@ -90,6 +92,7 @@ public class TransferParticular {
 		this.passwordConfirmacion = passwordConfirmacion;
 		this.descripcion = descripcion;
 		this.puntuacion = puntuacion;
+		this.numValoraciones = numValoraciones;
 		this.activo= activo;
 		
 		if(this.ofertas == null || ofertas == null) 
@@ -114,6 +117,7 @@ public class TransferParticular {
 				particular.getPassword(),
 				particular.getDescripcion(),
 				particular.getPuntuacion(),
+				particular.getNumValoraciones(),
 				particular.getActivo(),
 				particular.getOfertas(),
 				particular.getNotificaciones()
@@ -184,12 +188,20 @@ public class TransferParticular {
 		this.passwordConfirmacion = passwordConfirmacion;
 	}
 
-	public int getPuntuacion() {
+	public double getPuntuacion() {
 		return puntuacion;
 	}
 
-	public void setPuntuacion(int puntuacion) {
+	public void setPuntuacion(double puntuacion) {
 		this.puntuacion = puntuacion;
+	}
+	
+	public int getNumValoraciones() {
+		return numValoraciones;
+	}
+
+	public void setNumValoraciones(int numValoraciones) {
+		this.numValoraciones = numValoraciones;
 	}
 	
 	public String getDescripcion() {
@@ -227,10 +239,13 @@ public class TransferParticular {
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
 		result = prime * result + ((notificaciones == null) ? 0 : notificaciones.hashCode());
+		result = prime * result + numValoraciones;
 		result = prime * result + ((ofertas == null) ? 0 : ofertas.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		result = prime * result + ((passwordConfirmacion == null) ? 0 : passwordConfirmacion.hashCode());
-		result = prime * result + puntuacion;
+		long temp;
+		temp = Double.doubleToLongBits(puntuacion);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + ((telefono == null) ? 0 : telefono.hashCode());
 		return result;
 	}
@@ -276,6 +291,8 @@ public class TransferParticular {
 				return false;
 		} else if (!notificaciones.equals(other.notificaciones))
 			return false;
+		if (numValoraciones != other.numValoraciones)
+			return false;
 		if (ofertas == null) {
 			if (other.ofertas != null)
 				return false;
@@ -291,7 +308,7 @@ public class TransferParticular {
 				return false;
 		} else if (!passwordConfirmacion.equals(other.passwordConfirmacion))
 			return false;
-		if (puntuacion != other.puntuacion)
+		if (Double.doubleToLongBits(puntuacion) != Double.doubleToLongBits(other.puntuacion))
 			return false;
 		if (telefono == null) {
 			if (other.telefono != null)
@@ -300,4 +317,5 @@ public class TransferParticular {
 			return false;
 		return true;
 	}
+	
 }

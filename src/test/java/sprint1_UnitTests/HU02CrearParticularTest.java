@@ -32,7 +32,7 @@ public class HU02CrearParticularTest {
 	
 	@Test
 	public void testInsertNotNull() {
-		Particular particular = new Particular("particularPruebaNombre", "Apellido Apellido", "99999999Z", "123456789", "particularPruebaEmail@particularPruebaEmail.com", "Abc1111", "", 0, true, null, null);
+		Particular particular = new Particular("particularPruebaNombre", "Apellido Apellido", "99999999Z", "123456789", "particularPruebaEmail@particularPruebaEmail.com", "Abc1111", "", 0.0, 0, true, null, null);
 
 		Particular particularGuardado = repositorioParticular.save(particular);
 		
@@ -41,7 +41,7 @@ public class HU02CrearParticularTest {
 	
 	@Test
 	public void testInsertNotFounded() {
-		Particular particular = new Particular("particularPruebaNombre", "Apellido Apellido", "99999999Z", "123456789", "particularPruebaEmail@particularPruebaEmail.com", "Abc1111", "", 0, true, null, null);
+		Particular particular = new Particular("particularPruebaNombre", "Apellido Apellido", "99999999Z", "123456789", "particularPruebaEmail@particularPruebaEmail.com", "Abc1111", "", 0.0, 0, true, null, null);
 
 		Particular particularGuardado = repositorioParticular.findByDni(particular.getDni());
 		
@@ -50,7 +50,7 @@ public class HU02CrearParticularTest {
 	
 	@Test
 	public void testInsertFoundedById() {
-		Particular particular = new Particular("particularPruebaNombre", "Apellido Apellido", "99999999Z", "123456789", "particularPruebaEmail@particularPruebaEmail.com", "Abc1111", "", 0, true, null, null);
+		Particular particular = new Particular("particularPruebaNombre", "Apellido Apellido", "99999999Z", "123456789", "particularPruebaEmail@particularPruebaEmail.com", "Abc1111", "", 0.0, 0, true, null, null);
 
 		repositorioParticular.save(particular);
 		
@@ -61,7 +61,7 @@ public class HU02CrearParticularTest {
 	
 	@Test
 	public void testInsertFoundedByEmail() {
-		Particular particular = new Particular("particularPruebaNombre", "Apellido Apellido", "99999999Z", "123456789", "particularPruebaEmail@particularPruebaEmail.com", "Abc1111", "", 0, true, null, null);
+		Particular particular = new Particular("particularPruebaNombre", "Apellido Apellido", "99999999Z", "123456789", "particularPruebaEmail@particularPruebaEmail.com", "Abc1111", "", 0.0, 0, true, null, null);
 
 		repositorioParticular.save(particular);
 		
@@ -72,7 +72,7 @@ public class HU02CrearParticularTest {
 	
 	@Test
 	public void testInsertFoundedByDni() {
-		Particular particular = new Particular("particularPruebaNombre", "Apellido Apellido", "99999999Z", "123456789", "particularPruebaEmail@particularPruebaEmail.com", "Abc1111", "", 0, true, null, null);
+		Particular particular = new Particular("particularPruebaNombre", "Apellido Apellido", "99999999Z", "123456789", "particularPruebaEmail@particularPruebaEmail.com", "Abc1111", "", 0.0, 0, true, null, null);
 
 		repositorioParticular.save(particular);
 		

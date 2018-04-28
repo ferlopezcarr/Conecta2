@@ -42,7 +42,7 @@ public class HU09InscribirseEnOfertaTest {
 		oferta = saOferta.save(oferta);
 		
 		//Crear particular
-		Particular particular = new Particular("particularPruebaNombre", "Apellido Apellido", "99999999Z", "123456789", "particularPruebaEmail@particularPruebaEmail.com", "Abc1111", "", 0, true, null, null);
+		Particular particular = new Particular("particularPruebaNombre", "Apellido Apellido", "99999999Z", "123456789", "particularPruebaEmail@particularPruebaEmail.com", "Abc1111", "", 0.0, 0, true, null, null);
 		particular = saParticular.save(particular);
 		
 		//Inscribir

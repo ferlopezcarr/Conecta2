@@ -12,6 +12,7 @@
     
     <!-- Style CSS -->
     <link href="../css/style.css" rel="stylesheet" />
+    <link href="../css/rating.css" rel="stylesheet" />
     
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   </head>
@@ -68,9 +69,124 @@
 			  		  <span class="form-control-plaintext " th:text=${transferParticular.email}></span>
 			  			<!-- <input class="form-control" id="cif"> -->			  			
 			  		 </div>
+			  		 
+			  		 <div class="form-group row">
+			  		<label class="perfilTitulo letra-azul col-form-label col-3 margen-datos " for="Puntuación"><u>Puntuación:</u> </label>					  		  		
+						<span class="form-control-plaintext " th:text=${transferParticular.puntuacion}></span>
+						<div class="d-flex flex-row flex-nowrap my-auto">
+							<div  th:if="${transferParticular.puntuacion} <= 0.5">
+								<i class="material-icons star" >star half</i>
+								<i class="material-icons star" >star border</i>
+								<i class="material-icons star" >star border</i>
+								<i class="material-icons star" >star border</i>
+								<i class="material-icons star" >star border</i>
+							</div>
+				  		 	<div  th:if="${transferParticular.puntuacion} <= 1.0 and ${transferParticular.puntuacion} > 0.5 ">
+					  		  	<i class="material-icons star" >star</i>
+					  		  	<i class="material-icons star" >star border</i>
+					  		  	<i class="material-icons star" >star border</i>
+					  		  	<i class="material-icons star" >star border</i>
+					  		  	<i class="material-icons star" >star border</i>
+					  		</div>
+					  		<div  th:if="${transferParticular.puntuacion} <= 1.5 and ${transferParticular.puntuacion} > 1.0 ">
+					  		  	<i class="material-icons star" >star</i>
+					  		  	<i class="material-icons star" >star half</i>
+					  		  	<i class="material-icons star" >star border</i>
+					  		  	<i class="material-icons star" >star border</i>
+					  		  	<i class="material-icons star" >star border</i>
+					  		</div>
+					  		<div  th:if="${transferParticular.puntuacion} <= 2.0 and ${transferParticular.puntuacion} > 1.5 ">
+					  		  	<i class="material-icons star" >star</i>
+					  		  	<i class="material-icons star" >star</i>
+					  		  	<i class="material-icons star" >star border</i>
+					  		  	<i class="material-icons star" >star border</i>
+					  		  	<i class="material-icons star" >star border</i>
+					  		</div>
+					  		<div  th:if="${transferParticular.puntuacion} <= 2.5 and ${transferParticular.puntuacion} > 2.0 ">
+					  		  	<i class="material-icons star" >star</i>
+					  		  	<i class="material-icons star" >star</i>
+					  		  	<i class="material-icons star" >star half</i>
+					  		  	<i class="material-icons star" >star border</i>
+					  		  	<i class="material-icons star" >star border</i>
+					  		</div>
+					  		<div  th:if="${transferParticular.puntuacion} <= 3.0 and ${transferParticular.puntuacion} > 2.5 ">
+					  		  	<i class="material-icons star" >star</i>
+					  		  	<i class="material-icons star" >star</i>
+					  		  	<i class="material-icons star" >star</i>
+					  		  	<i class="material-icons star" >star border</i>
+					  		  	<i class="material-icons star" >star border</i>
+					  		</div>
+					  		<div  th:if="${transferParticular.puntuacion} <= 3.5 and ${transferParticular.puntuacion} > 3.0 ">
+					  		  	<i class="material-icons star" >star</i>
+					  		  	<i class="material-icons star" >star</i>
+					  		  	<i class="material-icons star" >star</i>
+					  		  	<i class="material-icons star" >star half</i>
+					  		  	<i class="material-icons star" >star border</i>
+					  		</div>	
+					  		<div  th:if="${transferParticular.puntuacion} <= 4.0 and ${transferParticular.puntuacion} > 3.5 ">
+					  		  	<i class="material-icons star" >star</i>
+					  		  	<i class="material-icons star" >star</i>
+					  		  	<i class="material-icons star" >star</i>
+					  		  	<i class="material-icons star" >star</i>
+					  		  	<i class="material-icons star" >star border</i>
+					  		</div>
+					  		<div  th:if="${transferParticular.puntuacion} <= 4.5 and ${transferParticular.puntuacion} > 4.0 ">
+					  		  	<i class="material-icons star" >star</i>
+					  		  	<i class="material-icons star" >star</i>
+					  		  	<i class="material-icons star" >star</i>
+					  		  	<i class="material-icons star" >star</i>
+					  		  	<i class="material-icons star" >star half</i>
+					  		</div>	
+					  		<div  th:if="${transferParticular.puntuacion} <= 5.0 and ${transferParticular.puntuacion} > 4.5 ">
+					  		  	<i class="material-icons star" >star</i>
+					  		  	<i class="material-icons star" >star</i>
+					  		  	<i class="material-icons star" >star</i>
+					  		  	<i class="material-icons star" >star</i>
+					  		  	<i class="material-icons star" >star</i>
+					  		</div>
+					  	</div>	
+			  		 </div>
 			  		</form>
 			  	</div>
-  		     <div class="col-6  sep-vertical text-center">
+  		     <div class="col-6 sep-vertical text-center">
+  		     
+  		     <div th:if="${oferta} != null and ${idParticular} != null" class="mb-5">
+	  		     <h3>Valoración</h3>
+	  		          <hr class="mb-4 separador-gris">
+  		          
+  		          <form th:action="@{/Puntuar-Contratado}" method="POST">
+  		          	
+				    <div class="ratingControl">
+				        <input type="radio" id="rating-5" name="puntuacion" value="5">
+				        <label class="ratingControl-stars ratingControl-stars--5" for="rating-5">5</label>
+				        <input type="radio" id="rating-45" name="puntuacion" value="4.5">
+				        <label class="ratingControl-stars ratingControl-stars--45 ratingControl-stars--half" for="rating-45">45</label>
+				        <input type="radio" id="rating-4" name="puntuacion" value="4">
+				        <label class="ratingControl-stars ratingControl-stars--4" for="rating-4">4</label>
+				        <input type="radio" id="rating-35" name="puntuacion" value="3.5">
+				        <label class="ratingControl-stars ratingControl-stars--35 ratingControl-stars--half" for="rating-35">35</label>
+				        <input type="radio" id="rating-3" name="puntuacion" value="3">
+				        <label class="ratingControl-stars ratingControl-stars--3" for="rating-3">3</label>
+				        <input type="radio" id="rating-25" name="puntuacion" value="2.5">
+				        <label class="ratingControl-stars ratingControl-stars--25 ratingControl-stars--half" for="rating-25">25</label>
+				        <input type="radio" id="rating-2" name="puntuacion" value="2">
+				        <label class="ratingControl-stars ratingControl-stars--2" for="rating-2">2</label>
+				        <input type="radio" id="rating-15" name="puntuacion" value="1.5">
+				        <label class="ratingControl-stars ratingControl-stars--15 ratingControl-stars--half" for="rating-15">15</label>
+				        <input type="radio" id="rating-1" name="puntuacion" value="1">
+				        <label class="ratingControl-stars ratingControl-stars--1" for="rating-1">1</label>
+				        <input type="radio" id="rating-05" name="puntuacion" value="0.5">
+				        <label class="ratingControl-stars ratingControl-stars--05 ratingControl-stars--half" for="rating-05">05</label>
+				    </div>
+				    
+				    <input type="hidden" name="id_oferta" th:value="${oferta.id}"/>
+  		          	<input type="hidden" name="id_contratado" th:value="${idParticular}"/>
+				    
+				    <button type="submit" class="btn botonAzul mt-4">Valorar</button>
+				  </form>
+				  
+  		     </div>
+  		     
  		     <h3>Información Adicional</h3>
   		          <hr class="mb-4 separador-gris">
   		     	<div class="form-group text-left">
