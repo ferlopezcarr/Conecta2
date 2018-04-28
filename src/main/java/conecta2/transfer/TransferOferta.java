@@ -64,6 +64,8 @@ public class TransferOferta {
 	
 	private boolean finalizada;
 	
+	private String tecnologias;
+	
 	@ManyToOne (fetch=FetchType.EAGER)
 	private Empresa empresa;
 	
@@ -110,6 +112,25 @@ public class TransferOferta {
 			this.particulares = particulares;
 	}
 	
+	public TransferOferta(int id, String nombre, JornadaLaboral jornada, Contrato contrato, Integer vacantes, Double salario, String ciudad, String descripcion, boolean activo, boolean finalizada, Empresa empresa, List<Particular> particulares, String tecnologias) {
+		this.id = id;
+		this.nombre = nombre;
+		this.jornada = jornada;
+		this.contrato = contrato;
+		this.vacantes = vacantes;
+		this.salario = salario;
+		this.ciudad = ciudad;
+		this.descripcion = descripcion;
+		this.activo = activo;
+		this.finalizada = finalizada;
+		this.empresa = empresa;
+		this.tecnologias = tecnologias;
+		
+		if(this.particulares == null || particulares == null) 
+			this.particulares = new ArrayList<Particular>();
+		else
+			this.particulares = particulares;
+	}
 	public TransferOferta(String nombre, JornadaLaboral jornada, Contrato contrato, Integer vacantes, Double salario, String ciudad, String descripcion, boolean activo, boolean finalizada, Empresa empresa, List<Particular> particulares) {
 		this.nombre = nombre;
 		this.jornada = jornada;
@@ -180,6 +201,14 @@ public class TransferOferta {
 
 	public JornadaLaboral getJornada() {
 		return jornada;
+	}
+	
+	public String getTecnologias() {
+		return tecnologias;
+	}
+	
+	public void setTecnologias(String tecnologias) {
+		this.tecnologias = tecnologias;
 	}
 
 	public void setJornada(JornadaLaboral jornada) {
@@ -408,6 +437,11 @@ public class TransferOferta {
 			if (other.vacantes != null)
 				return false;
 		} else if (!vacantes.equals(other.vacantes))
+			return false;
+		if (tecnologias == null) {
+			if (other.tecnologias != null)
+				return false;
+		} else if (!tecnologias.equals(other.tecnologias))
 			return false;
 		return true;
 	}
