@@ -42,36 +42,36 @@
   		          <hr class="mb-4 separador-gris">
   		          <form>
 			  	    <div class="form-group row ">
-			  		<label class="perfilTitulo letra-azul col-form-label col-3  margen-datos " for="Nombre"><u>Nombre:</u> </label>					  		  		
+			  		<label class="perfilTitulo letra-azul col-form-label col-3  margen-datos " for="Nombre">Nombre: </label>					  		  		
 			  		  <span class="form-control-plaintext " th:text=${transferParticular.nombre}></span>
 			  			<!-- <input class="form-control" id="cif"> -->			  			
 			  		 </div>
 			  		
 			  		  <div class="form-group row">
-			  		<label class="perfilTitulo letra-azul col-form-label col-3 margen-datos" for="Nombre"><u>Apellidos:</u> </label>					  		  		
+			  		<label class="perfilTitulo letra-azul col-form-label col-3 margen-datos" for="Nombre">Apellidos: </label>					  		  		
 			  		  <span class="form-control-plaintext " th:text=${transferParticular.apellidos}></span>
 			  			<!-- <input class="form-control" id="cif"> -->			  			
 			  		 </div>
 			  		  <div class="form-group row">
-			  		<label class="perfilTitulo letra-azul col-form-label col-3 margen-datos" for="Nombre"><u>DNI:</u> </label>					  		  		
+			  		<label class="perfilTitulo letra-azul col-form-label col-3 margen-datos" for="Nombre">DNI: </label>					  		  		
 			  		  <span class="form-control-plaintext " th:text=${transferParticular.dni}></span>
 			  			<!-- <input class="form-control" id="cif"> -->			  			
 			  		 </div>
 			  		 
 			  		 <div class="form-group row">
-			  		<label class="perfilTitulo letra-azul col-form-label col-3 margen-datos" for="Nombre"><u>Teléfono:</u> </label>					  		  		
+			  		<label class="perfilTitulo letra-azul col-form-label col-3 margen-datos" for="Nombre">Teléfono: </label>					  		  		
 			  		  <span class="form-control-plaintext " th:text=${transferParticular.telefono}></span>
 			  			<!-- <input class="form-control" id="cif"> -->			  			
 			  		 </div>
 			  		 
 			  		  <div class="form-group row">
-			  		<label class="perfilTitulo letra-azul col-form-label col-3 margen-datos " for="Nombre"><u>Email:</u> </label>					  		  		
+			  		<label class="perfilTitulo letra-azul col-form-label col-3 margen-datos " for="Nombre">Email: </label>					  		  		
 			  		  <span class="form-control-plaintext " th:text=${transferParticular.email}></span>
 			  			<!-- <input class="form-control" id="cif"> -->			  			
 			  		 </div>
 			  		 
 			  		 <div class="form-group row">
-			  		<label class="perfilTitulo letra-azul col-form-label col-3 margen-datos " for="Puntuación"><u>Puntuación:</u> </label>					  		  		
+			  		<label class="perfilTitulo letra-azul col-form-label col-3 margen-datos " for="Puntuación">Puntuación: </label>					  		  		
 						<span class="form-control-plaintext " th:text=${transferParticular.puntuacion}></span>
 						<div class="d-flex flex-row flex-nowrap my-auto">
 							<div  th:if="${transferParticular.puntuacion} <= 0.5">
@@ -146,11 +146,27 @@
 					  		</div>
 					  	</div>	
 			  		 </div>
+			  		 
+			  		 <div class="form-group row">
+			  		<label class="perfilTitulo letra-azul col-form-label col-auto margen-datos " for="numValoraciones">Número de valoraciones:</label>					  		  		
+			  		  <span class="form-control-plaintext " th:text=${transferParticular.numValoraciones}></span>
+			  			<!-- <input class="form-control" id="cif"> -->			  			
+			  		 </div>
+			  		 
 			  		</form>
 			  	</div>
   		     <div class="col-6 sep-vertical text-center">
   		     
-  		     <div th:if="${oferta} != null and ${idParticular} != null" class="mb-5">
+  		     	<div>
+	 		     	<h3>Información Adicional</h3>
+	  		        <hr class="mb-4 separador-gris">
+	  		     	<div class="form-group text-left">
+	  		     		<label for="descripcion" class="perfilTitulo letra-azul">Descripción:</label>
+	  		     		<textarea  th:text=${transferParticular.descripcion} class="form-control " rows="5" id="descripcion" readonly></textarea>
+	  		        </div>
+	  		    </div>
+  		        
+  		        <div th:if="${oferta} != null and ${idParticular} != null" class="mt-5 mb-4">
 	  		     <h3>Valoración</h3>
 	  		          <hr class="mb-4 separador-gris">
   		          
@@ -186,13 +202,6 @@
 				  </form>
 				  
   		     </div>
-  		     
- 		     <h3>Información Adicional</h3>
-  		          <hr class="mb-4 separador-gris">
-  		     	<div class="form-group text-left">
-  		     	<label for="descripcion" class="perfilTitulo letra-azul"><u>Descripción:</u></label>
-  		     	<textarea  th:text=${transferParticular.descripcion} class="form-control " rows="5" id="descripcion" readonly></textarea>
-  		        </div>
 
   		     </div>
 
