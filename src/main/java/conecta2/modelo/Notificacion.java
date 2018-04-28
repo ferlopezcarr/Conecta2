@@ -21,6 +21,8 @@ public class Notificacion {
 	
 	private boolean leida;
 	
+	private String siguiente;
+	
 	@ManyToOne (fetch=FetchType.EAGER)
 	private Empresa empresa;
 	
@@ -78,6 +80,14 @@ public class Notificacion {
 
 	public void setParticular(Particular particular) {
 		this.particular = particular;
+	}
+
+	public String getSiguiente() {
+		return siguiente;
+	}
+
+	public void setSiguiente(String siguiente) {
+		this.siguiente = siguiente;
 	}
 	
 	

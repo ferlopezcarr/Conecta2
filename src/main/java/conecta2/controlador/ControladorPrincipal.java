@@ -228,12 +228,6 @@ public class ControladorPrincipal {
 		if(emp != null) {
 			empresa = saEmpresa.buscarPorId(emp.getId());	
 		}
-		///////////////////////////Apaño para testear las notificaciones///////////////////////////////
-		Notificacion not = new Notificacion();
-		not.setDescripcion("Notificacion de prueba Para empresa");
-		not.setEmpresa(empresa);
-		saNotificacion.crearNotificacion(not);
-		//////////////////////////////////////////////////////////////////////////////////////////////
 		if(empresa != null) {
 			modelAndView.addObject("transferEmpresa", TransferEmpresa.EntityToTransfer(empresa));
 			modelAndView.setViewName("perfilEmpresa");
@@ -357,13 +351,6 @@ public class ControladorPrincipal {
 		if(par != null) {
 			particular = saParticular.buscarPorId(par.getId());	
 		}
-		
-			///////////////////////////Apaño para testear las notificaciones///////////////////////////////
-			Notificacion not = new Notificacion();
-			not.setDescripcion("Notificacion de prueba para particular");
-			not.setParticular(particular);
-			saNotificacion.crearNotificacion(not);
-			//////////////////////////////////////////////////////////////////////////////////////////////
 		
 		if(particular != null) {
 			modelAndView.addObject("transferParticular", TransferParticular.EntityToTransfer(particular));
@@ -952,7 +939,7 @@ public class ControladorPrincipal {
 					//Guardamos la oferta
 					Oferta ofResModificar = saOferta.save(oferta);
 					Particular p = saParticular.save(particular);
-					
+					saNotificacion.notificarEmpresaNuevaInscripcion(ofResModificar);
 					if(ofResModificar != null && p != null) {//si se consiguen modificar
 						modelAndView.setViewName("mostrarOfertas");
 						String msg = "¡Te has inscrito en la oferta '"+oferta.getNombre()+"'"+'\n'
@@ -1202,6 +1189,7 @@ public class ControladorPrincipal {
 		if(oferta != null) {
 			oferta.setFinalizada(true);
 			saOferta.save(oferta);
+			saNotificacion.notificarParticularesOfertaFinalizada(oferta);			
 			String msg = "¡Oferta finalizada!";
 			modelAndView.addObject("popup", msg);
 			modelAndView.setViewName("mostrarOfertas");
@@ -1471,7 +1459,7 @@ public class ControladorPrincipal {
 		return modelAndView;
 	}
 	
-	
+	//-------------Notificaciones-----------------//
 	@RequestMapping(value="/notificacionLeida", method = RequestMethod.GET, params = {"id"})
 	public ModelAndView notificacionLeida(@RequestParam("id") int id){
 		
