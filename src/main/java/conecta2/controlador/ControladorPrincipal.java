@@ -1374,7 +1374,7 @@ public class ControladorPrincipal {
 	
 		int idOferta = Integer.parseInt(id_oferta);
 		int idContratado = Integer.parseInt(id_contratado);
-		double puntosContratado = Double.parseDouble(puntuacion);
+		double valoracion = Double.parseDouble(puntuacion);
 			
 
 		Map<String, Object> modelo = modelAndView.getModel();
@@ -1429,22 +1429,7 @@ public class ControladorPrincipal {
 							}
 							else {//contratado
 								
-								double puntuacionActual;
-								int numValoraciones = contratado.getNumValoraciones();
-																
-								if(numValoraciones != 0) {//si ya ha sido valorado anteriormente
-								
-									double puntosTotalesAntes = (numValoraciones * contratado.getPuntuacion());
-									
-									contratado.setNumValoraciones(++numValoraciones);
-									
-									puntuacionActual = (puntosTotalesAntes + puntosContratado) / numValoraciones;
-								}
-								else {
-									puntuacionActual = puntosContratado;
-								}
-								
-								contratado.setPuntuacion(puntuacionActual);
+								saParticular.addValoracion(contratado, valoracion);
 										
 								modelAndView.addObject("transferParticular", TransferParticular.EntityToTransfer(contratado));
 								modelAndView.addObject("oferta", oferta);

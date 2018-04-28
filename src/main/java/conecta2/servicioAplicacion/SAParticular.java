@@ -19,4 +19,6 @@ public interface SAParticular {
 	
 	public Particular save(Particular particular);
 	
+	public Particular addValoracion(Particular contratado, double valoracion);
+	
 }

@@ -90,4 +90,32 @@ public class SAParticularImp implements SAParticular{
         return particular;
 	}
 
+	@Override
+	public Particular addValoracion(Particular contratado, double valoracion) {
+		
+		double puntuacionActual;
+		int numValoraciones = contratado.getNumValoraciones();
+										
+		if(numValoraciones != 0) {//si ya ha sido valorado anteriormente
+		
+			double puntosTotalesAntes = (numValoraciones * contratado.getPuntuacion());
+			
+			contratado.setNumValoraciones(++numValoraciones);
+			
+			puntuacionActual = (puntosTotalesAntes + valoracion) / numValoraciones;
+		}
+		else {
+			puntuacionActual = valoracion;
+		}
+		
+		//para redondear y quedarse solo con los decimas, tantos 0s como decimales
+		puntuacionActual = Math.rint(puntuacionActual*100)/100;
+		
+		contratado.setPuntuacion(puntuacionActual);
+		
+		contratado = save(contratado);
+		
+		return contratado;
+	}
+
 }
