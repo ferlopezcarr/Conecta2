@@ -23,12 +23,16 @@ public class Puntuacion {
 	private double puntuacion;
 	
 	@ManyToOne (fetch=FetchType.EAGER)
-	private Empresa empresa;
+	private Particular particular;
 
+	@ManyToOne (fetch=FetchType.EAGER)
+	private Empresa empresa;
+	
 	public Puntuacion() {}
 	
-	public Puntuacion(double puntuacion, Empresa empresa) {
+	public Puntuacion(double puntuacion, Particular particular, Empresa empresa) {
 		this.puntuacion = puntuacion;
+		this.particular = particular;
 		this.empresa = empresa;
 	}
 
@@ -48,6 +52,14 @@ public class Puntuacion {
 		this.puntuacion = puntuacion;
 	}
 
+	public Particular getParticular() {
+		return particular;
+	}
+
+	public void setParticular(Particular particular) {
+		this.particular = particular;
+	}
+
 	public Empresa getEmpresa() {
 		return empresa;
 	}
@@ -60,8 +72,9 @@ public class Puntuacion {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + id;
 		result = prime * result + ((empresa == null) ? 0 : empresa.hashCode());
+		result = prime * result + id;
+		result = prime * result + ((particular == null) ? 0 : particular.hashCode());
 		long temp;
 		temp = Double.doubleToLongBits(puntuacion);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
@@ -77,15 +90,22 @@ public class Puntuacion {
 		if (getClass() != obj.getClass())
 			return false;
 		Puntuacion other = (Puntuacion) obj;
-		if (id != other.id)
-			return false;
 		if (empresa == null) {
 			if (other.empresa != null)
 				return false;
 		} else if (!empresa.equals(other.empresa))
 			return false;
+		if (id != other.id)
+			return false;
+		if (particular == null) {
+			if (other.particular != null)
+				return false;
+		} else if (!particular.equals(other.particular))
+			return false;
 		if (Double.doubleToLongBits(puntuacion) != Double.doubleToLongBits(other.puntuacion))
 			return false;
 		return true;
 	}
+
+	
 }

@@ -65,10 +65,10 @@
 												<a class="dropdown-item"
 													th:href="'/verCandidato?idOferta=' + ${oferta.id} + '&idCandidato=' + ${particular.id}">Ver Perfil</a>
 													<div th:if="${particular}">
-														<a th:if= "${!#lists.contains(listaSeleccionados,particular) and !oferta.finalizada} " class="dropdown-item" th:href="'/Seleccionar-Candidato?idOferta=' + ${oferta.id} + '&idCandidato=' + ${particular.id}">Seleccionar</a>														
+														<a th:if= "${!#lists.contains(listaSeleccionados,particular)} and !${oferta.finalizada} " class="dropdown-item" th:href="'/Seleccionar-Candidato?idOferta=' + ${oferta.id} + '&idCandidato=' + ${particular.id}">Seleccionar</a>														
 													</div>
 													<div th:if="${particular}">
-														<a th:if= "${#lists.contains(listaSeleccionados,particular) and oferta.finalizada} " class="dropdown-item" th:href="'/Puntuar-Contratado?idOferta=' + ${oferta.id} + '&idCandidato=' + ${particular.id}">Puntuar</a>														
+														<a th:if= "${#lists.contains(listaSeleccionados,particular)}  and ${oferta.finalizada} and !${particular.estaParticularValorado(empresa)} " class="dropdown-item" th:href="'/Puntuar-Contratado?idOferta=' + ${oferta.id} + '&idCandidato=' + ${particular.id}">Puntuar</a>														
 													</div>
 											</div></td>
 									</tr>

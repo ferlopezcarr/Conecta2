@@ -36,9 +36,9 @@ public class HU7PuntuarParticularContratadoTest {
 		
 		Particular particular = new Particular("particularPruebaNombre", "Apellido Apellido", "99999999Z", "123456789", "particularPruebaEmail@particularPruebaEmail.com", "Abc1111", "", true, null, null);
 		
-		particular.aniadirPuntuacion(new Puntuacion(3.5, empresa1));
-		particular.aniadirPuntuacion(new Puntuacion(2.5, empresa2));
-		particular.aniadirPuntuacion(new Puntuacion(1.5, empresa3));
+		particular.aniadirPuntuacion(new Puntuacion(3.5, particular, empresa1));
+		particular.aniadirPuntuacion(new Puntuacion(2.5, particular, empresa2));
+		particular.aniadirPuntuacion(new Puntuacion(1.5, particular, empresa3));
 		
 		particular = saParticular.save(particular);
 		
