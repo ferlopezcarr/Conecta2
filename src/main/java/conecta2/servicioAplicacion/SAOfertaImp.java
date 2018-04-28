@@ -92,6 +92,9 @@ public class SAOfertaImp implements SAOferta {
 		return oferta;
 	}
 
+	/**
+	 * Método que elimina una oferta poniendo su atributo Activo a false y lo guarda en la BD
+	 */
 	@Override
 	public void eliminarOferta(int id) {
 		Oferta oferta = repoOferta.findById(id);

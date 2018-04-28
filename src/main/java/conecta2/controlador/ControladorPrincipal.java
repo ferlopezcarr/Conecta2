@@ -834,7 +834,11 @@ public class ControladorPrincipal {
 		return modelAndView;
 	}
 	
-	
+	/**
+	 * Método que captura la petición GET de eliminarOferta
+	 * @param id id de la oferta
+	 * @return vuelve a mostrarOfertas
+	 */
 	@RequestMapping(value="/eliminarOferta", method = RequestMethod.GET, params = {"id"})
 	public ModelAndView eliminarOferta(@RequestParam("id") int id){
 		ModelAndView modelAndView = this.obtenerInstancia();
@@ -1126,7 +1130,11 @@ public class ControladorPrincipal {
 		return modelAndView;
     }
 
-
+	/**
+	 * Método que captura la petición GET de finalizar-oferta
+	 * @param id id de la oferta
+	 * @return vuelve a mostrarOfertas
+	 */
 	@RequestMapping(value="/finalizar-oferta", method = RequestMethod.GET, params = {"id"})
 	public ModelAndView finalizarOferta(@RequestParam("id") int id){
 		
@@ -1201,6 +1209,12 @@ public class ControladorPrincipal {
 		return modelAndView;
 	}
 	
+	/**
+	 * Método que captura la petición GET de Seleccionar-Candidato
+	 * @param idOferta id de la oferta
+	 * @param idCandidato id del candidato
+	 * @return si las comprobaciones son correctas, va a mostrarCandidatos. En caso contrario, vuelve a mostrarOfertas
+	 */
 	@RequestMapping(value ="/Seleccionar-Candidato", method = RequestMethod.GET, params = {"idOferta", "idCandidato"})
     public ModelAndView guardarContratados(@RequestParam("idOferta") int idOferta, @RequestParam("idCandidato") int idCandidato) {
 		
