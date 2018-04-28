@@ -26,15 +26,12 @@
 
 	<div th:if="${popup == null}">
 		<div class="row mt-5">
-
-			<div
-				class="col-10 color-perfil mx-auto border border-dark rounded container-fondoGris">
+			<div class="col-10 color-perfil mx-auto border border-dark rounded container-fondoGris">
 				 <div class="row ml-4 mt-2"> 
-					  
 					    <a th:href="'/ofertas'">
 				             <input type="button" class="btn-lg  btn botonAzul  btn-sm " value="Volver al listado de ofertas"></input>							              
-				         </a>
-				         </div>
+				        </a>
+				 </div>
 				<div class="row mt-5">
 					<div class="col-12 mx-auto table-responsive">
 							<input type="hidden" th:name="idOferta" th:value="${oferta.id}" >
@@ -66,8 +63,7 @@
 											aria-haspopup="true" aria-expanded="false"> Opciones </a>
 											<div class="dropdown-menu" aria-labelledby="${particular.id}">
 												<a class="dropdown-item"
-													th:href="'/verCandidato?idOferta=' + ${oferta.id} + '&idCandidato=' + ${particular.id}">Ver
-													Perfil</a>
+													th:href="'/verCandidato?idOferta=' + ${oferta.id} + '&idCandidato=' + ${particular.id}">Ver Perfil</a>
 													<div th:if="${particular}">
 														<a th:if= "${!#lists.contains(listaSeleccionados,particular) and !oferta.finalizada} " class="dropdown-item" th:href="'/Seleccionar-Candidato?idOferta=' + ${oferta.id} + '&idCandidato=' + ${particular.id}">Seleccionar</a>														
 													</div>
@@ -76,25 +72,13 @@
 													</div>
 											</div></td>
 									</tr>
-
 								</tbody>
-
 							</table>
-						 
-
 					</div>
 				</div>
-
-
-
 			</div>
-
 		</div>
-
-
-
 	</div>
-
 
 	<!-- Si hay un error -->
 	<div th:if="${popup != null}">
