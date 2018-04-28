@@ -72,72 +72,72 @@
 			  		 
 			  		 <div class="form-group row">
 			  		<label class="perfilTitulo letra-azul col-form-label col-3 margen-datos " for="Puntuación">Puntuación: </label>					  		  		
-						<span class="form-control-plaintext " th:text=${transferParticular.puntuacion}></span>
+						<span class="form-control-plaintext " th:text=${puntuacionMedia}></span>
 						<div class="d-flex flex-row flex-nowrap my-auto">
-							<div  th:if="${transferParticular.puntuacion} <= 0.5">
+							<div  th:if="${puntuacionMedia} <= 0.5">
 								<i class="material-icons star" >star half</i>
 								<i class="material-icons star" >star border</i>
 								<i class="material-icons star" >star border</i>
 								<i class="material-icons star" >star border</i>
 								<i class="material-icons star" >star border</i>
 							</div>
-				  		 	<div  th:if="${transferParticular.puntuacion} <= 1.0 and ${transferParticular.puntuacion} > 0.5 ">
+				  		 	<div  th:if="${puntuacionMedia} <= 1.0 and ${puntuacionMedia} > 0.5 ">
 					  		  	<i class="material-icons star" >star</i>
 					  		  	<i class="material-icons star" >star border</i>
 					  		  	<i class="material-icons star" >star border</i>
 					  		  	<i class="material-icons star" >star border</i>
 					  		  	<i class="material-icons star" >star border</i>
 					  		</div>
-					  		<div  th:if="${transferParticular.puntuacion} <= 1.5 and ${transferParticular.puntuacion} > 1.0 ">
+					  		<div  th:if="${puntuacionMedia} <= 1.5 and ${puntuacionMedia} > 1.0 ">
 					  		  	<i class="material-icons star" >star</i>
 					  		  	<i class="material-icons star" >star half</i>
 					  		  	<i class="material-icons star" >star border</i>
 					  		  	<i class="material-icons star" >star border</i>
 					  		  	<i class="material-icons star" >star border</i>
 					  		</div>
-					  		<div  th:if="${transferParticular.puntuacion} <= 2.0 and ${transferParticular.puntuacion} > 1.5 ">
+					  		<div  th:if="${puntuacionMedia} <= 2.0 and ${puntuacionMedia} > 1.5 ">
 					  		  	<i class="material-icons star" >star</i>
 					  		  	<i class="material-icons star" >star</i>
 					  		  	<i class="material-icons star" >star border</i>
 					  		  	<i class="material-icons star" >star border</i>
 					  		  	<i class="material-icons star" >star border</i>
 					  		</div>
-					  		<div  th:if="${transferParticular.puntuacion} <= 2.5 and ${transferParticular.puntuacion} > 2.0 ">
+					  		<div  th:if="${puntuacionMedia} <= 2.5 and ${puntuacionMedia} > 2.0 ">
 					  		  	<i class="material-icons star" >star</i>
 					  		  	<i class="material-icons star" >star</i>
 					  		  	<i class="material-icons star" >star half</i>
 					  		  	<i class="material-icons star" >star border</i>
 					  		  	<i class="material-icons star" >star border</i>
 					  		</div>
-					  		<div  th:if="${transferParticular.puntuacion} <= 3.0 and ${transferParticular.puntuacion} > 2.5 ">
+					  		<div  th:if="${puntuacionMedia} <= 3.0 and ${puntuacionMedia} > 2.5 ">
 					  		  	<i class="material-icons star" >star</i>
 					  		  	<i class="material-icons star" >star</i>
 					  		  	<i class="material-icons star" >star</i>
 					  		  	<i class="material-icons star" >star border</i>
 					  		  	<i class="material-icons star" >star border</i>
 					  		</div>
-					  		<div  th:if="${transferParticular.puntuacion} <= 3.5 and ${transferParticular.puntuacion} > 3.0 ">
+					  		<div  th:if="${puntuacionMedia} <= 3.5 and ${puntuacionMedia} > 3.0 ">
 					  		  	<i class="material-icons star" >star</i>
 					  		  	<i class="material-icons star" >star</i>
 					  		  	<i class="material-icons star" >star</i>
 					  		  	<i class="material-icons star" >star half</i>
 					  		  	<i class="material-icons star" >star border</i>
 					  		</div>	
-					  		<div  th:if="${transferParticular.puntuacion} <= 4.0 and ${transferParticular.puntuacion} > 3.5 ">
+					  		<div  th:if="${puntuacionMedia} <= 4.0 and ${puntuacionMedia} > 3.5 ">
 					  		  	<i class="material-icons star" >star</i>
 					  		  	<i class="material-icons star" >star</i>
 					  		  	<i class="material-icons star" >star</i>
 					  		  	<i class="material-icons star" >star</i>
 					  		  	<i class="material-icons star" >star border</i>
 					  		</div>
-					  		<div  th:if="${transferParticular.puntuacion} <= 4.5 and ${transferParticular.puntuacion} > 4.0 ">
+					  		<div  th:if="${puntuacionMedia} <= 4.5 and ${puntuacionMedia} > 4.0 ">
 					  		  	<i class="material-icons star" >star</i>
 					  		  	<i class="material-icons star" >star</i>
 					  		  	<i class="material-icons star" >star</i>
 					  		  	<i class="material-icons star" >star</i>
 					  		  	<i class="material-icons star" >star half</i>
 					  		</div>	
-					  		<div  th:if="${transferParticular.puntuacion} <= 5.0 and ${transferParticular.puntuacion} > 4.5 ">
+					  		<div  th:if="${puntuacionMedia} <= 5.0 and ${puntuacionMedia} > 4.5 ">
 					  		  	<i class="material-icons star" >star</i>
 					  		  	<i class="material-icons star" >star</i>
 					  		  	<i class="material-icons star" >star</i>
@@ -149,7 +149,7 @@
 			  		 
 			  		 <div class="form-group row">
 			  		<label class="perfilTitulo letra-azul col-form-label col-auto margen-datos " for="numValoraciones">Número de valoraciones:</label>					  		  		
-			  		  <span class="form-control-plaintext " th:text=${transferParticular.numValoraciones}></span>
+			  		  <span class="form-control-plaintext " th:text=${transferParticular.getPuntuaciones().size()}></span>
 			  			<!-- <input class="form-control" id="cif"> -->			  			
 			  		 </div>
 			  		 

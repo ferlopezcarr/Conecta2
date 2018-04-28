@@ -76,9 +76,8 @@ public class Particular {
 	
 	private String descripcion;
 	
-	private double puntuacion;
-	
-	private int numValoraciones;
+	@OneToMany(mappedBy = "empresa",fetch=FetchType.LAZY)
+	private List<Puntuacion> puntuaciones;
 	
 	private boolean activo;
 	
@@ -109,7 +108,7 @@ public class Particular {
 	 * @param activo
 	 * @param puntuacion
 	 */
-	public Particular(String nombre, String apellidos, String dni, String telefono, String email, String password, String descripcion, double puntuacion, int numValoraciones, boolean activo, List<Oferta> ofertasInscritos, List<Notificacion> notificaciones) {
+	public Particular(String nombre, String apellidos, String dni, String telefono, String email, String password, String descripcion, boolean activo, List<Oferta> ofertasInscritos, List<Notificacion> notificaciones) {
 		this.nombre = nombre;
 		this.apellidos = apellidos;
 		this.dni = dni;
@@ -117,9 +116,9 @@ public class Particular {
 		this.email = email;
 		this.password = password;
 		this.descripcion = descripcion;
-		this.puntuacion = puntuacion;
-		this.numValoraciones = numValoraciones;
 		this.activo = activo;
+		
+		this.puntuaciones = new ArrayList<Puntuacion>();
 		
 		this.ofertasSeleccionados = new ArrayList<Oferta>(); 
 		
@@ -146,7 +145,7 @@ public class Particular {
 		this.email = particular.email;
 		this.password = particular.password;
 		this.descripcion = particular.descripcion;
-		this.puntuacion = particular.puntuacion;
+		this.puntuaciones = particular.puntuaciones;
 		this.activo = particular.activo;
 		
 		if(this.ofertasInscritos == null || particular.ofertasInscritos == null) 
@@ -169,8 +168,6 @@ public class Particular {
 				transferParticular.getEmail(),
 				transferParticular.getPassword(),
 				transferParticular.getDescripcion(),
-				transferParticular.getPuntuacion(),
-				transferParticular.getNumValoraciones(),
 				transferParticular.getActivo(),
 				transferParticular.getOfertas(),
 				transferParticular.getNotificaciones()
@@ -188,8 +185,6 @@ public class Particular {
 				transferParticular.getEmail(),
 				transferParticular.getPassword(),
 				transferParticular.getDescripcion(),
-				transferParticular.getPuntuacion(),
-				transferParticular.getNumValoraciones(),
 				transferParticular.getActivo(),
 				transferParticular.getOfertas(),
 				transferParticular.getNotificaciones()
@@ -260,20 +255,20 @@ public class Particular {
 		this.activo = activo;
 	}
 
-	public double getPuntuacion() {
-		return puntuacion;
+	public List<Puntuacion> getPuntuaciones() {
+		return puntuaciones;
 	}
 
-	public void setPuntuacion(double puntuacion) {
-		this.puntuacion = puntuacion;
+	public void setPuntuaciones(List<Puntuacion> puntuaciones) {
+		this.puntuaciones = puntuaciones;
 	}
 	
-	public int getNumValoraciones() {
-		return numValoraciones;
-	}
-
-	public void setNumValoraciones(int numValoraciones) {
-		this.numValoraciones = numValoraciones;
+	public void aniadirPuntuacion(Puntuacion puntuacion) {
+		
+		if(this.puntuaciones == null)
+			this.puntuaciones = new ArrayList<Puntuacion>();
+		this.puntuaciones.add(puntuacion);
+		
 	}
 	
 	public String getDescripcion() {
@@ -324,6 +319,23 @@ public class Particular {
 		this.ofertasInscritos = ofertasInscritos;
 	}
 
+	public double getPuntuacionMedia()  {
+		
+		double puntosTotales = 0;
+		int numValoraciones =  this.getPuntuaciones().size();
+		double puntuacionMedia = 0;
+		
+		if(numValoraciones != 0) {
+			for(int j = 0; j < numValoraciones; j++) {
+				puntosTotales += this.getPuntuaciones().get(j).getPuntuacion();
+			}
+			
+			puntuacionMedia = puntosTotales / numValoraciones;
+			
+			puntuacionMedia = Math.rint(puntuacionMedia*100)/100;
+		}
 
+		return puntuacionMedia;
+	}
     
 }

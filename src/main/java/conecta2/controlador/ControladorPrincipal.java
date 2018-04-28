@@ -354,6 +354,7 @@ public class ControladorPrincipal {
 		
 		if(particular != null) {
 			modelAndView.addObject("transferParticular", TransferParticular.EntityToTransfer(particular));
+			modelAndView.addObject("puntuacionMedia", particular.getPuntuacionMedia());
 			modelAndView.setViewName("perfilParticular");
 		}
 		else {//empresa
@@ -443,6 +444,7 @@ public class ControladorPrincipal {
 				saParticular.save(particular);
 				String msg = "¡Perfil Actualizado!";
 				modelAndView.addObject("popup", msg);
+				modelAndView.addObject("puntuacionMedia", particular.getPuntuacionMedia());
 				modelAndView.setViewName("perfilParticular");
 			}
 		}
@@ -1103,6 +1105,7 @@ public class ControladorPrincipal {
 						if(listaParticulares.contains(candidato)) {//si se encuentra en la lista de ofertas
 							modelAndView = new ModelAndView();
 							modelAndView.addObject("transferParticular", TransferParticular.EntityToTransfer(candidato));
+							modelAndView.addObject("puntuacionMedia", candidato.getPuntuacionMedia());
 							modelAndView.setViewName("perfilParticular");
 						}
 						else {
@@ -1253,7 +1256,7 @@ public class ControladorPrincipal {
 						List<Particular> listaParticulares = oferta.getParticularesInscritos();
 						
 						if(listaParticulares.contains(candidato)) {//si se encuentra en la lista de ofertas
-							List<Particular> particulares =  oferta.getParticularesInscritos();;
+							List<Particular> particulares =  oferta.getParticularesInscritos();
 							List<Particular> listasSeleccionados = oferta.getParticularesSeleccionados();
 							
 							modelAndView.addObject("listaCandidatos", particulares);
@@ -1339,6 +1342,7 @@ public class ControladorPrincipal {
 								modelAndView.addObject("transferParticular", TransferParticular.EntityToTransfer(contratado));
 								modelAndView.addObject("oferta", oferta);
 								modelAndView.addObject("idParticular", (Integer)contratado.getId());
+								modelAndView.addObject("puntuacionMedia", contratado.getPuntuacionMedia());
 								modelAndView.setViewName("perfilParticular");
 							}
 						}
@@ -1417,11 +1421,17 @@ public class ControladorPrincipal {
 							}
 							else {//contratado
 								
-								saParticular.addValoracion(contratado, valoracion);
-										
-								modelAndView.addObject("transferParticular", TransferParticular.EntityToTransfer(contratado));
-								modelAndView.addObject("oferta", oferta);
-								modelAndView.setViewName("perfilParticular");
+								if(!saParticular.addValoracion(empresa, contratado, valoracion)) {//la empresa ya habia valorado al particular
+									modelAndView.setViewName("mostrarOfertas");
+									String msg = "¡Ya ha valorado a "+contratado.getNombre()+" "+contratado.getApellidos()+"!";
+									modelAndView.addObject("popup", msg);
+								}
+								else {//si la empresa nunca habia valorado al particular
+									modelAndView.addObject("transferParticular", TransferParticular.EntityToTransfer(contratado));
+									modelAndView.addObject("oferta", oferta);
+									modelAndView.addObject("puntuacionMedia", contratado.getPuntuacionMedia());
+									modelAndView.setViewName("perfilParticular");
+								}
 							}
 						}
 					}

@@ -1,5 +1,6 @@
 package conecta2.servicioAplicacion;
 
+import conecta2.modelo.Empresa;
 import conecta2.modelo.Particular;
 import conecta2.transfer.TransferParticular;
 
@@ -19,6 +20,6 @@ public interface SAParticular {
 	
 	public Particular save(Particular particular);
 	
-	public Particular addValoracion(Particular contratado, double valoracion);
+	public boolean addValoracion(Empresa empresa, Particular contratado, double valoracion);
 	
 }

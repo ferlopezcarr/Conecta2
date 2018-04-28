@@ -13,6 +13,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 import conecta2.modelo.Notificacion;
 import conecta2.modelo.Oferta;
 import conecta2.modelo.Particular;
+import conecta2.modelo.Puntuacion;
 
 /**
  * Transfer de Particular
@@ -68,9 +69,8 @@ public class TransferParticular {
 	
 	private String descripcion;
 	
-	private double puntuacion;
-	
-	private int numValoraciones;
+	@OneToMany(mappedBy = "empresa",fetch=FetchType.LAZY)
+	private List<Puntuacion> puntuaciones;
 	
 	private boolean activo;
 	
@@ -82,7 +82,7 @@ public class TransferParticular {
 	
 	public TransferParticular() {}
 	
-	public TransferParticular(String nombre, String apellidos, String dni, String telefono, String email, String password, String passwordConfirmacion, String descripcion, double puntuacion, int numValoraciones, boolean activo, List<Oferta> ofertas, List<Notificacion> notificaciones) {
+	public TransferParticular(String nombre, String apellidos, String dni, String telefono, String email, String password, String passwordConfirmacion, String descripcion, boolean activo, List<Oferta> ofertas, List<Notificacion> notificaciones) {
 		this.nombre = nombre;
 		this.apellidos = apellidos;
 		this.dni = dni;
@@ -91,9 +91,9 @@ public class TransferParticular {
 		this.password = password;
 		this.passwordConfirmacion = passwordConfirmacion;
 		this.descripcion = descripcion;
-		this.puntuacion = puntuacion;
-		this.numValoraciones = numValoraciones;
 		this.activo= activo;
+		
+		this.puntuaciones = new ArrayList<Puntuacion>();
 		
 		if(this.ofertas == null || ofertas == null) 
 			this.ofertas = new ArrayList<Oferta>();
@@ -116,8 +116,6 @@ public class TransferParticular {
 				particular.getPassword(),
 				particular.getPassword(),
 				particular.getDescripcion(),
-				particular.getPuntuacion(),
-				particular.getNumValoraciones(),
 				particular.getActivo(),
 				particular.getOfertas(),
 				particular.getNotificaciones()
@@ -188,20 +186,12 @@ public class TransferParticular {
 		this.passwordConfirmacion = passwordConfirmacion;
 	}
 
-	public double getPuntuacion() {
-		return puntuacion;
+	public List<Puntuacion> getPuntuaciones() {
+		return puntuaciones;
 	}
 
-	public void setPuntuacion(double puntuacion) {
-		this.puntuacion = puntuacion;
-	}
-	
-	public int getNumValoraciones() {
-		return numValoraciones;
-	}
-
-	public void setNumValoraciones(int numValoraciones) {
-		this.numValoraciones = numValoraciones;
+	public void setPuntuaciones(List<Puntuacion> puntuaciones) {
+		this.puntuaciones = puntuaciones;
 	}
 	
 	public String getDescripcion() {
@@ -239,13 +229,10 @@ public class TransferParticular {
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
 		result = prime * result + ((notificaciones == null) ? 0 : notificaciones.hashCode());
-		result = prime * result + numValoraciones;
 		result = prime * result + ((ofertas == null) ? 0 : ofertas.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		result = prime * result + ((passwordConfirmacion == null) ? 0 : passwordConfirmacion.hashCode());
-		long temp;
-		temp = Double.doubleToLongBits(puntuacion);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + ((puntuaciones == null) ? 0 : puntuaciones.hashCode());
 		result = prime * result + ((telefono == null) ? 0 : telefono.hashCode());
 		return result;
 	}
@@ -291,8 +278,6 @@ public class TransferParticular {
 				return false;
 		} else if (!notificaciones.equals(other.notificaciones))
 			return false;
-		if (numValoraciones != other.numValoraciones)
-			return false;
 		if (ofertas == null) {
 			if (other.ofertas != null)
 				return false;
@@ -308,7 +293,10 @@ public class TransferParticular {
 				return false;
 		} else if (!passwordConfirmacion.equals(other.passwordConfirmacion))
 			return false;
-		if (Double.doubleToLongBits(puntuacion) != Double.doubleToLongBits(other.puntuacion))
+		if (puntuaciones == null) {
+			if (other.puntuaciones != null)
+				return false;
+		} else if (!puntuaciones.equals(other.puntuaciones))
 			return false;
 		if (telefono == null) {
 			if (other.telefono != null)
@@ -317,5 +305,5 @@ public class TransferParticular {
 			return false;
 		return true;
 	}
-	
+
 }

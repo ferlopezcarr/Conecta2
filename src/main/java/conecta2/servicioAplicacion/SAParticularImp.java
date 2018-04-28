@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import conecta2.modelo.Empresa;
 import conecta2.modelo.Particular;
+import conecta2.modelo.Puntuacion;
 import conecta2.repositorio.RepositorioParticular;
 import conecta2.transfer.TransferParticular;
 
@@ -91,31 +93,46 @@ public class SAParticularImp implements SAParticular{
 	}
 
 	@Override
-	public Particular addValoracion(Particular contratado, double valoracion) {
+	public boolean addValoracion(Empresa empresa, Particular contratado, double valoracion) {
 		
 		double puntuacionActual;
-		int numValoraciones = contratado.getNumValoraciones();
+		int numValoraciones = contratado.getPuntuaciones().size();
 										
-		if(numValoraciones != 0) {//si ya ha sido valorado anteriormente
+		if(numValoraciones != 0) {//si ya ha sido valorado por alguna anteriormente
 		
-			double puntosTotalesAntes = (numValoraciones * contratado.getPuntuacion());
+			//Miramos si la empresa ya lo ha valorado
+			int i = 0;
+			boolean found = false;
+			while(i < numValoraciones && !found) {
+				found = contratado.getPuntuaciones().get(i).getEmpresa().equals(empresa);
+				i++;
+			}
+			
+			if(found) {//si ya lo habia valorado anteriormente
+				return false;
+			}
+			else {//si la empresa no lo ha valorado aun
+				double puntosTotalesAntes = 0;
+				
+				for(int j = 0; j < numValoraciones; j++) {
+					puntosTotalesAntes += contratado.getPuntuaciones().get(j).getPuntuacion();
+				}
 
-			puntuacionActual = (puntosTotalesAntes + valoracion) / (numValoraciones+1);
+				puntuacionActual = (puntosTotalesAntes + valoracion) / (numValoraciones+1);
+			}
 		}
-		else {
+		else {//nadie lo ha valorado
 			puntuacionActual = valoracion;			
 		}
 		
 		//para redondear y quedarse solo con los decimas, tantos 0s como decimales
 		puntuacionActual = Math.rint(puntuacionActual*100)/100;
-		numValoraciones++;
 		
-		contratado.setPuntuacion(puntuacionActual);
-		contratado.setNumValoraciones(numValoraciones);
+		contratado.aniadirPuntuacion(new Puntuacion(puntuacionActual, empresa));
 		
 		contratado = save(contratado);
 		
-		return contratado;
+		return true;
 	}
 
 }
