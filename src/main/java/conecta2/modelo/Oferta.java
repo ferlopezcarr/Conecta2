@@ -63,6 +63,8 @@ public class Oferta {
 	
 	private boolean finalizada;
 	
+	private String tecnologias;
+	
 	@ManyToMany(mappedBy="ofertasInscritos", fetch=FetchType.EAGER)
 	private List<Particular> particularesInscritos;
 
@@ -77,7 +79,7 @@ public class Oferta {
 	 */
 	public Oferta() {}
 	
-	public Oferta(String nombre, JornadaLaboral jornada, Contrato contrato, Integer vacantes, Double salario, String ciudad, String descripcion, boolean activo, boolean finalizada, Empresa empresa, List<Particular> particulares) {
+	public Oferta(String nombre, JornadaLaboral jornada, Contrato contrato, Integer vacantes, Double salario, String ciudad, String descripcion, boolean activo, boolean finalizada, Empresa empresa, List<Particular> particulares, String tecnologias) {
 		this.nombre = nombre;
 		this.jornada = jornada;
 		this.contrato = contrato;
@@ -88,6 +90,7 @@ public class Oferta {
 		this.activo = activo;
 		this.finalizada = finalizada;
 		this.empresa = empresa;
+		this.tecnologias = tecnologias;
 		
 		this.particularesSeleccionados = new ArrayList<Particular>();
 		
@@ -110,6 +113,7 @@ public class Oferta {
 		this.finalizada = oferta.getFinalizada();
 		this.empresa = oferta.getEmpresa();
 		this.particularesInscritos= oferta.getParticularesInscritos();
+		this.tecnologias = oferta.getTecnologias();
 	}
 
 	public static Oferta TranferToEntity(TransferOferta transferOferta, int idOferta) {
@@ -124,7 +128,8 @@ public class Oferta {
 				transferOferta.getActivo(),
 				transferOferta.getFinalizada(),
 				transferOferta.getEmpresa(),
-				transferOferta.getParticulares()
+				transferOferta.getParticulares(),
+				transferOferta.getTecnologias()
 				);
 		oferta.setId(idOferta);
 		return oferta;
@@ -142,7 +147,8 @@ public class Oferta {
 				transferOferta.getActivo(),
 				transferOferta.getFinalizada(),
 				transferOferta.getEmpresa(),
-				transferOferta.getParticulares()
+				transferOferta.getParticulares(),
+				transferOferta.getTecnologias()
 				);
 	}
 	
@@ -234,7 +240,14 @@ public class Oferta {
 		this.empresa = empresa;
 	}
 	
+	public String getTecnologias() {
+		return tecnologias;
+	}
 
+	public void setTecnologias(String tecnologias) {
+		this.tecnologias= tecnologias;
+	}
+	
 	public List<Particular> getParticularesInscritos() {
 		return particularesInscritos;
 	}
@@ -300,6 +313,7 @@ public class Oferta {
 		result = prime * result + ((particularesInscritos == null) ? 0 : particularesInscritos.hashCode());
 		result = prime * result + ((salario == null) ? 0 : salario.hashCode());
 		result = prime * result + ((vacantes == null) ? 0 : vacantes.hashCode());
+		result = prime * result + ((tecnologias == null) ? 0 : tecnologias.hashCode());
 		return result;
 	}
 
@@ -362,6 +376,12 @@ public class Oferta {
 				return false;
 		}
 		else if(!particularesSeleccionados.equals(other.particularesSeleccionados))
+			return false;
+		if(tecnologias == null) {
+			if(other.tecnologias != null)
+				return false;
+		}
+		else if(!tecnologias.equals(other.tecnologias))
 			return false;
 		return true;
 	}
