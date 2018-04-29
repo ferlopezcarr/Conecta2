@@ -356,6 +356,7 @@ public class TransferOferta {
 		result = prime * result + ((particulares == null) ? 0 : particulares.hashCode());
 		result = prime * result + ((salario == null) ? 0 : salario.hashCode());
 		result = prime * result + ((vacantes == null) ? 0 : vacantes.hashCode());
+		result = prime * result + ((tecnologias == null) ? 0 : tecnologias.hashCode());
 		return result;
 	}
 
