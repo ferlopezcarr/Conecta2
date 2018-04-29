@@ -31,11 +31,11 @@ public class HU3EliminarOfertaTest {
 	public void testEliminarOferta() {
 
 		//Creamos las entidades
-		Oferta oferta = new Oferta("oferta1", JornadaLaboral.PorHoras, Contrato.Formación, 1, 230.0, "Barcelona", "prueba", true, false, null, new ArrayList<Particular>());
+		Oferta oferta = new Oferta("oferta1", JornadaLaboral.PorHoras, Contrato.Formación, 1, 230.0, "Barcelona", "prueba", true, false, null, new ArrayList<Particular>(), "html java");
 		
 		oferta = saOferta.save(oferta);
 
-		Oferta ofertaAEliminar = new Oferta("oferta2", JornadaLaboral.PorHoras, Contrato.Formación, 1, 230.0, "Barcelona", "prueba", true, false, null, new ArrayList<Particular>());
+		Oferta ofertaAEliminar = new Oferta("oferta2", JornadaLaboral.PorHoras, Contrato.Formación, 1, 230.0, "Barcelona", "prueba", true, false, null, new ArrayList<Particular>(), "html java");
 		
 		saOferta.save(ofertaAEliminar);
 		

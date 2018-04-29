@@ -31,7 +31,7 @@ public class HU1FinalizarOfertaTest {
 	public void testFinalizarOferta() {
 
 		//Creamos las entidades
-		Oferta oferta = new Oferta("oferta2", JornadaLaboral.PorHoras, Contrato.Formación, 1, 230.0, "Barcelona", "prueba", true, false, null, new ArrayList<Particular>());
+		Oferta oferta = new Oferta("oferta2", JornadaLaboral.PorHoras, Contrato.Formación, 1, 230.0, "Barcelona", "prueba", true, false, null, new ArrayList<Particular>(), "html java");
 		
 		oferta = saOferta.save(oferta);
 		

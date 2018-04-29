@@ -37,7 +37,7 @@ public class HU07CrearOfertaTest {
 	
 	@Test
 	public void testInsertNotNull() {
-		Oferta oferta = new Oferta("oferta", JornadaLaboral.PorHoras, Contrato.Formación, 1, 200.0, "Madrid", "", true, false, null, null);
+		Oferta oferta = new Oferta("oferta", JornadaLaboral.PorHoras, Contrato.Formación, 1, 200.0, "Madrid", "", true, false, null, null, "html java");
 		
 		Oferta ofertaGuardada = repositorioOferta.save(oferta);
 		
@@ -46,7 +46,7 @@ public class HU07CrearOfertaTest {
 	
 	@Test
 	public void testNotFounded() {
-		Oferta oferta = new Oferta("oferta", JornadaLaboral.PorHoras, Contrato.Formación, 1, 200.0, "Madrid", "", true, false, null, null);
+		Oferta oferta = new Oferta("oferta", JornadaLaboral.PorHoras, Contrato.Formación, 1, 200.0, "Madrid", "", true, false, null, null, "html java");
 		
 		Oferta ofertaGuardada = repositorioOferta.findById(oferta.getId());
 		
@@ -55,7 +55,7 @@ public class HU07CrearOfertaTest {
 	
 	@Test
 	public void testInsertFoundedById() {
-		Oferta oferta = new Oferta("oferta", JornadaLaboral.PorHoras, Contrato.Formación, 1, 200.0, "Madrid", "", true, false, null, null);
+		Oferta oferta = new Oferta("oferta", JornadaLaboral.PorHoras, Contrato.Formación, 1, 200.0, "Madrid", "", true, false, null, null, "html java");
 		
 		repositorioOferta.save(oferta);
 		
@@ -79,6 +79,7 @@ public class HU07CrearOfertaTest {
 				false,
 				null,
 				new ArrayList<Particular>()
+				, "html java"
 			);
 		
 		transferOferta.setAuxSalario("p");
@@ -106,6 +107,7 @@ public class HU07CrearOfertaTest {
 				false,
 				null,
 				new ArrayList<Particular>()
+				, "html java"
 			);
 		
 		transferOferta.setAuxSalario("-1");
@@ -133,6 +135,7 @@ public class HU07CrearOfertaTest {
 				false,
 				null,
 				new ArrayList<Particular>()
+				, "html java"
 			);
 		
 		transferOferta.setAuxVacantes("1.5");
