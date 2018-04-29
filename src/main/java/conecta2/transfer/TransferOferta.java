@@ -93,25 +93,6 @@ public class TransferOferta {
 	 */
 	public TransferOferta() {}
 	
-	public TransferOferta(int id, String nombre, JornadaLaboral jornada, Contrato contrato, Integer vacantes, Double salario, String ciudad, String descripcion, boolean activo, boolean finalizada, Empresa empresa, List<Particular> particulares) {
-		this.id = id;
-		this.nombre = nombre;
-		this.jornada = jornada;
-		this.contrato = contrato;
-		this.vacantes = vacantes;
-		this.salario = salario;
-		this.ciudad = ciudad;
-		this.descripcion = descripcion;
-		this.activo = activo;
-		this.finalizada = finalizada;
-		this.empresa = empresa;
-		
-		if(this.particulares == null || particulares == null) 
-			this.particulares = new ArrayList<Particular>();
-		else
-			this.particulares = particulares;
-	}
-	
 	public TransferOferta(int id, String nombre, JornadaLaboral jornada, Contrato contrato, Integer vacantes, Double salario, String ciudad, String descripcion, boolean activo, boolean finalizada, Empresa empresa, List<Particular> particulares, String tecnologias) {
 		this.id = id;
 		this.nombre = nombre;
@@ -131,7 +112,9 @@ public class TransferOferta {
 		else
 			this.particulares = particulares;
 	}
-	public TransferOferta(String nombre, JornadaLaboral jornada, Contrato contrato, Integer vacantes, Double salario, String ciudad, String descripcion, boolean activo, boolean finalizada, Empresa empresa, List<Particular> particulares) {
+	
+	
+	public TransferOferta(String nombre, JornadaLaboral jornada, Contrato contrato, Integer vacantes, Double salario, String ciudad, String descripcion, boolean activo, boolean finalizada, Empresa empresa, List<Particular> particulares, String tecnologias) {
 		this.nombre = nombre;
 		this.jornada = jornada;
 		this.contrato = contrato;
@@ -142,6 +125,7 @@ public class TransferOferta {
 		this.activo = activo;
 		this.finalizada = finalizada;
 		this.empresa = empresa;
+		this.tecnologias = tecnologias;
 		
 		if(this.particulares == null || particulares == null) 
 			this.particulares = new ArrayList<Particular>();
@@ -179,7 +163,8 @@ public class TransferOferta {
 				oferta.getActivo(),
 				oferta.getFinalizada(),
 				oferta.getEmpresa(),
-				oferta.getParticularesInscritos()
+				oferta.getParticularesInscritos(),
+				oferta.getTecnologias()
 				);
 	}
 	

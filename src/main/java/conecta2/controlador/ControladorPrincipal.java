@@ -609,7 +609,7 @@ public class ControladorPrincipal {
 		if(oferta != null) {
 			modelAndView = new ModelAndView();
 			TransferOferta tOferta = new TransferOferta(oferta.getNombre(),oferta.getJornadaLaboral(), oferta.getContrato(), oferta.getVacantes(), oferta.getSalario(), oferta.getCiudad(), oferta.getDescripcion(),
-					oferta.getActivo(), oferta.getFinalizada(), oferta.getEmpresa(), oferta.getParticularesInscritos());
+					oferta.getActivo(), oferta.getFinalizada(), oferta.getEmpresa(), oferta.getParticularesInscritos(), oferta.getTecnologias());
 			
 			modelAndView.addObject("transferOferta", tOferta);
 			modelAndView.setViewName("verOferta");
@@ -825,6 +825,7 @@ public class ControladorPrincipal {
 				oferta.setSalario(transferOferta.getSalario());
 				oferta.setCiudad(transferOferta.getCiudad());
 				oferta.setDescripcion(transferOferta.getDescripcion());
+				oferta.setTecnologias(transferOferta.getTecnologias());
 			}
 			
 			saOferta.save(oferta);
