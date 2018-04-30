@@ -1512,6 +1512,36 @@ public class ControladorPrincipal {
 	}
 	
 	
+	// -------------Recuperacion Contraseña ------------- //
+
+	@RequestMapping(value="/recuperar-contrasenia", method = RequestMethod.POST)
+	public ModelAndView recuperaContrasnia(@Valid String emailRecupera){
+		
+	    ModelAndView modelAndView = this.obtenerInstancia();
+	    
+	    Empresa miEmpresa =saEmpresa.buscarPorEmail(emailRecupera);
+	    
+	    if(miEmpresa!=null){
+	    	
+	    }else{
+	    		Particular miParticular = saParticular.buscarPorEmail(emailRecupera);
+	    		if(miParticular!=null) {
+	    			
+	    			
+	    		}else {
+	    			//MENSAJE DE ERROR
+	    			
+	    		}
+	    		
+	    }
+	    
+	    
+	    
+	    modelAndView.setViewName("redirect:/");
+
+		return modelAndView;
+	}
+	
 	/**
 	 * Método que añade al particular o empresa como variable permanente para el modelo
 	 * para despues instanciar un nuevo ModelAndView que contiene el modelo  y asi poder acceder a los datos del usuario que esta navegando en la aplicacion
