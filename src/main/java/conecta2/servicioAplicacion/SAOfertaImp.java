@@ -1,5 +1,6 @@
 package conecta2.servicioAplicacion;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,7 +70,7 @@ public class SAOfertaImp implements SAOferta {
 	 */
 	@Override
 	public List<Oferta> buscarOfertasPorNombreYNombreMayus(String nombre, String nombreMayusPrimero) {
-		return repoOferta.findByNombreContainingOrNombreContaining(nombre, nombreMayusPrimero);
+		return repoOferta.findByFinalizadaFalseAndActivoTrueAndNombreContainingOrNombreContainingAndFinalizadaFalseAndActivoTrue(nombre, nombreMayusPrimero);
 	}
 	
 	/**
@@ -77,7 +78,12 @@ public class SAOfertaImp implements SAOferta {
 	 */
 	@Override
 	public List<Oferta> buscarOfertasParticularInscrito(Particular part) {
-		return this.repoOferta.findOfertasParticularInscrito(part);
+		List<Oferta> ofertas = this.repoOferta.findOfertasParticularInscrito(part);
+		List<Oferta> activas = new ArrayList<Oferta>();
+		for(int i = 0; i < ofertas.size(); i++) {
+			if(ofertas.get(i).getActivo()) activas.add(ofertas.get(i));
+		}
+		return activas;
 	}
 	
 	/**

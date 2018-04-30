@@ -826,12 +826,13 @@ public class ControladorPrincipal {
 				oferta.setCiudad(transferOferta.getCiudad());
 				oferta.setDescripcion(transferOferta.getDescripcion());
 				oferta.setTecnologias(transferOferta.getTecnologias());
+				
+				saOferta.save(oferta);
+				saNotificacion.notificarParticularActualizarOferta(oferta);
+				String msg = "¡Oferta actualizada!";
+				modelAndView.addObject("popup", msg);
+				modelAndView.setViewName("mostrarOfertas");
 			}
-			
-			saOferta.save(oferta);
-			String msg = "¡Oferta actualizada!";
-			modelAndView.addObject("popup", msg);
-			modelAndView.setViewName("mostrarOfertas");
 		}
 		
 		return modelAndView;
@@ -895,6 +896,7 @@ public class ControladorPrincipal {
 		//Si no hay errores
 		if(oferta != null) {
 			saOferta.eliminarOferta(id);
+			if (!oferta.getFinalizada()) saNotificacion.notificarParticularOfertaEliminada(oferta);
 			String msg = "¡Oferta eliminada!";
 			modelAndView.addObject("popup", msg);
 			modelAndView.setViewName("mostrarOfertas");
