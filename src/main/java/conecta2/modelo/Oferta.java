@@ -65,6 +65,8 @@ public class Oferta {
 	
 	private String tecnologias;
 	
+	private int aniosExperiencia;
+	
 	@ManyToMany(mappedBy="ofertasInscritos", fetch=FetchType.EAGER)
 	private List<Particular> particularesInscritos;
 
@@ -79,7 +81,7 @@ public class Oferta {
 	 */
 	public Oferta() {}
 	
-	public Oferta(String nombre, JornadaLaboral jornada, Contrato contrato, Integer vacantes, Double salario, String ciudad, String descripcion, boolean activo, boolean finalizada, Empresa empresa, List<Particular> particulares, String tecnologias) {
+	public Oferta(String nombre, JornadaLaboral jornada, Contrato contrato, Integer vacantes, Double salario, String ciudad, String descripcion, boolean activo, boolean finalizada, Empresa empresa, List<Particular> particulares, String tecnologias, int aniosExperiencia) {
 		this.nombre = nombre;
 		this.jornada = jornada;
 		this.contrato = contrato;
@@ -91,6 +93,7 @@ public class Oferta {
 		this.finalizada = finalizada;
 		this.empresa = empresa;
 		this.tecnologias = tecnologias;
+		this.aniosExperiencia = aniosExperiencia;
 		
 		this.particularesSeleccionados = new ArrayList<Particular>();
 		
@@ -114,6 +117,7 @@ public class Oferta {
 		this.empresa = oferta.getEmpresa();
 		this.particularesInscritos= oferta.getParticularesInscritos();
 		this.tecnologias = oferta.getTecnologias();
+		this.aniosExperiencia = oferta.getAniosExperiencia();
 	}
 
 	public static Oferta TranferToEntity(TransferOferta transferOferta, int idOferta) {
@@ -129,7 +133,8 @@ public class Oferta {
 				transferOferta.getFinalizada(),
 				transferOferta.getEmpresa(),
 				transferOferta.getParticulares(),
-				transferOferta.getTecnologias()
+				transferOferta.getTecnologias(),
+				transferOferta.getAniosExperiencia()
 				);
 		oferta.setId(idOferta);
 		return oferta;
@@ -148,7 +153,8 @@ public class Oferta {
 				transferOferta.getFinalizada(),
 				transferOferta.getEmpresa(),
 				transferOferta.getParticulares(),
-				transferOferta.getTecnologias()
+				transferOferta.getTecnologias(),
+				transferOferta.getAniosExperiencia()
 				);
 	}
 	
@@ -248,6 +254,14 @@ public class Oferta {
 		this.tecnologias= tecnologias;
 	}
 	
+	public int getAniosExperiencia() {
+		return aniosExperiencia;
+	}
+
+	public void setAniosExperiencia(int aniosExperiencia) {
+		this.aniosExperiencia = aniosExperiencia;
+	}
+
 	public List<Particular> getParticularesInscritos() {
 		return particularesInscritos;
 	}

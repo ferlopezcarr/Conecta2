@@ -32,7 +32,7 @@ public class HU1FinalizarOfertaTest {
 	
 	@Test
 	public void testSeleccionarCandidato() {
-		Oferta oferta = new Oferta("ofertaNoFinalizada", JornadaLaboral.PorHoras, Contrato.Formación, 1, 200.0, "Madrid", "", true, false, null, null, "html java");
+		Oferta oferta = new Oferta("ofertaNoFinalizada", JornadaLaboral.PorHoras, Contrato.Formación, 1, 200.0, "Madrid", "", true, false, null, null, "html java", 1);
 		
 		repositorioOferta.save(oferta);
 		
@@ -49,7 +49,7 @@ public class HU1FinalizarOfertaTest {
 	
 	@Test
 	public void testFinalizarOferta() {
-		Oferta oferta = new Oferta("ofertaNoFinalizada", JornadaLaboral.PorHoras, Contrato.Formación, 1, 200.0, "Madrid", "", true, false, null, null, "html java");
+		Oferta oferta = new Oferta("ofertaNoFinalizada", JornadaLaboral.PorHoras, Contrato.Formación, 1, 200.0, "Madrid", "", true, false, null, null, "html java", 1);
 		
 		repositorioOferta.save(oferta);
 		

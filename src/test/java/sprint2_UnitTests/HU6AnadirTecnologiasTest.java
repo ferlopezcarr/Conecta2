@@ -31,11 +31,11 @@ public class HU6AnadirTecnologiasTest {
 	@Test
 	public void testAnadirTecnologias() {
 	     
-        Oferta ofertaSinAnadir = new Oferta("ofertaNoFinalizada", JornadaLaboral.PorHoras, Contrato.Formación, 1, 200.0, "Madrid", "", true, false, null, null, null);
+        Oferta ofertaSinAnadir = new Oferta("ofertaNoFinalizada", JornadaLaboral.PorHoras, Contrato.Formación, 1, 200.0, "Madrid", "", true, false, null, null, null, 1);
 		
 		Oferta sinTecnologia = repositorioOferta.save(ofertaSinAnadir);
 		
-		Oferta ofertaAnadidaTec = new Oferta("ofertaNoFinalizada", JornadaLaboral.PorHoras, Contrato.Formación, 1, 200.0, "Madrid", "", true, false, null, null, "html css");
+		Oferta ofertaAnadidaTec = new Oferta("ofertaNoFinalizada", JornadaLaboral.PorHoras, Contrato.Formación, 1, 200.0, "Madrid", "", true, false, null, null, "html css", 1);
 		 
 		Oferta conTecnologia = repositorioOferta.save(ofertaAnadidaTec);
 		

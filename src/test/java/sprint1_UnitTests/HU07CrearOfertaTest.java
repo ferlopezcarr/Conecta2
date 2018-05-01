@@ -37,7 +37,7 @@ public class HU07CrearOfertaTest {
 	
 	@Test
 	public void testInsertNotNull() {
-		Oferta oferta = new Oferta("oferta", JornadaLaboral.PorHoras, Contrato.Formación, 1, 200.0, "Madrid", "", true, false, null, null, "html java");
+		Oferta oferta = new Oferta("oferta", JornadaLaboral.PorHoras, Contrato.Formación, 1, 200.0, "Madrid", "", true, false, null, null, "html java", 1);
 		
 		Oferta ofertaGuardada = repositorioOferta.save(oferta);
 		
@@ -46,7 +46,7 @@ public class HU07CrearOfertaTest {
 	
 	@Test
 	public void testNotFounded() {
-		Oferta oferta = new Oferta("oferta", JornadaLaboral.PorHoras, Contrato.Formación, 1, 200.0, "Madrid", "", true, false, null, null, "html java");
+		Oferta oferta = new Oferta("oferta", JornadaLaboral.PorHoras, Contrato.Formación, 1, 200.0, "Madrid", "", true, false, null, null, "html java", 1);
 		
 		Oferta ofertaGuardada = repositorioOferta.findById(oferta.getId());
 		
@@ -55,7 +55,7 @@ public class HU07CrearOfertaTest {
 	
 	@Test
 	public void testInsertFoundedById() {
-		Oferta oferta = new Oferta("oferta", JornadaLaboral.PorHoras, Contrato.Formación, 1, 200.0, "Madrid", "", true, false, null, null, "html java");
+		Oferta oferta = new Oferta("oferta", JornadaLaboral.PorHoras, Contrato.Formación, 1, 200.0, "Madrid", "", true, false, null, null, "html java", 1);
 		
 		repositorioOferta.save(oferta);
 		
@@ -78,8 +78,9 @@ public class HU07CrearOfertaTest {
 				true,
 				false,
 				null,
-				new ArrayList<Particular>()
-				, "html java"
+				new ArrayList<Particular>(),
+				"html java",
+				1
 			);
 		
 		transferOferta.setAuxSalario("p");
@@ -106,8 +107,9 @@ public class HU07CrearOfertaTest {
 				true,
 				false,
 				null,
-				new ArrayList<Particular>()
-				, "html java"
+				new ArrayList<Particular>(),
+				"html java",
+				1
 			);
 		
 		transferOferta.setAuxSalario("-1");
@@ -134,8 +136,9 @@ public class HU07CrearOfertaTest {
 				true,
 				false,
 				null,
-				new ArrayList<Particular>()
-				, "html java"
+				new ArrayList<Particular>(),
+				"html java",
+				1
 			);
 		
 		transferOferta.setAuxVacantes("1.5");

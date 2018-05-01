@@ -31,7 +31,7 @@ public class HU09BuscadorTest {
 	
 	@Test
 	public void testCorrectSearch() {
-		Oferta oferta = new Oferta("oferta", JornadaLaboral.PorHoras, Contrato.Formación, 1, 200.0, "Madrid", "", true, false, null, null, "html java");
+		Oferta oferta = new Oferta("oferta", JornadaLaboral.PorHoras, Contrato.Formación, 1, 200.0, "Madrid", "", true, false, null, null, "html java", 1);
 
 		oferta = saOferta.save(oferta);
 		

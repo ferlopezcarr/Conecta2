@@ -32,7 +32,7 @@ public class HU09InscribirseEnOfertaTest {
 
 	@Test
 	public void test0Candidatos() {
-		Oferta oferta = new Oferta("oferta", JornadaLaboral.PorHoras, Contrato.Formación, 1, 200.0, "Madrid", "", true, false, null, null, "html java");
+		Oferta oferta = new Oferta("oferta", JornadaLaboral.PorHoras, Contrato.Formación, 1, 200.0, "Madrid", "", true, false, null, null, "html java", 1);
 		
 		repOferta.save(oferta);
 		

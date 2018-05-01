@@ -66,6 +66,8 @@ public class TransferOferta {
 	
 	private String tecnologias;
 	
+	private int aniosExperiencia;
+	
 	@ManyToOne (fetch=FetchType.EAGER)
 	private Empresa empresa;
 	
@@ -114,7 +116,7 @@ public class TransferOferta {
 	}
 	
 	
-	public TransferOferta(String nombre, JornadaLaboral jornada, Contrato contrato, Integer vacantes, Double salario, String ciudad, String descripcion, boolean activo, boolean finalizada, Empresa empresa, List<Particular> particulares, String tecnologias) {
+	public TransferOferta(String nombre, JornadaLaboral jornada, Contrato contrato, Integer vacantes, Double salario, String ciudad, String descripcion, boolean activo, boolean finalizada, Empresa empresa, List<Particular> particulares, String tecnologias, int aniosExperiencia) {
 		this.nombre = nombre;
 		this.jornada = jornada;
 		this.contrato = contrato;
@@ -126,6 +128,7 @@ public class TransferOferta {
 		this.finalizada = finalizada;
 		this.empresa = empresa;
 		this.tecnologias = tecnologias;
+		this.aniosExperiencia = aniosExperiencia;
 		
 		if(this.particulares == null || particulares == null) 
 			this.particulares = new ArrayList<Particular>();
@@ -164,7 +167,8 @@ public class TransferOferta {
 				oferta.getFinalizada(),
 				oferta.getEmpresa(),
 				oferta.getParticularesInscritos(),
-				oferta.getTecnologias()
+				oferta.getTecnologias(),
+				oferta.getAniosExperiencia()
 				);
 	}
 	
@@ -194,6 +198,14 @@ public class TransferOferta {
 	
 	public void setTecnologias(String tecnologias) {
 		this.tecnologias = tecnologias;
+	}
+
+	public int getAniosExperiencia() {
+		return aniosExperiencia;
+	}
+
+	public void setAniosExperiencia(int aniosExperiencia) {
+		this.aniosExperiencia = aniosExperiencia;
 	}
 
 	public void setJornada(JornadaLaboral jornada) {

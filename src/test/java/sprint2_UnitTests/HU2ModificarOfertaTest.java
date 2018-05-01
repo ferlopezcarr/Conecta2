@@ -27,7 +27,7 @@ public class HU2ModificarOfertaTest {
 	
 	@Test
 	public void testModificarOferta() {
-		Oferta oferta = new Oferta("ofertaNoFinalizada", JornadaLaboral.PorHoras, Contrato.Formación, 1, 200.0, "Madrid", "", true, false, null, null, "html java");
+		Oferta oferta = new Oferta("ofertaNoFinalizada", JornadaLaboral.PorHoras, Contrato.Formación, 1, 200.0, "Madrid", "", true, false, null, null, "html java", 1);
 		
 		repositorioOferta.save(oferta);
 		
