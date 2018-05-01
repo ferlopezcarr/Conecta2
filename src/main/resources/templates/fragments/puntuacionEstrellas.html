@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+  <head th:fragment="head">
+    <title>Navbar</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous" />
+  </head>
+    <body>
+	  <div class="container">
+	  	<div class="d-flex flex-row flex-nowrap my-auto" th:fragment="puntuacionEstrellas">
+			<div  th:if="${puntuacionMedia} == 0.0 ">
+				<i class="material-icons star" >star_border</i>
+				<i class="material-icons star" >star_border</i>
+				<i class="material-icons star" >star_border</i>
+				<i class="material-icons star" >star_border</i>
+				<i class="material-icons star" >star_border</i>
+			</div>
+			<div  th:if="${puntuacionMedia} <= 0.5  and ${puntuacionMedia} > 0.0 ">
+				<i class="material-icons star" >star_half</i>
+				<i class="material-icons star" >star_border</i>
+				<i class="material-icons star" >star_border</i>
+				<i class="material-icons star" >star_border</i>
+				<i class="material-icons star" >star_border</i>
+			</div>
+  		 	<div  th:if="${puntuacionMedia} <= 1.0 and ${puntuacionMedia} > 0.5 ">
+	  		  	<i class="material-icons star" >star</i>
+	  		  	<i class="material-icons star" >star_border</i>
+	  		  	<i class="material-icons star" >star_border</i>
+	  		  	<i class="material-icons star" >star_border</i>
+	  		  	<i class="material-icons star" >star_border</i>
+	  		</div>
+	  		<div  th:if="${puntuacionMedia} <= 1.5 and ${puntuacionMedia} > 1.0 ">
+	  		  	<i class="material-icons star" >star</i>
+	  		  	<i class="material-icons star" >star_half</i>
+	  		  	<i class="material-icons star" >star_border</i>
+	  		  	<i class="material-icons star" >star_border</i>
+	  		  	<i class="material-icons star" >star_border</i>
+	  		</div>
+	  		<div  th:if="${puntuacionMedia} <= 2.0 and ${puntuacionMedia} > 1.5 ">
+	  		  	<i class="material-icons star" >star</i>
+	  		  	<i class="material-icons star" >star</i>
+	  		  	<i class="material-icons star" >star_border</i>
+	  		  	<i class="material-icons star" >star_border</i>
+	  		  	<i class="material-icons star" >star_border</i>
+	  		</div>
+	  		<div  th:if="${puntuacionMedia} <= 2.5 and ${puntuacionMedia} > 2.0 ">
+	  		  	<i class="material-icons star" >star</i>
+	  		  	<i class="material-icons star" >star</i>
+	  		  	<i class="material-icons star" >star_half</i>
+	  		  	<i class="material-icons star" >star_border</i>
+	  		  	<i class="material-icons star" >star_border</i>
+	  		</div>
+	  		<div  th:if="${puntuacionMedia} <= 3.0 and ${puntuacionMedia} > 2.5 ">
+	  		  	<i class="material-icons star" >star</i>
+	  		  	<i class="material-icons star" >star</i>
+	  		  	<i class="material-icons star" >star</i>
+	  		  	<i class="material-icons star" >star_border</i>
+	  		  	<i class="material-icons star" >star_border</i>
+	  		</div>
+	  		<div  th:if="${puntuacionMedia} <= 3.5 and ${puntuacionMedia} > 3.0 ">
+	  		  	<i class="material-icons star" >star</i>
+	  		  	<i class="material-icons star" >star</i>
+	  		  	<i class="material-icons star" >star</i>
+	  		  	<i class="material-icons star" >star_half</i>
+	  		  	<i class="material-icons star" >star_border</i>
+	  		</div>	
+	  		<div  th:if="${puntuacionMedia} <= 4.0 and ${puntuacionMedia} > 3.5 ">
+	  		  	<i class="material-icons star" >star</i>
+	  		  	<i class="material-icons star" >star</i>
+	  		  	<i class="material-icons star" >star</i>
+	  		  	<i class="material-icons star" >star</i>
+	  		  	<i class="material-icons star" >star_border</i>
+	  		</div>
+	  		<div  th:if="${puntuacionMedia} <= 4.5 and ${puntuacionMedia} > 4.0 ">
+	  		  	<i class="material-icons star" >star</i>
+	  		  	<i class="material-icons star" >star</i>
+	  		  	<i class="material-icons star" >star</i>
+	  		  	<i class="material-icons star" >star</i>
+	  		  	<i class="material-icons star" >star_half</i>
+	  		</div>	
+	  		<div  th:if="${puntuacionMedia} <= 5.0 and ${puntuacionMedia} > 4.5 ">
+	  		  	<i class="material-icons star" >star</i>
+	  		  	<i class="material-icons star" >star</i>
+	  		  	<i class="material-icons star" >star</i>
+	  		  	<i class="material-icons star" >star</i>
+	  		  	<i class="material-icons star" >star</i>
+	  		</div>
+	  	</div>
+		
+		<!-- Optional JavaScript -->
+    	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+	</div>
+  </body>
+</html>

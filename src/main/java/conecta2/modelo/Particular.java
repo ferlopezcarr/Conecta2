@@ -338,4 +338,16 @@ public class Particular {
 		return puntuacionMedia;
 	}
     
+	public boolean estaParticularValorado(Empresa empresa) {
+		
+		int i = 0;
+		boolean found = false;
+		
+		while(i < puntuaciones.size() && !found) {
+			found = empresa.equals(this.puntuaciones.get(i).getEmpresa());
+			i++;
+		}
+		
+		return found;
+	}
 }

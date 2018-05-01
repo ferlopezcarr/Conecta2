@@ -1,7 +1,6 @@
 package sprint2_IntegrationTests;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotEquals;
 
-import java.util.ArrayList;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,32 +14,30 @@ import conecta2.C2Aplicacion;
 import conecta2.modelo.Contrato;
 import conecta2.modelo.JornadaLaboral;
 import conecta2.modelo.Oferta;
-import conecta2.modelo.Particular;
 import conecta2.servicioAplicacion.SAOferta;
+
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = C2Aplicacion.class)
 @DataJpaTest
 @ComponentScan(basePackages ="conecta2")
-public class HU3EliminarOfertaTest {
-
+public class HU6AnadirTecnologiasTest {
+	
 	@Autowired
 	private SAOferta saOferta;
 	
 	@Test
-	public void testEliminarOferta() {
-
-		//Creamos las entidades
-		Oferta oferta = new Oferta("oferta1", JornadaLaboral.PorHoras, Contrato.Formación, 1, 230.0, "Barcelona", "prueba", true, false, null, new ArrayList<Particular>(), "html java", 1);
+	public void testOfertaConTecnologias() {
 		
-		oferta = saOferta.save(oferta);
-
-		Oferta ofertaAEliminar = new Oferta("oferta2", JornadaLaboral.PorHoras, Contrato.Formación, 1, 230.0, "Barcelona", "prueba", true, false, null, new ArrayList<Particular>(), "html java", 1);
+Oferta ofertaSinAnadir = new Oferta("ofertaNoFinalizada", JornadaLaboral.PorHoras, Contrato.Formación, 1, 200.0, "Madrid", "", true, false, null, null, null, 1);
 		
-		saOferta.save(ofertaAEliminar);
+		Oferta sinTecnologia = saOferta.save(ofertaSinAnadir);
 		
-		saOferta.eliminarOferta(ofertaAEliminar.getId());
-				
-		assertNotEquals(oferta.getActivo(), ofertaAEliminar.getActivo());
+		Oferta ofertaAnadidaTec = new Oferta("ofertaNoFinalizada", JornadaLaboral.PorHoras, Contrato.Formación, 1, 200.0, "Madrid", "", true, false, null, null, "html css", 1);
+		 
+		Oferta conTecnologia = saOferta.save(ofertaAnadidaTec);
+		
+		assertNotEquals(sinTecnologia, conTecnologia);
 	}
+
 }

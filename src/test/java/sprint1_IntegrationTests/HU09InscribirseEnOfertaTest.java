@@ -38,7 +38,7 @@ public class HU09InscribirseEnOfertaTest {
 	public void testInscribirse() {
 		
 		//Crear oferta
-		Oferta oferta = new Oferta("oferta2", JornadaLaboral.PorHoras, Contrato.Formación, 1, 230.0, "Barcelona", "prueba", true, false, null, new ArrayList<Particular>());
+		Oferta oferta = new Oferta("oferta2", JornadaLaboral.PorHoras, Contrato.Formación, 1, 230.0, "Barcelona", "prueba", true, false, null, new ArrayList<Particular>(), "html java", 1);
 		oferta = saOferta.save(oferta);
 		
 		//Crear particular

@@ -38,122 +38,36 @@
   		
   		   <div class="row">
   		     <div class="col-6  ml-auto text-center">
-  		          <h3>Datos personales</h3>
-  		          <hr class="mb-4 separador-gris">
-  		          <form>
-			  	    <div class="form-group row ">
-			  		<label class="perfilTitulo letra-azul col-form-label col-3  margen-datos " for="Nombre">Nombre: </label>					  		  		
-			  		  <span class="form-control-plaintext " th:text=${transferParticular.nombre}></span>
-			  			<!-- <input class="form-control" id="cif"> -->			  			
-			  		 </div>
-			  		
-			  		  <div class="form-group row">
-			  		<label class="perfilTitulo letra-azul col-form-label col-3 margen-datos" for="Nombre">Apellidos: </label>					  		  		
-			  		  <span class="form-control-plaintext " th:text=${transferParticular.apellidos}></span>
-			  			<!-- <input class="form-control" id="cif"> -->			  			
-			  		 </div>
-			  		  <div class="form-group row">
-			  		<label class="perfilTitulo letra-azul col-form-label col-3 margen-datos" for="Nombre">DNI: </label>					  		  		
-			  		  <span class="form-control-plaintext " th:text=${transferParticular.dni}></span>
-			  			<!-- <input class="form-control" id="cif"> -->			  			
-			  		 </div>
-			  		 
-			  		 <div class="form-group row">
-			  		<label class="perfilTitulo letra-azul col-form-label col-3 margen-datos" for="Nombre">Teléfono: </label>					  		  		
-			  		  <span class="form-control-plaintext " th:text=${transferParticular.telefono}></span>
-			  			<!-- <input class="form-control" id="cif"> -->			  			
-			  		 </div>
-			  		 
-			  		  <div class="form-group row">
-			  		<label class="perfilTitulo letra-azul col-form-label col-3 margen-datos " for="Nombre">Email: </label>					  		  		
-			  		  <span class="form-control-plaintext " th:text=${transferParticular.email}></span>
-			  			<!-- <input class="form-control" id="cif"> -->			  			
-			  		 </div>
-			  		 
-			  		 <div class="form-group row">
-			  		<label class="perfilTitulo letra-azul col-form-label col-3 margen-datos " for="Puntuación">Puntuación: </label>					  		  		
-						<span class="form-control-plaintext " th:text=${puntuacionMedia}></span>
-						<div class="d-flex flex-row flex-nowrap my-auto">
-							<div  th:if="${puntuacionMedia} <= 0.5">
-								<i class="material-icons star" >star half</i>
-								<i class="material-icons star" >star border</i>
-								<i class="material-icons star" >star border</i>
-								<i class="material-icons star" >star border</i>
-								<i class="material-icons star" >star border</i>
-							</div>
-				  		 	<div  th:if="${puntuacionMedia} <= 1.0 and ${puntuacionMedia} > 0.5 ">
-					  		  	<i class="material-icons star" >star</i>
-					  		  	<i class="material-icons star" >star border</i>
-					  		  	<i class="material-icons star" >star border</i>
-					  		  	<i class="material-icons star" >star border</i>
-					  		  	<i class="material-icons star" >star border</i>
-					  		</div>
-					  		<div  th:if="${puntuacionMedia} <= 1.5 and ${puntuacionMedia} > 1.0 ">
-					  		  	<i class="material-icons star" >star</i>
-					  		  	<i class="material-icons star" >star half</i>
-					  		  	<i class="material-icons star" >star border</i>
-					  		  	<i class="material-icons star" >star border</i>
-					  		  	<i class="material-icons star" >star border</i>
-					  		</div>
-					  		<div  th:if="${puntuacionMedia} <= 2.0 and ${puntuacionMedia} > 1.5 ">
-					  		  	<i class="material-icons star" >star</i>
-					  		  	<i class="material-icons star" >star</i>
-					  		  	<i class="material-icons star" >star border</i>
-					  		  	<i class="material-icons star" >star border</i>
-					  		  	<i class="material-icons star" >star border</i>
-					  		</div>
-					  		<div  th:if="${puntuacionMedia} <= 2.5 and ${puntuacionMedia} > 2.0 ">
-					  		  	<i class="material-icons star" >star</i>
-					  		  	<i class="material-icons star" >star</i>
-					  		  	<i class="material-icons star" >star half</i>
-					  		  	<i class="material-icons star" >star border</i>
-					  		  	<i class="material-icons star" >star border</i>
-					  		</div>
-					  		<div  th:if="${puntuacionMedia} <= 3.0 and ${puntuacionMedia} > 2.5 ">
-					  		  	<i class="material-icons star" >star</i>
-					  		  	<i class="material-icons star" >star</i>
-					  		  	<i class="material-icons star" >star</i>
-					  		  	<i class="material-icons star" >star border</i>
-					  		  	<i class="material-icons star" >star border</i>
-					  		</div>
-					  		<div  th:if="${puntuacionMedia} <= 3.5 and ${puntuacionMedia} > 3.0 ">
-					  		  	<i class="material-icons star" >star</i>
-					  		  	<i class="material-icons star" >star</i>
-					  		  	<i class="material-icons star" >star</i>
-					  		  	<i class="material-icons star" >star half</i>
-					  		  	<i class="material-icons star" >star border</i>
-					  		</div>	
-					  		<div  th:if="${puntuacionMedia} <= 4.0 and ${puntuacionMedia} > 3.5 ">
-					  		  	<i class="material-icons star" >star</i>
-					  		  	<i class="material-icons star" >star</i>
-					  		  	<i class="material-icons star" >star</i>
-					  		  	<i class="material-icons star" >star</i>
-					  		  	<i class="material-icons star" >star border</i>
-					  		</div>
-					  		<div  th:if="${puntuacionMedia} <= 4.5 and ${puntuacionMedia} > 4.0 ">
-					  		  	<i class="material-icons star" >star</i>
-					  		  	<i class="material-icons star" >star</i>
-					  		  	<i class="material-icons star" >star</i>
-					  		  	<i class="material-icons star" >star</i>
-					  		  	<i class="material-icons star" >star half</i>
-					  		</div>	
-					  		<div  th:if="${puntuacionMedia} <= 5.0 and ${puntuacionMedia} > 4.5 ">
-					  		  	<i class="material-icons star" >star</i>
-					  		  	<i class="material-icons star" >star</i>
-					  		  	<i class="material-icons star" >star</i>
-					  		  	<i class="material-icons star" >star</i>
-					  		  	<i class="material-icons star" >star</i>
-					  		</div>
-					  	</div>	
-			  		 </div>
-			  		 
-			  		 <div class="form-group row">
-			  		<label class="perfilTitulo letra-azul col-form-label col-auto margen-datos " for="numValoraciones">Número de valoraciones:</label>					  		  		
-			  		  <span class="form-control-plaintext " th:text=${transferParticular.getPuntuaciones().size()}></span>
-			  			<!-- <input class="form-control" id="cif"> -->			  			
-			  		 </div>
-			  		 
-			  		</form>
+  		          	<h3>Datos personales</h3>
+  		          	<hr class="mb-4 separador-gris">
+			  	    <div class="row">
+			  			<label class="perfilTitulo letra-azul col-form-label col-3  margen-datos " for="Nombre">Nombre: </label>
+			  			<span class="form-control-plaintext " th:text=${transferParticular.nombre}></span>		  			
+			  		</div>
+			  		<div class="row">
+			  			<label class="perfilTitulo letra-azul col-form-label col-3 margen-datos" for="Nombre">Apellidos: </label>
+			  		  	<span class="form-control-plaintext " th:text=${transferParticular.apellidos}></span>		  			
+			  		</div>
+			  		<div class="row">
+			  			<label class="perfilTitulo letra-azul col-form-label col-3 margen-datos" for="Nombre">DNI: </label>
+			  		  	<span class="form-control-plaintext " th:text=${transferParticular.dni}></span>		  			
+			  		</div>			  		 
+			  		<div class="row">
+			  		<label class="perfilTitulo letra-azul col-form-label col-3 margen-datos" for="Nombre">Teléfono: </label>
+			  		  <span class="form-control-plaintext " th:text=${transferParticular.telefono}></span>	  			
+			  		</div>			  		 
+			  		<div class="row">
+			  		<label class="perfilTitulo letra-azul col-form-label col-3 margen-datos " for="Nombre">Email: </label>
+			  		  <span class="form-control-plaintext " th:text=${transferParticular.email}></span>	  			
+			  		</div>
+			  		<div class="row">
+			  			<label class="perfilTitulo letra-azul col-form-label col-3 margen-datos " for="Puntuación">Puntuación: </label>
+						<div th:replace="fragments/puntuacionEstrellas :: puntuacionEstrellas(puntuacionMedia=${puntuacionMedia})"></div>
+			  		</div>
+			  		<div class="row">
+			  			<label class="perfilTitulo letra-azul col-form-label col-auto margen-datos " for="numValoraciones">Número de valoraciones:</label>					  		  		
+			  		  	<span class="form-control-plaintext " th:text=${transferParticular.getPuntuaciones().size()}></span>		  			
+			  		</div>
 			  	</div>
   		     <div class="col-6 sep-vertical text-center">
   		     

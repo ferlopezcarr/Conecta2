@@ -80,10 +80,18 @@
 					 	
 					  </div>
 					  
+					  <div class="form-group row">
+					    <label for="aniosExperiencia" class="col-sm-4 col-form-label letra-azul">Años de experiencia:</label>
+					    <div class="col-sm-8">
+					      <input type="number" class="form-control" id="aniosExperiencia" th:field="*{aniosExperiencia}" placeholder="Años de experiencia">
+					      <label th:if="${#fields.hasErrors('aniosExperiencia')}" th:errors="*{aniosExperiencia}" class="validation-message error"></label>
+					    </div>
+					  </div>
+					  
 					  <div class="form-row mt-4">
-						    <label for="tecnologia" class="sr-only">Tecnologías:</label>
-						<!--  	<input type="text" class="form-control" th:field="*{tecnologia}" id="tecnologia" placeholder="Tecnologías">
-							<label th:if="${#fields.hasErrors('tecnologia')}" th:errors="*{tecnologia}" class="validation-message error"></label> -->
+						    <label for="tecnologias" class="sr-only">Tecnologías:</label>
+							<input type="text" class="form-control" th:field="*{tecnologias}" id="tecnologias" placeholder="Tecnologías">
+							<label th:if="${#fields.hasErrors('tecnologias')}" th:errors="*{tecnologias}" class="validation-message error"></label> 
 					  	</div>
 					  <div class="form-row mt-4">
 						  <label for="descripcion" class= "letra-azul">Descripcion:</label>

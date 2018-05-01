@@ -26,6 +26,9 @@ public class SAParticularImp implements SAParticular{
 	@Autowired
 	private RepositorioParticular repositorioParticular;
 	
+	@Autowired
+	private SAPuntuacion saPuntuacion;
+	
 	/**
 	 * Atributo que se utiliza para encriptar las contraseñas una vez el usuario se registra
 	 */
@@ -128,7 +131,10 @@ public class SAParticularImp implements SAParticular{
 		//para redondear y quedarse solo con los decimas, tantos 0s como decimales
 		puntuacionActual = Math.rint(puntuacionActual*100)/100;
 		
-		contratado.aniadirPuntuacion(new Puntuacion(puntuacionActual, empresa));
+		Puntuacion puntuacion = new Puntuacion(puntuacionActual, contratado, empresa);
+		contratado.aniadirPuntuacion(puntuacion);
+		
+		puntuacion = saPuntuacion.save(puntuacion);
 		
 		contratado = save(contratado);
 		

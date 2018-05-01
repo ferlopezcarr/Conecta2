@@ -64,6 +64,10 @@ public class TransferOferta {
 	
 	private boolean finalizada;
 	
+	private String tecnologias;
+	
+	private int aniosExperiencia;
+	
 	@ManyToOne (fetch=FetchType.EAGER)
 	private Empresa empresa;
 	
@@ -91,7 +95,7 @@ public class TransferOferta {
 	 */
 	public TransferOferta() {}
 	
-	public TransferOferta(int id, String nombre, JornadaLaboral jornada, Contrato contrato, Integer vacantes, Double salario, String ciudad, String descripcion, boolean activo, boolean finalizada, Empresa empresa, List<Particular> particulares) {
+	public TransferOferta(int id, String nombre, JornadaLaboral jornada, Contrato contrato, Integer vacantes, Double salario, String ciudad, String descripcion, boolean activo, boolean finalizada, Empresa empresa, List<Particular> particulares, String tecnologias) {
 		this.id = id;
 		this.nombre = nombre;
 		this.jornada = jornada;
@@ -103,6 +107,7 @@ public class TransferOferta {
 		this.activo = activo;
 		this.finalizada = finalizada;
 		this.empresa = empresa;
+		this.tecnologias = tecnologias;
 		
 		if(this.particulares == null || particulares == null) 
 			this.particulares = new ArrayList<Particular>();
@@ -110,7 +115,8 @@ public class TransferOferta {
 			this.particulares = particulares;
 	}
 	
-	public TransferOferta(String nombre, JornadaLaboral jornada, Contrato contrato, Integer vacantes, Double salario, String ciudad, String descripcion, boolean activo, boolean finalizada, Empresa empresa, List<Particular> particulares) {
+	
+	public TransferOferta(String nombre, JornadaLaboral jornada, Contrato contrato, Integer vacantes, Double salario, String ciudad, String descripcion, boolean activo, boolean finalizada, Empresa empresa, List<Particular> particulares, String tecnologias, int aniosExperiencia) {
 		this.nombre = nombre;
 		this.jornada = jornada;
 		this.contrato = contrato;
@@ -121,6 +127,8 @@ public class TransferOferta {
 		this.activo = activo;
 		this.finalizada = finalizada;
 		this.empresa = empresa;
+		this.tecnologias = tecnologias;
+		this.aniosExperiencia = aniosExperiencia;
 		
 		if(this.particulares == null || particulares == null) 
 			this.particulares = new ArrayList<Particular>();
@@ -158,7 +166,9 @@ public class TransferOferta {
 				oferta.getActivo(),
 				oferta.getFinalizada(),
 				oferta.getEmpresa(),
-				oferta.getParticularesInscritos()
+				oferta.getParticularesInscritos(),
+				oferta.getTecnologias(),
+				oferta.getAniosExperiencia()
 				);
 	}
 	
@@ -180,6 +190,22 @@ public class TransferOferta {
 
 	public JornadaLaboral getJornada() {
 		return jornada;
+	}
+	
+	public String getTecnologias() {
+		return tecnologias;
+	}
+	
+	public void setTecnologias(String tecnologias) {
+		this.tecnologias = tecnologias;
+	}
+
+	public int getAniosExperiencia() {
+		return aniosExperiencia;
+	}
+
+	public void setAniosExperiencia(int aniosExperiencia) {
+		this.aniosExperiencia = aniosExperiencia;
 	}
 
 	public void setJornada(JornadaLaboral jornada) {
@@ -342,6 +368,7 @@ public class TransferOferta {
 		result = prime * result + ((particulares == null) ? 0 : particulares.hashCode());
 		result = prime * result + ((salario == null) ? 0 : salario.hashCode());
 		result = prime * result + ((vacantes == null) ? 0 : vacantes.hashCode());
+		result = prime * result + ((tecnologias == null) ? 0 : tecnologias.hashCode());
 		return result;
 	}
 
@@ -408,6 +435,11 @@ public class TransferOferta {
 			if (other.vacantes != null)
 				return false;
 		} else if (!vacantes.equals(other.vacantes))
+			return false;
+		if (tecnologias == null) {
+			if (other.tecnologias != null)
+				return false;
+		} else if (!tecnologias.equals(other.tecnologias))
 			return false;
 		return true;
 	}

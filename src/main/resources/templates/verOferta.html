@@ -80,6 +80,17 @@
 					       </div>
 				       </div>
 				       
+				       <div class="row justify-content-start mt-4 ml-2">  
+				          <div class="col-6">
+				             <label class=" mr-sm-2  letra-azul letra-negrita-sub alinear-icono" for="tecnologias"><i class="material-icons">navigate_next</i>TECNOLOGIAS:</label>
+					  		 <span class="form-control-plaintext " th:text=${transferOferta.tecnologias}></span>		
+				          </div>
+				          <div class="col-6">
+				               <label class=" mr-sm-2 letra-azul letra-negrita-sub alinear-icono" for="Nombre"><i class="material-icons">navigate_next</i>AÑOS EXPERIENCIA:</label>
+					  		   <span class="form-control-plaintext " th:text=${transferOferta.aniosExperiencia}></span>
+					       </div>
+				       </div>
+				       
 				       
 				       <hr class="mb-4 separador-gris">
 				  		<div class="form-row mt-4 ">
@@ -87,6 +98,7 @@
 						  <textarea type="text" class="form-control" rows="10"  id="descripcion" th:text=${transferOferta.descripcion}  readonly></textarea>
 						  
 					    </div>
+					    
 					    
 					    
 				     </form>

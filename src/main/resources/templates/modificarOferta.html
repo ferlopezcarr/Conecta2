@@ -90,10 +90,20 @@
 						    <label for="salario" class="letra-azul">Salario</label>
 						   	<input type="text" class="form-control" th:field="*{auxSalario}" id="salario" placeholder="Salario"  th:value="${transferOferta.auxSalario}">
 						   	<label th:if="${#fields.hasErrors('auxSalario')}" th:errors="*{auxSalario}" class="validation-message error"></label>
-					 	</div>
-					 	
-					  
+					 	</div>					  
 					  </div>
+					  
+					   
+					  <div class="form-group row align-items-center mt-4">
+					   
+					    <label for="nombre" class="letra-azul">Tecnologías:	</label>	
+					     <div class="col-sm-10">	    
+						<input type="text" class="form-control" th:field="*{tecnologias}" id="tecnologias" placeholder="Tecnologías" th:value="${transferOferta.tecnologias}">
+						<label th:if="${#fields.hasErrors('tecnologias')}" th:errors="*{tecnologias}" class="validation-message error"></label>
+						</div>
+					  </div>
+				          
+				          
 					  <div class="form-row mt-4">
 						  <label for="descripcion" class= "letra-azul">Descripción:</label>
 						  <textarea class="form-control " rows="5" th:field="*{descripcion}" id="descripcion"  th:value="${transferOferta.descripcion}" placeholder="Añade aquí los detalles de la oferta..."></textarea>

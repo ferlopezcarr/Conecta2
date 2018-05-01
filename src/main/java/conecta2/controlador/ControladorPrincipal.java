@@ -355,6 +355,7 @@ public class ControladorPrincipal {
 		if(particular != null) {
 			modelAndView.addObject("transferParticular", TransferParticular.EntityToTransfer(particular));
 			modelAndView.addObject("puntuacionMedia", particular.getPuntuacionMedia());
+			modelAndView.addObject("numValoraciones", particular.getPuntuaciones().size());
 			modelAndView.setViewName("perfilParticular");
 		}
 		else {//empresa
@@ -445,6 +446,7 @@ public class ControladorPrincipal {
 				String msg = "¡Perfil Actualizado!";
 				modelAndView.addObject("popup", msg);
 				modelAndView.addObject("puntuacionMedia", particular.getPuntuacionMedia());
+				modelAndView.addObject("numValoraciones", particular.getPuntuaciones().size());
 				modelAndView.setViewName("perfilParticular");
 			}
 		}
@@ -607,7 +609,7 @@ public class ControladorPrincipal {
 		if(oferta != null) {
 			modelAndView = new ModelAndView();
 			TransferOferta tOferta = new TransferOferta(oferta.getNombre(),oferta.getJornadaLaboral(), oferta.getContrato(), oferta.getVacantes(), oferta.getSalario(), oferta.getCiudad(), oferta.getDescripcion(),
-					oferta.getActivo(), oferta.getFinalizada(), oferta.getEmpresa(), oferta.getParticularesInscritos());
+					oferta.getActivo(), oferta.getFinalizada(), oferta.getEmpresa(), oferta.getParticularesInscritos(), oferta.getTecnologias(), oferta.getAniosExperiencia());
 			
 			modelAndView.addObject("transferOferta", tOferta);
 			modelAndView.setViewName("verOferta");
@@ -823,12 +825,14 @@ public class ControladorPrincipal {
 				oferta.setSalario(transferOferta.getSalario());
 				oferta.setCiudad(transferOferta.getCiudad());
 				oferta.setDescripcion(transferOferta.getDescripcion());
+				oferta.setTecnologias(transferOferta.getTecnologias());
+				
+				saOferta.save(oferta);
+				saNotificacion.notificarParticularActualizarOferta(oferta);
+				String msg = "¡Oferta actualizada!";
+				modelAndView.addObject("popup", msg);
+				modelAndView.setViewName("mostrarOfertas");
 			}
-			
-			saOferta.save(oferta);
-			String msg = "¡Oferta actualizada!";
-			modelAndView.addObject("popup", msg);
-			modelAndView.setViewName("mostrarOfertas");
 		}
 		
 		return modelAndView;
@@ -896,6 +900,7 @@ public class ControladorPrincipal {
 		//Si no hay errores
 		if(oferta != null) {
 			saOferta.eliminarOferta(id);
+			if (!oferta.getFinalizada()) saNotificacion.notificarParticularOfertaEliminada(oferta);
 			String msg = "¡Oferta eliminada!";
 			modelAndView.addObject("popup", msg);
 			modelAndView.setViewName("mostrarOfertas");
@@ -1110,6 +1115,7 @@ public class ControladorPrincipal {
 							modelAndView = new ModelAndView();
 							modelAndView.addObject("transferParticular", TransferParticular.EntityToTransfer(candidato));
 							modelAndView.addObject("puntuacionMedia", candidato.getPuntuacionMedia());
+							modelAndView.addObject("numValoraciones", candidato.getPuntuaciones().size());
 							modelAndView.setViewName("perfilParticular");
 						}
 						else {
@@ -1341,23 +1347,41 @@ public class ControladorPrincipal {
 						modelAndView.addObject("popup", msg);
 					}
 					else {//el candidato existe en la bd
-						if(!oferta.getParticularesInscritos().contains(contratado)) {//si el candidato no esta inscrito
+						
+						if(!oferta.getFinalizada()) {//si la oferta NO esta finalizada
 							modelAndView.setViewName("mostrarOfertas");
-							String msg = "¡El candidato introducido no pertenece a la oferta!";
+							String msg = "¡La oferta no esta finalizada!";
 							modelAndView.addObject("popup", msg);
 						}
-						else {//inscrito
-							if(!oferta.getParticularesSeleccionados().contains(contratado)) {//Si no contiene al candidato contratado
+						else {//si la oferta está finalizada
+							
+							if(!oferta.getParticularesInscritos().contains(contratado)) {//si el candidato no esta inscrito
 								modelAndView.setViewName("mostrarOfertas");
-								String msg = "¡El candidato no ha sido contratado todavía!";
+								String msg = "¡El candidato introducido no pertenece a la oferta!";
 								modelAndView.addObject("popup", msg);
 							}
-							else {//contratado
-								modelAndView.addObject("transferParticular", TransferParticular.EntityToTransfer(contratado));
-								modelAndView.addObject("oferta", oferta);
-								modelAndView.addObject("idParticular", (Integer)contratado.getId());
-								modelAndView.addObject("puntuacionMedia", contratado.getPuntuacionMedia());
-								modelAndView.setViewName("perfilParticular");
+							else {//inscrito
+								if(!oferta.getParticularesSeleccionados().contains(contratado)) {//Si no contiene al candidato contratado
+									modelAndView.setViewName("mostrarOfertas");
+									String msg = "¡El candidato no ha sido contratado todavía!";
+									modelAndView.addObject("popup", msg);
+								}
+								else {//contratado
+									
+									if(contratado.estaParticularValorado(empresa)) {//la empresa ya habia valorado al particular
+										modelAndView.setViewName("mostrarOfertas");
+										String msg = "¡Ya ha valorado a "+contratado.getNombre()+" "+contratado.getApellidos()+"!";
+										modelAndView.addObject("popup", msg);
+									}
+									else {//si la empresa nunca habia valorado al particular
+										modelAndView.addObject("transferParticular", TransferParticular.EntityToTransfer(contratado));
+										modelAndView.addObject("oferta", oferta);
+										modelAndView.addObject("idParticular", (Integer)contratado.getId());
+										modelAndView.addObject("puntuacionMedia", contratado.getPuntuacionMedia());
+										modelAndView.addObject("numValoraciones", contratado.getPuntuaciones().size());
+										modelAndView.setViewName("perfilParticular");
+									}
+								}
 							}
 						}
 					}
@@ -1380,8 +1404,9 @@ public class ControladorPrincipal {
 	
 		int idOferta = Integer.parseInt(id_oferta);
 		int idContratado = Integer.parseInt(id_contratado);
-		double valoracion = Double.parseDouble(puntuacion);
-			
+		double valoracion = 0;
+		if(puntuacion != null)
+			valoracion = Double.parseDouble(puntuacion);
 
 		Map<String, Object> modelo = modelAndView.getModel();
 		BindingAwareModelMap mod = (BindingAwareModelMap) modelo.get("modelo");
@@ -1443,6 +1468,8 @@ public class ControladorPrincipal {
 								else {//si la empresa nunca habia valorado al particular
 									modelAndView.addObject("transferParticular", TransferParticular.EntityToTransfer(contratado));
 									modelAndView.addObject("oferta", oferta);
+									//modelAndView.addObject("idParticular", null);
+									modelAndView.addObject("numValoraciones", contratado.getPuntuaciones().size());
 									modelAndView.addObject("puntuacionMedia", contratado.getPuntuacionMedia());
 									modelAndView.setViewName("perfilParticular");
 								}
@@ -1500,6 +1527,31 @@ public class ControladorPrincipal {
 		return modelAndView;
 	}
 	
+	
+	// -------------Recuperacion Contraseña ------------- //
+
+	@RequestMapping(value="/recuperar-contrasenia", method = RequestMethod.POST)
+	public ModelAndView recuperaContrasnia(@Valid String emailRecupera){
+		
+	    ModelAndView modelAndView = this.obtenerInstancia();
+	    
+	    Empresa miEmpresa =saEmpresa.buscarPorEmail(emailRecupera);
+		Particular miParticular = saParticular.buscarPorEmail(emailRecupera);
+
+	    if(miEmpresa!=null || miParticular!=null){
+			saEmail.recuerdaPass("Siga el siguiente enlace para recuperar la contraseña de Conecta2 ", "Recuperacióon de contraseña", emailRecupera);
+
+	    }else {
+	    			//MENSAJE DE ERROR
+	    			String msg = "¡El correo introducido no está registrado !";
+	    			modelAndView.addObject("popup", msg);
+	    		}
+
+	    
+	    modelAndView.setViewName("redirect:/");
+
+		return modelAndView;
+	}
 	
 	/**
 	 * Método que añade al particular o empresa como variable permanente para el modelo

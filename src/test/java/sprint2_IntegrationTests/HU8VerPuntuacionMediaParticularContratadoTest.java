@@ -34,7 +34,7 @@ public class HU8VerPuntuacionMediaParticularContratadoTest {
 		
 		Particular particular = new Particular("particularPruebaNombre", "Apellido Apellido", "99999999Z", "123456789", "particularPruebaEmail@particularPruebaEmail.com", "Abc1111", "", true, null, null);
 		
-		particular.aniadirPuntuacion(new Puntuacion(puntuacion, empresa));
+		particular.aniadirPuntuacion(new Puntuacion(puntuacion, particular, empresa));
 		
 		particular = saParticular.save(particular);
 		

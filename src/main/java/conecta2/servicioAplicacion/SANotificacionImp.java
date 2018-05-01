@@ -86,5 +86,35 @@ public class SANotificacionImp implements SANotificacion {
 		this.repoNotificacion.save(not);
 		
 	}
+	
+	@Override
+	public void notificarParticularActualizarOferta(Oferta oferta) {
+		
+		for(int i = 0; i < oferta.getParticularesInscritos().size(); i++) {
+			Notificacion not = new Notificacion();
+			not.setDescripcion("Se ha modificado la oferta " + oferta.getNombre()
+			+ " de la Empresa " + oferta.getEmpresa().getNombreEmpresa() + " en la que estás inscrito"
+			);
+			not.setParticular(oferta.getParticularesInscritos().get(i));
+			not.setSiguiente("/verOferta?id=" + oferta.getId());
+			this.repoNotificacion.save(not);
+		}
+		
+	}
+	
+	@Override
+	public void notificarParticularOfertaEliminada(Oferta oferta) {
+		
+		for(int i = 0; i < oferta.getParticularesInscritos().size(); i++) {
+			Notificacion not = new Notificacion();
+			not.setDescripcion("Se ha eliminado la oferta " + oferta.getNombre()
+			+ " de la Empresa " + oferta.getEmpresa().getNombreEmpresa() + " en la que estás inscrito"
+			);
+			not.setParticular(oferta.getParticularesInscritos().get(i));
+			not.setSiguiente("/ofertas");
+			this.repoNotificacion.save(not);
+		}
+		
+	}
 
 }
