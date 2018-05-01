@@ -54,9 +54,9 @@ public class HU1FinalizarOfertaTest {
 		//Creamos las entidades
 		Oferta oferta = new Oferta("oferta2", JornadaLaboral.PorHoras, Contrato.Formación, 1, 230.0, "Barcelona", "prueba", true, false, null, new ArrayList<Particular>(), "html java", 1);
 		
-		oferta = saOferta.save(oferta);
+		oferta.setFinalizada(false);
 		
-		saOferta.eliminarOferta(oferta.getId());
+		oferta = saOferta.save(oferta);
 		
 		Oferta ofertaFinalizada = saOferta.buscarPorId(oferta.getId());
 		 
