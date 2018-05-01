@@ -70,16 +70,16 @@ public class HU5NotificacionInscripcionTest {
 		
 		saNotificacion.notificarEmpresaNuevaInscripcion(oferta);
 		
-		Notificacion not = new Notificacion();
-		not.setEmpresa(oferta.getEmpresa());
-		not.setSiguiente("/candidatos?id=" + oferta.getId());
-		not.setDescripcion("!Hay nuevos candidatos en tu oferta:'" + oferta.getNombre() + "'¡");
-		saNotificacion.save(not);
+		Notificacion notificacion = new Notificacion();
+		notificacion.setEmpresa(oferta.getEmpresa());
+		notificacion.setSiguiente("/candidatos?id=" + oferta.getId());
+		notificacion.setDescripcion("!Hay nuevos candidatos en tu oferta:'" + oferta.getNombre() + "'¡");
+		saNotificacion.save(notificacion);
 		
 		List<Notificacion> notsEmpresaBD = saNotificacion.buscarPorEmpresa(empresa);
 		
 		boolean hasParticular = oferta.getParticularesInscritos().contains(particular);
-		boolean hasNotification = notsEmpresaBD.contains(not);
+		boolean hasNotification = notsEmpresaBD.contains(notificacion);
 		
 		assertEquals(true, hasParticular && hasNotification);
 	}
