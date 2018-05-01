@@ -1522,22 +1522,17 @@ public class ControladorPrincipal {
 	    ModelAndView modelAndView = this.obtenerInstancia();
 	    
 	    Empresa miEmpresa =saEmpresa.buscarPorEmail(emailRecupera);
-	    
-	    if(miEmpresa!=null){
-	    	
-	    }else{
-	    		Particular miParticular = saParticular.buscarPorEmail(emailRecupera);
-	    		if(miParticular!=null) {
-	    			
-	    			
-	    		}else {
+		Particular miParticular = saParticular.buscarPorEmail(emailRecupera);
+
+	    if(miEmpresa!=null || miParticular!=null){
+			saEmail.recuerdaPass("Siga el siguiente enlace para recuperar la contraseña de Conecta2 ", "Recuperacióon de contraseña", emailRecupera);
+
+	    }else {
 	    			//MENSAJE DE ERROR
-	    			
+	    			String msg = "¡El correo introducido no está registrado !";
+	    			modelAndView.addObject("popup", msg);
 	    		}
-	    		
-	    }
-	    
-	    
+
 	    
 	    modelAndView.setViewName("redirect:/");
 

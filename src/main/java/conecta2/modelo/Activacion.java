@@ -1,5 +1,7 @@
 package conecta2.modelo;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -8,7 +10,7 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "activacion",  uniqueConstraints= @UniqueConstraint(columnNames= {"Email", "Activacion"}) )
+@Table(name = "activacion",  uniqueConstraints= @UniqueConstraint(columnNames= {"Email", "Activacion", "Hora "}) )
 /**
  * Entidad / Objeto de Negocio de Activación
  * Se utiliza para persistir la información de la activación de la cuenta
@@ -26,6 +28,8 @@ public class Activacion {
 	
 	private String activacion;
 	
+	private Date hora;
+	
 	/**
 	 * Constructora sin argumentos necesaria para JPA
 	 */
@@ -35,11 +39,15 @@ public class Activacion {
 	 * Constructora por defecto
 	 * @param activacion
 	 * @param email
+	 * @param hora
 	 */
 	public Activacion(String activacion, String email) {
 		this.activacion = activacion;
 		this.email = email;
+		this.hora = new Date();
+
 	}
+	
 	
 	
 	public int getId() {
@@ -65,5 +73,17 @@ public class Activacion {
 	public void setActivacion(String activacion) {
 		this.activacion = activacion;
 	}
+
+	public Date getHora() {
+		return hora;
+	}
+
+	public void setHora(Date hora) {
+		this.hora = hora;
+	}
+	
+	
+	
+	
 
 }
