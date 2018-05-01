@@ -60,6 +60,6 @@ public class HU1FinalizarOfertaTest {
 		
 		Oferta ofertaFinalizada = saOferta.buscarPorId(oferta.getId());
 		 
-		assertEquals(ofertaFinalizada.getFinalizada(), true);
+		assertEquals(false, ofertaFinalizada.getFinalizada());
 	}
 }
