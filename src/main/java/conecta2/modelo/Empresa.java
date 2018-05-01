@@ -267,5 +267,81 @@ public class Empresa {
 		this.notificaciones = notificaciones;
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (activo ? 1231 : 1237);
+		result = prime * result + ((cif == null) ? 0 : cif.hashCode());
+		result = prime * result + ((descripcion == null) ? 0 : descripcion.hashCode());
+		result = prime * result + ((email == null) ? 0 : email.hashCode());
+		result = prime * result + id;
+		result = prime * result + ((nombreEmpresa == null) ? 0 : nombreEmpresa.hashCode());
+		result = prime * result + ((notificaciones == null) ? 0 : notificaciones.hashCode());
+		result = prime * result + ((ofertas == null) ? 0 : ofertas.hashCode());
+		result = prime * result + ((password == null) ? 0 : password.hashCode());
+		result = prime * result + puntuacion;
+		result = prime * result + ((telefono == null) ? 0 : telefono.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Empresa other = (Empresa) obj;
+		if (activo != other.activo)
+			return false;
+		if (cif == null) {
+			if (other.cif != null)
+				return false;
+		} else if (!cif.equals(other.cif))
+			return false;
+		if (descripcion == null) {
+			if (other.descripcion != null)
+				return false;
+		} else if (!descripcion.equals(other.descripcion))
+			return false;
+		if (email == null) {
+			if (other.email != null)
+				return false;
+		} else if (!email.equals(other.email))
+			return false;
+		if (id != other.id)
+			return false;
+		if (nombreEmpresa == null) {
+			if (other.nombreEmpresa != null)
+				return false;
+		} else if (!nombreEmpresa.equals(other.nombreEmpresa))
+			return false;
+		if (notificaciones == null) {
+			if (other.notificaciones != null)
+				return false;
+		} else if (!notificaciones.equals(other.notificaciones))
+			return false;
+		if (ofertas == null) {
+			if (other.ofertas != null)
+				return false;
+		} else if (!ofertas.equals(other.ofertas))
+			return false;
+		if (password == null) {
+			if (other.password != null)
+				return false;
+		} else if (!password.equals(other.password))
+			return false;
+		if (puntuacion != other.puntuacion)
+			return false;
+		if (telefono == null) {
+			if (other.telefono != null)
+				return false;
+		} else if (!telefono.equals(other.telefono))
+			return false;
+		return true;
+	}
+
 
 }

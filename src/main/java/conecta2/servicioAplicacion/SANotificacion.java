@@ -15,7 +15,8 @@ public interface SANotificacion {
 	public List<Notificacion> buscarPorEmpresa(Empresa emp);
 	public void notificarParticularesOfertaFinalizada(Oferta ofe);
 	public void notificarEmpresaNuevaInscripcion(Oferta ofe);
-	void notificarParticularActualizarOferta(Oferta ofe);
-	void notificarParticularOfertaEliminada(Oferta oferta);
+	public void notificarParticularActualizarOferta(Oferta ofe);
+	public void notificarParticularOfertaEliminada(Oferta oferta);
+	public Notificacion save(Notificacion notificacion);
 	
 }
