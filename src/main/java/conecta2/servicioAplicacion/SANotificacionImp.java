@@ -117,4 +117,13 @@ public class SANotificacionImp implements SANotificacion {
 		
 	}
 
+	@Override
+	public Notificacion save(Notificacion notificacion) {
+		
+		if(notificacion != null)
+			notificacion = repoNotificacion.save(notificacion);
+		
+		return notificacion;
+	}
+	
 }

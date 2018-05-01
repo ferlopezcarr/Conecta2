@@ -89,6 +89,55 @@ public class Notificacion {
 	public void setSiguiente(String siguiente) {
 		this.siguiente = siguiente;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((descripcion == null) ? 0 : descripcion.hashCode());
+		result = prime * result + ((empresa == null) ? 0 : empresa.hashCode());
+		result = prime * result + id;
+		result = prime * result + (leida ? 1231 : 1237);
+		result = prime * result + ((particular == null) ? 0 : particular.hashCode());
+		result = prime * result + ((siguiente == null) ? 0 : siguiente.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Notificacion other = (Notificacion) obj;
+		if (descripcion == null) {
+			if (other.descripcion != null)
+				return false;
+		} else if (!descripcion.equals(other.descripcion))
+			return false;
+		if (empresa == null) {
+			if (other.empresa != null)
+				return false;
+		} else if (!empresa.equals(other.empresa))
+			return false;
+		if (id != other.id)
+			return false;
+		if (leida != other.leida)
+			return false;
+		if (particular == null) {
+			if (other.particular != null)
+				return false;
+		} else if (!particular.equals(other.particular))
+			return false;
+		if (siguiente == null) {
+			if (other.siguiente != null)
+				return false;
+		} else if (!siguiente.equals(other.siguiente))
+			return false;
+		return true;
+	}
 	
 	
 	

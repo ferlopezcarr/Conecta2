@@ -29,7 +29,7 @@ public class HU6AnadirTecnologiasTest {
 	@Test
 	public void testOfertaConTecnologias() {
 		
-Oferta ofertaSinAnadir = new Oferta("ofertaNoFinalizada", JornadaLaboral.PorHoras, Contrato.Formación, 1, 200.0, "Madrid", "", true, false, null, null, null, 1);
+		Oferta ofertaSinAnadir = new Oferta("ofertaNoFinalizada", JornadaLaboral.PorHoras, Contrato.Formación, 1, 200.0, "Madrid", "", true, false, null, null, null, 1);
 		
 		Oferta sinTecnologia = saOferta.save(ofertaSinAnadir);
 		
