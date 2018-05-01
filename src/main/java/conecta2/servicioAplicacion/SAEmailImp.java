@@ -145,4 +145,63 @@ public class SAEmailImp  implements SAEmail {
 			return null;
 		}
 	}//validaUsuario
+
+	@Override
+	public void recuerdaPass(String texto, String subject, String destino) {
+		// TODO Auto-generated method stub
+		
+		//Elementos del correo
+				final String origen ="conecta2authentication@gmail.com"; 
+				final String pass = "margin0Auto";
+				
+				//String direccion = " https://coneta2.herokuapp.com/authorization?val=";
+				
+				String direccion ="localhost:8080/nuevaPass?val=";
+				String direccionRandom = RandomStringUtils.random(82, true,true); 
+				direccion=direccion+direccionRandom;
+				Properties props= new Properties();
+				
+				//Que el sistema va autorizado
+				props.setProperty("mail.stmp.auth", "true");
+				//Que vamos a utilizar tls pra que sea seguro
+				props.setProperty("mail.smtp.starttls.enable", "true");
+				props.setProperty("mail.smtp.ssl.trust", "smtp.gmail.com");
+
+				//servidor smtp de gmail
+				props.setProperty("mail.smtp.host", "smtp.gmail.com");
+				//el puerto std de correo electronico
+				props.setProperty("mail.smtp.port", "587");
+						
+				//Creacion de la sesion en el servidor de google
+				Session sesion = Session.getInstance(props , new javax.mail.Authenticator() {
+					//Este metodo sobreEscribe el metodo de la clase principal con los datos de nuestro servidor
+					protected PasswordAuthentication getPasswordAuthentication() {
+						return new PasswordAuthentication("Conecta2", pass);
+					}
+				});
+				
+				try {
+					Message mensaje = new MimeMessage(sesion);	
+					mensaje.setFrom(new InternetAddress(origen));
+					
+					mensaje.setRecipient(Message.RecipientType.TO, new InternetAddress(destino));
+					mensaje.setText(texto+direccion);
+					mensaje.setSubject(subject);
+					
+					Transport transport = sesion.getTransport("smtp");
+			        transport.connect("smtp.gmail.com", origen, pass);
+			        transport.sendMessage(mensaje, mensaje.getAllRecipients());
+			        transport.close();
+				}
+				catch(MessagingException e){
+					System.out.println(e);
+				}
+				
+				Activacion miAct = new Activacion(direccionRandom, destino);
+			 
+		        repositorioActivacion.save(miAct);
+
+	}
+	
+	
 }
