@@ -17,6 +17,7 @@ import conecta2.modelo.JornadaLaboral;
 import conecta2.modelo.Oferta;
 import conecta2.modelo.Particular;
 import conecta2.servicioAplicacion.SAOferta;
+import conecta2.servicioAplicacion.SAParticular;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = C2Aplicacion.class)
@@ -26,6 +27,26 @@ public class HU1FinalizarOfertaTest {
 
 	@Autowired
 	private SAOferta saOferta;
+	
+	@Autowired
+	private SAParticular saParticular;
+	
+	@Test
+	public void testSeleccionarCandidato() {
+		Oferta oferta = new Oferta("ofertaNoFinalizada", JornadaLaboral.PorHoras, Contrato.Formación, 1, 200.0, "Madrid", "", true, false, null, null, "html java", 1);
+		
+		oferta = saOferta.save(oferta);
+		
+		Oferta ofertaSinCandidatos = new Oferta(oferta);
+		
+		Particular candidato = saParticular.buscarPorId(1);
+		oferta.getParticularesSeleccionados().add(candidato);
+		candidato.getOfertasSeleccionados().add(oferta);
+		Oferta ofertaConCandidatos= saOferta.save(oferta);
+		saParticular.save(candidato);
+		
+		assertNotEquals(ofertaSinCandidatos, ofertaConCandidatos);
+	}
 	
 	@Test
 	public void testFinalizarOferta() {
