@@ -1530,29 +1530,57 @@ public class ControladorPrincipal {
 	
 	// -------------Recuperacion Contraseña ------------- //
 
-	@RequestMapping(value="/recuperar-contrasenia", method = RequestMethod.POST)
-	public ModelAndView recuperaContrasnia(@Valid String emailRecupera){
+		@RequestMapping(value="/recuperar-contrasenia", method = RequestMethod.POST)
+		public ModelAndView recuperaContrasnia(@Valid String emailRecupera){
+			
+		    ModelAndView modelAndView = this.obtenerInstancia();
+		    
+		    Empresa miEmpresa =saEmpresa.buscarPorEmail(emailRecupera);
+			Particular miParticular = saParticular.buscarPorEmail(emailRecupera);
+
+		    if(miEmpresa!=null || miParticular!=null){
+				saEmail.recuerdaPass("Siga el siguiente enlace para recuperar la contraseña de Conecta2 ", "Recuperacióon de contraseña", emailRecupera);
+
+		    }else {
+		    			//MENSAJE DE ERROR
+		    			String msg = "¡El correo introducido no está registrado !";
+		    			
+		    			modelAndView.addObject("popup", msg);
+		    		}
+
+		    
+		    modelAndView.setViewName("index");
+
+			return modelAndView;
+		}
 		
-	    ModelAndView modelAndView = this.obtenerInstancia();
-	    
-	    Empresa miEmpresa =saEmpresa.buscarPorEmail(emailRecupera);
-		Particular miParticular = saParticular.buscarPorEmail(emailRecupera);
+		/**
+		 * Método que autentica al usuario capturando la petición GET de /authorization
+		 * @param val usuario que se autentica
+		 * @return redirige a la página principal si no ha habido fallos, en caso contrario notifica sin cambiar de pagina
+		 */
+		@RequestMapping(value="/nuevaPass", method = RequestMethod.GET, params = {"val"})
+		public ModelAndView nuevaContrasenia(@RequestParam("val") String val){ 
 
-	    if(miEmpresa!=null || miParticular!=null){
-			saEmail.recuerdaPass("Siga el siguiente enlace para recuperar la contraseña de Conecta2 ", "Recuperacióon de contraseña", emailRecupera);
+			Object obj = saEmail.validaUsuario(val);
+			
+			ModelAndView modelAndView = obtenerInstancia();	
 
-	    }else {
-	    			//MENSAJE DE ERROR
-	    			String msg = "¡El correo introducido no está registrado !";
-	    			modelAndView.addObject("popup", msg);
-	    		}
+			if(obj==null) {//error validacion
+				modelAndView = new ModelAndView("index");
+				String msg = "¡Código de recuperacion incorrecto, o caducado!";
+				modelAndView.addObject("popup", msg);
+				modelAndView.setViewName("index");			
 
-	    
-	    modelAndView.setViewName("redirect:/");
-
-		return modelAndView;
-	}
-	
+			}
+			else{
+				//Enviar correo a la vista de reestablecer contraseña
+				modelAndView.addObject(obj);
+				modelAndView.setViewName("restaurarPass");			
+			}	
+			return modelAndView;
+		}
+		
 	/**
 	 * Método que añade al particular o empresa como variable permanente para el modelo
 	 * para despues instanciar un nuevo ModelAndView que contiene el modelo  y asi poder acceder a los datos del usuario que esta navegando en la aplicacion

@@ -18,6 +18,8 @@ import conecta2.transfer.TransferEmpresa;
 import conecta2.transfer.TransferParticular;
 
 import javax.mail.PasswordAuthentication;
+
+import java.util.Date;
 import java.util.Properties;
 import java.lang.String;
 
@@ -203,5 +205,40 @@ public class SAEmailImp  implements SAEmail {
 
 	}
 	
+	
+	 /**
+     * Método que dada una URL da acceso al reset de contraseña de un usuario
+     */
+	@Override
+	public Object resetPassword(String urlValida) {
+		Activacion aux = repositorioActivacion.findByActivacion(urlValida);
+
+		if(aux != null) {	
+			Empresa empresa = saEmpresa.buscarPorEmail(aux.getEmail());
+			
+			if(empresa!=null){//Se comprueba que es una empresa
+				empresa.setActivo(true);
+				saEmpresa.save(empresa);
+				
+				return TransferEmpresa.EntityToTransfer(empresa);
+			}
+			else {//No se encuentra la empresa
+				Particular particular = saParticular.buscarPorEmail(aux.getEmail()); 
+				
+				if(particular!=null) {//Se comprueba que es particular
+					particular.setActivo(true);
+					saParticular.save(particular);
+					
+					return TransferParticular.EntityToTransfer(particular);
+				}
+				else {//No se encuentra el particular
+					return null;
+				}
+			}
+		}
+		else {//aux == null
+			return null;
+		}
+	}//resetPassword
 	
 }

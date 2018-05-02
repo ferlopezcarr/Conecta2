@@ -11,6 +11,8 @@ public interface SAEmail{
 		public Object validaUsuario(String urlValida);
 		
 		public void recuerdaPass(String texto,String subject, String destino);
+
+		public Object resetPassword(String urlValida);
 		
 
 		
