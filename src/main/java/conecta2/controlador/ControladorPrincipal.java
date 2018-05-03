@@ -1627,11 +1627,18 @@ public class ControladorPrincipal {
 							if(miEmpresa!=null) {
 								miEmpresa.setPassword(aux.getPassword());
 								saEmpresa.cifraPass(miEmpresa);
-								
+								String msg = "¡Su contraseña se ha cambiado!";
+				    			modelAndView.addObject("popup", msg);
+								modelAndView.setViewName("index");			
+
 								
 							}else {
 								miParticular.setPassword(aux.getPassword());
 								saParticular.cifraPass(miParticular);
+								String msg = "¡Su contraseña se ha cambiado!";
+				    			modelAndView.addObject("popup", msg);
+								modelAndView.setViewName("index");			
+
 							}
 							
 						}else{
