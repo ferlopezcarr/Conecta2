@@ -1555,14 +1555,14 @@ public class ControladorPrincipal {
 		}
 		
 		/**
-		 * Método que autentica al usuario capturando la petición GET de /authorization
-		 * @param val usuario que se autentica
+		 * Método que capturando la petición GET de /nuevaPass da la posibilidad de cambiar la contraseña
+		 * @param val url permite al usuario cambiar la contraseña
 		 * @return redirige a la página principal si no ha habido fallos, en caso contrario notifica sin cambiar de pagina
 		 */
 		@RequestMapping(value="/nuevaPass", method = RequestMethod.GET, params = {"val"})
 		public ModelAndView nuevaContrasenia(@RequestParam("val") String val){ 
 
-			Object obj = saEmail.validaUsuario(val);
+			Object obj = saEmail.resetPass(val);
 			
 			ModelAndView modelAndView = obtenerInstancia();	
 
@@ -1575,7 +1575,7 @@ public class ControladorPrincipal {
 			}
 			else{
 				//Enviar correo a la vista de reestablecer contraseña
-				modelAndView.addObject(obj);
+				modelAndView.addObject("email",obj);
 				modelAndView.setViewName("restaurarPass");			
 			}	
 			return modelAndView;

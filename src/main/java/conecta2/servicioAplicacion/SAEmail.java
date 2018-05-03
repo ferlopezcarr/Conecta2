@@ -8,11 +8,13 @@ public interface SAEmail{
 
 		public void enviarCorreo(String texto,String subject, String destino);
 		
-		public Object validaUsuario(String urlValida);
-		
-		public void recuerdaPass(String texto,String subject, String destino);
+		public String validaUsuario(String urlValida);
 
-		public Object resetPassword(String urlValida);
+		public void recuerdaPass(String texto, String subject, String destino);
+
+		public String resetPass(String urlValida);
+		
+
 		
 
 		
