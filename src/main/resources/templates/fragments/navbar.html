@@ -48,6 +48,13 @@
 							    	<a th:href="${notificacion.siguiente}"><span th:text="${notificacion.descripcion}"  class="my-auto nav-link"></span></a>
 							    	<a class="my-auto ml-auto" th:href="'/notificacionLeida?id=' + ${notificacion.id}"><i class="material-icons rounded-circle">clear</i></a>
 							    </div>
+							    							    
+							      <div th:if="${empresa != null and listaNotificacionesEmp.size() == 0}"  class="dropdown-item drop-menu-item d-flex flex-row">
+							    	<span class="my-auto nav-link">¡No tienes notificaciones!</span>
+							    </div>
+							      <div th:if="${particular != null and listaNotificacionesPar.size() == 0}"  class="dropdown-item drop-menu-item d-flex flex-row">
+							    	<span class="my-auto nav-link">¡No tienes notificaciones!</span>
+							    </div>
 							  </div>
 						</div>
 			      	</li>
