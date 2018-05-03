@@ -12,3 +12,5 @@ INSERT INTO `ofertas` (`id`, `activo`, `ciudad`, `contrato`, `descripcion`, `fin
 
 INSERT INTO `particulares_ofertas_inscritos` (`particulares_inscritos_id`, `ofertas_inscritos_id`) VALUES
 ('1', '1'), ('2', '1');
+INSERT INTO `activacion` ( `activacion`, `email`, `hora`) VALUES
+('QOKswooA3BPpqgM1ruVtlu5EsmbzR2vW6BSP1EMb6Rc9msdYhGu8ki198jsu8hsSH2Kv0kavPLSLelnIOx', 'endesa@gmail.es', '2019-05-03 16:40:01');

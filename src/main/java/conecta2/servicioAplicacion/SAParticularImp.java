@@ -141,4 +141,12 @@ public class SAParticularImp implements SAParticular{
 		return true;
 	}
 
+	@Override
+	public Particular cifraPass(Particular particular) {
+		// TODO Auto-generated method stub
+        particular.setPassword(bCryptPasswordEncoder.encode(particular.getPassword()));
+
+		return save(particular);
+	}
+
 }

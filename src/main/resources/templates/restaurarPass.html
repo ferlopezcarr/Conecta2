@@ -36,23 +36,22 @@
 				<h3>Introduzca su nueva contraseña</h3>
 
 
-				<form th:action="@{/cambiaContraseña}" method="POST">
-				  <input type="hidden" name="email" th:value=${email}>
-					<div class="form-group mt-3">
-						<label for="password" class="sr-only">Contraseña</label> <input
-							type="password" class="form-control" id="password"
-							placeholder="Contraseña" autofocus />
-
-					</div>
-
+				<form class="formulario" th:action="@{/cambiaContraseniaa}" method="POST" th:object="${transferParticular}">
+				 
+					
+							<input type="hidden" th:value="${codigo}" class="form-control" name="val"/>
+							<input type="hidden" th:field="*{email}" class="form-control" id="email"/>
+			  
 					<div class="form-group">
-						<label for="passwordConfirmacion" class="sr-only">Confirmar
-							contraseña</label> <input type="password" class="form-control"
-							id="passwordConfirmacion" placeholder="Confirmar Contraseña"
-							autofocus />
-
-					</div>
-
+						  	<label for="password" class="sr-only">Contraseña</label>
+						  	<input type="password" th:field="*{password}" class="form-control" id="password" placeholder="Contraseña" required autofocus/>
+						  	<label th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="validation-message errorParticular"></label>
+						  </div>
+						  <div class="form-group">
+						  	<label for="passwordConfirmacion" class="sr-only">Confirmar contraseña</label>
+						  	<input type="password" th:field="*{passwordConfirmacion}" class="form-control" id="passwordConfirmacion" placeholder="Confirmar contraseña" required autofocus/>
+						  	<label th:if="${#fields.hasErrors('passwordConfirmacion')}" th:errors="*{passwordConfirmacion}" class="validation-message errorParticular"></label>
+						  </div>
 			  	<button type="submit" class="btn btn-grey">Aceptar</button>
 
 				</form>

@@ -20,6 +20,8 @@ public interface SAParticular {
 	
 	public Particular save(Particular particular);
 	
+	public Particular cifraPass(Particular particular);
+	
 	public boolean addValoracion(Empresa empresa, Particular contratado, double valoracion);
 	
 }

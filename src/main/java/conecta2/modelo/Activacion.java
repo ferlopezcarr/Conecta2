@@ -45,8 +45,7 @@ public class Activacion {
 		this.activacion = activacion;
 		this.email = email;
 		this.hora = Calendar.getInstance();
-		
-		hora.set(Calendar.HOUR_OF_DAY, Calendar.HOUR_OF_DAY+1);
+		hora.add(Calendar.HOUR_OF_DAY,1);
 
 	}
 	

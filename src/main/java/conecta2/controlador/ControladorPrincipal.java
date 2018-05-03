@@ -8,12 +8,14 @@ import java.util.Map;
 
 import javax.validation.Valid;
 
+import org.apache.xalan.xsltc.compiler.sym;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.validation.support.BindingAwareModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -1540,17 +1542,19 @@ public class ControladorPrincipal {
 
 		    if(miEmpresa!=null || miParticular!=null){
 				saEmail.recuerdaPass("Siga el siguiente enlace para recuperar la contraseña de Conecta2 ", "Recuperacióon de contraseña", emailRecupera);
+			    modelAndView.setViewName("redirect:/");
 
 		    }else {
 		    			//MENSAJE DE ERROR
 		    			String msg = "¡El correo introducido no está registrado !";
 		    			
 		    			modelAndView.addObject("popup", msg);
+		    		    modelAndView.setViewName("index");
+
 		    		}
 
 		    
-		    modelAndView.setViewName("index");
-
+		   
 			return modelAndView;
 		}
 		
@@ -1562,10 +1566,9 @@ public class ControladorPrincipal {
 		@RequestMapping(value="/nuevaPass", method = RequestMethod.GET, params = {"val"})
 		public ModelAndView nuevaContrasenia(@RequestParam("val") String val){ 
 
-			Object obj = saEmail.resetPass(val);
 			
 			ModelAndView modelAndView = obtenerInstancia();	
-
+			Object obj = saEmail.resetPass(val);
 			if(obj==null) {//error validacion
 				modelAndView = new ModelAndView("index");
 				String msg = "¡Código de recuperacion incorrecto, o caducado!";
@@ -1575,11 +1578,84 @@ public class ControladorPrincipal {
 			}
 			else{
 				//Enviar correo a la vista de reestablecer contraseña
-				modelAndView.addObject("email",obj);
+				TransferParticular aux = new TransferParticular();
+				aux.setEmail((String) obj);
+				modelAndView.addObject("transferParticular", aux);
+				modelAndView.addObject("codigo",val);
 				modelAndView.setViewName("restaurarPass");			
 			}	
 			return modelAndView;
 		}
+		
+		
+		/**
+		 * Método que capturando la petición GET de /nuevaPass da la posibilidad de cambiar la contraseña
+		 * @param val url permite al usuario cambiar la contraseña
+		 * @return redirige a la página principal si no ha habido fallos, en caso contrario notifica sin cambiar de pagina
+		 */
+		@RequestMapping(value="/cambiaContraseniaa", method = RequestMethod.POST)
+		public ModelAndView cambiaContraseniaa(@ModelAttribute ("transferParticular") @Valid TransferParticular aux, BindingResult bindingResult, String val,String email ){ 
+
+			ModelAndView modelAndView = this.obtenerInstancia();
+		    Empresa miEmpresa =saEmpresa.buscarPorEmail(email);
+			Particular miParticular = saParticular.buscarPorEmail(email);
+
+		    if(miEmpresa!=null || miParticular!=null){
+		    	//EL CORREO HA SIDO ENCONTRADO Y LA PASS ES LA MISMA
+		    	if (!aux.getPassword().equals(aux.getPasswordConfirmacion())) {
+					bindingResult.rejectValue("password", "error.transferParticular", "* Las contraseñas no coinciden");
+
+					
+				}
+		    	if (bindingResult.hasErrors()) {
+		    		List<ObjectError> array = bindingResult.getAllErrors();
+		    		boolean encontrado=false;
+		    		
+		    		for (ObjectError error : array){
+		    			if(error.getCode().compareTo("Pattern")==0 ||error.getCode().compareTo("error.transferParticular")==0)
+		    				encontrado=true;
+		    				
+		    		}
+		    		if(encontrado) {
+		    			modelAndView = new ModelAndView("restaurarPass", bindingResult.getModel());
+						modelAndView.addObject("transferParticular", aux);
+						modelAndView.addObject("codigo", val);
+					}else{
+						String valido = saEmail.resetPass(val);
+						if(valido.compareTo(email)==0) {
+							//LA PETICION NO HA CADUCADO Y EL CORREO ES EL MISMO
+							if(miEmpresa!=null) {
+								miEmpresa.setPassword(aux.getPassword());
+								saEmpresa.cifraPass(miEmpresa);
+								
+								
+							}else {
+								miParticular.setPassword(aux.getPassword());
+								saParticular.cifraPass(miParticular);
+							}
+							
+						}else{
+							String msg = "¡La peticion de cambio de contraseña ha caducado!";
+			    			modelAndView.addObject("popup", msg);
+							modelAndView.setViewName("index");			
+
+						}
+						
+					}
+
+		    	}				    	
+		    }else {
+		    	//EMAIL NO ENCONTRADO
+		    	//MENSAJE DE ERROR
+    			String msg = "¡El correo no ha sido encontrado!";
+    			modelAndView.addObject("popup", msg);
+				modelAndView.setViewName("index");			
+
+		    }
+				
+			return modelAndView;
+		}
+		
 		
 	/**
 	 * Método que añade al particular o empresa como variable permanente para el modelo

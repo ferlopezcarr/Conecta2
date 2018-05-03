@@ -19,4 +19,6 @@ public interface SAEmpresa {
 	
 	public Empresa save(Empresa empresa);
 	
+	public Empresa cifraPass(Empresa empresa);
+	
 }
