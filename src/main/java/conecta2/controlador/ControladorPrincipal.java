@@ -828,6 +828,7 @@ public class ControladorPrincipal {
 				oferta.setCiudad(transferOferta.getCiudad());
 				oferta.setDescripcion(transferOferta.getDescripcion());
 				oferta.setTecnologias(transferOferta.getTecnologias());
+				oferta.setAniosExperiencia(transferOferta.getAniosExperiencia());
 				
 				saOferta.save(oferta);
 				saNotificacion.notificarParticularActualizarOferta(oferta);

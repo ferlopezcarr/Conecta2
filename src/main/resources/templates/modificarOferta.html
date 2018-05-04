@@ -16,20 +16,10 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   </head>
   <body>
-
   	<nav th:replace="fragments/navbar :: navbar"></nav>
-  	
   	<div>
   		<div th:replace="fragments/cabecera :: cabecera(titulo='Modificar Oferta')"></div>
-  	</div>
-  		
-  	
-  	
-  	
-  	
-  	
-  	
-  	
+  	</div>	
   	<div class="row mt-5">
   	
 		<div class="col-8  mx-auto  text-center rounded color-perfil ">
@@ -96,10 +86,19 @@
 					   
 					  <div class="form-group row align-items-center mt-4">
 					   
-					    <label for="nombre" class="letra-azul">Tecnologías:	</label>	
+					    <label for="tecnologias" class="letra-azul">Tecnologías:	</label>	
 					     <div class="col-sm-10">	    
 						<input type="text" class="form-control" th:field="*{tecnologias}" id="tecnologias" placeholder="Tecnologías" th:value="${transferOferta.tecnologias}">
 						<label th:if="${#fields.hasErrors('tecnologias')}" th:errors="*{tecnologias}" class="validation-message error"></label>
+						</div>
+					  </div>
+					  
+					  <div class="form-group row align-items-center mt-4">
+					   
+					    <label for="aniosExperiencia" class="letra-azul">Años experiencia:	</label>	
+					     <div class="col-sm-9">	    
+						<input type="text" class="form-control" th:field="*{aniosExperiencia}" id="aniosExperiencia" th:value="${transferOferta.aniosExperiencia}">
+						<label th:if="${#fields.hasErrors('aniosExperiencia')}" th:errors="*{aniosExperiencia}" class="validation-message error"></label>
 						</div>
 					  </div>
 				          
