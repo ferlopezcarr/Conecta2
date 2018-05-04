@@ -1546,15 +1546,13 @@ public class ControladorPrincipal {
 			    modelAndView.setViewName("redirect:/");
 
 		    }else {
-		    			//MENSAJE DE ERROR
-		    			String msg = "¡El correo introducido no está registrado !";
-		    			
-		    			modelAndView.addObject("popup", msg);
-		    		    modelAndView.setViewName("index");
+    			//MENSAJE DE ERROR
+    			String msg = "¡El correo introducido no está registrado !";
+    			
+    			modelAndView.addObject("popup", msg);
+    		    modelAndView.setViewName("index");
 
-		    		}
-
-		    
+    		}
 		   
 			return modelAndView;
 		}
@@ -1567,7 +1565,6 @@ public class ControladorPrincipal {
 		@RequestMapping(value="/nuevaPass", method = RequestMethod.GET, params = {"val"})
 		public ModelAndView nuevaContrasenia(@RequestParam("val") String val){ 
 
-			
 			ModelAndView modelAndView = obtenerInstancia();	
 			Object obj = saEmail.resetPass(val);
 			if(obj==null) {//error validacion
@@ -1633,7 +1630,7 @@ public class ControladorPrincipal {
 								modelAndView.setViewName("index");			
 
 								
-							}else {
+							} else {
 								miParticular.setPassword(aux.getPassword());
 								saParticular.cifraPass(miParticular);
 								String msg = "¡Su contraseña se ha cambiado!";
@@ -1642,13 +1639,12 @@ public class ControladorPrincipal {
 
 							}
 							
-						}else{
+						} else{
 							String msg = "¡La peticion de cambio de contraseña ha caducado!";
 			    			modelAndView.addObject("popup", msg);
 							modelAndView.setViewName("index");			
 
 						}
-						
 					}
 
 		    	}				    	
@@ -1658,7 +1654,6 @@ public class ControladorPrincipal {
     			String msg = "¡El correo no ha sido encontrado!";
     			modelAndView.addObject("popup", msg);
 				modelAndView.setViewName("index");			
-
 		    }
 				
 			return modelAndView;

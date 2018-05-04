@@ -31,10 +31,14 @@
 			        	<a class="nav-link" href="/ofertas">Mis Ofertas</a>
 			      	</li>
 			      	<li class="nav-item my-auto">
-			        	<a class="nav-link" th:if="${particular == null && empresa == null && notificaciones == null}" href="#"><i class="material-icons">notifications_none</i></a>
+			        	
 			      		<div class="col-auto">
 			      		
-			      				<a class="rounded" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="material-icons notification-active rounded" style="color: white;">notifications_active</i></a>
+			      				<a class="rounded" th:if="${empresa != null and listaNotificacionesEmp.size() == 0}" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="material-icons notification-active rounded" style="color: white;">notifications_none</i></a>
+			      				<a class="rounded" th:if="${particular != null and listaNotificacionesPar.size() == 0}" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="material-icons notification-active rounded" style="color: white;">notifications_none</i></a>
+			      				<a class="rounded" th:if="${empresa != null and listaNotificacionesEmp.size() != 0}" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="material-icons notification-active rounded" style="color: white;">notifications_active</i></a>
+			      				<a class="rounded" th:if="${particular != null  and listaNotificacionesPar.size() != 0}" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="material-icons notification-active rounded" style="color: white;">notifications_active</i></a>
+			      				
 			      				<span th:if="${empresa != null and listaNotificacionesEmp.size() &gt; 0}" th:text="${listaNotificacionesEmp.size()}" id="" class="notification-number"></span>
 			      				<span th:if="${particular != null and listaNotificacionesPar.size() &gt; 0}" th:text="${listaNotificacionesPar.size()}" id="" class="notification-number"></span>
 				      		
