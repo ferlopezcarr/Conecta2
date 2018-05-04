@@ -33,9 +33,11 @@
 			      	<li class="nav-item my-auto">
 			        	
 			      		<div class="col-auto">
-			      		
+			      				<!-- sin notificaciones -->
 			      				<a class="rounded" th:if="${empresa != null and listaNotificacionesEmp.size() == 0}" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="material-icons notification-active rounded" style="color: white;">notifications_none</i></a>
 			      				<a class="rounded" th:if="${particular != null and listaNotificacionesPar.size() == 0}" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="material-icons notification-active rounded" style="color: white;">notifications_none</i></a>
+			      				
+			      				<!-- con notificaciones -->
 			      				<a class="rounded" th:if="${empresa != null and listaNotificacionesEmp.size() != 0}" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="material-icons notification-active rounded" style="color: white;">notifications_active</i></a>
 			      				<a class="rounded" th:if="${particular != null  and listaNotificacionesPar.size() != 0}" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="material-icons notification-active rounded" style="color: white;">notifications_active</i></a>
 			      				
