@@ -90,4 +90,12 @@ public class SAEmpresaImp implements SAEmpresa {
          
          return empresa;
 	}
+
+	@Override
+	public Empresa cifraPass(Empresa empresa) {
+		// TODO Auto-generated method stub
+        empresa.setPassword(bCryptPasswordEncoder.encode(empresa.getPassword()));
+
+		return save(empresa);
+	}
 }

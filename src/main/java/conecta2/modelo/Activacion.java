@@ -1,6 +1,6 @@
 package conecta2.modelo;
 
-import java.util.Date;
+import java.util.Calendar;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -28,7 +28,7 @@ public class Activacion {
 	
 	private String activacion;
 	
-	private Date hora;
+	private Calendar hora;
 	
 	/**
 	 * Constructora sin argumentos necesaria para JPA
@@ -44,7 +44,8 @@ public class Activacion {
 	public Activacion(String activacion, String email) {
 		this.activacion = activacion;
 		this.email = email;
-		this.hora = new Date();
+		this.hora = Calendar.getInstance();
+		hora.add(Calendar.HOUR_OF_DAY,1);
 
 	}
 	
@@ -74,14 +75,21 @@ public class Activacion {
 		this.activacion = activacion;
 	}
 
-	public Date getHora() {
+	public Calendar getHora() {
 		return hora;
 	}
 
-	public void setHora(Date hora) {
+	public void setHora(Calendar hora) {
 		this.hora = hora;
 	}
 	
+	public boolean isCaducado(){
+		
+		if(hora.getTimeInMillis()>=Calendar.getInstance().getTimeInMillis()) {
+			return true;
+		}else
+			return false;
+	}
 	
 	
 	

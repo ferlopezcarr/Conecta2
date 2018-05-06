@@ -14,10 +14,9 @@ import conecta2.modelo.Activacion;
 import conecta2.modelo.Empresa;
 import conecta2.modelo.Particular;
 import conecta2.repositorio.RepositorioActivacion;
-import conecta2.transfer.TransferEmpresa;
-import conecta2.transfer.TransferParticular;
 
 import javax.mail.PasswordAuthentication;
+
 import java.util.Properties;
 import java.lang.String;
 
@@ -115,7 +114,7 @@ public class SAEmailImp  implements SAEmail {
      * Método que valida a un usuario mediante una url
      */
 	@Override
-	public Object validaUsuario(String urlValida) {
+	public String validaUsuario(String urlValida) {
 		Activacion aux = repositorioActivacion.findByActivacion(urlValida);
 		
 		if(aux != null) {	
@@ -125,7 +124,7 @@ public class SAEmailImp  implements SAEmail {
 				empresa.setActivo(true);
 				saEmpresa.save(empresa);
 				
-				return TransferEmpresa.EntityToTransfer(empresa);
+				return empresa.getEmail();
 			}
 			else {//No se encuentra la empresa
 				Particular particular = saParticular.buscarPorEmail(aux.getEmail()); 
@@ -134,7 +133,7 @@ public class SAEmailImp  implements SAEmail {
 					particular.setActivo(true);
 					saParticular.save(particular);
 					
-					return TransferParticular.EntityToTransfer(particular);
+					return particular.getEmail();
 				}
 				else {//No se encuentra el particular
 					return null;
@@ -203,5 +202,41 @@ public class SAEmailImp  implements SAEmail {
 
 	}
 	
+	   /**
+     * Método que valida a un usuario mediante una url
+     */
+	@Override
+	public String resetPass(String urlValida) {
+		Activacion aux = repositorioActivacion.findByActivacion(urlValida);
+		
+		if(aux != null && aux.isCaducado()) {	
+			Empresa empresa = saEmpresa.buscarPorEmail(aux.getEmail());
+			
+			if(empresa!=null){//Se comprueba que es una empresa
+				empresa.setActivo(true);
+				saEmpresa.save(empresa);
+				
+				return empresa.getEmail();
+			}
+			else {//No se encuentra la empresa
+				Particular particular = saParticular.buscarPorEmail(aux.getEmail()); 
+				
+				if(particular!=null) {//Se comprueba que es particular
+					particular.setActivo(true);
+					saParticular.save(particular);
+					
+					return particular.getEmail();
+				}
+				else {//No se encuentra el particular
+					return null;
+				}
+			}
+		}
+		else {//aux == null
+			return null;
+		}
+	}//validaUsuario
+	
+
 	
 }

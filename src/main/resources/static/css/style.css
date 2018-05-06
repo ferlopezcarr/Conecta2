@@ -22,6 +22,10 @@ div.container{
 	padding: 4% 5% 3%;
 	background: #EFF0F5;
  }
+ 
+ .letra-peq {
+ 	font-size: 12px;
+ }
 
 .perfil {
 	padding-top: 3%;
