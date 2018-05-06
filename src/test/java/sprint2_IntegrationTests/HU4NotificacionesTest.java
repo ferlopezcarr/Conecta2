@@ -114,10 +114,10 @@ public class HU4NotificacionesTest {
 		//Modificamos la oferta
 		Oferta ofertaModificada = oferta;
 		ofertaModificada.setNombre("ofertaModificada");
-		ofertaModificada = saOferta.save(oferta);
+		ofertaModificada = saOferta.save(ofertaModificada);
 		
 		//Guardamos la notificación
-		saNotificacion.notificarParticularActualizarOferta(oferta);
+		saNotificacion.notificarParticularActualizarOferta(ofertaModificada);
 		
 		//Guardamos las notificaciones del particular
 		List<Notificacion> notificacionesParticular = saNotificacion.buscarPorParticular(particular);
@@ -165,7 +165,7 @@ public class HU4NotificacionesTest {
 		
 		//Comprobamos si la oferta está eliminada y el particular tiene su notificación
 		boolean isNotActive = !oferta.getActivo();
-		boolean hasNotification = notificacionesParticular.isEmpty();
+		boolean hasNotification = !notificacionesParticular.isEmpty();
 		
 		assertEquals(true, isNotActive && hasNotification);
 	}

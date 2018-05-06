@@ -116,12 +116,12 @@ public class HU4NotificacionesTest {
 		//Modificamos la oferta
 		Oferta ofertaModificada = oferta;
 		ofertaModificada.setNombre("ofertaModificada");
-		ofertaModificada = repositorioOferta.save(oferta);
+		ofertaModificada = repositorioOferta.save(ofertaModificada);
 		
 		//Guardamos la notificación
 		Notificacion notificacion = new Notificacion();
 		notificacion.setParticular(particular);
-		notificacion.setSiguiente("/verOferta?id=" + oferta.getId());
+		notificacion.setSiguiente("/verOferta?id=" + ofertaModificada.getId());
 		notificacion.setDescripcion("Oferta modificada");
 		repositorioNotificacion.save(notificacion);
 		
