@@ -355,8 +355,10 @@ public class ControladorPrincipal {
 		
 		if(particular != null) {
 			modelAndView.addObject("transferParticular", TransferParticular.EntityToTransfer(particular));
-			modelAndView.addObject("puntuacionMedia", particular.getPuntuacionMedia());
-			modelAndView.addObject("numValoraciones", particular.getPuntuaciones().size());
+			double puntuacionMedia = particular.getPuntuacionMedia();
+			int numPuntuaciones = particular.getPuntuaciones().size();
+			modelAndView.addObject("puntuacionMedia", puntuacionMedia);
+			modelAndView.addObject("numValoraciones", numPuntuaciones);
 			modelAndView.setViewName("perfilParticular");
 		}
 		else {//empresa
