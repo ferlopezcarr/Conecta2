@@ -355,8 +355,10 @@ public class ControladorPrincipal {
 		
 		if(particular != null) {
 			modelAndView.addObject("transferParticular", TransferParticular.EntityToTransfer(particular));
-			modelAndView.addObject("puntuacionMedia", particular.getPuntuacionMedia());
-			modelAndView.addObject("numValoraciones", particular.getPuntuaciones().size());
+			double puntuacionMedia = particular.getPuntuacionMedia();
+			int numPuntuaciones = particular.getPuntuaciones().size();
+			modelAndView.addObject("puntuacionMedia", puntuacionMedia);
+			modelAndView.addObject("numValoraciones", numPuntuaciones);
 			modelAndView.setViewName("perfilParticular");
 		}
 		else {//empresa
@@ -1471,7 +1473,8 @@ public class ControladorPrincipal {
 									modelAndView.addObject("transferParticular", TransferParticular.EntityToTransfer(contratado));
 									modelAndView.addObject("oferta", oferta);
 									//modelAndView.addObject("idParticular", null);
-									modelAndView.addObject("numValoraciones", contratado.getPuntuaciones().size());
+									int numPuntuaciones = contratado.getPuntuaciones().size();
+									modelAndView.addObject("numValoraciones", numPuntuaciones);
 									modelAndView.addObject("puntuacionMedia", contratado.getPuntuacionMedia());
 									modelAndView.setViewName("perfilParticular");
 								}

@@ -76,7 +76,7 @@ public class Particular {
 	
 	private String descripcion;
 	
-	@OneToMany(mappedBy = "empresa",fetch=FetchType.LAZY)
+	@OneToMany(mappedBy = "particular",fetch=FetchType.LAZY)
 	private List<Puntuacion> puntuaciones;
 	
 	private boolean activo;

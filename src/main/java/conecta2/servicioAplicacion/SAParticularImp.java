@@ -132,10 +132,9 @@ public class SAParticularImp implements SAParticular{
 		puntuacionActual = Math.rint(puntuacionActual*100)/100;
 		
 		Puntuacion puntuacion = new Puntuacion(puntuacionActual, contratado, empresa);
-		contratado.aniadirPuntuacion(puntuacion);
-		
 		puntuacion = saPuntuacion.save(puntuacion);
 		
+		contratado.aniadirPuntuacion(puntuacion);
 		contratado = save(contratado);
 		
 		return true;
