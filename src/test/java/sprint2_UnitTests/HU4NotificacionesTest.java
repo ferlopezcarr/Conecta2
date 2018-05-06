@@ -114,14 +114,14 @@ public class HU4NotificacionesTest {
 		particular = repositorioParticular.save(particular);
 		
 		//Modificamos la oferta
-		Oferta ofertaModificada = oferta;
-		ofertaModificada.setNombre("ofertaModificada");
-		ofertaModificada = repositorioOferta.save(ofertaModificada);
+		Oferta ofertaNoModificada = new Oferta(oferta);
+		oferta.setNombre("ofertaModificada");
+		Oferta ofertaModificada = repositorioOferta.save(oferta);
 		
 		//Guardamos la notificación
 		Notificacion notificacion = new Notificacion();
 		notificacion.setParticular(particular);
-		notificacion.setSiguiente("/verOferta?id=" + ofertaModificada.getId());
+		notificacion.setSiguiente("/verOferta?id=" + oferta.getId());
 		notificacion.setDescripcion("Oferta modificada");
 		repositorioNotificacion.save(notificacion);
 		
@@ -129,7 +129,7 @@ public class HU4NotificacionesTest {
 		List<Notificacion> notificacionesParticular = repositorioNotificacion.findByParticularAndLeidaFalse(particular);
 		
 		//Comprobamos si la oferta está modificada y el particular tiene su notificación
-		boolean areDifferent = !oferta.equals(ofertaModificada);
+		boolean areDifferent = !ofertaNoModificada.equals(ofertaModificada);
 		boolean hasNotification = notificacionesParticular.contains(notificacion);
 		
 		assertEquals(true, areDifferent && hasNotification);
