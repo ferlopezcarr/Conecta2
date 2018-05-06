@@ -1471,7 +1471,8 @@ public class ControladorPrincipal {
 									modelAndView.addObject("transferParticular", TransferParticular.EntityToTransfer(contratado));
 									modelAndView.addObject("oferta", oferta);
 									//modelAndView.addObject("idParticular", null);
-									modelAndView.addObject("numValoraciones", contratado.getPuntuaciones().size());
+									int numPuntuaciones = contratado.getPuntuaciones().size();
+									modelAndView.addObject("numValoraciones", numPuntuaciones);
 									modelAndView.addObject("puntuacionMedia", contratado.getPuntuacionMedia());
 									modelAndView.setViewName("perfilParticular");
 								}
