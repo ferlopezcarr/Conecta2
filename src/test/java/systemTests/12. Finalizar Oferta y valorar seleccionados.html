@@ -67,7 +67,7 @@
 <tbody>
 <tr><td>open</td><td>http://localhost:8080/ofertas<datalist><option>http://localhost:8080/ofertas</option></datalist></td><td></td>
 </tr>
-<tr><td>click</td><td>//a[@id='pills-home-tab']/span<datalist><option>//a[@id='pills-home-tab']/span</option><option>//li[2]/a/span</option><option>css=#pills-home-tab &gt; span</option></datalist></td><td></td>
+<tr><td>click</td><td>id=pills-home-tab<datalist><option>id=pills-home-tab</option><option>link=Ofertas Finalizadas</option><option>//a[@id='pills-home-tab']</option><option>//ul[@id='pills-tab']/li[2]/a</option><option>//a[contains(@href, '#pills-home')]</option><option>//div[2]/div/ul/li[2]/a</option><option>css=#pills-home-tab</option></datalist></td><td></td>
 </tr>
 <tr><td>click</td><td>xpath=(//a[contains(text(),'Opciones')])[3]<datalist><option>xpath=(//a[contains(text(),'Opciones')])[3]</option><option>xpath=(//a[@id='${oferta.id}'])[3]</option><option>//div[@id='pills-home']/table/tbody/tr/td[8]/a</option><option>xpath=(//a[contains(@href, '#')])[6]</option><option>//div[2]/table/tbody/tr/td[8]/a</option></datalist></td><td></td>
 </tr>
@@ -75,9 +75,9 @@
 </tr>
 <tr><td>click</td><td>id=${particular.id}<datalist><option>id=${particular.id}</option><option>link=Opciones</option><option>//a[contains(text(),'Opciones')]</option><option>//a[@id='${particular.id}']</option><option>xpath=(//a[contains(@href, '#')])[2]</option><option>//td[6]/a</option></datalist></td><td></td>
 </tr>
-<tr><td>click</td><td>link=Puntuar<datalist><option>link=Puntuar</option><option>//a[contains(text(),'Puntuar')]</option><option>//a[contains(@href, '/Puntuar-Contratado?idOferta=1&amp;idCandidato=1')]</option><option>//div/div[2]/a</option></datalist></td><td></td>
+<tr><td>click</td><td>link=Puntuar<datalist><option>link=Puntuar</option><option>//a[contains(text(),'Puntuar')]</option><option>//a[contains(@href, '/Puntuar-Contratado?idOferta=1&amp;idCandidato=1')]</option><option>//td[6]/div/div[2]/a</option></datalist></td><td></td>
 </tr>
-<tr><td>click</td><td>//label[5]<datalist><option>//label[5]</option><option>css=label.ratingControl-stars.ratingControl-stars--3</option></datalist></td><td></td>
+<tr><td>click</td><td>//label[3]<datalist><option>//label[3]</option><option>css=label.ratingControl-stars.ratingControl-stars--4</option></datalist></td><td></td>
 </tr>
 <tr><td>click</td><td>//button[@type='submit']<datalist><option>//button[@type='submit']</option><option>//button</option><option>css=button.btn.botonAzul.mt-4</option></datalist></td><td></td>
 </tr>
