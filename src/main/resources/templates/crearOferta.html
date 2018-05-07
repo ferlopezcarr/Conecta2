@@ -33,15 +33,16 @@
 				<div class="col-8">
 			 	<form th:action="@{/crear-oferta}" th:object="${transferOferta}" method="POST">
 					  <div class="form-group ">
+					  	<div class= "letra-peq mb-2"> (*) Campo obligatorio</div>
 					    <label for="nombre" class="sr-only">Título oferta</label>
-						<input type="text" class="form-control" th:field="*{nombre}" id="nombre" placeholder="Título oferta">
+						<input type="text" class="form-control" th:field="*{nombre}" id="nombre" placeholder="*Título oferta">
 						<label th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}" class="validation-message error"></label>
 					  </div>
 					  <div class="form-row mt-4">
 					     <div class="form-row align-items-center col-6">
 							    <div class="col-auto my-1">
 							    
-							      <label class="mr-sm-2 letra-azul" for="jornada">Tipo jornada:</label>
+							      <label class="mr-sm-2 letra-azul" for="jornada">*Tipo jornada:</label>
 							      <select class="custom-select mr-sm-2" id="jornada" th:field="*{jornada}">
 							        <option selected th:each="jornada : ${jornadaValues}" th:value="${jornada}" th:text="${jornada.displayName}"></option>
 							      </select>
@@ -51,7 +52,7 @@
 					    
 					     <div class="form-row align-items-center col-6">
 						    <div class="col-auto my-1">
-						      <label class="mr-sm-2 letra-azul ml-4" for="Contrato">Tipo contrato:</label>
+						      <label class="mr-sm-2 letra-azul ml-4" for="Contrato">*Tipo contrato:</label>
 						      <select class="custom-select mr-sm-2" id="Contrato" th:field="*{contrato}">
 						      	<option selected th:each="c : ${contratoValues}" th:value="${c}" th:text="${c.displayName}"></option>
 						      </select>
@@ -68,7 +69,7 @@
 					   
 					    <div class="form-group col-4">
 						    <label for="salario" class="sr-only">Vacantes:</label>
-						   	<input type="text" class="form-control" th:field="*{auxVacantes}" id="vacantes" placeholder="Vacantes">
+						   	<input type="text" class="form-control" th:field="*{auxVacantes}" id="vacantes" placeholder="*Vacantes">
 						   	<label th:if="${#fields.hasErrors('auxVacantes')}" th:errors="*{auxVacantes}" class="validation-message error"></label>
 					 	</div>
 					 	
