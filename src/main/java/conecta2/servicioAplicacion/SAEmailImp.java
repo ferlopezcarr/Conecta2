@@ -58,7 +58,7 @@ public class SAEmailImp  implements SAEmail {
 		final String origen ="conecta2authentication@gmail.com"; 
 		final String pass = "margin0Auto";
 		
-		String direccion = " https://coneta2.herokuapp.com/authorization?val=";
+		String direccion = " https://conecta2.herokuapp.com/authorization?val=";
 		
 		//String direccion ="localhost:8080/authorization?val=";
 		String direccionRandom = RandomStringUtils.random(64, true,true); 
@@ -153,7 +153,7 @@ public class SAEmailImp  implements SAEmail {
 				final String origen ="conecta2authentication@gmail.com"; 
 				final String pass = "margin0Auto";
 				
-				String direccion = " https://coneta2.herokuapp.com/authorization?val=";
+				String direccion = " https://conecta2.herokuapp.com/nuevaPass?val=";
 				
 				//String direccion ="localhost:8080/nuevaPass?val=";
 				String direccionRandom = RandomStringUtils.random(82, true,true); 
