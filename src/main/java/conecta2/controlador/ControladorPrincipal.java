@@ -1667,35 +1667,5 @@ public class ControladorPrincipal {
 	}
 		
 	
-	
-	
-	/*-----------------add atributes-----------------*/
-		
-	/**
-	 * Método que añade al particular o empresa como variable permanente para el modelo
-	 * para despues instanciar un nuevo ModelAndView que contiene el modelo  y asi poder acceder a los datos del usuario que esta navegando en la aplicacion
-	 * @param model modelo al que se le inserta el particular o empresa
-	 */
-	//Esta anotación nos permite establecer variables permanentes para el modelo
-	@ModelAttribute
-	public void addAttributes(Model model) {
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		Particular particular = saParticular.buscarPorEmail(auth.getName());
-		Empresa empresa = saEmpresa.buscarPorEmail(auth.getName());
-		
-		model.addAttribute("particular", particular);
-		model.addAttribute("empresa", empresa);//En este caso el objeto usuario estará permanentemente en todas las vistas por el @ModelAttribute
-		
-		if (empresa != null) {
-			model.addAttribute("listaNotificacionesEmp", saNotificacion.buscarPorEmpresa(empresa));
-		}
-		
-		if (particular != null) {
-			model.addAttribute("listaNotificacionesPar", saNotificacion.buscarPorParticular(particular));
-		}
-		
-		
-		this.modeloyVista = new ModelAndView("/ofertas","modelo", model);
-	}
-	
+
 }
